@@ -12,7 +12,7 @@
 %\usepackage[aboveskip=1pt,labelfont=bf,labelsep=period,justification=raggedright,singlelinecheck=off]{caption}
 \newcommand{\R}{{\bf R}}
 
-\usepackage[tablesonly]{endfloat}
+%\usepackage[tablesonly]{endfloat}
 \usepackage{endfloat}
 
 \renewcommand{\efloatseparator}{\vfill}
@@ -582,20 +582,20 @@ the result of that is a gap in the relevant information between the years
 
 \subsection{LISA data, 2002--2013}
 
-The {\sc Lisa} data is yearly, with {\tt hisclass} information starting in 2002. This information, however, do not allow us to contemplate seven (or six) levels, so we are using only four classes, grouping together 1+2, 3+4, and 5 + 6.
+The {\sc Lisa} data is yearly, with {\tt hisclass} information starting in 2002. This information, however, do not allow us to contemplate seven (or six) levels, so we are using only four classes, grouping together 1+2, 3+4, 5, and 6.
 
 
 \subsection{Combining the data sets and tabulate}
 
 <<readtab>>=
-load("../CreateData/vbTab.rda")
+load("../CreateData/data4/vbTab.rda")
 @ 
 
 \section{Results}
 
 <<colorc>>=
 ## Colors for plotting strata:
-scol <- c("blue", rep("green", 2), "red")
+scol <- c("blue", rep("darkgreen", 2), "red")
 ## Common for all groups:
 
 labb <- levels(vbTab$period)
@@ -627,8 +627,8 @@ scap1m <-  "Cumulative hazards, ages 40--59, men."
 ##
 cap12 <- "Total hazard of dying before age 60 for a 40 year old person by HISCLASS and decade, women (top) and men (bottom)."
 scap12 <- "Total hazard by HISCLASS, ages 40--59."    
-cap12log <- "Total hazard of dying before age 60 for a 40 year old person by HISCLASS and decade, women (top) and men (bottom). Log scale."
-scap12log <- "Total hazard by HISCLASS, ages 40--59 (log scale)."    
+cap12log <- "Total hazard of dying before age 60 for a 40 year old person by HISCLASS and decade, women (top) and men (bottom). The last decades."
+scap12log <- "Total hazard by HISCLASS, ages 40--59, last years."    
 
 cap2w <-  "Cumulative hazards for HISCLASS by time period, ages 60--89, women."
 scap2w <-  "Cumulative hazards, ages 60--89, women."
@@ -637,6 +637,8 @@ scap2m <-  "Cumulative hazards, ages 60--89, men."
 ##
 cap22 <- "Total hazard of dying before age 90 for a 60 year old person by HISCLASS and decade, women (top) and men (bottom)."
 scap22 <- "Total hazard by HISCLASS, ages 60--89."    
+cap22log <- "Total hazard of dying before age 90 for a 60 year old person by HISCLASS and decade, women (top) and men (bottom). The last decades."
+scap22log <- "Total hazard by HISCLASS, ages 60--89, last years."    
 
 ##
 vb4059 <- vbTab[vbTab$age %in% seq(40, 55, by = 5), ]
@@ -657,13 +659,13 @@ resm <- getPHglm(vb4059[vb4059$sex == "male", ],
 @
 
 
-<<hazplotw, fig.cap = cap1w, fig.scap = scap1w, fig.height = 10>>=
+<<hazplotw, fig.cap = cap1w, fig.scap = scap1w, fig.height = 7>>=
 source("R/plotHaz.glm.R")
-plotHaz.glm(resw, main = labb)
+plotHaz.glm(resw[-(1:6)], main = labb, col = scol, layout = c(2, 2))
 @
 
-<<hazplotm, fig.cap = cap1m, fig.scap = scap1m, fig.height = 10>>=
-plotHaz.glm(resm, main = labb)
+<<hazplotm, fig.cap = cap1m, fig.scap = scap1m, fig.height = 7>>=
+plotHaz.glm(resm[-(1:6)], main = labb, col = scol, layout = c(2, 2))
 @
 
 From Figures~\ref{fig:hazplotw} and \ref{fig:hazplotm} it is obvious that
@@ -675,9 +677,9 @@ duration 20 (age 60).
 <<cumsw, fig.cap = cap12, fig.scap = scap12, fig.height = 10>>=
 source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
-woutp <- plotED.glm(resw, scol = scol, logScale = FALSE, ylab = "H(60|40)",
+woutp <- plotED.glm(resw, col = scol, logScale = FALSE, ylab = "H(60|40)",
                 main = "Women")
-moutp <- plotED.glm(resm, scol = scol, logScale = FALSE, ylab = "H(60|40)",
+moutp <- plotED.glm(resm, col = scol, logScale = FALSE, ylab = "H(60|40)",
                 main = "Men")
 par(oldpar)
 @
@@ -701,11 +703,13 @@ conclusion has been confirmed by separate analyses (not shown). There is no
 clear indication of homogenisation of mortality levels between social
 classes. 
 
+In Figure~\ref{fig:cumslogw} a "blow-up" of the last decades show clearly the upper hand of the upper classes.
+
 <<cumslogw, fig.cap = cap12log, fig.scap = scap12log, fig.height = 10>>=
 oldpar <- par(mfrow = c(2, 1))
-wloutp <- plotED.glm(resw, scol = scol, logScale = TRUE, ylab = "H(60|40)",
+wloutp <- plotED.glm(resw[-(1:6)], col = scol, logScale = FALSE, ylab = "H(60|40)",
 main = "Women")
-mloutp <- plotED.glm(resm, scol = scol, logScale = TRUE, ylab = "H(60|40)",
+mloutp <- plotED.glm(resm[-(1:6)], col = scol, logScale = FALSE, ylab = "H(60|40)",
 main = "Men")
 par(oldpar)
 @
@@ -713,11 +717,12 @@ par(oldpar)
 The analysis for the last period is based on a separate analysis and is presented separately.
 
 <<lissyoung>>=
+load("../CreateData/data4/liss.rda")
 liss4059 <- age.window(liss, c(40, 59))
 @
 
 
-<<liswom>>=
+<<liswom, cache = TRUE>>=
 fitw1 <- phreg(Surv(enter-40, exit-40, event) ~ strata(hisclass) + civst + urban, dist = "gompertz", data = liss4059[liss4059$sex == "female", ])
 fitm1 <- phreg(Surv(enter-40, exit-40, event) ~ strata(hisclass) + civst + urban, dist = "gompertz", data = liss4059[liss4059$sex == "male", ])
 dcol <- c("blue", "darkgreen", "darkgreen", "red")
@@ -733,8 +738,8 @@ par(oldpar)
 @
 
 See Table~\ref{tab:tablisswom1} the PH regression for women.
-<<tablisswom1, results = "asis">>=
-fitwo1 <- coxreg(Surv(enter, exit, event) ~ hisclass + civst + urban + period, 
+<<tablisswom1, results = "asis", cache = TRUE>>=
+fitwo1 <- coxreg(Surv(enter, exit, event) ~ factor(hisclass) + civst + urban + period, 
                  data = liss4059[liss4059$sex == "female", ])
 dr <- drop1(fitwo1, test = "Chisq")
 ltx(fitwo1, dr = dr, caption = "PH regression, women aged 40--59, 2002--2013.", 
@@ -742,8 +747,8 @@ ltx(fitwo1, dr = dr, caption = "PH regression, women aged 40--59, 2002--2013.",
 @
 
 See Table~\ref{tab:tablissman1} the PH regression for men.
-<<tablissman1, results = "asis">>=
-fitma1 <- coxreg(Surv(enter, exit, event) ~ hisclass + civst + urban + period, 
+<<tablissman1, results = "asis", cache = TRUE>>=
+fitma1 <- coxreg(Surv(enter, exit, event) ~ factor(hisclass) + civst + urban + period, 
                  data = liss4059[liss4059$sex == "male", ])
 dr <- drop1(fitma1, test = "Chisq")
 ltx(fitma1, dr = dr, caption = "PH regression, men aged 40--59, 2002--2013.", 
@@ -799,20 +804,20 @@ periods. In accordance with the analyses for the age group 40--59, the model adj
 %\subsubsection{Women}
 
 <<hazcalwold>>=
-resw <- getPH(vb6089[vb6089$sex == "female", ],
+resw <- getPHglm(vb6089[vb6089$sex == "female", ],
               nper, labb)
-resm <- getPH(vb60896089[vb6089$sex == "male", ],
+resm <- getPHglm(vb6089[vb6089$sex == "male", ],
                 nper, labb)
 @
 
 
-<<hazplotwold, fig.cap = cap2w, fig.scap = scap2w, fig.height = 10>>=
+<<hazplotwold, fig.cap = cap2w, fig.scap = scap2w, fig.height = 7>>=
 ##source("R/plotHaz.R")
-plotHaz.glm(resw, main = labb)
+plotHaz.glm(resw[-(1:6)], main = labb, layout = c(2, 2), col = scol)
 @
 
-<<hazplotmold, fig.cap = cap2w, fig.scap = scap2m, fig.height = 10>>=
-plotHaz.glm(resm, main = labb)
+<<hazplotmold, fig.cap = cap2w, fig.scap = scap2m, fig.height = 7>>=
+plotHaz.glm(resm[-(1:6)], main = labb, layout = c(2, 2), col = scol)
 @
 
 The cumulative hazards for the age group 60--89 in different decades are
@@ -832,21 +837,31 @@ Concerning the social pattern, we find results fairly similar to the ones for th
 <<cumswold, fig.cap = cap22, fig.scap = scap22, fig.height = 10>>=
 ##source("R/plotED.R")
 oldpar <- par(mfrow = c(2, 1))
-woutp <- plotED.glm(resw, scol = scol, logScale = FALSE, ylab = "H(90|60)",
+woutp <- plotED.glm(resw, col = scol, logScale = FALSE, ylab = "H(90|60)",
                 main = "Women")
-moutp <- plotED.glm(resm, scol = scol, logScale = FALSE, ylab = "H(90|60)",
+moutp <- plotED.glm(resm, col = scol, logScale = FALSE, ylab = "H(90|60)",
                 main = "Men")
 par(oldpar)
 @
 
+A blow-up of the last years is shown in Figure~\ref{fig:cumslogwm}.
+
+<<cumslogwm, fig.cap = cap22log, fig.scap = scap22log, fig.height = 10>>=
+oldpar <- par(mfrow = c(2, 1))
+wloutp <- plotED.glm(resw[-(1:6)], col = scol, logScale = FALSE, ylab = "H(90|60)",
+main = "Women")
+mloutp <- plotED.glm(resm[-(1:6)], col = scol, logScale = FALSE, ylab = "H(90|60)",
+main = "Men")
+par(oldpar)
+@
 
 %% The compression that is visible for later decades is partly explained by the decereasing general mortality. This effect can be eliminated by showing these numbers on a log scale.
 
 %% <<cumslogwold, fig.cap = "Probability of dying before age 90 for a 60 year old person by HISCLASS and decade, log scale, women (top) and men (bottom).", fig.height = 10>>=
 %% oldpar <- par(mfrow = c(2, 1))
-%% wloutp <- plotED.ph(resw, scol = scol, logScale = TRUE, ylab = "H(60|40)",
+%% wloutp <- plotED.ph(resw, col = scol, logScale = TRUE, ylab = "H(60|40)",
 %% main = "Women")
-%% mloutp <- plotED.ph(resm, scol = scol, logScale = TRUE, ylab = "H(60|40)",
+%% mloutp <- plotED.ph(resm, col = scol, logScale = TRUE, ylab = "H(60|40)",
 %% main = "Men")
 %% par(oldpar)
 %% @
