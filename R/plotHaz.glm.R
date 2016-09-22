@@ -19,13 +19,13 @@ plotHaz.glm <- function(res, printLegend = FALSE, col = 1:4,
         
         y <- res[[i]]
         ymax <- max(y)
-        plot(x, y[1, ], col = scol[1], type = "l", lty = 1,
+        plot(x, y[1, ], col = col[1], type = "l", lty = 1,
               main = names(res)[i], ylim = c(0, ymax),
-             xlab = "Age", ylab = "Cum. Hazards")
+             xlab = "Age", ylab = "Cum. Hazards", lwd = 2)
         for (j in 2:4){
-            lines(x, y[j, ], col = scol[j], lty = j)
+            lines(x, y[j, ], col = col[j], lty = j, lwd = 2)
         }
-        legend("topleft", legend = 1:4, col = scol, lty = 1:4, cex = 0.9)
+        legend("topleft", legend = 1:4, col = col, lty = 1:4, cex = 1.0)
     }
     abline(h = 0)
 }
