@@ -588,7 +588,7 @@ The {\sc Lisa} data is yearly, with {\tt hisclass} information starting in 2002.
 \subsection{Combining the data sets and tabulate}
 
 <<readtab>>=
-load("vbTab.rda")
+load("../CreateData/vbTab.rda")
 @ 
 
 \section{Results}
