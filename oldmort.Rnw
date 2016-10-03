@@ -32,7 +32,7 @@ Umeå University, Umeå, Sweden}
     at the
     session 'Socoeconomic inequalities and mortality I: Europe'. 41st Annual Meeting of the Social Science History Association, 
     Chicago, Illinois
-    November 17--20, 2016. (Version 2016-09-20).}}
+    November 17--20, 2016. (Version 2016-10-03).}}
 
 \date{November 19, 2016}
 
@@ -201,7 +201,7 @@ The statistical significance of the covariates are shown in Table~\ref{tab:liswo
 fitw1 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = poisson, data = liss4064[liss4064$sex == "female", ])
 ##cat("Women:\n")
 drw <- drop1(fitw1, test = "Chisq")
-xtable(drw, caption = "Effect of covariates for women 40-65, 1990-2005.", label = "tab:liswom")
+xtable(drw, caption = "Effect of covariates for women 40-64, 1990-2005.", label = "tab:liswom")
 ##round(summary(fitw1)$coef[-(1:13), ], 4)
 @
 
@@ -219,7 +219,7 @@ And for men:
 fitm1 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = poisson, data = liss4064[liss4064$sex == "male", ])
 ##cat("\nMen:\n")
 drm <- drop1(fitm1, test = "Chisq")
-xtable(drm, caption = "Effect of covariates for men 40-65, 1990-2005.")
+xtable(drm, caption = "Effect of covariates for men 40-64, 1990-2005.")
 ##round(summary(fitm1)$coef[-(1:13), ], 4)
 dcol <- c("blue", "darkgreen", "darkgreen", "red")
 @
