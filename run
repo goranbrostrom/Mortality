@@ -1,0 +1,3 @@
+#!/bin/bash -eu
+R --no-restore -e "library(knitr); knit('oldmort.Rnw')"
+pdflatex oldmort
