@@ -577,9 +577,12 @@ plotWEduc(fitm2)
 
 <<causes41>>=
 load("data/vb.rda")
+vb <- cal.window(vb, c(1961, 2001))
 x <- substr(vb$ULORSAK, 1, 2)
 vb$event <- vb$event & (!is.na(vb$ULORSAK)) & (x %in% "41")
 vb$exposure <- with(vb, exit - enter)
+vb$cohort <- factor(vb$cohort)
+vb$period <- factor(vb$period)
 vbTab <- aggregate(vb[, c("event", "exposure")], 
                    vb[, c("sex", "age", "period", "cohort", 
                           "urban", "civst", "hisclass")], 
@@ -599,8 +602,8 @@ source("R/getPHglm.R")
 ## End 'common'
 @
 
-Models are fitted separately for each ten-year time period, from  1901 to
-2000, with the exception of the period 1951--1960. We stratify on HISCLASS
+Models are fitted separately for each ten-year time period, from  1961 to
+2000. We stratify on HISCLASS
 and use the covariates {\tt sex}, {\tt   civst}, and {\tt urban}
 (Skellefteå town or outside). The cumulative
 hazards at the end of the time period (60 if 40--64, 90 if 65--89) are the
@@ -658,11 +661,11 @@ resm <- getPHglm2(vb4064[vb4064$sex == "male", ],
 <<41hazplotw, fig.cap = cap1w, fig.scap = scap1w, fig.height = 7>>=
 source("R/plotHaz.glm.R")
 
-plotHaz.glm(resw[-(1:6)], main = labb, col = scol, layout = c(2, 2))
+plotHaz.glm(resw, main = labb, col = scol, layout = c(2, 2))
 @
 
 <<41hazplotm, fig.cap = cap1m, fig.scap = scap1m, fig.height = 7>>=
-plotHaz.glm(resm[-(1:6)], main = labb, col = scol, layout = c(2, 2))
+plotHaz.glm(resm, main = labb, col = scol, layout = c(2, 2))
 @
 
 From Figures~\ref{fig:hazplotw} and \ref{fig:hazplotm} it is obvious that
@@ -704,9 +707,9 @@ In Figure~\ref{fig:cumslogw} a "blow-up" of the last decades show clearly the up
 
 <<41cumslogw, fig.cap = cap12log, fig.scap = scap12log, fig.height = 10>>=
 oldpar <- par(mfrow = c(2, 1))
-wloutp <- plotED.glm(resw[-(1:6)], col = scol, logScale = FALSE, ylab = "H(65|40)",
+wloutp <- plotED.glm(resw, col = scol, logScale = FALSE, ylab = "H(65|40)",
 main = "Women")
-mloutp <- plotED.glm(resm[-(1:6)], col = scol, logScale = FALSE, ylab = "H(65|40)",
+mloutp <- plotED.glm(resm, col = scol, logScale = FALSE, ylab = "H(65|40)",
 main = "Men")
 par(oldpar)
 @
@@ -845,11 +848,11 @@ resm <- getPHglm(vb6089[vb6089$sex == "male", ],
 
 <<41hazplotwold, fig.cap = cap2w, fig.scap = scap2w, fig.height = 7>>=
 ##source("R/plotHaz.R")
-plotHaz.glm(resw[-(1:6)], main = labb, layout = c(2, 2), col = scol)
+plotHaz.glm(resw, main = labb, layout = c(2, 2), col = scol)
 @
 
 <<41hazplotmold, fig.cap = cap2w, fig.scap = scap2m, fig.height = 7>>=
-plotHaz.glm(resm[-(1:6)], main = labb, layout = c(2, 2), col = scol)
+plotHaz.glm(resm, main = labb, layout = c(2, 2), col = scol)
 @
 
 The cumulative hazards for the age group 65--89 in different decades are
@@ -902,9 +905,9 @@ A blow-up of the last years is shown in Figure~\ref{fig:cumslogwm}.
 
 <<41cumslogwm, fig.cap = cap22log, fig.scap = scap22log, fig.height = 10>>=
 oldpar <- par(mfrow = c(2, 1))
-wloutp <- plotED.glm(resw[-(1:6)], col = scol, logScale = FALSE, ylab = "H(90|65)",
+wloutp <- plotED.glm(resw, col = scol, logScale = FALSE, ylab = "H(90|65)",
 main = "Women")
-mloutp <- plotED.glm(resm[-(1:6)], col = scol, logScale = FALSE, ylab = "H(90|65)",
+mloutp <- plotED.glm(resm, col = scol, logScale = FALSE, ylab = "H(90|65)",
 main = "Men")
 par(oldpar)
 @
