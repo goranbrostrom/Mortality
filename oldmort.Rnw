@@ -100,7 +100,7 @@ will be performed on data from the Skellefteå and Umeå regions
 
 \section{Previous research}
 
-For a detailed presentation we refer to \citet{segb16}. Her is a short
+For a detailed presentation we refer to \citet{segb16}. Here is a short
 summary.
 
 Several studies have shown how important access to economic and other
