@@ -4,6 +4,8 @@ plotHaz.glm <- function(res, printLegend = FALSE, col = 1:4,
     ## Note, number of levels of hisclass is hardcoded to 4 (four) here!!
     ## Will be fixed.
     
+    leg <- c("1+2", "3+4", "5", "6+7") ## a hack for the time being
+    
     oldpar <- par(mfrow = layout)
     on.exit(par(oldpar))
     n <- length(res)
@@ -25,7 +27,7 @@ plotHaz.glm <- function(res, printLegend = FALSE, col = 1:4,
         for (j in 2:4){
             lines(x, y[j, ], col = col[j], lty = j, lwd = 2)
         }
-        legend("topleft", legend = 1:4, col = col, lty = 1:4, cex = 1.0)
+        legend("topleft", legend = leg, col = col, lty = 1:4, cex = 1.0)
     }
     abline(h = 0)
 }
