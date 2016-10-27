@@ -61,8 +61,33 @@ knitr::opts_chunk$set(cache=FALSE,echo=FALSE,message=FALSE,warning=FALSE,comment
 %%\subsection{Combining the data sets and tabulate}
 
 <<readtab>>=
-load("data/vbTab.rda")
+## We want to add hisclass at 40 (hc40) and hisclass at 60 (hc60), so as a shortcut
+## we start over with vb in the creation of the 'new vbTab':
+##load("data/vbTab.rda") 
+load("data/vb.rda")
+vb <- vb[order(vb$id, vb$age), ]
+vb$exposure <- with(vb, exit - enter)
+first <- function(x) x[1]
+hisclass40 <- with(vb, tapply(hisclass, id, first))
+indx <- match(vb$id, names(hisclass40))
+vb$hisclass40 <- hisclass40[indx]
+##
+vb$hisclass60 <- 0
+hisclass60 <- with(vb[vb$age > 59, ], tapply(hisclass, id, first))
+indx <- match(vb$id, names(hisclass60))
+vb$hisclass60 <- hisclass60[indx]
+komp <- is.na(vb$hisclass60)
+vb$hisclass60[komp] <- vb$hisclass40[komp]
+vb$hisclass40 <- factor(vb$hisclass40, labels = c("1+2", "3+4", "5", "6+7"))
+vb$hisclass60 <- factor(vb$hisclass60, labels = c("1+2", "3+4", "5", "6+7"))
+## Now to the creation of vbTab:
+vbTab <- aggregate(vb[, c("event", "exposure")],
+                   vb[, c("sex", "age", "period", "cohort", "urban",
+                          "civst", "hisclass40", "hisclass60")],
+                   FUN = sum)
+vbTab$age <- factor(vbTab$age)
 @ 
+
 \section{Introduction}
 
 A long-term perspective on the development of social
@@ -98,6 +123,58 @@ will be performed on data from the Skellefteå and Umeå regions
 
 \item Is social position equally important among the retired population as for those in working age?
 \end{enumerate}
+
+\section{The Skellefteå and Umeå regions}
+
+Figure~\ref{fig:mapp} shows the study ares and thier position in Sweden.
+\begin{figure}
+\includegraphics[height=19cm]{myfigs/sweden}
+\caption{The Skellefteå and Umeå regions in Sweden.}
+\label{fig:mapp}
+\end{figure}
+Both regions are part
+of the county of Västerbotten in the north of Sweden, along the coast of
+the Gulf of Bothnia. The Skellefteå region in Poplink consists of a selection
+of parishes surrounding the town of Skellefteå, founded in 1845 but with a
+very small population in the 19th century. The data from the period after
+1960 cover the Skellefteå and Malå municipalities, the same area as for the
+earlier period but with the addition of two more parishes. The majority
+of the population in the region lived in rural villages and hamlets, getting
+their livelihood from agricultural production. The region was vulnerable for
+harvest failures, one living long in memory was the famine of 1867–1868
+(Edvinsson and Broström, 2014). Towards the end of the century, the re-
+gion became connected to the Swedish railway system, thus improving the
+communications and contacts with other parts of the country. During the
+20th century, industrialisation took place, partly by the opening of mines in
+the inlands. This also led to a population increase both in the town and in
+the rural parts, and a much more diversified economy.
+Mortality was fairly low in comparison with other parts of the country
+and the fertility transition was late. The Skellefteå population size as defined
+in our datasets was 16\,473 on January 1, 1850, 41\,352 on January 1, 1900,
+61\,938 on January 1, 1950 and 76\,723 at the end of the century.
+
+The Umeå region in Poplink (from 1900 until 1950s) consists of Umeå urban and
+rural parish, and in the Linneus database from 1960 onwards of Umeå mu-
+nicipality where another three parishes are included. This region had a
+somewhat different character from that of Skellefteå, even though agricul-
+ture was dominating the economy for a long time. The town of Umeå had a
+small population but substantially larger than Skellefteå town during almost
+the whole studied period. It was the administrative centre in the county of
+Västerbotten and schools and military regiments was placed here. Officials,
+teachers and the military were much more common in Umeå. Agriculture
+dominated in the rural part, while and there were some foundries, some
+industries for example in forestry and small-scale production. Umeå had a
+much more diversified occupational structure than Skellefteå. The popula-
+tion size as defined in our datasets was 18\,970 on January 1, 1900, 32\,900 on
+January 1, 1950 and 103\,970 when the century ended.
+
+Figure~\ref{fig:hiscskum} shows the distribution (per cent) of exposure time over hisclass  for our selected time periods.
+
+<<hiscskum, fig.cap = "Exposure by hisclass (from the top: 1+2, 3+4, 5, 6+7) and time period", fig.height = 9>>=
+xx <- with(vbTab, tapply(exposure, list(period = period, hisclass = hisclass40), sum))
+yy <- round(prop.table(xx, 1) * 100, 1)
+barplot(t(yy)[4:1, ], col = c("red", "blue", "green", "black"), las = 2)
+@
 
 \section{Previous research}
 
@@ -219,8 +296,8 @@ source("R/getPHglm.R")
 Models are fitted separately for each ten-year time period, from  1901 to
 2000, with the exception of the period 1951--1960. We stratify on HISCLASS
 and use the covariates {\tt sex}, {\tt   civst}, and {\tt urban}
-(Skellefteå town or outside). The cumulative
-hazards at the end of the time period (60 if 40--64, 90 if 65--89) are the
+(Skellefteå/Umeå town or outside). The cumulative
+hazards at the end of the time period (65 if 40--64, 90 if 65--89) are the
 main target in our analysis: These numbers are used in the process of
 graphically illustrating the development over time.
 
@@ -237,9 +314,9 @@ scap1w <-  "Cumulative hazards, ages 40--64, women."
 cap1m <-  "Cumulative hazards for HISCLASS by time period, ages 40--64, men."
 scap1m <-  "Cumulative hazards, ages 40--64, men."
 ##
-cap12 <- "Total hazard of dying before age 60 for a 40 year old person by HISCLASS and decade, women (top) and men (bottom)."
+cap12 <- "Total hazard of dying before age 65 for a 40 year old person by HISCLASS and decade, women (top) and men (bottom)."
 scap12 <- "Total hazard by HISCLASS, ages 40--64."    
-cap12log <- "Total hazard of dying before age 60 for a 40 year old person by HISCLASS and decade, women (top) and men (bottom). The last decades."
+cap12log <- "Total hazard of dying before age 65 for a 40 year old person by HISCLASS and decade, women (top) and men (bottom). The last decades."
 scap12log <- "Total hazard by HISCLASS, ages 40--64, last years."    
 
 cap2w <-  "Cumulative hazards for HISCLASS by time period, ages 65--89, women."
@@ -247,14 +324,15 @@ scap2w <-  "Cumulative hazards, ages 65--89, women."
 cap2m <-  "Cumulative hazards for HISCLASS by time period, ages 65--89, men."
 scap2m <-  "Cumulative hazards, ages 65--89, men."
 ##
-cap22 <- "Total hazard of dying before age 90 for a 60 year old person by HISCLASS and decade, women (top) and men (bottom)."
+cap22 <- "Total hazard of dying before age 90 for a 65 year old person by HISCLASS and decade, women (top) and men (bottom)."
 scap22 <- "Total hazard by HISCLASS, ages 65--89."    
-cap22log <- "Total hazard of dying before age 90 for a 60 year old person by HISCLASS and decade, women (top) and men (bottom). The last decades."
+cap22log <- "Total hazard of dying before age 90 for a 65 year old person by HISCLASS and decade, women (top) and men (bottom). The last decades."
 scap22log <- "Total hazard by HISCLASS, ages 65--89, last years."    
 
 ##
 vb4064 <- vbTab[as.numeric(as.character(vbTab$age)) < 64.5, ]
 vb4064$age <- factor(vb4064$age)
+vb4064$hisclass <- vb4064$hisclass40
 @
 
 We start by looking at cumulative hazards by {\sc Hisclass} over time
@@ -444,6 +522,7 @@ skilled workers is very clear for the period 2002--2013.
 <<getske6089>>=
 vb6089 <- vbTab[as.numeric(as.character(vbTab$age)) >= 64.5, ]
 vb6089$age <- factor(vb6089$age) # NOTE:: No change to '6589'!
+vb6089$hisclass <- vb6089$hisclass60
 @
 
 We now turn to the elderly, i.e. those that mostly have left the workforce. We start by looking at cumulative hazards by {\sc Hisclass} over time
@@ -573,13 +652,13 @@ dcol <- c("blue", "darkgreen", "darkgreen", "red")
 plotWEduc(fitm2)
 @
 
-\section{Results, causes 41 \ldots}
+\section{Results, heart diseases \ldots}
 
 <<causes41>>=
 load("data/vb.rda")
 vb <- cal.window(vb, c(1961, 2001))
 x <- substr(vb$ULORSAK, 1, 2)
-vb$event <- vb$event & (!is.na(vb$ULORSAK)) & (x %in% "41")
+vb$event <- vb$event & (!is.na(x) & (x == "19"))
 vb$exposure <- with(vb, exit - enter)
 vb$cohort <- factor(vb$cohort)
 vb$period <- factor(vb$period)
@@ -618,25 +697,25 @@ graphically illustrating the development over time.
 
 %The distribution over time periods.
 <<41getske4060>>=
-cap1w <-  "Cumulative hazards for HISCLASS by time period, ages 40--64, women, causes 41."
-scap1w <-  "Cumulative hazards, ages 40--64, women, causes 41."
-cap1m <-  "Cumulative hazards for HISCLASS by time period, ages 40--64, men, causes 41."
-scap1m <-  "Cumulative hazards, ages 40--64, men, causes 41."
+cap1w <-  "Cumulative hazards for HISCLASS by time period, ages 40--64, women, causes 19."
+scap1w <-  "Cumulative hazards, ages 40--64, women, causes 19."
+cap1m <-  "Cumulative hazards for HISCLASS by time period, ages 40--64, men, causes 19."
+scap1m <-  "Cumulative hazards, ages 40--64, men, causes 19."
 ##
-cap12 <- "Total hazard of dying before age 60 for a 40 year old person by HISCLASS and decade, women (top) and men (bottom), causes 41."
-scap12 <- "Total hazard by HISCLASS, ages 40--64, causes 41."    
-cap12log <- "Total hazard of dying before age 60 for a 40 year old person by HISCLASS and decade, women (top) and men (bottom). The last decades, causes 41."
-scap12log <- "Total hazard by HISCLASS, ages 40--64, last years, causes 41."    
+cap12 <- "Total hazard of dying before age 60 for a 40 year old person by HISCLASS and decade, women (top) and men (bottom), causes 19."
+scap12 <- "Total hazard by HISCLASS, ages 40--64, causes 19."    
+cap12log <- "Total hazard of dying before age 60 for a 40 year old person by HISCLASS and decade, women (top) and men (bottom). The last decades, causes 19."
+scap12log <- "Total hazard by HISCLASS, ages 40--64, last years, causes 19."    
 
-cap2w <-  "Cumulative hazards for HISCLASS by time period, ages 65--89, women, causes 41."
-scap2w <-  "Cumulative hazards, ages 65--89, women, causes 41."
-cap2m <-  "Cumulative hazards for HISCLASS by time period, ages 65--89, men, causes 41."
-scap2m <-  "Cumulative hazards, ages 65--89, men, causes 41."
+cap2w <-  "Cumulative hazards for HISCLASS by time period, ages 65--89, women, causes 19."
+scap2w <-  "Cumulative hazards, ages 65--89, women, causes 19."
+cap2m <-  "Cumulative hazards for HISCLASS by time period, ages 65--89, men, causes 19."
+scap2m <-  "Cumulative hazards, ages 65--89, men, causes 19."
 ##
-cap22 <- "Total hazard of dying before age 90 for a 60 year old person by HISCLASS and decade, women (top) and men (bottom), causes 41."
-scap22 <- "Total hazard by HISCLASS, ages 65--89, causes 41."    
-cap22log <- "Total hazard of dying before age 90 for a 60 year old person by HISCLASS and decade, women (top) and men (bottom). The last decades, causes 41."
-scap22log <- "Total hazard by HISCLASS, ages 65--89, last years, causes 41."    
+cap22 <- "Total hazard of dying before age 90 for a 60 year old person by HISCLASS and decade, women (top) and men (bottom), causes 19."
+scap22 <- "Total hazard by HISCLASS, ages 65--89, causes 19."    
+cap22log <- "Total hazard of dying before age 90 for a 60 year old person by HISCLASS and decade, women (top) and men (bottom). The last decades, causes 19."
+scap22log <- "Total hazard by HISCLASS, ages 65--89, last years, causes 19."    
 
 ##
 vb4064 <- vbTab[as.numeric(as.character(vbTab$age)) < 64.5, ]
@@ -734,13 +813,13 @@ The statistical significance of the covariates are shown in Table~\ref{tab:liswo
 fitw1 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = poisson, data = liss4064[liss4064$sex == "female", ])
 ##cat("Women:\n")
 drw <- drop1(fitw1, test = "Chisq")
-xtable(drw, caption = "Effect of covariates for women 40-64, 1990-2005, causes 41.", label = "tab:liswom")
+xtable(drw, caption = "Effect of covariates for women 40-64, 1990-2005, causes 19.", label = "tab:liswom")
 ##round(summary(fitw1)$coef[-(1:13), ], 4)
 @
 
 The estimated effect sizes are shown in Figure \ref{fig:liswomfig}
 
-<<41liswomfig, fig.cap = "Effect sizes, women 40-64, 1990-2005, causes 41.", fig.height = 4>>=
+<<41liswomfig, fig.cap = "Effect sizes, women 40-64, 1990-2005, causes 19.", fig.height = 4>>=
 source("R/plotWEduc.R")
 plotWEduc(fitw1)
 @
@@ -752,18 +831,18 @@ And for men:
 fitm1 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = poisson, data = liss4064[liss4064$sex == "male", ])
 ##cat("\nMen:\n")
 drm <- drop1(fitm1, test = "Chisq")
-xtable(drm, caption = "Effect of covariates for men 40-64, 1990-2005, causes 41.")
+xtable(drm, caption = "Effect of covariates for men 40-64, 1990-2005, causes 19.")
 ##round(summary(fitm1)$coef[-(1:13), ], 4)
 dcol <- c("blue", "darkgreen", "darkgreen", "red")
 @
 
-<<41lismanfig, fig.cap = "Effect sizes, men 40-64, 1990-2005, causes 41.", fig.height = 4>>=
+<<41lismanfig, fig.cap = "Effect sizes, men 40-64, 1990-2005, causes 19.", fig.height = 4>>=
 #source("R/plotWEduc.R")
 plotWEduc(fitm1)
 @
 
 
-<<41plotliss1, fig.cap = "Cumulative hazards, ages 40--64, 2002--2013, causes 41.", fig.height = 4>>=
+<<41plotliss1, fig.cap = "Cumulative hazards, ages 40--64, 2002--2013, causes 19.", fig.height = 4>>=
 #oldpar <- par(mfrow = c(1, 2))
 #plot(fitw1, fn = "cum", col = dcol, main = "Women")
 #plot(fitm1, fn = "cum", col = dcol, main = "Men")
@@ -931,13 +1010,13 @@ The statistical significance of the covariates are shown in Table~\ref{tab:liswo
 fitw2 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = poisson, data = liss6589[liss6589$sex == "female", ])
 ##cat("Women:\n")
 drw2 <- drop1(fitw2, test = "Chisq")
-xtable(drw2, caption = "Effect of covariates for women 65-89, 1990-2005, causes 41.", label = "tab:liswom")
+xtable(drw2, caption = "Effect of covariates for women 65-89, 1990-2005, causes 19.", label = "tab:liswom")
 ##round(summary(fitw1)$coef[-(1:13), ], 4)
 @
 
 The estimated effect sizes are shown in Figure \ref{fig:liswomfig}
 
-<<41liswomfig2, fig.cap = "Effect sizes, women 65-89, 1990-2005, causes 41.", fig.height = 4>>=
+<<41liswomfig2, fig.cap = "Effect sizes, women 65-89, 1990-2005, causes 19.", fig.height = 4>>=
 #source("R/plotWEduc.R")
 plotWEduc(fitw2)
 @
@@ -949,12 +1028,12 @@ And for men:
 fitm2 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = poisson, data = liss6589[liss6589$sex == "male", ])
 ##cat("\nMen:\n")
 drm2 <- drop1(fitm2, test = "Chisq")
-xtable(drm2, caption = "Effect of covariates for men 65-89, 1990-2005, causes 41.")
+xtable(drm2, caption = "Effect of covariates for men 65-89, 1990-2005, causes 19.")
 ##round(summary(fitm1)$coef[-(1:13), ], 4)
 dcol <- c("blue", "darkgreen", "darkgreen", "red")
 @
 
-<<41lismanfig2, fig.cap = "Effect sizes, men 65-89, 1990-2005, causes 41.", fig.height = 4>>=
+<<41lismanfig2, fig.cap = "Effect sizes, men 65-89, 1990-2005, causes 19.", fig.height = 4>>=
 #source("R/plotWEduc.R")
 plotWEduc(fitm2)
 @
