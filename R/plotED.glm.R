@@ -10,6 +10,8 @@ plotED.glm <- function(res,
 
     ##nper <- NCOL(res[[1]])
 
+    ## Assuming 'm == 4', we try:
+    leg = c("1+2", "3", "4+5", "6+7")
     nper <- length(res)
     k <- NCOL(res[[1]])
     m <- NROW(res[[1]])
@@ -46,6 +48,6 @@ plotED.glm <- function(res,
     }
     abline(v = xv[out], lty = 3, col = "magenta")
     abline(h = 0)
-    legend("topright", legend = 1:m, col = col, pch = 1:m, lty = 1:m)
+    legend("topright", legend = leg, col = col, pch = 1:m, lty = 1:m)
     invisible(outp)
 }
