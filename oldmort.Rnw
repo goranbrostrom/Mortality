@@ -61,31 +61,8 @@ knitr::opts_chunk$set(cache=FALSE,echo=FALSE,message=FALSE,warning=FALSE,comment
 %%\subsection{Combining the data sets and tabulate}
 
 <<readtab>>=
-## We want to add hisclass at 40 (hc40) and hisclass at 60 (hc60), so as a shortcut
-## we start over with vb in the creation of the 'new vbTab':
-##load("data/vbTab.rda") 
+load("data/vbTab.rda") 
 load("data/vb.rda")
-vb <- vb[order(vb$id, vb$age), ]
-vb$exposure <- with(vb, exit - enter)
-first <- function(x) x[1]
-hisclass40 <- with(vb, tapply(hisclass, id, first))
-indx <- match(vb$id, names(hisclass40))
-vb$hisclass40 <- hisclass40[indx]
-##
-vb$hisclass60 <- 0
-hisclass60 <- with(vb[vb$age > 59, ], tapply(hisclass, id, first))
-indx <- match(vb$id, names(hisclass60))
-vb$hisclass60 <- hisclass60[indx]
-komp <- is.na(vb$hisclass60)
-vb$hisclass60[komp] <- vb$hisclass40[komp]
-vb$hisclass40 <- factor(vb$hisclass40, labels = c("1+2", "3+4", "5", "6+7"))
-vb$hisclass60 <- factor(vb$hisclass60, labels = c("1+2", "3+4", "5", "6+7"))
-## Now to the creation of vbTab:
-vbTab <- aggregate(vb[, c("event", "exposure")],
-                   vb[, c("sex", "age", "period", "cohort", "urban",
-                          "civst", "hisclass40", "hisclass60")],
-                   FUN = sum)
-vbTab$age <- factor(vbTab$age)
 @ 
 
 \section{Introduction}
@@ -656,9 +633,9 @@ plotWEduc(fitm2)
 
 <<causes41>>=
 load("data/vb.rda")
-vb <- cal.window(vb, c(1961, 2001))
-x <- substr(vb$ULORSAK, 1, 2)
-vb$event <- vb$event & (!is.na(x) & (x == "19"))
+##vb <- cal.window(vb, c(1961, 2001))
+##x <- substr(vb$ULORSAK, 1, 2)
+vb$event <- vb$event & vb$heart
 vb$exposure <- with(vb, exit - enter)
 vb$cohort <- factor(vb$cohort)
 vb$period <- factor(vb$period)
