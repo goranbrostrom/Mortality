@@ -146,6 +146,7 @@ library(eha)
 library(skum)
 library(dplyr)
 library(tidyr)
+library(stringr)
 load("../../../Data/adult.rda")
 adult <- calWin(adult, c(1851, 1951))
 source("R/addPer.R")
@@ -331,6 +332,7 @@ foli$id <- as.integer(as.factor(foli$id)) + max(aduu$id) + 1 #;)
 <<rbinddata, results = 'asis'>>=
 
 vb <- rbind(aduu, foli)
+vb$period <- as.factor(vb$period)
 x <- with(vb, table(period, hisclass, useNA = "ifany"))
 y <- prop.table(x, margin = 1) * 100
 print(xtable(round(y, 1), digits = 0, caption = "Hisclass by time period, 1901--2013 (per cent)."))
