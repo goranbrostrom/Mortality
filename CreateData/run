@@ -1,0 +1,3 @@
+#!/bin/bash -eu
+R --no-restore -e "library(knitr); knit('creDat.Rnw')"
+pdflatex creDat
