@@ -62,7 +62,9 @@ knitr::opts_chunk$set(cache=FALSE,echo=FALSE,message=FALSE,warning=FALSE,comment
 
 <<readtab>>=
 load("data/vbTab.rda") 
+vbTab$period <- factor(vbTab$period)
 load("data/vb.rda")
+vb$period <- factor(vb$period)
 @ 
 
 \section{Introduction}
