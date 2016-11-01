@@ -343,7 +343,7 @@ From Figures~\ref{fig:hazplotw} and \ref{fig:hazplotm} it is obvious that
 the idea of proportional hazards is not reasonable.The figures do however indicate substantial changes in the social pattern of mortality during the 19th century, something we will return to.
 
 We will use as a summary measure the value of the cumulative hazards at
-duration 20 (age 60).
+age 65.
 
 <<cumsw, fig.cap = cap12, fig.scap = scap12, fig.height = 10>>=
 source("R/plotED.glm.R")
@@ -499,9 +499,9 @@ skilled workers is very clear for the period 2002--2013.
 
 %The distribution over time periods.
 <<getske6089>>=
-vb6089 <- vbTab[as.numeric(as.character(vbTab$age)) >= 64.5, ]
-vb6089$age <- factor(vb6089$age) # NOTE:: No change to '6589'!
-vb6089$hisclass <- vb6089$hisclass60
+vb6589 <- vbTab[as.numeric(as.character(vbTab$age)) >= 64.5, ]
+vb6589$age <- factor(vb6589$age) # NOTE:: No change to '6589'!
+vb6589$hisclass <- vb6589$hisclass60
 @
 
 We now turn to the elderly, i.e. those that mostly have left the workforce. We start by looking at cumulative hazards by {\sc Hisclass} over time
@@ -511,9 +511,9 @@ periods. In accordance with the analyses for the age group 40--64, the model adj
 %\subsubsection{Women}
 
 <<hazcalwold>>=
-resw <- getPHglm(vb6089[vb6089$sex == "female", ],
+resw <- getPHglm(vb6589[vb6589$sex == "female", ],
               nper, labb)
-resm <- getPHglm(vb6089[vb6089$sex == "male", ],
+resm <- getPHglm(vb6589[vb6589$sex == "male", ],
                 nper, labb)
 @
 
@@ -660,11 +660,11 @@ source("R/getPHglm.R")
 ## End 'common'
 @
 
-Models are fitted separately for each ten-year time period, from  1961 to
-2000. We stratify on HISCLASS
+Models are fitted separately for each ten-year time period, from  1981 to
+2013. We stratify on HISCLASS
 and use the covariates {\tt sex}, {\tt   civst}, and {\tt urban}
 (Skellefteå town or outside). The cumulative
-hazards at the end of the time period (60 if 40--64, 90 if 65--89) are the
+hazards at the end of the time period (65 if 40--64, 90 if 65--89) are the
 main target in our analysis: These numbers are used in the process of
 graphically illustrating the development over time.
 
@@ -676,25 +676,25 @@ graphically illustrating the development over time.
 
 %The distribution over time periods.
 <<41getske4060>>=
-cap1w <-  "Cumulative hazards for HISCLASS by time period, ages 40--64, women, causes 19."
-scap1w <-  "Cumulative hazards, ages 40--64, women, causes 19."
-cap1m <-  "Cumulative hazards for HISCLASS by time period, ages 40--64, men, causes 19."
-scap1m <-  "Cumulative hazards, ages 40--64, men, causes 19."
+cap1w <-  "Cumulative hazards for HISCLASS by time period, ages 40--64, women, cardiovascular death."
+scap1w <-  "Cumulative hazards, ages 40--64, women, cardiovascular death."
+cap1m <-  "Cumulative hazards for HISCLASS by time period, ages 40--64, men, cardiovascular death."
+scap1m <-  "Cumulative hazards, ages 40--64, men, cardiovascular death."
 ##
-cap12 <- "Total hazard of dying before age 60 for a 40 year old person by HISCLASS and decade, women (top) and men (bottom), causes 19."
-scap12 <- "Total hazard by HISCLASS, ages 40--64, causes 19."    
-cap12log <- "Total hazard of dying before age 60 for a 40 year old person by HISCLASS and decade, women (top) and men (bottom). The last decades, causes 19."
-scap12log <- "Total hazard by HISCLASS, ages 40--64, last years, causes 19."    
+cap12 <- "Total hazard of dying before age 60 for a 40 year old person by HISCLASS and decade, women (top) and men (bottom), cardiovascular death."
+scap12 <- "Total hazard by HISCLASS, ages 40--64, cardiovascular death."    
+cap12log <- "Total hazard of dying before age 65 for a 40 year old person by HISCLASS and decade, women (top) and men (bottom). The last decades, cardiovascular death."
+scap12log <- "Total hazard by HISCLASS, ages 40--64, last years, cardiovascular death."    
 
-cap2w <-  "Cumulative hazards for HISCLASS by time period, ages 65--89, women, causes 19."
-scap2w <-  "Cumulative hazards, ages 65--89, women, causes 19."
-cap2m <-  "Cumulative hazards for HISCLASS by time period, ages 65--89, men, causes 19."
-scap2m <-  "Cumulative hazards, ages 65--89, men, causes 19."
+cap2w <-  "Cumulative hazards for HISCLASS by time period, ages 65--89, women, cardiovascular death."
+scap2w <-  "Cumulative hazards, ages 65--89, women, cardiovascular death."
+cap2m <-  "Cumulative hazards for HISCLASS by time period, ages 65--89, men, cardiovascular death."
+scap2m <-  "Cumulative hazards, ages 65--89, men, cardiovascular death."
 ##
-cap22 <- "Total hazard of dying before age 90 for a 60 year old person by HISCLASS and decade, women (top) and men (bottom), causes 19."
-scap22 <- "Total hazard by HISCLASS, ages 65--89, causes 19."    
-cap22log <- "Total hazard of dying before age 90 for a 60 year old person by HISCLASS and decade, women (top) and men (bottom). The last decades, causes 19."
-scap22log <- "Total hazard by HISCLASS, ages 65--89, last years, causes 19."    
+cap22 <- "Total hazard of dying before age 90 for a 60 year old person by HISCLASS and decade, women (top) and men (bottom), cardiovascular death."
+scap22 <- "Total hazard by HISCLASS, ages 65--89, cardiovascular death."    
+cap22log <- "Total hazard of dying before age 90 for a 60 year old person by HISCLASS and decade, women (top) and men (bottom). The last decades, cardiovascular death."
+scap22log <- "Total hazard by HISCLASS, ages 65--89, last years, cardiovascular death."    
 
 ##
 vb4064 <- vbTab[as.numeric(as.character(vbTab$age)) < 64.5, ]
@@ -792,13 +792,13 @@ The statistical significance of the covariates are shown in Table~\ref{tab:liswo
 fitw1 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = poisson, data = liss4064[liss4064$sex == "female", ])
 ##cat("Women:\n")
 drw <- drop1(fitw1, test = "Chisq")
-xtable(drw, caption = "Effect of covariates for women 40-64, 1990-2005, causes 19.", label = "tab:liswom")
+xtable(drw, caption = "Effect of covariates for women 40-64, 1990-2005, cardiovascular death.", label = "tab:liswom")
 ##round(summary(fitw1)$coef[-(1:13), ], 4)
 @
 
 The estimated effect sizes are shown in Figure \ref{fig:liswomfig}
 
-<<41liswomfig, fig.cap = "Effect sizes, women 40-64, 1990-2005, causes 19.", fig.height = 4>>=
+<<41liswomfig, fig.cap = "Effect sizes, women 40-64, 1990-2005, cardiovascular death.", fig.height = 4>>=
 source("R/plotWEduc.R")
 plotWEduc(fitw1)
 @
@@ -810,18 +810,18 @@ And for men:
 fitm1 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = poisson, data = liss4064[liss4064$sex == "male", ])
 ##cat("\nMen:\n")
 drm <- drop1(fitm1, test = "Chisq")
-xtable(drm, caption = "Effect of covariates for men 40-64, 1990-2005, causes 19.")
+xtable(drm, caption = "Effect of covariates for men 40-64, 1990-2005, cardiovascular death.")
 ##round(summary(fitm1)$coef[-(1:13), ], 4)
 dcol <- c("blue", "darkgreen", "darkgreen", "red")
 @
 
-<<41lismanfig, fig.cap = "Effect sizes, men 40-64, 1990-2005, causes 19.", fig.height = 4>>=
+<<41lismanfig, fig.cap = "Effect sizes, men 40-64, 1990-2005, cardiovascular death.", fig.height = 4>>=
 #source("R/plotWEduc.R")
 plotWEduc(fitm1)
 @
 
 
-<<41plotliss1, fig.cap = "Cumulative hazards, ages 40--64, 2002--2013, causes 19.", fig.height = 4>>=
+<<41plotliss1, fig.cap = "Cumulative hazards, ages 40--64, 2002--2013, cardiovascular death.", fig.height = 4>>=
 #oldpar <- par(mfrow = c(1, 2))
 #plot(fitw1, fn = "cum", col = dcol, main = "Women")
 #plot(fitm1, fn = "cum", col = dcol, main = "Men")
@@ -886,8 +886,8 @@ skilled workers is very clear for the period 2002--2013.
 
 %The distribution over time periods.
 <<41getske6089>>=
-vb6089 <- vbTab[as.numeric(as.character(vbTab$age)) >= 64.5, ]
-vb6089$age <- factor(vb6089$age) # NOTE:: No change to '6589'!
+vb6589 <- vbTab[as.numeric(as.character(vbTab$age)) >= 64.5, ]
+vb6589$age <- factor(vb6589$age) # NOTE:: Now change to '6589'!
 @
 
 We now turn to the elderly, i.e. those that mostly have left the workforce. We start by looking at cumulative hazards by {\sc Hisclass} over time
@@ -897,9 +897,9 @@ periods. In accordance with the analyses for the age group 40--64, the model adj
 %\subsubsection{Women}
 
 <<41hazcalwold>>=
-resw <- getPHglm(vb6089[vb6089$sex == "female", ],
+resw <- getPHglm(vb6589[vb6589$sex == "female", ],
               nper, labb)
-resm <- getPHglm(vb6089[vb6089$sex == "male", ],
+resm <- getPHglm(vb6589[vb6589$sex == "male", ],
                 nper, labb)
 @
 
@@ -989,13 +989,13 @@ The statistical significance of the covariates are shown in Table~\ref{tab:liswo
 fitw2 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = poisson, data = liss6589[liss6589$sex == "female", ])
 ##cat("Women:\n")
 drw2 <- drop1(fitw2, test = "Chisq")
-xtable(drw2, caption = "Effect of covariates for women 65-89, 1990-2005, causes 19.", label = "tab:liswom")
+xtable(drw2, caption = "Effect of covariates for women 65-89, 1990-2005, cardiovascular death.", label = "tab:liswom")
 ##round(summary(fitw1)$coef[-(1:13), ], 4)
 @
 
 The estimated effect sizes are shown in Figure \ref{fig:liswomfig}
 
-<<41liswomfig2, fig.cap = "Effect sizes, women 65-89, 1990-2005, causes 19.", fig.height = 4>>=
+<<41liswomfig2, fig.cap = "Effect sizes, women 65-89, 1990-2005, cardiovascular death.", fig.height = 4>>=
 #source("R/plotWEduc.R")
 plotWEduc(fitw2)
 @
@@ -1007,12 +1007,12 @@ And for men:
 fitm2 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = poisson, data = liss6589[liss6589$sex == "male", ])
 ##cat("\nMen:\n")
 drm2 <- drop1(fitm2, test = "Chisq")
-xtable(drm2, caption = "Effect of covariates for men 65-89, 1990-2005, causes 19.")
+xtable(drm2, caption = "Effect of covariates for men 65-89, 1990-2005, cardiovascular death.")
 ##round(summary(fitm1)$coef[-(1:13), ], 4)
 dcol <- c("blue", "darkgreen", "darkgreen", "red")
 @
 
-<<41lismanfig2, fig.cap = "Effect sizes, men 65-89, 1990-2005, causes 19.", fig.height = 4>>=
+<<41lismanfig2, fig.cap = "Effect sizes, men 65-89, 1990-2005, cardiovascular death.", fig.height = 4>>=
 #source("R/plotWEduc.R")
 plotWEduc(fitm2)
 @
