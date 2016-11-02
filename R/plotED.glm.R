@@ -1,6 +1,7 @@
 plotED.glm <- function(res,
-                       col = 1:length(res),
+                       col = 1:NROW(res[[1]]),
                        logScale = FALSE,
+                       relative = FALSE,
                        ylab = "",
                        main = "",
                        exclude = 100){
@@ -11,7 +12,7 @@ plotED.glm <- function(res,
     ##nper <- NCOL(res[[1]])
 
     ## Assuming 'm == 4', we try:
-    leg = c("1+2", "3", "4+5", "6+7")
+    leg = c("1+2", "3+4", "5", "6+7")
     nper <- length(res)
     k <- NCOL(res[[1]])
     m <- NROW(res[[1]])
@@ -28,15 +29,24 @@ plotED.glm <- function(res,
     if (logScale){
         outp <- log(outp)
     }
+    if (relative){
+        outp <- prop.table(outp, 2)
+    }
     fr <- min(outp, 0)
-    to <- max(outp)
+    if (relative){
+        to <- max(outp[, out])
+        fr <- min(outp[, out])
+        #cat("to = ", to, ", fr = ", fr, "\n")
+    }else{    
+        to <- max(outp)
+    }
     xv <- (as.numeric(substr(names(res), 1, 4)) +
         as.numeric(substr(names(res), 6, 9))) / 2
 
-    plot(xv[out], outp[1, -exclude], type = "b", lty = 2, col = col[1], pch = 1,
+    plot(xv[out], outp[1, -exclude], type = "b", lty = 1, col = col[1], pch = 1,
          ylim = c(fr, to), main = main,
          axes = FALSE, ylab = ylab, cex.axis = 0.4, xlab = "", 
-         xlim = c(min(xv), max(xv) + 10))
+         xlim = c(min(xv), max(xv) + 25))
     axis(1, at = xv, lab = labb, las = 2)
     axis(2, las = 2)
     box()
