@@ -17,13 +17,13 @@ getCancer <- function(dat){
     
     ulor <- str_trim(dat$ULORSAK)
     ## First, fix ulor start with "C":
-    fc <- (substr(ulor, 1, 1) == "C") & (eb >= 1997) & (eb < 2014)
+    fc <- (!is.na(ulor)) &  (substr(ulor, 1, 1) == "C") & (eb >= 1997) & (eb < 2014)
     cancer <- fc
     ## Then the 'numeric' versions:
     ##ulor <- as.numeric(ulor)  # NA if letters in it
-    fc <- (ulor %in% as.character(140:239)) & (eb >= 1969) & (eb < 1997)
+    fc <- (!is.na(ulor)) & (ulor %in% as.character(140:239)) & (eb >= 1969) & (eb < 1997)
     cancer <- cancer | fc
-    fc <- (ulor == "12") & (eb < 1951)
+    fc <- (!is.na(ulor)) & (ulor == "12") & (eb < 1951)
     cancer <- cancer | fc
     dat$cancer <- dat$event & cancer
     dat
