@@ -638,7 +638,7 @@ plotWEduc(fitm2)
 <<causes41>>=
 cvb <- vb
 cvb$event <- cvb$heart ## Can this be done better?
-cvb <- cvb[!(cvb$period %in% c("1961-1970", "1971-1980")), ]
+cvb <- cvb[!(cvb$period %in% c("1851-1875", "1876-1900", "1961-1970", "1971-1980")), ]
 cvb$period <- factor(cvb$period)
 
 # load("data/vb.rda")
@@ -666,6 +666,19 @@ nper <- length(labb)
 source("R/getPHglm.R")
 ## End 'common'
 @
+
+The quality of the information about causes of death vary over time as shown in 
+Figure~\ref{fig:qualheart}, where the proportion reported cardiovascular death of all deaths is shown.
+
+<<qualheart, fig.cap = "Proportion cardiovascular deaths of all deaths over time">>=
+x <- with(vb[vb$event == 1, ], table(period, heart))
+x <- prop.table(x, 1)
+x <- x[, 2]
+x <- round(100 * x, 2)
+barplot(x, col = "red", las = 2, ylab = "Per cent")
+@
+
+
 
 Models are fitted separately for each ten-year time period, from  1851 to
 2013. We stratify on HISCLASS
@@ -699,7 +712,7 @@ cap2m <-  "Cumulative hazards for HISCLASS by time period, ages 65--89, men, car
 scap2m <-  "Cumulative hazards, ages 65--89, men, cardiovascular death."
 ##
 cap22 <- "Total hazard of dying before age 90 for a 65 year old person standardized by HISCLASS and decade, women (top) and men (bottom), cardiovascular death."
-scap22 <- "Total hazard standardized by HISCLASS, ages 65--89, cardiovascular death."    
+scap22 <- "TMR standardized by HISCLASS, ages 65--89, cardiovascular death."    
 cap22log <- "Total hazard of dying before age 90 for a 65 year old person by HISCLASS and decade, women (top) and men (bottom). The last decades, cardiovascular death."
 scap22log <- "Total hazard by HISCLASS, ages 65--89, last years, cardiovascular death."    
 
@@ -922,9 +935,9 @@ during the early 21st century.
 ##source("R/plotED.R")
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "H(90|65)",  main = "Women", exclude = c(1))
+                    ylab = "TMR(90|65)",  main = "Women")
 moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "H(90|65)", main = "Men", exclude = c(1))
+                    ylab = "TMR(90|65)", main = "Men")
 par(oldpar)
 @
 
@@ -981,7 +994,7 @@ plotWEduc(fitm2)
 <<causes12>>=
 cvb <- vb
 cvb$event <- cvb$cancer ## Can this be done better?
-cvb <- cvb[!(cvb$period %in% c("1961-1970", "1971-1980")), ]
+cvb <- cvb[!(cvb$period %in% c("1851-1875", "1876-1900", "1961-1970", "1971-1980", "1981-1990")), ]
 cvb$period <- factor(cvb$period)
 
 # load("data/vb.rda")
@@ -1009,6 +1022,19 @@ nper <- length(labb)
 source("R/getPHglm.R")
 ## End 'common'
 @
+
+The quality of the information about causes of death vary over time as shown in 
+Figure~\ref{fig:qualcancer}, where the proportion reported cancer deaths of all deaths is shown.
+
+<<qualcanncer, fig.cap = "Proportion cancer deaths of all deaths over time.">>=
+x <- with(vb[vb$event == 1, ], table(period, cancer))
+x <- prop.table(x, 1)
+x <- x[, 2]
+x <- round(100 * x, 2)
+barplot(x, col = "darkblue", las = 2, ylab = "Per cent")
+@
+
+We choose to use the time periods 1901--1950 and 1991--2013.
 
 Models are fitted separately for each ten-year time period, from  1851 to
 2013. We stratify on HISCLASS
@@ -1042,7 +1068,7 @@ cap2m <-  "Cumulative hazards for HISCLASS by time period, ages 65--89, men, can
 scap2m <-  "Cumulative hazards, ages 65--89, men, cancer death."
 ##
 cap22 <- "Total hazard of dying before age 90 for a 65 year old person standardized by HISCLASS and decade, women (top) and men (bottom), cancer death."
-scap22 <- "Total hazard standardized by HISCLASS, ages 65--89, cancer death."    
+scap22 <- "TMR standardized by HISCLASS, ages 65--89, cancer death."    
 cap22log <- "Total hazard of dying before age 90 for a 65 year old person by HISCLASS and decade, women (top) and men (bottom). The last decades, cancer death."
 scap22log <- "Total hazard by HISCLASS, ages 65--89, last years, cancer death."    
 
@@ -1264,9 +1290,9 @@ during the early 21st century.
 ##source("R/plotED.R")
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "H(90|65)",  main = "Women", exclude = c(1))
+                    ylab = "H(90|65)",  main = "Women")
 moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "H(90|65)", main = "Men", exclude = c(1))
+                    ylab = "H(90|65)", main = "Men")
 par(oldpar)
 @
 
