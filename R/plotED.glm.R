@@ -34,8 +34,10 @@ plotED.glm <- function(res,
     }
     fr <- min(outp, 0)
     if (relative){
-        to <- max(outp[, out], na.rm = TRUE)
-        fr <- min(outp[, out], na.rm = TRUE)
+        ##to <- max(outp[, out], na.rm = TRUE)
+        ##fr <- min(outp[, out], na.rm = TRUE)
+        fr <- 0
+        to <- 1
         #cat("to = ", to, ", fr = ", fr, "\n")
     }else{    
         to <- max(outp)
