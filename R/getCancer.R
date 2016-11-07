@@ -10,18 +10,22 @@ getCancer <- function(dat){
     ##dat$eb <- NULL
     ##dat
 #}
-## New version: 'ULORSAK' is a character vector:
+## New version: 'ULORSAK' is a factor (character vector):
     library(stringr)
     eb <- dat$exit + dat$birthdate
     ##cancer <- logical(NROW(dat))
     
-    ulor <- str_trim(dat$ULORSAK)
+    ulor <- str_trim(as.character(dat$ULORSAK))
     ## First, fix ulor start with "C":
     fc <- (!is.na(ulor)) &  (substr(ulor, 1, 1) == "C") & (eb >= 1997) & (eb < 2014)
     cancer <- fc
     ## Then the 'numeric' versions:
     ##ulor <- as.numeric(ulor)  # NA if letters in it
-    fc <- (!is.na(ulor)) & (ulor %in% as.character(140:239)) & (eb >= 1969) & (eb < 1997)
+    fc <- (!is.na(ulor)) & (substr(ulor, 1, 3) %in% as.character(140:239)) & 
+        (eb >= 1969) & (eb < 1997)
+    cancer <- cancer | fc
+    fc <- (!is.na(ulor)) & (substr(ulor, 1, 3) %in% as.character(140:239)) &
+        (eb >= 1960) & (eb < 1969)
     cancer <- cancer | fc
     fc <- (!is.na(ulor)) & (ulor == "12") & (eb < 1951)
     cancer <- cancer | fc
