@@ -40,14 +40,28 @@ putONssyk <- function(dat){
     who <- dat$AR == 1975 & dat$YRKE %in% yr75$old
     nyr <- dat$YRKE[who]
     indx <- match(nyr, yr75$old)
-    nyr <- yr65$new[indx]
+    nyr <- yr75$new[indx]
     dat$YRKE[who] <- nyr
     
-    ## 1980:
-    dat$YRKE[dat$AR == 1980] <- dat$YRKE80[dat$AR == 1980]
+    ## 1980: Vad ska vi ta här?? 'yr80.rda' finns inte!
+    ## och YRKE80 gäller ej 1980!!
+    ## Chansar på att 'yr75.rda' gäller:
+
+    ## 1980 (try):
+    load("../../../Data/yr75.rda")
+    who <- dat$AR == 1980 & dat$YRKE %in% yr75$old
+    nyr <- dat$YRKE[who]
+    indx <- match(nyr, yr75$old)
+    nyr <- yr75$new[indx]
+    dat$YRKE[who] <- nyr
+    
+    ##dat$YRKE[dat$AR == 1980] <- dat$YRKE80[dat$AR == 1980]
 
     ## 1985:
     dat$YRKE[dat$AR == 1985] <- dat$YRKE80[dat$AR == 1985]
+
+    ## 1990:
+    dat$YRKE[dat$AR == 1990] <- dat$YRKE85[dat$AR == 1990]
 
     is.na(dat$YRKE) <- dat$YRKE %in% c(0, 999)
     
