@@ -1,7 +1,7 @@
 ---
 title: "showData 4"
 author: "Göran Broström"
-date: "September 22, 2016"
+date: "November 5, 2016"
 output: pdf_document
 fontsize: 11pt
 ---
@@ -46,8 +46,8 @@ We also remove individuals that were born 1975 or later because they never get t
 Note that 37 individuals in *inddata* have no information at all, so they are removed.
 
 ```{r frominddata}
-load("data/inddata.rda")
-load("data/sex.rda")
+load("~/Forskning/Data/inddata.rda")
+load("~/Forskning/Data/sex.rda")
 indx <- match(inddata$LINNEID, sex$LINNEID)
 inddata$KON <- sex$KON[indx]
 per <- inddata[!is.na(inddata$KON) & (inddata$FODELSEAR < 1975), ]
@@ -57,7 +57,7 @@ per$birthdate <- per$FODELSEAR + 0.125  +  (per$FODELSEKVARTAL - 1) / 4
 Now we put on *death date*, *death cause*, and *KOMMUN of death*, from *socstyr*, on *per*:
 
 ```{r styronper}
-load("data/socstyr.rda")
+load("~/Forskning/Data/socstyr.rda")
 indx <- match(per$LINNEID, socstyr$LINNEID)
 per$DODSDAT <- socstyr$DODSDAT[indx]
 fixd <- !is.na(per$DODSDAT) & (per$DODSDAT < 1960010)
@@ -66,6 +66,7 @@ per$deathdate <- as.numeric(skum::tillTid(per$DODSDAT))
 per$dodsKOMMUN <- socstyr$KOMMUN[indx]
 per$dodsALDER <- socstyr$ALDER[indx]
 per$ULORSAK <- socstyr$ULORSAK[indx]
+save(per, file = "data4/per.rda")
 ```
 
 # The FoBs
@@ -93,7 +94,7 @@ Note that this is per year.
 Persons in the fob and in our KOMMUNer.
 
 ```{r fob60}
-load("data/fob.rda")
+load("~/Forskning/Data/fob.rda")
 fob60 <- fob[fob$AR == 1960 & 
                  fob$KOMMUN %in% ourkom &
                  fob$LINNEID %in% per$LINNEID, ]
@@ -288,6 +289,9 @@ This is no longer the last FoB we are using: The follow-up time this time
 *is* ten years (as before), from November 1, 1990 to October 31, 2000, when
 the *lisa* data has been filling in for a long time.
 
+**Update 2016-11-05:** Draw it to December 31, 2001, i.e. add 14 months! Reason: 
+No hisclass in LISA before 1 Jan 2002!
+
 Persons in the fob and in our KOMMUNer.
 
 ```{r fob90}
@@ -303,15 +307,15 @@ get the birthdates from *inddata*.
 library(eha)
 indx <- match(fob90$LINNEID, per$LINNEID)
 fob90$birthdate <- per$birthdate[indx]
-lim <- as.numeric(toTime("1960-11-01"))
+lim <- as.numeric(toTime("1970-11-01"))
 fob90 <- fob90[fob90$birthdate < lim, ]
 indx <- match(fob90$LINNEID, per$LINNEID) # NOTE: Necessary!
 fob90$enter <- lim + 20 - fob90$birthdate
 ##fob90$enter <- as.numeric(toTime("1985-11-01")) - fob85$birthdate
 dd <- per$deathdate[indx]
-fob90$event <- !(is.na(dd)) & (dd <= lim + 20)
+fob90$event <- !(is.na(dd)) & (dd <= lim + 31 + 61 / 365)
 ##fob90$event <- !(is.na(dd)) & (dd < 1987) 
-fob90$exit <- fob90$enter + 10  ## Not any longer: 1 year and 2 months.
+fob90$exit <- fob90$enter + 10 + 1 + 61 / 365 ## 10 + 1 + nov, dec: 1 year and 2 months.
 fob90$exit[fob90$event] <- dd[fob90$event] - fob90$birthdate[fob90$event]
 fob90 <- fob90[fob90$exit > fob90$enter, ] # Shouldn't be necessary!
 head(fob90)
@@ -341,7 +345,7 @@ save(fobdata, file = "data4/fobdata.rda")
 The *lisa* data is slightly simpler because it is yearly with cutoff dates 12-31/01-01 each new-year. It starts off at 1987-01-01 (lisa1986) and ends at 2013-12-31 (lisa2013). So the time interval a *lisa* covers is *AR + 1*! But note that the *socstyr* data only cover deaths *before January 1, 2014, so *lisa2013* is in effect useless to us.  
 
 ```{r lisadat}
-load("data/lisa.rda")
+load("~/Forskning/Data/lisa.rda")
 lisa <- lisa[lisa$KOMMUN %in% ourkom, ]
 indx <- match(lisa$LINNEID, per$LINNEID)
 lisa$birthdate <- per$birthdate[indx]
