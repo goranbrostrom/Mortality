@@ -12,7 +12,7 @@ plotED.glm <- function(res,
     ##nper <- NCOL(res[[1]])
 
     ## Assuming 'm == 4', we try:
-    leg = c("1+2", "3+4", "5", "6+7")
+    leg = c("1+2", "3+8", "4+5+6", "7+9+10+11+12")
     nper <- length(res)
     k <- NCOL(res[[1]])
     m <- NROW(res[[1]])
@@ -34,8 +34,8 @@ plotED.glm <- function(res,
     }
     fr <- min(outp, 0)
     if (relative){
-        to <- max(outp[, out])
-        fr <- min(outp[, out])
+        to <- max(outp[, out], na.rm = TRUE)
+        fr <- min(outp[, out], na.rm = TRUE)
         #cat("to = ", to, ", fr = ", fr, "\n")
     }else{    
         to <- max(outp)
