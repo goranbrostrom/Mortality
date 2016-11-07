@@ -7,7 +7,7 @@ ssykTOhisclass <- function(x){
     indx <- match(x, shh$ssyk)
     tmp <- shh$hisclass[indx]
 
-    ## Step 2: go from 12 to 7 levels:
+    ## Step 2: go from 12 to 4 levels:  ## NEW !!
     
     
     res <- rep(-1, length(x))
@@ -15,13 +15,9 @@ ssykTOhisclass <- function(x){
     tmp[is.na(tmp)] <- -1
     
     res[tmp %in% 1:2] <- 1
-    res[tmp == 3] <- 2
-    res[tmp == 8] <- 3
-    res[tmp %in% 4:6] <- 4
-    res[tmp == 7] <- 5
-##    res[tmp %in% c(9, 11)] <- 6
-##    res[tmp %in% c(10, 12)] <- 7 # skip klass 7!
-    res[tmp %in% 9:12] <- 6
+    res[tmp %in% c(3, 8)] <- 2
+    res[tmp %in% 4:6] <- 3
+    res[tmp %in% c(7, 9, 10, 11, 12)] <- 4
     is.na(res) <- res == -1
     
     res
