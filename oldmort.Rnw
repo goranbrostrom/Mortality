@@ -283,7 +283,7 @@ The classification scheme used here is HISCLASS \citep{lema11}, a class-based sy
 HISCLASS have 12 categories, but some categories become quite small in number even when analysing these comparatively large regions and we have therefore used only the main categories, based on position on the labour market. All workers are therefore  This is particularly apparent when analysing the development in separate periods where for example farmers and farm workers become more and more rare during the studied century. We have therefore collapsed some categories, ending up with the following four:
 
 \begin{enumerate}
-\item \"elite, HISCLASS 1 and 2, Higher managers and higher professionals.
+\item \'Elite, HISCLASS 1 and 2, Higher managers and higher professionals.
 \item Lower managers and farmers, HISCLASS 3 and 8.
 \item Lower professionals, HISCLASS 4, 5 and 6. Lower professionals, lower clerical, foremen.
 \item Workers, HISCLASS 7, 9, 10, 11 and 12, Lower and unskilled workers (including farm workers).
@@ -696,7 +696,7 @@ plotWEduc(fitm2)
 <<causes41>>=
 cvb <- vb
 cvb$event <- cvb$heart ## Can this be done better?
-cvb <- cvb[!(cvb$period %in% c("1961-1970", "1971-1980")), ]
+cvb <- cvb[!(cvb$period %in% c("1851-1875", "1876-1900")), ]
 cvb$period <- factor(cvb$period)
 
 # load("data/vb.rda")
@@ -725,7 +725,7 @@ source("R/getPHglm.R")
 ## End 'common'
 @
 
-Models are fitted separately for each ten-year time period, from  1851 to
+Models are fitted separately for each time period, from  1901 to
 2013. We stratify on HISCLASS
 and use the covariates {\tt sex}, {\tt   civst}, and {\tt urban}
 (Skellefteå town or outside). The cumulative
@@ -1039,7 +1039,7 @@ plotWEduc(fitm2)
 <<causes12>>=
 cvb <- vb
 cvb$event <- cvb$cancer ## Can this be done better?
-cvb <- cvb[!(cvb$period %in% c("1961-1970", "1971-1980")), ]
+cvb <- cvb[!(cvb$period %in% c("1851-1875", "1876-1900")), ]
 cvb$period <- factor(cvb$period)
 
 # load("data/vb.rda")
