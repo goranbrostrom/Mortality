@@ -13,10 +13,12 @@ getPHglm2 <- function(dat, nper, labb, from = 40){
     levs <- matrix(0, nrow = m, ncol = k + 1)
    
     for (i in 1:nper){
-        fit <- glm(event ~ offset(log(exposure)) + civst + urban + age * hisclass, 
+        fit <- glm(event ~ offset(log(exposure)) + ##urban + ##civst 
+                       age * hisclass, 
                    data = dat[dat$period == labb[i], ], family = poisson)
         
         co <- fit$coefficients
+        ##if(any(is.na(co))) cat("NA in ", i, " period\n")
         ages <- grep("age", names(co))
         hisces <- grep("hisclass", names(co))
         interact <- ages[ages %in% hisces]
@@ -33,6 +35,7 @@ getPHglm2 <- function(dat, nper, labb, from = 40){
         tmp[-1, -1] <- tmp[-1, -1] + inter
         tmp <- exp(tmp)
         levs <- cbind(rep(0, m), tmp)
+        levs[is.na(levs)] <- 0 ## HOPPSAN!!!
         for (j in 1:m){
             levs[j, ] <- cumsum(levs[j, ]) * ageInt
         }
