@@ -128,7 +128,7 @@ fob65 <- fob[fob$AR == 1965 &
                  fob$LINNEID %in% per$LINNEID, ]
 ```
 
-They need to be of the right age (born on November 1, 1930 or earlier). We
+They need to be of the right age (born on November 1, 1945 or earlier). We
 get the birthdates from *inddata*.
 
 ```{r mat65}
@@ -159,7 +159,7 @@ fob70 <- fob[fob$AR == 1970 &
                  fob$LINNEID %in% per$LINNEID, ]
 ```
 
-They need to be of the right age (born on November 1, 1935 or earlier). We
+They need to be of the right age (born on November 1, 1950 or earlier). We
 get the birthdates from *inddata*.
 
 ```{r mat70}
@@ -191,7 +191,7 @@ fob75 <- fob[fob$AR == 1975 &
                  fob$LINNEID %in% per$LINNEID, ]
 ```
 
-They need to be of the right age (born on November 1, 1940 or earlier). We
+They need to be of the right age (born on November 1, 1955 or earlier). We
 get the birthdates from *inddata*.
 
 ```{r mat75}
@@ -223,7 +223,7 @@ fob80 <- fob[fob$AR == 1980 &
                  fob$LINNEID %in% per$LINNEID, ]
 ```
 
-They need to be of the right age (born on November 1, 1945 or earlier). We
+They need to be of the right age (born on November 1, 1960 or earlier). We
 get the birthdates from *inddata*.
 
 ```{r mat80}
@@ -258,7 +258,7 @@ fob85 <- fob[fob$AR == 1985 &
                  fob$LINNEID %in% per$LINNEID, ]
 ```
 
-They need to be of the right age (born on November 1, 1950 or earlier). We
+They need to be of the right age (born on November 1, 1965 or earlier). We
 get the birthdates from *inddata*.
 
 ```{r mat85}
@@ -286,8 +286,8 @@ It should be noted that one person present in the 1985 FoB actually died 1964 (s
 ## FoB 1990
 
 This is no longer the last FoB we are using: The follow-up time this time
-*is* ten years (as before), from November 1, 1990 to October 31, 2000, when
-the *lisa* data has been filling in for a long time.
+*is* ten years (as before), from November 1, 1990 to December 31, 2001, when
+the *lisa* data is filling in.
 
 **Update 2016-11-05:** Draw it to December 31, 2001, i.e. add 14 months! Reason: 
 No hisclass in LISA before 1 Jan 2002!
@@ -300,7 +300,7 @@ fob90 <- fob[fob$AR == 1990 &
                  fob$LINNEID %in% per$LINNEID, ]
 ```
 
-They need to be of the right age (born on November 1, 1960 or earlier). We
+They need to be of the right age (born on November 1, 1970 or earlier). We
 get the birthdates from *inddata*.
 
 ```{r mat90}
