@@ -230,7 +230,7 @@ The \emph{Fob} data is treated similarly as the POPLINK data. There is unfortuna
     ## Instead
     fobb <- group_by(fobb, LINNEID) %>% fill_("hisclass")
     fobb$id <- fobb$LINNEID
-    fobb <- addPer(fobb, cuts = seq(1961, 2001, by = 10))
+    fobb <- addPer(fobb, cuts = c(1961, 1971, 1981, 1991, 2002))
     load("../../../Data/sex.rda")
     
     indx <- match(fobb$LINNEID, sex$LINNEID)
@@ -262,7 +262,7 @@ The \emph{Fob} data is treated similarly as the POPLINK data. There is unfortuna
 
 \subsection{LISA data, 2002--2013}
 
-The {\sc Lisa} data is yearly, with {\tt hisclass} information starting in 2002. This information, however, do not allow us to contemplate seven (or six) levels, so we are using only four classes, grouping together 1+2, 3+4, and 5, 6.
+The {\sc Lisa} data is yearly, with {\tt hisclass} information starting in 2002. This information, however, do not allow us to contemplate seven (or six) levels, so we are using only four classes, grouping together 1+2, 3+8, 4+5+6, and 7+9+10+11+12.
 
 <<lisadata>>=
 
@@ -286,6 +286,8 @@ The {\sc Lisa} data is yearly, with {\tt hisclass} information starting in 2002.
     lisadata$sex <- sex$KON[indx]
     levels(lisadata$sex) <- c("male", "female")
     lisaold <- lisadata
+    lisadata <- calWin(lisadata, c(2002, 2014))
+   
     ##lisadata <- lisadata[lisadata$AR > 1999.5 & !is.na(lisadata$SSYK3), ]
     lisadata <- lisadata[!is.na(lisadata$SSYK3), ] ##NOTE!
     ## Fix HISCLASS:
