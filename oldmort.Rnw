@@ -170,10 +170,10 @@ January 1, 1950 and 103\,970 when the century ended.
 
 Figure~\ref{fig:hiscskum} shows the distribution (per cent) of exposure time over hisclass  for our selected time periods. The category of workers are fairly stable over time, while the lower white collar group was very small during the 19th century, started to increase during the early 20th century and increasing considerable during the period from the 1960s onwards. The group of smaller entrepreneurs where farmers also are included, was large until the middle of the 20th century, but has diminished considerably thereafter. This is to a large extent explained by the almost disappearance of farmers in recent time. The highest classes has increased substantially, although from a very low level in the 19th century. The increase of academics in connection to the establishment of Umeå university explains much of this increase.
 
-<<hiscskum, fig.cap = "Exposure by hisclass (from the top: elite, farmers and lower business, lower white collar, workers) and time period", fig.height = 9>>=
+<<hiscskum, fig.cap = "Exposure by hisclass (from the top: elite, farmers and lower business, lower white collar, workers) and time period", fig.height = 4.5>>=
 xx <- with(vbTab, tapply(exposure, list(period = period, hisclass = hisclass40), sum))
 yy <- round(prop.table(xx, 1) * 100, 1)
-barplot(t(yy)[4:1, ], col = c("red", "blue", "green", "black"), las = 2)
+barplot(t(yy)[4:1, ], col = c("red", "blue", "green", "black"), las = 2, ylab = "Per cent")
 @
 
 For the corresponding numbers, with missing values ({\tt NA}) included, see 
@@ -186,6 +186,35 @@ vb0$hisclass <- factor(vb0$hisclass, labels = c("1+2", "3+8", "4+5+6", "7+9+10+1
 x <- with(vb0, table(period, hisclass, useNA = "ifany"))
 x <- round(prop.table(x, 1) * 100)
 xtable(x, caption = "Hisclass by time period, per cent.", label = "tab:nana", digits = 0)
+@
+
+Regarding the distribution of civil status over time, see Figure~\ref{fig:civstskum}.
+
+<<civstskum, fig.cap = "Exposure by civil status (from the top: previously married, married and never married) and time period", fig.height = 4.5>>=
+xx <- with(vbTab, tapply(exposure, list(period = period, civst = civst), sum))
+yy <- round(prop.table(xx, 1) * 100, 1)
+barplot(t(yy)[3:1, ], col = c("red", "blue", "black"), las = 2, ylab = "Per cent")
+@
+
+The distribution of causes of death is shown in Figure~\ref{fig:causeskum}.
+
+<<causeskum, fig.cap = "Causes of death by time period (top: cancer, middle: cardiovascular, bottom: other).", fig.height = 4.5>>=
+vb01 <- vb0[vb0$event == 1, ]
+cancer <- tapply(vb01$cancer, vb01$period, sum)
+heart <- tapply(vb01$heart, vb01$period, sum)
+death <- tapply(vb01$period, vb01$period, length)
+other <- death - cancer - heart
+ttt <- rbind(cancer, heart, other)
+ttt <- prop.table(ttt, 2) * 100
+barplot(ttt[3:1, -(1:2)], col = 3:1, las = 2, ylab = )
+@
+
+Causes of death before 1951.
+
+<<causeof51>>=
+vb051 <- vb0[vb0$period %in% c("1901-1925", "1926-1950"), ]
+vb051$period <- factor(vb051$period)
+with(vb051[vb051$event == 1, ], table(ULORSAK, period, useNA = "ifany"))
 @
 
 \section{Previous research}
@@ -512,7 +541,7 @@ recent phenomenon.
 
 A common alternative to a class analysis is using income or education for investigating socio-economic differences. Comparing different approaches are furthermore valuable in order to understand why some are advantaged and others disadvantaged. For the time being, we have to restrict such a comparative analysis to the last decades.
 
-The analysis for the period 19990--2005, is based on a separate analysis with income and education as explanatory variables and with controls of  urban versus rural residence, period and marital status.
+The analysis for the period 19990--2005 is based on a separate analysis with income and education as explanatory variables and with controls of  urban versus rural residence, period and marital status.
 
 <<lissyoung>>=
 library(eha)
@@ -523,7 +552,7 @@ liss4064 <- loTab[loTab$age < 64.5, ]
 @
 
 
-The statistical significance of the covariates are shown in Table~\ref{tab:liswom}
+The statistical significance of the covariates are shown in Table~\ref{tab:liswom}.
 <<liswom, results = 'asis'>>=
 fitw1 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = poisson, data = liss4064[liss4064$sex == "female", ])
 ##cat("Women:\n")
@@ -532,7 +561,7 @@ xtable(drw, caption = "Effect of covariates for women 40-64, 1990-2005.", label 
 ##round(summary(fitw1)$coef[-(1:13), ], 4)
 @
 
-The estimated effect sizes for women are shown in Figure \ref{fig:liswomfig}
+The estimated effect sizes for women are shown in Figure \ref{fig:liswomfig}. 
 
 <<liswomfig, fig.cap = "Effect sizes, women 40-64, 1990-2005.", fig.height = 4>>=
 source("R/plotWEduc.R")
