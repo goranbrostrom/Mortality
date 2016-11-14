@@ -1,0 +1,494 @@
+\documentclass[t,a4paper,11pt]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{natbib}
+
+%\usepackage[figuresonly]{endfloat}
+
+%\bibliographystyle{apalike}
+
+\usepackage{color}
+
+\newcommand{\emp}[1]{\textcolor{blue}{#1}}
+
+\usetheme{Singapore}% best choice.
+  \setbeamercovered{transparent}%
+
+\newcommand{\R}{{\bf R}}
+\newcommand{\code}[1]{{\tt #1}}
+
+\title{Social inequality in mortality among adults and elderly in 
+  northern  Sweden 1851--2013\footnote{'Socoeconomic inequalities and mortality I: Europe'. 41st Annual Meeting of the Social Science History Association, 
+    Chicago,
+    November 17--20, 2016.}
+}
+
+\date{November 19, 2016}
+
+\author{Göran Broström and Sören Edvinsson}
+
+\begin{document}
+
+\maketitle
+
+<<setup, include = FALSE>>=
+library(knitr)
+opts_chunk$set(engine='R',dev='pdf',fig.path='figs/slide-',tidy=FALSE,fig.height=5.5,fig.width=8,strip.white=TRUE,cache=TRUE,echo=FALSE,message=FALSE,comment=NA,show.signif.stars = FALSE)##$
+library(knitr)
+library(eha)
+library(xtable)
+library(skum)
+@
+
+
+\begin{frame}{Aims and questions}  
+
+\begin{enumerate}
+\item Has \emp{inequality in mortality} between \emp{social classes}
+  increased in the adult and elderly 
+  population?
+
+%%\item Is the mortality transition initiated by a certain social class?
+
+\item Are there any \emp{gender differences} in the effect of social position?
+
+\item Is social position \emp{equally important} among the \emp{retired} population as
+  for those in \emp{working age}?
+\end{enumerate}
+
+
+\end{frame}
+  
+\begin{frame}{The Skellefteå and Umeå regions in Sweden}
+  
+<<umpop>>=
+ume1900 <- with(obs[obs$region == "ume", ],
+                sum(birthdate + enter < 1900 &
+                    birthdate + exit > 1900))
+ume1950 <- with(obs[obs$region == "ume", ],
+                sum(birthdate + enter < 1950 &
+                    birthdate + exit > 1950))
+@
+
+\includegraphics[height=8cm]{myfigs/skum17}\includegraphics[height=8cm]{myfigs/sweden}
+
+\end{frame}
+
+\begin{frame}{The Skellefteå region}
+
+\begin{itemize}  
+\item Selection of
+parishes surrounding the town of Skellefteå. 
+\item Town founded in 1843 but with a
+very small population during the first decades.
+\item The majority of the
+population in rural villages and hamlets, getting their
+livelihood from agricultural production. 
+\item 20th century: \emp{industrialisation}, population \emp{increase in the town},
+\emp{diversified economy}. 
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{The Umeå region}
+  
+\end{frame}  
+
+\begin{frame}[fragile]{Data sources}
+  
+\begin{itemize}
+\item \emp{Swedish church book} records
+\item digitized by the \emp{Demographic Data Base} at Umeå University, 
+\begin{itemize}  
+   \item \emp{\sc Popum} and 
+   \item \emp{\sc Poplink}
+\end{itemize}    
+\item  \url{http://www.cedar.umu.se/}
+\end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}{Software for analysis}
+  
+\begin{itemize}
+\item  \R : \emp{\url{https://www.R-project.org}}.
+  \begin{itemize}
+    \item \emp{RStudio}: \url{https://www.rstudio.com}.
+  \end{itemize}    
+\item \R\ \emp{packages} (\emp{\url{https://cran.R-project.org}}):
+  \begin{itemize}
+  \item \emp{skum} (Broström, 2016) data from \emp{DDB}.
+  \item \emp{rmarkdown} (RStudio Team, 2016).
+  \item \emp{knitr} (Xie, 2016).
+  \item \emp{eha} (Broström, 2015).
+  \item \emp{xtable} (Dahl, 2016).
+\end{itemize}            
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Variables}
+  
+\begin{description}
+
+\item[what] is this?
+
+\end{description}
+
+\end{frame}
+
+
+\begin{frame}{\sc Hisclass}
+  
+\begin{enumerate}
+\item \'Elite, {\sc Hisclass} \emp{1 and 2}: Higher managers and higher professionals.
+\item Lower managers, {\sc Hisclass} \emp{3}.
+\item Farmers and fishermen, {\sc Hisclass} \emp{8}.
+\item Lower professionals, {\sc Hisclass} \emp{4, 5 and 6}: Lower professionals, lower clerical, foremen.
+\item Medium skilled workers, {\sc Hisclass} \emp{7}.
+\item Lower skilled workers, {\sc Hisclass} \emp{9, 10, 11 and 12}: Lower and unskilled workers (including farm workers)
+%%\item Lower skilled farm workers, {\sc Hisclass} 10 and 12, Lower and unskilled farm workers
+\end{enumerate}
+  
+\end{frame}  
+
+\begin{frame}{{\sc Poplink} data, 1901--1950}
+  
+<<getdata, results='asis'>>=
+library(xtable)
+library(knitr)
+load("data/adult.rda")
+adult <- cal.window(adult, c(1901, 1951))
+source("R/addPer.R")
+adult <- addPer(adult, cuts = seq(1901, 1951, by = 10))
+adult <- rc(adult)
+## NEW hisclass, 6 + 7 --> 6:
+adult$hisclass[!is.na(adult$hisclass) & (adult$hisclass == 7)] <- 6
+@
+  
+\end{frame}  
+
+\begin{frame}{{\sc Fob} data, 1961--2000}
+  
+<<ssykonfob>>=
+load("fobb.rda")
+@
+  
+\end{frame}  
+
+\begin{frame}{{\sc Lisa} data, 2002--2013}
+  
+<<lisadata>>=
+load("liss.rda")
+source("R/addPer.R")
+liss$id <- liss$LINNEID
+liss <- addPer(liss, name = "period", cuts = seq(2002, 2014, by = 6))
+liss <- liss[!is.na(liss$hisclass), ]
+liss$hisclass <- cut(liss$hisclass, c(0, 2.5, 4.5, 5.5, 8), 
+                     labels = c("1+2", "3+4", "5", "6"))
+liss <- liss[with(liss, !is.na(civst) &
+                      !is.na(hisclass)), ]
+liss$civst <- factor(liss$civst, 
+                     labels = c("unmarried", "married", "prev. married"))
+liss$urban <- liss$FORSAMLING %in% c(248001, 248002, 284004, 284005, 
+                                     248011, 248201, 248204)
+@ 
+
+\end{frame}  
+
+\begin{frame}{Results, ages 40--59}
+  
+<<colorc>>=
+## Colors for plotting strata:
+scol <- c(rep("blue", 2), rep("green", 2), rep("red", 2))
+## Common for all groups:
+labb1 <- levels(adult$period)
+labb2 <- levels(fobb$period)
+labb <- c(labb1, labb2)
+nper1 <- length(labb1)
+nper2 <- length(labb2)
+nper <- nper1 + nper2
+fobb$urban <- fobb$FORSAMLING %in% c(248001, 248002, 284004, 284005, 248011, 248201, 248204)
+civst <- numeric(NROW(fobb))
+civst[fobb$CIVIL %in% c(0, 5)] <- 1 # Ogift
+civst[fobb$CIVIL %in% c(2, 7)] <- 2 # Gift, sambo
+civst[fobb$CIVIL %in% c(1, 3, 4, 6, 8, 9)] <- 3 # skild, anka
+fobb$civst <- factor(civst, labels = c("unmarried", "married", "prev. married"))
+source("R/getPH.R")
+cap1w <-  "Cumulative hazards for HISCLASS by time period, ages 40--59, women."
+scap1w <-  "Cumulative hazards, ages 40--59, women."
+cap1m <-  "Cumulative hazards for HISCLASS by time period, ages 40--59, men."
+scap1m <-  "Cumulative hazards, ages 40--59, men."
+##
+cap12 <- "Total hazard of dying before age 60 for a 40 year old person by HISCLASS and decade, women (top) and men (bottom)."
+scap12 <- "Total hazard by HISCLASS, ages 40--59."    
+cap12log <- "Total hazard of dying before age 60 for a 40 year old person by HISCLASS and decade, women (top) and men (bottom). Log scale."
+scap12log <- "Total hazard by HISCLASS, ages 40--59 (log scale)."    
+
+cap2w <-  "Cumulative hazards for HISCLASS by time period, ages 60--89, women."
+scap2w <-  "Cumulative hazards, ages 60--89, women."
+cap2m <-  "Cumulative hazards for HISCLASS by time period, ages 60--89, men."
+scap2m <-  "Cumulative hazards, ages 60--89, men."
+##
+cap22 <- "Total hazard of dying before age 90 for a 60 year old person by HISCLASS and decade, women (top) and men (bottom)."
+scap22 <- "Total hazard by HISCLASS, ages 60--89."    
+
+##
+adult4059 <- age.window(adult, c(40, 60))
+fobb4059 <- age.window(fobb, c(40, 60))
+## End 'common'
+@
+  
+\end{frame}  
+
+\begin{frame}{Ages 40--59, women}
+  
+<<hazcalw>>=
+resw <- getPH(adult4059[adult4059$sex == "female", ],
+                fobb4059[fobb4059$KON == "kvinna", ],
+                nper1, nper2, labb)
+resm <- getPH(adult4059[adult4059$sex == "male", ],
+                fobb4059[fobb4059$KON == "man", ],
+                nper1, nper2, labb)
+@
+
+<<hazplotw, fig.height = 6>>=
+source("R/plotHaz.ph.R")
+plotHaz.ph(resw, main = labb, printLegend = FALSE)
+@
+
+\end{frame}
+
+\begin{frame}{Ages 40--59, men}
+  
+<<hazplotm, fig.height = 6>>=
+plotHaz.ph(resm, main = labb, printLegend = FALSE)
+@
+
+
+\end{frame}
+
+\begin{frame}{Total hazards in ages 40--59, women}
+  
+<<cumsw, fig.height = 5.5>>=
+source("R/plotED.ph.R")
+woutp <- plotED.ph(resw, scol = scol, logScale = FALSE, ylab = "H(60|40)")
+@ 
+
+\end{frame}
+
+\begin{frame}{Total hazards in ages 40--59, men}
+
+<<cumsm, fig.height = 5.5>>=
+moutp <- plotED.ph(resm, scol = scol, logScale = FALSE, ylab = "H(60|40)")
+@
+  
+\end{frame}
+
+\begin{frame}{Total hazards in ages 40--59, women: Log scale}
+  
+<<cumslogw>>=
+wloutp <- plotED.ph(resw, scol = scol, logScale = TRUE, ylab = "H(60|40)",
+main = "Women")
+@ 
+
+\end{frame}
+
+\begin{frame}{Total hazards in ages 40--59, men: Log scale}
+<<cumslogm>>=
+mloutp <- plotED.ph(resm, scol = scol, logScale = TRUE, ylab = "H(60|40)",
+main = "Men")
+@
+
+\end{frame}
+
+\begin{frame}{{\sc Lisa} data, 2002--2013, women 40--59}
+  
+<<lissyoung>>=
+liss4059 <- age.window(liss, c(40, 59))
+fitw1 <- phreg(Surv(enter-40, exit-40, event) ~ strata(hisclass) + 
+                   civst + urban, dist = "gompertz", 
+               data = liss4059[liss4059$KON == "kvinna", ])
+fitm1 <- phreg(Surv(enter-40, exit-40, event) ~ strata(hisclass) + 
+                   civst + urban, dist = "gompertz", 
+               data = liss4059[liss4059$KON == "man", ])
+dcol <- c("blue", "darkgreen", "darkgreen", "red")
+@
+
+<<plotliss1>>=
+plot(fitw1, fn = "cum", col = dcol, main = "Women", lwd = rep(2, 4))
+@ 
+
+\end{frame}
+
+\begin{frame}{{\sc Lisa} data, 2002--2013, men 40--59}
+  
+<<plotliss1m>>=  
+plot(fitm1, fn = "cum", col = dcol, main = "Men", lwd = rep(2, 4))
+@
+
+\end{frame}  
+
+\begin{frame}{Cox regression, women 2002--2013, ages 40--59}
+ 
+\scriptsize
+
+<<tablisswom1, results = "asis">>=
+fitwo1 <- coxreg(Surv(enter, exit, event) ~ hisclass + civst + urban + period, 
+                 data = liss4059[liss4059$KON == "kvinna", ])
+dr <- drop1(fitwo1, test = "Chisq")
+ltx(fitwo1, dr = dr)
+@
+  
+\end{frame}
+
+\begin{frame}{Cox regression, men 2002--2013, ages 40--59}
+
+\scriptsize
+
+<<tablissman1, results = "asis">>=
+fitma1 <- coxreg(Surv(enter, exit, event) ~ hisclass + civst + urban + period, 
+                 data = liss4059[liss4059$KON == "man", ])
+dr <- drop1(fitma1, test = "Chisq")
+ltx(fitma1, dr = dr)
+@
+
+\end{frame}
+
+\begin{frame}{Results, ages 60--89}
+  
+\end{frame}  
+
+\begin{frame}{Ages 60--89, women}
+  
+    
+<<getske6089>>=
+adult6089 <- age.window(adult, c(60, 90))
+fobb6089 <- age.window(fobb, c(60, 90))
+resw <- getPH(adult6089[adult6089$sex == "female", ],
+                fobb6089[fobb6089$KON == "kvinna", ],
+                nper1, nper2, labb, from = 60)
+resm <- getPH(adult6089[adult6089$sex == "male", ],
+                fobb6089[fobb6089$KON == "man", ],
+                nper1, nper2, labb, from = 60)
+plotHaz.ph(resw, main = labb)
+
+@
+
+\end{frame}
+
+\begin{frame}{Ages 60--89, men}
+  
+<<hazplotmold>>=
+plotHaz.ph(resm, main = labb)
+@
+
+\end{frame}  
+
+\begin{frame}{Total hazards in ages 60--89, women}
+
+<<cumswold>>=
+woutp <- plotED.ph(resw, scol = scol, logScale = FALSE, ylab = "H(90|60)")  
+@ 
+
+\end{frame}  
+
+\begin{frame}{Total hazards in ages 60--89, men}
+  
+<<cumsmold>>=
+moutp <- plotED.ph(resm, scol = scol, logScale = FALSE, ylab = "H(90|60)")
+@ 
+
+\end{frame}
+
+\begin{frame}{{\sc Lisa} data, 2002--2013, women 60--89}
+  
+<<lissold>>=
+liss6089 <- age.window(liss, c(60, 90))
+fitw2 <- phreg(Surv(enter-60, exit-60, event) ~ strata(hisclass) + 
+                   civst + urban, dist = "gompertz", 
+               data = liss6089[liss6089$KON == "kvinna", ])
+fitm2 <- phreg(Surv(enter-60, exit-60, event) ~ strata(hisclass) + 
+                   civst + urban, dist = "gompertz", 
+               data = liss6089[liss6089$KON == "man", ])
+dcol <- c("blue", "darkgreen", "red", "red")
+plot(fitw2, fn = "cum", col = dcol)
+
+@
+
+\end{frame}
+
+\begin{frame}{Cox regression, women 2002--2013, ages 60--89}
+
+  \scriptsize
+<<tablisswom2, results = "asis", eval = TRUE>>=
+fitwo2 <- coxreg(Surv(enter, exit, event) ~ hisclass + civst + urban + period, 
+                 data = liss6089[liss6089$KON == "kvinna", ])
+dr <- drop1(fitwo2, test = "Chisq")
+ltx(fitwo2, dr = dr)
+@
+
+
+\end{frame}  
+
+\begin{frame}{{\sc Lisa} data, 2002--2013, men 60--89}
+
+<<lissoldmen>>=
+plot(fitm2, fn = "cum", col = dcol)
+@ 
+
+\end{frame}
+
+\begin{frame}{Cox regression, men 2002--2013, ages 60--89}
+  
+  \scriptsize
+<<tablissman2, results = "asis", eval = TRUE>>=
+fitma2 <- coxreg(Surv(enter, exit, event) ~ hisclass + civst + urban + period, 
+                 data = liss6089[liss6089$KON == "man", ])
+dr <- drop1(fitma2, test = "Chisq")
+ltx(fitma2, dr = dr)
+@
+  
+\end{frame}
+
+\begin{frame}{Conclusion}
+
+%\scriptsize
+
+\begin{itemize}
+\item \emp{Improved} survival characterised all {\sc Hisclass}es.
+\item There are \emp{gender differences} in the social pattern
+\item No difference in the social pattern in the two studied age groups.
+\item The \emp{upper} class(es) gradually take over as the \emp{most healthy} group.
+\end{itemize}
+
+%We started this paper by raising the issue of the development of social
+%inequalities. When studying this question in history we often get surprised
+%of its complexity. In a society characterised by large economic inequality, 
+%we would expect that this would result in corresponding mortality
+%differences, i.e. higher social classes having an advantage. We find the
+%appearance of a consistent social pattern in mortality, to the advantage of
+%the higher classes, but surprisingly late in our history. It is only in the
+%recent decades that this pattern dominates. Improved survival characterised
+%however all {\sc Hisclass}es. We can however confirm that there are gender
+% differences in the social pattern. While there is no clear social gradient
+% among men, the results at least partly indicate advantages for the higher
+% social classes for women already early in the 20th century. Females had
+% more to gain from a high social position. Previous studies of the mortality
+% transition have made similar observations. Among adults, gender has often
+% been of more significant importance than social class. The reason for this
+% difference and for the late appearance of the modern social pattern among
+% men is still an enigma that require further studies, even though we have
+% suggested the possible importance of behavioural factors and changes in
+% ideals connected to different social classes. This should stimulate us to
+% further disentangle the pathways for how social position influence health
+% and mortality in different societies. Finally, we do not find any clear
+% differences in the social pattern in the two studied age groups.  
+  
+\end{frame}
+
+
+\end{document}
