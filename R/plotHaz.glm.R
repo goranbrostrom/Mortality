@@ -4,7 +4,7 @@ plotHaz.glm <- function(res, printLegend = FALSE, col = 1:4,
     ## Note, number of levels of hisclass is hardcoded to 4 (four) here!!
     ## Will be fixed.
     
-    leg <- c("1+2", "3+4", "5", "6+7") ## a hack for the time being
+    leg <- c("elite", "lowMan", "lowWhiteC", "worker") ## a hack for the time being
     
     oldpar <- par(mfrow = layout)
     on.exit(par(oldpar))
