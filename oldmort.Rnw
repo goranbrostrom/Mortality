@@ -176,7 +176,7 @@ show the study areas and their position in Sweden.
 
 
 \begin{figure}
-\includegraphics[height=19cm]{myfigs/SKEUME}
+\includegraphics[height=19cm]{myfigs/skum17}
 \caption{The Skellefteå and Umeå regions.}
 \label{fig:SKEUME}
 \end{figure}
@@ -565,9 +565,9 @@ Figure~\ref{fig:cumsw}.
 source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, ylab = "H(65|40)",
-                main = "Women")##, exclude = 5:6)
+                main = "Women 40-64")##, exclude = 5:6)
 moutp <- plotED.glm(resm, col = scol, logScale = FALSE, ylab = "H(65|40)",
-                main = "Men")##, exclude = 5:6)
+                main = "Men 40-64")##, exclude = 5:6)
 par(oldpar)
 @
 
@@ -593,9 +593,9 @@ Figure~\ref{fig:cumswstand}. In the rest of the paper, we only present these rel
 <<cumswstand, fig.cap = cap12, fig.scap = scap12, fig.height = 10>>=
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE, 
-                    ylab = "TMR(65|40)", main = "Women")##, exclude = 5:6)
+                    ylab = "TMR(65|40)", main = "Women 40-64")##, exclude = 5:6)
 moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "TMR(65|40)", main = "Men")##, exclude = 5:6)
+                    ylab = "TMR(65|40)", main = "Men 40-64")##, exclude = 5:6)
 par(oldpar)
 @
 
@@ -748,9 +748,9 @@ resm <- getPHglm2(vb6589[vb6589$sex == "male", ],
 
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "TMR(90|65)", main = "Women")##, exclude = 5:6)
+                    ylab = "TMR(90|65)", main = "Women 65-89")##, exclude = 5:6)
 moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "TMR(90|65)", main = "Men")##, exclude = 5:6)
+                    ylab = "TMR(90|65)", main = "Men 65-89")##, exclude = 5:6)
 par(oldpar)
 @
 
@@ -901,9 +901,9 @@ age 65, given survival to age 40.
 source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE, ##exclude = 1:2,
-                    ylab = "TMR(65|40)",  main = "Women")
+                    ylab = "TMR(65|40)",  main = "Women 40-64")
 moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE, ##exclude = 1:2,
-                    ylab = "TMR(65|40)", main = "Men")
+                    ylab = "TMR(65|40)", main = "Men 40-64")
 par(oldpar)
 @
 
@@ -1026,9 +1026,9 @@ Notice that the results for the 1960s must be interpreted with caution due to mu
 ##source("R/plotED.R")
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "H(90|65)",  main = "Women")
+                    ylab = "H(90|65)",  main = "Women 65-89")
 moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "H(90|65)", main = "Men")
+                    ylab = "H(90|65)", main = "Men 65-89")
 par(oldpar)
 @
 
@@ -1178,9 +1178,9 @@ resm <- getPHglm2(cvb4064[cvb4064$sex == "male", ],
 source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE, ##exclude = 1:2, 
-                    ylab = "TMR(65|40)",  main = "Women")
+                    ylab = "TMR(65|40)",  main = "Women 40-64")
 moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE, ##exclude = 1:2,
-                    ylab = "TMR(65|40)", main = "Men")
+                    ylab = "TMR(65|40)", main = "Men 40-64")
 par(oldpar)
 @
 
@@ -1298,9 +1298,9 @@ The relation between different classes and cancer mortality fluctuates considera
 ##source("R/plotED.R")
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "H(90|65)",  main = "Women")
+                    ylab = "H(90|65)",  main = "Women 65-89")
 moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "H(90|65)", main = "Men")
+                    ylab = "H(90|65)", main = "Men 65-89")
 par(oldpar)
 @
 
