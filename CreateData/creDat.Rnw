@@ -290,7 +290,7 @@ The {\sc Lisa} data is yearly, with {\tt hisclass} information starting in 2002.
    
     ##lisadata <- lisadata[lisadata$AR > 1999.5 & !is.na(lisadata$SSYK3), ]
     
-    q()
+    
     ## This is new: Do not remove:
     ##lisadata <- lisadata[!is.na(lisadata$SSYK3), ] ##NOTE!
     
