@@ -41,7 +41,7 @@ Umeå University, Umeå, Sweden}
 \maketitle
 
 \begin{abstract}
-This version is 'old', but all the code is included, so it will be crystal-clear to the reader exacttly what has been done. 
+This version is 'old', but all the code is included, so it will be crystal-clear to the reader exactly what has been done. 
 
 Spotted errors must pe reported immediately!
 
@@ -289,7 +289,11 @@ The {\sc Lisa} data is yearly, with {\tt hisclass} information starting in 2002.
     lisadata <- calWin(lisadata, c(2002, 2014))
    
     ##lisadata <- lisadata[lisadata$AR > 1999.5 & !is.na(lisadata$SSYK3), ]
-    lisadata <- lisadata[!is.na(lisadata$SSYK3), ] ##NOTE!
+    
+    q()
+    ## This is new: Do not remove:
+    ##lisadata <- lisadata[!is.na(lisadata$SSYK3), ] ##NOTE!
+    
     ## Fix HISCLASS:
     source("R/ssyk3TOhisclass.R")
     ssyk3TOhisclass
