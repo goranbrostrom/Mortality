@@ -83,15 +83,16 @@ knitr::opts_chunk$set(cache=TRUE,echo=FALSE,message=FALSE,warning=TRUE,comment=N
 
 <<readtab>>=
 load("data/vbTab.rda") 
+hisclevels <-  c("elite", "middle", "worker") # NOTE!!
 vbTab$period <- factor(vbTab$period)
-levels(vbTab$hisclass40) <- c("elite", "lowMan", "lowWhiteC", "worker")
-levels(vbTab$hisclass60) <- c("elite", "lowMan", "lowWhiteC", "worker")
+levels(vbTab$hisclass40) <- hisclevels
+levels(vbTab$hisclass60) <- hisclevels
 levels(vbTab$period)[8] <- "1991-2001"
 load("data/vb.rda")
 vb$period <- factor(vb$period)
-levels(vb$hisclass) <- c("elite", "lowMan", "lowWhiteC", "worker")
-levels(vb$hisclass40) <- c("elite", "lowMan", "lowWhiteC", "worker")
-levels(vb$hisclass60) <- c("elite", "lowMan", "lowWhiteC", "worker")
+levels(vb$hisclass) <- hisclevels
+levels(vb$hisclass40) <- hisclevels
+levels(vb$hisclass60) <- hisclevels
 levels(vb$period)[8] <- "1991-2001"
 @ 
 
@@ -314,7 +315,8 @@ Umeå university explains much of this increase.
 <<hiscskum, fig.cap = "Exposure by hisclass (from the top: elite, farmers and lower business, lower white collar, workers) and time period", fig.height = 4.5>>=
 xx <- with(vbTab, tapply(exposure, list(period = period, hisclass = hisclass40), sum))
 yy <- round(prop.table(xx, 1) * 100, 1)
-barplot(t(yy)[4:1, ], col = c("red", "blue", "green", "black"), las = 2, ylab = "Per cent")
+who <- length(levels(vbTab$hisclass40))
+barplot(t(yy)[who:1, ], col = c("red", "blue", "black"), las = 2, ylab = "Per cent")
 @
 
 For the corresponding numbers, with missing values ({\tt NA}) included, see 
@@ -331,7 +333,7 @@ complete.
 <<nana, results = 'asis'>>=
 library(xtable)
 load("data/vb0.rda")
-vb0$hisclass <- factor(vb0$hisclass, labels = c("elite", "lowMan", "lowWhiteC", "worker"))
+vb0$hisclass <- factor(vb0$hisclass, labels = hisclevels)
 x <- with(vb0, table(period, hisclass, useNA = "ifany"))
 x <- round(prop.table(x, 1) * 100)
 xtable(x, caption = "Hisclass by time period, per cent.", label = "tab:nana", digits = 0)
@@ -478,7 +480,7 @@ to a large extent.
 
 <<colorc>>=
 ## Colors for plotting strata:
-scol <- c("blue", rep("darkgreen", 2), "red")
+scol <- c("black", "blue", "red")
 ## Common for all groups:
 
 labb <- levels(vbTab$period)
@@ -564,9 +566,9 @@ Figure~\ref{fig:cumsw}.
 <<cumsw, fig.cap = cap0, fig.scap = scap0, fig.height = 10>>=
 source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
-woutp <- plotED.glm(resw, col = scol, logScale = FALSE, ylab = "H(65|40)",
+woutp <- plotED.glm(resw, col = scol, logScale = TRUE, ylab = "log(1-S(65|40))",
                 main = "Women 40-64")##, exclude = 5:6)
-moutp <- plotED.glm(resm, col = scol, logScale = FALSE, ylab = "H(65|40)",
+moutp <- plotED.glm(resm, col = scol, logScale = TRUE, ylab = "log(1-S(65|40))",
                 main = "Men 40-64")##, exclude = 5:6)
 par(oldpar)
 @
