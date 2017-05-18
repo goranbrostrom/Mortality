@@ -1,0 +1,887 @@
+\documentclass[t]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{natbib}
+
+%\usepackage[figuresonly]{endfloat}
+
+%\bibliographystyle{apalike}
+
+\usepackage{color}
+
+\newcommand{\emp}[1]{\textcolor{blue}{#1}}
+
+\usetheme{Singapore}% best choice.
+  \setbeamercovered{transparent}%
+
+\newcommand{\R}{{\bf R}}
+\newcommand{\code}[1]{{\tt #1}}
+
+\title{Social inequality in mortality among adults and elderly in
+  northern  Sweden 1851--2013\footnote{Seminar April 27, CEDAR, Umeå}
+}
+
+\date{April 27, 2017}
+
+\author{Göran Broström and Sören Edvinsson}
+
+\begin{document}
+
+\maketitle
+
+<<setup, include = FALSE>>=
+library(knitr)
+opts_chunk$set(engine='R',dev='pdf',fig.path='figs/slide-',tidy=FALSE,fig.height=5.5,fig.width=8,strip.white=TRUE,cache=TRUE,echo=FALSE,message=FALSE,comment=NA,show.signif.stars = FALSE)##$
+library(knitr)
+library(eha)
+library(xtable)
+library(skum)
+@
+
+
+\begin{frame}{Questions}
+
+\begin{enumerate}
+\item Has \emp{inequality in mortality} between \emp{social classes}
+  increased in the adult and elderly
+  population?
+
+%%\item Is the mortality transition initiated by a certain social class?
+
+\item Are there any \emp{gender differences} in the effect of social position?
+
+\item Is social position \emp{equally important} among the \emp{retired} population as
+  for those in \emp{working age}?
+\item Is there a difference between classes in mortality from
+  \emp{cardiovascular} diseases and \emp{cancers} respectively?
+\item Are there large differences in survival depending on level of
+  \emp{education} and \emp{income} categories?
+
+\end{enumerate}
+
+
+\end{frame}
+
+%%\begin{frame}{Where?}
+
+%%\includegraphics[height=5cm]{myfigs/geo_we.pdf}\includegraphics[height=7cm]{myfigs/sweden.pdf}
+%%\end{frame}
+
+\begin{frame}{Here!}
+
+\begin{columns}
+
+\begin{column}{0.5\textwidth}
+
+\includegraphics[height=7cm]{myfigs/skum17.pdf}
+
+\end{column}
+
+\begin{column}{0.5\textwidth}
+
+Skellefteå:
+
+\begin{itemize}
+
+\item Small town, heavy industry in the nineteenth century.
+
+\end{itemize}
+
+Umeå:
+
+\begin{itemize}
+
+\item Not so small town, older. Center for administration, education, and military.
+
+\end{itemize}
+
+Rural areas:
+
+\begin{itemize}
+
+\item Very similar: Small farms dominating.
+
+\end{itemize}
+
+\end{column}
+\end{columns}
+%\includegraphics[height=7cm]{myfigs/sweden.pdf}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Data sources}
+
+\begin{itemize}
+\item \emp{Swedish church book} records (1851--1950).
+  \begin{itemize}
+\item digitized by the \emp{Demographic Data Base} at Umeå University,
+\begin{itemize}
+  % \item \emp{\sc Popum} and
+   \item \emp{\sc Poplink}
+\end{itemize}
+\item  \url{http://www.cedar.umu.se/}
+\end{itemize}
+\item The \emp{Linnaeus} data base (1960--2013)
+  \begin{itemize}
+\item Census data 1960, 1965, \ldots, 1990
+\item Population registers ({\sc Lisa}, 1986--2013)
+  \begin{itemize}
+    \item \emp{Income}
+    \item \emp{Education}
+  \end{itemize}
+ \item Death information from \emp{National Board of Health and Welfare}
+   \begin{itemize}
+\item Death dates from 1 January 1961 to 31 December 2013.
+  \item \emp{Causes of death} ({\sc Ulorsak}, ``main cause of death'')
+   \end{itemize}
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{The sampling frame}
+
+<<lexis2>>=
+load("data/vb0.rda")
+plot(c(1851, 1851, 1951, 1951, 1851), c(40, 90, 90, 40, 40),
+     type = "l", xlim = c(1851, 2014), lwd = 2, col = "red",
+     xlab = "Year", ylab = "Age", axes = FALSE, ylim = c(0, 90))
+axis(1, at = c(1851, 1901, 1951, 1961, 1981, 2014), las = 2)
+axis(2, las = 2, at = c(0, 40, 65, 90))
+axis(4, las = 2, at = c(0, 40, 65, 90))
+box()
+abline(h = 0)
+lines(c(1961, 1961, 2014, 2014, 1961), c(40, 90, 90, 40, 40),
+      col = "blue", lwd = 2)
+#
+n.rec <- NROW(vb0[vb0$dataset == "poplink", ] )
+n.pl <- with(vb0[vb0$dataset == "poplink", ], length(unique(id)))
+n.d <-  with(vb0[vb0$dataset == "poplink", ], sum(event))
+text(1900, 70, "PopLink", cex = 2, col = "red")
+text(1899, 60, paste(n.rec, "records"))
+text(1900, 55, paste(n.pl, "persons"))
+text(1899.5, 50, paste(n.d, "deaths"))
+#
+n.rec <- NROW(vb0[vb0$dataset != "poplink", ] )
+n.pl <- with(vb0[vb0$dataset != "poplink", ], length(unique(id)))
+n.d <-  with(vb0[vb0$dataset != "poplink", ], sum(event))
+
+
+text(1985, 70, "Linnaeus", cex = 2, col = "blue")
+text(1984, 60, paste(n.rec, "records"))
+text(1985.2, 55, paste(n.pl, "persons"))
+text(1985.2, 50, paste(n.d, "deaths"))
+@
+\end{frame}
+
+\begin{frame}[t]{The FOB and Lisa data}
+
+\vspace{-1.5cm}
+%\begin{columns}
+%\begin{column}{0.6\textwidth}
+<<picklexus,fig.width=4.7,fig.height = 4.8, echo=FALSE>>=
+
+##load("data/vb.rda")  ####################################### NOTE!!!!!!!!!!!!!!!! ############################
+load("data/vb0.rda")
+load("data/vb.rda")
+
+tot.m <- length(unique(vb$id[vb$dataset != "poplink" & vb$sex == "male"]))
+tot.f <- length(unique(vb$id[vb$dataset != "poplink" & vb$sex == "female"]))
+vbd <- vb0[vb0$event == 1 & vb0$dataset != "poplink", c("birthdate", "exit", "sex")]
+d.m <- sum(vbd$sex == "male")
+d.f <- sum(vbd$sex == "female")
+x <- vbd$birthdate + vbd$exit
+y <- vbd$exit
+##par(mfrow = c(1, 2))
+plot(x[vbd$sex == "male"], y[vbd$sex == "male"], type = "n",
+     pch = ".", col = "blue", xlab = "Year", ylab = "Age", las = 2,
+     axes = FALSE, ylim = c(28, 90))
+axis(1, at = c(seq(1960, 1990, by = 10), 2002, 2014), las = 1)
+axis(2, at = c(40, 65, 90), las = 2)
+axis(4, at = c(40, 65, 90), las = 2)
+for (i in seq(1960, 1990, by = 5) + (365 - 61) / 365){
+    ##abline(v = i, lwd = 2, col = "red")
+    lines(c(i, i), c(40, 90), lwd = 2, col = "red")
+}
+for (i in seq(1960, 1985, by = 5) + (365 - 61) / 365){
+    lines(c(i, i + 5), c(35, 40), col = "red", lty = 2, lwd = 2)
+    lines(c(i, i), c(35, 40), col = "red", lty = 2, lwd = 2)
+}
+lines(c(1990, 1990) + (365 - 61)/365, c(28, 40), lwd = 2, lty = 2, col = "red")
+lines(c(1990 + (365 - 61) / 365, 2002), c(28, 40), lwd = 2, lty = 2, col = "red")
+for (i in 2002:2014){
+    ##abline(v = i, lwd = 2, col = "blue")
+    lines(c(i, i), c(40, 90), col = "blue", lwd = 2)
+}
+for (i in 2002:2013){
+    lines(c(i, i), c(39, 40), col = "blue", lty = 2, lwd = 1.5)
+    lines(c(i, i+1), c(39, 40), col = "blue", lty = 2, lwd = 1.5)
+}
+lines(c(2002, 2014), c(40, 40), col = "blue", lwd = 1.5)
+lines(c(2002, 2014), c(90, 90), col = "blue", lwd = 1.5)
+lines(c(1960, 2002), c(90, 90), lwd = 2, col = "red")
+lines(c(1960, 2002), c(40, 40), lwd = 2, col = "red")
+##abline(h = c(35, 40, 65, 90), lty = 2)
+points(x[vbd$sex == "female"], y[vbd$sex == "female"], type = "n",
+     pch = ".", col = "red")
+box()
+@
+
+%\end{column}
+
+%\begin{column}{0.4\textwidth}
+%\scriptsize
+
+%\vspace{3\baselineskip}
+
+%\begin{tabular}{l|rr}
+%      & Number & Deaths \\ \hline
+%\textcolor{red}{Women} & \Sexpr{tot.f} & \textcolor{red}{\Sexpr{d.f}} \\
+%\emp{Men} & \Sexpr{tot.m} & \emp{\Sexpr{d.m}} \\ \hline
+%Total  & \Sexpr{tot.f + tot.m} & \Sexpr{d.f + d.m}
+%\end{tabular}
+
+%\vspace{\baselineskip}
+
+%\emp{\underline{Note}}: Persons with \emp{missing {\sc Hisclass}} (occupation) are %\emp{excluded}.
+%\end{column}
+%\end{columns}
+\end{frame}
+
+
+\begin{frame}{The Linnaeus data with deaths}
+
+\begin{columns}
+\begin{column}{0.6\textwidth}
+<<picklexus2,fig.width=6,fig.height = 5.9>>=
+
+##load("data/vb.rda")
+tot.m <- length(unique(vb0$id[vb0$dataset != "poplink" & vb0$sex == "male"]))
+tot.f <- length(unique(vb0$id[vb0$dataset != "poplink" & vb0$sex == "female"]))
+
+vbd <- vb0[vb0$event == 1 & vb0$dataset != "poplink", c("birthdate", "exit", "sex")]
+d.m <- sum(vbd$sex == "male")
+d.f <- sum(vbd$sex == "female")
+
+x <- vbd$birthdate + vbd$exit
+y <- vbd$exit
+##par(mfrow = c(1, 2))
+plot(x[vbd$sex == "female"], y[vbd$sex == "female"], type = "p",
+     pch = ".", col = "blue", xlab = "Year", ylab = "Age", las = 2,
+     axes = FALSE)
+axis(1, at = c(seq(1960, 1990, by = 5), 2002, 2007, 2014), las = 2)
+axis(2, at = c(40, 65, 90))
+axis(4, at = c(40, 65, 90))
+for (i in seq(1960, 1990, by = 5) + (365 - 61) / 365){
+    abline(v = i, lwd = 2)
+}
+for (i in 2002:2013){
+    abline(v = i, lwd = 2, col = "black")
+}
+abline(h = c(40, 65, 90), lty = 2)
+points(x[vbd$sex == "male"], y[vbd$sex == "male"], type = "p",
+     pch = ".", col = "blue")
+box()
+@
+
+\end{column}
+
+\begin{column}{0.4\textwidth}
+\scriptsize
+
+\vspace{3\baselineskip}
+
+\begin{tabular}{l|rr}
+      & Number & Deaths \\ \hline
+\textcolor{red}{Women} & \Sexpr{tot.f} & \textcolor{red}{\Sexpr{d.f}} \\
+\emp{Men} & \Sexpr{tot.m} & \emp{\Sexpr{d.m}} \\ \hline
+Total  & \Sexpr{tot.f + tot.m} & \Sexpr{d.f + d.m}
+\end{tabular}
+
+\vspace{\baselineskip}
+
+\emp{\underline{Note}}: Persons with \emp{missing {\sc Hisclass}} (occupation) are \emp{included}.
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}{The Linnaeus data with deaths}
+
+\begin{columns}
+\begin{column}{0.6\textwidth}
+<<picklexus3,fig.width=6,fig.height = 5.9>>=
+
+load("data/vb.rda")
+tot.m <- length(unique(vb$id[vb$dataset != "poplink" & vb$sex == "male"]))
+tot.f <- length(unique(vb$id[vb$dataset != "poplink" & vb$sex == "female"]))
+
+vbd <- vb[vb$event == 1 & vb$dataset != "poplink", c("birthdate", "exit", "sex")]
+d.m <- sum(vbd$sex == "male")
+d.f <- sum(vbd$sex == "female")
+
+x <- vbd$birthdate + vbd$exit
+y <- vbd$exit
+##par(mfrow = c(1, 2))
+plot(x[vbd$sex == "female"], y[vbd$sex == "female"], type = "p",
+     pch = ".", col = "blue", xlab = "Year", ylab = "Age", las = 2,
+     axes = FALSE)
+axis(1, at = c(seq(1960, 1990, by = 5), 2002, 2007, 2014), las = 2)
+axis(2, at = c(40, 65, 90))
+axis(4, at = c(40, 65, 90))
+for (i in seq(1960, 1990, by = 5) + (365 - 61) / 365){
+    abline(v = i, lwd = 2)
+}
+for (i in 2002:2013){
+    abline(v = i, lwd = 2, col = "black")
+}
+abline(h = c(40, 65, 90), lty = 2)
+points(x[vbd$sex == "male"], y[vbd$sex == "male"], type = "p",
+     pch = ".", col = "blue")
+box()
+@
+
+\end{column}
+
+\begin{column}{0.4\textwidth}
+\scriptsize
+
+\vspace{3\baselineskip}
+
+\begin{tabular}{l|rr}
+      & Number & Deaths \\ \hline
+\textcolor{red}{Women} & \Sexpr{tot.f} & \textcolor{red}{\Sexpr{d.f}} \\
+\emp{Men} & \Sexpr{tot.m} & \emp{\Sexpr{d.m}} \\ \hline
+Total  & \Sexpr{tot.f + tot.m} & \Sexpr{d.f + d.m}
+\end{tabular}
+
+\vspace{\baselineskip}
+
+\emp{\underline{Note}}: Persons with \emp{missing {\sc Hisclass}} (occupation) are \emp{excluded}.
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{The sampling frame, II}
+
+<<lexis4>>=
+##load("data/vb0.rda")
+plot(c(1851, 1851, 1951, 1951, 1851), c(40, 90, 90, 40, 40),
+     type = "l", xlim = c(1851, 2014), lwd = 2, col = "red",
+     xlab = "Year", ylab = "Age", axes = FALSE, ylim = c(0, 90))
+axis(1, at = c(1851, 1901, 1951, 1961, 1981, 2014), las = 2)
+axis(2, las = 2, at = c(0, 40, 65, 90))
+axis(4, las = 2, at = c(0, 40, 65, 90))
+box()
+abline(h = 0)
+lines(c(1961, 1961, 1986, 2014, 2014, 1961), c(40, 65, 90, 90, 40, 40),
+      col = "blue", lwd = 2)
+#
+n.rec <- NROW(vb0[vb0$dataset == "poplink", ] )
+n.pl <- with(vb0[vb0$dataset == "poplink", ], length(unique(id)))
+n.d <-  with(vb0[vb0$dataset == "poplink", ], sum(event))
+text(1900, 70, "PopLink", cex = 2, col = "red")
+text(1899, 60, paste(n.rec, "records"))
+text(1900, 55, paste(n.pl, "persons"))
+text(1899.5, 50, paste(n.d, "deaths"))
+#
+n.rec <- NROW(vb0[vb0$dataset != "poplink", ] )
+n.pl <- with(vb0[vb0$dataset != "poplink", ], length(unique(id)))
+n.d <-  with(vb0[vb0$dataset != "poplink", ], sum(event))
+
+
+text(1989, 70, "Linnaeus", cex = 2, col = "blue")
+text(1988, 60, paste(n.rec, "records"))
+text(1989.2, 55, paste(n.pl, "persons"))
+text(1989.2, 50, paste(n.d, "deaths"))
+@
+\end{frame}
+
+
+\begin{frame}{Variables}
+
+\begin{description}
+
+\item[sex]
+\item[birth date] By quarter (15 Feb, May, Aug, Nov)
+\item[death date] By day (\emp{Socialstyrelsen})
+\item[cause of death] from \emp{Socialstyrelsen}
+\item[parish] Urban/Rural
+\item[\sc Hisclass] elite, middle, worker.
+\item[income] 1990--2005, grouped by quartiles.
+\item[education] 1990--2005, seven categories.
+\item[period]  1851--1875, \ldots,  2008--2013 (10 periods).
+\item[cohort] 1761--1771, \ldots, 1971--1974 (22 birth cohorts).
+
+\end{description}
+
+\end{frame}
+
+
+\begin{frame}{\sc Hisclass}
+
+\begin{enumerate}
+\item \emp{\tt elite}, HISCLASS 1 and 2. Higher managers and professionals.
+\item \emp{\tt middle}, HISCLASS 3, 4, 5, 6, and 8. Lower managers, lower white collar, and farmers.
+%%\item \emp{\tt lowWhiteC}, HISCLASS 4, 5 and 6. Lower white collar.
+\item \emp{\tt worker}, HISCLASS 7, 9, 10, 11 and 12. Workers of different skills including farm workers.
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}[fragile]{Preliminary Cox regression}
+
+{\scriptsize
+
+<<prelanal,echo=TRUE>>=
+library(eha)
+vb0$hisclass[is.na(vb0$hisclass)] <- 4
+vb0$hisclass <- factor(vb0$hisclass)
+system.time(fit <- coxph(Surv(enter, exit, event) ~
+                             hisclass * period + civst + urban + sex, 
+                         data = vb0))
+system.time(dr <- drop1(fit, test = "Chisq"))
+@
+}
+
+\emp{It takes time (more than 10 minutes)!}
+
+\end{frame}
+
+
+\begin{frame}{ANOVA}
+
+<<respre,results='asis',echo=FALSE>>=
+library(xtable)
+xtable(dr)
+@
+
+And with so much data, everything tends to be \emp{statistically} significant.
+
+\end{frame}
+
+\begin{frame}[fragile]{Test of Proportional Hazards}
+
+<<prophaz>>=
+system.time(cz <- cox.zph(fit))
+@
+
+Another \emp{19 minutes}!
+\end{frame}
+
+\begin{frame}[fragile]{Proportional hazards, results}
+
+<<rezph,echo = TRUE>>=
+#system.time(cz <- cox.zph(fit))
+cz$table[NROW(cz$table), ]
+@
+
+As usual, \emp{highly significant} result (PH assumption violated).
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Sufficient statistics}
+
+Aggregate:
+
+{\scriptsize
+<<aggregate,eval = TRUE, echo = TRUE>>=
+vb0Tab <- aggregate(vb0[, c("event", "exposure")], 
+                   vb0[, c("sex", "age", "period", "cohort", 
+                          "urban", "civst", "hisclass")], 
+                   FUN = sum)
+vb0Tab$age <- factor(vb0Tab$age)
+nr <- NROW(vb0Tab)
+@
+}
+
+\begin{itemize}
+\item Gives a table assuming \emp{piecewise constant hazards} on five-year intervals: 40--45, 45--50, \ldots, 85--90 ("age").
+
+\item Number of cells: $2 \times 10 \times 10 \times 20 \times 2 \times 3 \times 4 = $ \emp{96000}
+
+\item Number of \emp{non-empty} cells: \emp{\Sexpr{nr}}.
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{PH regression with the table}
+
+\begin{itemize}
+\item Piecewise constant hazard model generates the same likelihood as a Poisson model.
+\begin{itemize}
+\item Does \emp{not} imply that the number of deaths follow a Poisson distribution!
+\end{itemize}
+\end{itemize}
+
+\small
+
+<<coxpois,echo=TRUE,cache=FALSE>>=
+system.time(fitp <- glm(event ~ offset(log(exposure)) + age +
+                hisclass * period + civst + urban + sex,
+            data = vb0Tab, family = poisson))
+system.time(dr <- drop1(fitp, test = "Chisq"))
+@
+
+
+\end{frame}
+
+\begin{frame}{ANOVA with the table}
+
+<<anovatable,results='asis',echo=FALSE>>=
+xtable(dr)
+@
+
+\end{frame}
+
+\begin{frame}{Age--Period--Cohort data}
+
+\vspace{-1.5cm}
+
+<<moddat,fig.height=4.5,fig.width=5>>=
+x <- c(1961, 2014)
+y <- c(40, 40)
+plot(x, y, type = "l", col = "blue", lwd = 2, xlim = c(1960, 2015), ylim = c(40, 90),
+     ylab = "Age", xlab = "Year", axes = FALSE)
+axis(1, at = c(1961, 1991, 2014))
+axis(2, las = 1)
+box()
+lines(c(1961, 1961), c(40, 65), col = "blue", lwd = 2)
+lines(c(2014, 2014), c(40, 90), col = "blue", lwd = 2)
+lines(c(1961, 1986), c(65, 90), col = "blue", lwd = 2)
+lines(c(1986, 2014), c(90, 90), col = "blue", lwd = 2)
+#
+lines(c(1971, 1971), c(40, 75), col = "blue", lty = 2)
+lines(c(1981, 1981), c(40, 85), col = "blue", lty = 2)
+lines(c(1991, 1991), c(40, 90), col = "blue", lty = 2)
+lines(c(2002, 2002), c(40, 90), col = "blue", lty = 2)
+lines(c(2008, 2008), c(40, 90), col = "blue", lty = 2)
+#
+for (age in seq(40, 65, by = 5)){
+    lines(c(1961, 2014), c(age, age), col = "blue", lty = 2)
+}
+for(i in 0:3){
+    age <- 70 + 5 * i
+    lines(c(1961 + 5 * (i + 1), 2014), c(age, age), col = "blue", lty = 2)
+}
+#
+lines(c(1961, 1961 + 30), c(60, 90), lty = 2, col = "red")
+lines(c(1961, 1961 + 40), c(50, 90), lty = 2, col = "red")
+lines(c(1961, 1961 + 50), c(40, 90), lty = 2, col = "red")
+lines(c(1971, 2014), c(40, 40 + 43), lty = 2, col = "red")
+lines(c(1981, 2014), c(40, 40 + 33), lty = 2, col = "red")
+lines(c(1991, 2014), c(40, 40 + 23), lty = 2, col = "red")
+lines(c(2001, 2014), c(40, 40 + 13), lty = 2, col = "red")
+lines(c(2011, 2014), c(40, 40 + 3), lty = 2, col = "red")
+@
+
+\end{frame}
+
+\begin{frame}[fragile]{Counting "cells"}
+
+<<cremodern,echo=FALSE>>=
+library(eha)
+vb0$hisclass[is.na(vb0$hisclass)] <- 4 ## NOTE!!
+mode <- cal.window(vb0, c(1961, 2014))
+modern <- mode[mode$birthdate > 1896, ]
+modern$hisclass <- factor(modern$hisclass)
+modern$period <- factor(modern$period)
+moTab <- aggregate(modern[, c("event", "exposure")],
+                   modern[, c("sex", "age", "period", "cohort",
+                              "urban", "civst", "hisclass")], 
+                   FUN = sum)
+moTab$period <- factor(moTab$period)
+moTab$cohort <- factor(moTab$cohort)
+moTab$age <- factor(moTab$age)
+moTab$hisclass <- factor(moTab$hisclass)
+@
+
+\scriptsize
+
+\begin{itemize}
+\item There are \emp{115 cells in one figure}
+\item There are $2 \times 2 \times 3 \times 4 = $ \emp{48 such figures}.
+\item In total: $115 \times 48 = $ \emp{5520 combinations}.
+\item Number of \emp{non-empty} combinations: \emp{4072}.
+\end{itemize}
+
+<<heada>>=
+head(moTab)
+@
+
+\end{frame}
+
+\begin{frame}{Period analysis, men}
+
+<<coxper>>=
+par(mfrow = c(2, 3))
+men <- modern[modern$sex == "male", ]
+levels(men$hisclass) <- c("elite", "middle", "worker", "NA")
+cols = c("black", "green", "red", "blue")
+for (per in levels(men$period)){
+    min <- men[men$period == per, ]
+   fit <- coxreg(Surv(enter, exit, event) ~ strata(hisclass) + urban + civst, data = min)
+   plot(fit, col = cols, main = per, fn = "surv", printLegend = FALSE, xlab = "Age", xlim = c(40, 90))
+   legend("bottomleft", legend = levels(min$hisclass), col = cols, lty = 1)
+}
+@
+
+\end{frame}
+\begin{frame}{Proportional hazards for women?}
+
+\includegraphics[width=11cm,height=8cm]{figure/hazplotw-1}
+
+\end{frame}
+
+\begin{frame}{Proportional hazards for men?}
+
+\includegraphics[width=11cm,height=8cm]{figure/hazplotm-1}
+
+\end{frame}
+
+\begin{frame}[fragile]{Interactions}
+
+\begin{verbatim}
+fit <- coxph(Surv(enter - 40, exit - 40, event) ~
+    period * hisclass * sex + urban, data = vb0)
+drop1(fit, test = "Chisq")
+\end{verbatim}
+
+\begin{center}
+\begin{tabular}{lrrrr}
+  \hline
+ & Df & AIC & LRT & Pr($>$Chi) \\
+  \hline
+$<$none$>$ &  & 1631901.32 &  &  \\
+  urban & 1 & 1631946 & 47.04 & $7.0\times 10^{-12}$ \\
+  \emp{period:hisclass:sex} & 27 & 1631957 & 110.11 & \emp{$5.3\times 10^{-12}$} \\
+   \hline
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+
+\item This model is described by \emp{80 coefficients}.
+
+\item We show them in \emp{graphs}.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{No proportional hazards (wrt \sc Hisclass)!}
+
+\begin{itemize}
+\item Fit each {\sc Hisclass} \emp{separately}, for each time period.
+\item Use the \emp{cumulative hazard} at 65 (or 90) for comparison.
+\end{itemize}
+
+So, we fit separate PH models for each combination of
+
+\begin{itemize}
+  \item \emp{\tt sex}
+  \item \emp{\tt period}: 1851--75, 1876--1900, 1901--10, etc.
+  \item \emp{\tt hisclass}
+  \item \emp{\tt age group}: 40--64, 65--89.
+  \item \emp{\tt cause of death}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The data table}
+
+<<lexis3, fig.height = 4>>=
+plot(c(1851, 1851, 1951, 1951, 1851), c(40, 90, 90, 40, 40),
+     type = "l", xlim = c(1851, 2014), lwd = 2, col = "red",
+     xlab = "Year", ylab = "Age", axes = FALSE, ylim = c(40, 90))
+axis(1, at = c(1851, 1901, 1951, 1961, 1981, 2014), las = 2)
+axis(2, las = 2, at = c(0, 40, 65, 90))
+axis(4, las = 2, at = c(0, 40, 65, 90))
+box()
+abline(h = 0)
+lines(c(1961, 1961, 2014, 2014, 1961), c(40, 90, 90, 40, 40),
+      col = "blue", lwd = 2)
+for (i in c(1851, 1876, 1901, 1926, 1971, 1981, 1991, 2002, 2007)){
+    lines(c(i, i), c(40, 90), lty = 2)
+}
+for (i in c(45, 50, 55, 60, 65, 70, 75, 80, 85)){
+    lines(c(1851, 1951), c(i, i), lty = 2)
+    lines(c(1961, 2014), c(i, i), lty = 2)
+}
+@
+
+\emp{Poisson regression}:
+
+In \emp{each cell}, and for \emp{each} combination of \emp{covariate level}s, calculate
+\begin{itemize}
+\item  the number of \emp{deaths} and
+\item the total \emp{exposure time}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Women and men, age 40--64}
+
+  \begin{center}
+\includegraphics[height = 7.5cm]{figure/cumsw-1}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Relative differences, ages 40--64 and 65--89}
+
+  %\begin{center}
+\includegraphics[height = 7.5cm]{figure/cumswstand-1}\includegraphics[height=7.5cm]{figure/cumswold-1}
+   %\end{center}
+\end{frame}
+
+
+\begin{frame}{Cancer mortality, ages 40-64 and 65-89}
+
+\includegraphics[height=7.5cm]{figure/12cumsw-1}\includegraphics[height=7.5cm]{figure/12cumswold-1}
+
+\end{frame}
+
+\begin{frame}{Cardiovascular mortality}
+
+\includegraphics[height=7.5cm]{figure/41cumsw-1}\includegraphics[height=7.5cm]{figure/41cumswold-1}
+
+\end{frame}
+
+\begin{frame}{Education and income, 1990--2005, all deaths}
+
+\includegraphics[height=3.5cm]{figure/liswomfig-1} Women, 40--64.
+
+\includegraphics[height=3.5cm]{figure/lismanfig-1} Men, 40--64.
+
+\end{frame}
+
+\begin{frame}{Education and income, 1990--2005, all deaths}
+
+\includegraphics[height=3.5cm]{figure/liswomfig2-1} Women, 65--89.
+
+\includegraphics[height=3.5cm]{figure/lismanfig2-1} Men, 65--89.
+
+\end{frame}
+
+
+\begin{frame}{Education and income, 1990--2005, cancer}
+
+\includegraphics[height=3.5cm]{figure/12liswomfig-1} Women, 40--64.
+
+\includegraphics[height=3.5cm]{figure/12lismanfig-1} Men, 40--64.
+
+\end{frame}
+
+\begin{frame}{Education and income, 1990--2005, cancer}
+
+\includegraphics[height=3.5cm]{figure/12liswomfig2-1} Women, 65--89.
+
+\includegraphics[height=3.5cm]{figure/12lismanfig2-1} Men, 65--89.
+
+\end{frame}
+
+
+\begin{frame}{Education and income, 1990--2005, cardiovascular}
+
+\includegraphics[height=3.5cm]{figure/41liswomfig-1} Women, 40--64.
+
+\includegraphics[height=3.5cm]{figure/41lismanfig-1} Men, 40--64.
+
+\end{frame}
+
+\begin{frame}{Education and income, 1990--2005, cardiovascular}
+
+\includegraphics[height=3.5cm]{figure/41liswomfig2-1} Women, 65--89.
+
+\includegraphics[height=3.5cm]{figure/41lismanfig2-1} Men, 65--89.
+
+\end{frame}
+
+%%% Stop here!
+
+\begin{frame}{Answers(?)}
+
+\begin{enumerate}
+\item Has \emp{inequality in mortality} between \emp{social classes}
+  increased?
+\begin{itemize}
+\item Not really
+\end{itemize}
+%%\item Is the mortality transition initiated by a certain social class?
+
+\item Are there any \emp{gender differences} in the effect of social position?
+\begin{itemize}
+\item Yes
+\end{itemize}
+
+\item Is social position \emp{equally important} among the \emp{retired} population as
+  for those in \emp{working age}?
+\begin{itemize}
+\item Not really
+\end{itemize}
+
+\item Is there a difference between classes in mortality from
+  \emp{cardiovascular} diseases and \emp{cancers} respectively?
+\begin{itemize}
+\item Yes
+\end{itemize}
+\item Are there large differences in survival depending on level of
+  \emp{education} and \emp{income} categories?
+\begin{itemize}
+\item Yes, definitely.
+\end{itemize}
+
+
+\end{enumerate}
+
+
+\end{frame}
+
+\begin{frame}{Conclusion}
+
+%\scriptsize
+
+\begin{itemize}
+\item \emp{Improved} survival characterised all {\sc Hisclass}es.
+\item There are \emp{gender differences} in the social pattern
+\item No difference in the social pattern in the two studied age groups.
+\item The \emp{upper} class(es) gradually take over as the \emp{most healthy} group.
+\item \emp{Education} and \emp{income} are the \emp{most important}
+  variables during late
+  time period.
+\end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}{Software for report writing and analysis}
+
+\begin{itemize}
+\item  \R : \emp{\url{https://www.R-project.org}}.
+  \begin{itemize}
+    \item \emp{RStudio}: \url{https://www.rstudio.com}.
+  \end{itemize}
+\item \R\ \emp{packages} (\emp{\url{https://cran.R-project.org}}):
+  \begin{itemize}
+  \item \emp{skum} (Broström, 2016) data from \emp{DDB}.
+  \item \emp{rmarkdown} (RStudio Team, 2016).
+  \item \emp{knitr} (Xie, 2016).
+  \item \emp{eha} (Broström, 2016).
+  \item \emp{xtable} (Dahl, 2016).
+\end{itemize}
+
+\item \emp{Version control} (reproducibility)
+  \begin{itemize}
+    \item \emp{git}: \url{http://git}
+    \item \emp{gitHub}: \url{http://github.com/goranbrostrom/}
+
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\end{document}
