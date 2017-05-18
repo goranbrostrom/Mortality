@@ -29,21 +29,19 @@ Umeå University, Umeå, Sweden}
 
 \title{Creating Data for "Social inequality in mortality among
   adults and elderly in northern Sweden 1850--2013"\footnote{Paper presented
-    at the
-    session 'Socoeconomic inequalities and mortality I: Europe'. 41st Annual Meeting of the Social Science History Association, 
-    Chicago, Illinois
-    November 17--20, 2016. Version 2016-09-19.}}
+    at CEDAR, 27 April 2017,
+    Version 2017-03-28.}}
 
-\date{November 19, 2016}
+\date{March 28, 2017}
 
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-This version is 'old', but all the code is included, so it will be crystal-clear to the reader exactly what has been done. 
+This version is 'new', but all the code is included, so it will be crystal-clear to the reader exactly what has been done. 
 
-Spotted errors must pe reported immediately!
+Spotted errors must be reported immediately!
 
 \end{abstract}
 
@@ -58,7 +56,7 @@ inequalities in mortality in two Swedish region 1850--2013, in this case
 with focus on the adult and elderly population. This is a description of
 how we create the tabular form data set (anonymized).
 
-
+In this version the hisclasses are grouped into three levels instead of four.
 
 \section{Aims and questions}
 
@@ -127,11 +125,12 @@ We analyse mortality differences according to social class \ldots
 
 
 \begin{enumerate}
-\item \'Elite, HISCLASS 1 and 2, Higher and lower managers, and higher
+\item {\bf elite}, HISCLASS 1 and 2, Higher and lower managers, and higher
   professionals. 
-\item HISCLASS 3  and 8
-\item HISCLASS 4, 5, 6. Farmers, fishermen, and lower professionals, lower clerical, foremen.
-\item Workers, HISCLASS 7, 9, 10, 11, and 12.
+%%\item HISCLASS 3  and 8
+%%\item HISCLASS 4, 5, 6. Farmers, fishermen, and lower professionals, lower clerical, foremen.
+\item {\bf middle} HISCLASS 3, 4, 5, 6, and 8. Farmers, fishermen, and lower professionals, lower clerical, foremen.
+\item {\bf worker}, HISCLASS 7, 9, 10, 11, and 12.
 %%\item Lower skilled farm workers, HISCLASS 10 and 12, Lower and unskilled farm workers
 \end{enumerate}
 
@@ -151,7 +150,7 @@ library(skum)
 library(dplyr)
 library(tidyr)
 library(stringr)
-load("../../../Data/adult.rda")
+load("../../Data/adult.rda")
 adult <- calWin(adult, c(1851, 1951))
 source("R/addPer.R")
 addPer
@@ -165,14 +164,20 @@ ett <- with(adult, !is.na(socBranch) &
                 ((socBranch == "official" & socStatus == "high") |
                      (socBranch == "business" & socStatus == "high")
                 ))
+##tva <- with(adult, !is.na(socBranch) &
+  ##              ((socBranch == "farming" & socStatus == "high") |
+##                     (socBranch == "business" & socStatus == "low")
+##                ))
+##tre <- with(adult, !is.na(socBranch) &
+##                    (socBranch == "official" & socStatus == "low")
+##               )
 tva <- with(adult, !is.na(socBranch) &
                 ((socBranch == "farming" & socStatus == "high") |
-                     (socBranch == "business" & socStatus == "low")
+                 (socBranch == "business" & socStatus == "low") |
+                 (socBranch == "official" & socStatus == "low")
                 ))
-tre <- with(adult, !is.na(socBranch) &
-                    (socBranch == "official" & socStatus == "low")
-               )
-fyra <- with(adult, !is.na(socBranch) &
+
+tre <- with(adult, !is.na(socBranch) & ## Original 'fyra' ---> 'tre'
                 ((socBranch == "farming" & socStatus == "low") |
                      (socBranch == "worker"))
                 )
@@ -181,7 +186,7 @@ hisc <- rep(-1, NROW(adult))
 hisc[ett] <- 1
 hisc[tva] <- 2
 hisc[tre] <- 3
-hisc[fyra] <- 4
+##hisc[fyra] <- 4
 is.na(hisc) <- hisc == -1
 adult$hisclass <- hisc 
 # hisc <- adult$hisclass
@@ -210,10 +215,10 @@ save(aduu, file = "aduu.rda")
 The \emph{Fob} data is treated similarly as the POPLINK data. There is unfortunately no links between the individuals in the two data frames, and the result of that is a gap in the relevant information between the years 1950 and 1960. Furthermore, the first two decades in the \emph{Fob} data, 1960--1980, will have a lot of missing information on {\sc Hisclass}.
 
 <<ssykonfob>>=
-    ##load("../../../Data/fobdata.rda")
+    ##load("../../Data/fobdata.rda")
     load("data4/fobdata.rda")
     ## Cause of death:
-    load("../../../Data/socstyr.rda")
+    load("../../Data/socstyr.rda")
     indx <- match(fobdata$LINNEID, socstyr$LINNEID)
     fobdata$ULORSAK <- str_trim(as.character(socstyr$ULORSAK[indx]))
     source("R/putONssyk.R")
@@ -231,7 +236,7 @@ The \emph{Fob} data is treated similarly as the POPLINK data. There is unfortuna
     fobb <- group_by(fobb, LINNEID) %>% fill_("hisclass")
     fobb$id <- fobb$LINNEID
     fobb <- addPer(fobb, cuts = c(1961, 1971, 1981, 1991, 2002))
-    load("../../../Data/sex.rda")
+    load("../../Data/sex.rda")
     
     indx <- match(fobb$LINNEID, sex$LINNEID)
     fobb$KON <- sex$KON[indx]
@@ -269,7 +274,7 @@ The {\sc Lisa} data is yearly, with {\tt hisclass} information starting in 2002.
     ##load("../../../Data/lisadata.rda")
     load("data4/lisadata.rda")
     ## Cause of death:
-    load("../../../Data/socstyr.rda")
+    load("../../Data/socstyr.rda")
     indx <- match(lisadata$LINNEID, socstyr$LINNEID)
     lisadata$ULORSAK <- str_trim(as.character(socstyr$ULORSAK[indx]))
     civst <- lisadata$CIV
@@ -281,7 +286,7 @@ The {\sc Lisa} data is yearly, with {\tt hisclass} information starting in 2002.
     lisadata$civst <- civst
     rm(civst)
     ## Fix KON:
-    load("../../../Data/sex.rda")
+    load("../../Data/sex.rda")
     indx <- match(lisadata$LINNEID, sex$LINNEID)
     lisadata$sex <- sex$KON[indx]
     levels(lisadata$sex) <- c("male", "female")
@@ -430,9 +435,9 @@ indx <- match(vb$id, names(hisclass60))
 vb$hisclass60 <- hisclass60[indx]
 komp <- is.na(vb$hisclass60)
 vb$hisclass60[komp] <- vb$hisclass40[komp]
-vb$hisclass40 <- factor(vb$hisclass40, labels = c("1+2", "3+8", "4+5+6", "7+9+10+11+12"))
-vb$hisclass60 <- factor(vb$hisclass60, labels = c("1+2", "3+8", "4+5+6", "7+9+10+11+12"))
-vb$hisclass <- factor(vb$hisclass, labels = c("1+2", "3+8", "4+5+6", "7+9+10+11+12"))
+vb$hisclass40 <- factor(vb$hisclass40, labels = c("1+2", "3+4+5+6+8", "7+9+10+11+12"))
+vb$hisclass60 <- factor(vb$hisclass60, labels = c("1+2", "3+4+5+6+8", "7+9+10+11+12"))
+vb$hisclass <- factor(vb$hisclass, labels = c("1+2", "3+4+5+6+8", "7+9+10+11+12"))
 ## End cut ####################################################
 levels(vb$period)[8] <- "1991-2001" ## Changed from "1991-2000", fob90 extended.
 levels(vb0$period)[8] <- "1991-2001"
@@ -443,18 +448,28 @@ save(vb, file = "../data/vb.rda")
 The next, and final, step is aggregation.
 
 <<aggregate>>=
+vb$poplink <- vb$dataset == "poplink"
 vbTab <- aggregate(vb[, c("event", "exposure")], 
                    vb[, c("sex", "age", "period", "cohort", 
-                          "urban", "civst", "hisclass40", "hisclass60")], 
+                          "urban", "civst", "hisclass40", "hisclass60", "poplink")], 
+                   FUN = sum)
+
+
+vb0$hisclass[is.na(vb0$hisclass)] <- 0
+vb0$poplink <- vb0$dataset == "poplink"
+vb0Tab <- aggregate(vb0[, c("event", "exposure")], 
+                   vb0[, c("sex", "age", "period", "cohort", 
+                          "urban", "civst", "hisclass", "poplink")], 
                    FUN = sum)
 ## Is this necessary: (See above!)
 ##vbTab$hisclass40 <- factor(vbTab$hisclass40)
 ##vbTab$hisclass60 <- factor(vbTab$hisclass60)
 vbTab$age <- factor(vbTab$age)
 save(vbTab, file = "../data/vbTab.rda")
+save(vb0Tab, file = "../data/vb0Tab.rda")
 @
 
-Thus, the one data file to use is {\tt vbTab.rda}.
+Thus, the one data file to use is {\tt vbTab.rda} or {\tt vb0Tab.rda}.
 
 <<lisaold>>=
 lisaold <- age.window(lisaold, c(40, 90))
@@ -467,6 +482,7 @@ loTab <- aggregate(lisaold[, c("event", "exposure")],
                                "civst", "income", "educ")],
                    FUN = sum)
 save(loTab, file = "../data/loTab.rda")
+save(lisaold, file = "../data/lisaold.rda")
 @ 
 
 \ldots and of course {\tt loTab.rda}.
