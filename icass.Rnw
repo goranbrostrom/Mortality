@@ -26,19 +26,21 @@
    \immediate\expandafter\protected@write\csname efloat@post#1\endcsname{}}
 \makeatother
 
-\author{Göran Broström\footnote{email: \texttt{goran.brostrom@umu.se}} and
-    Sören Edvinsson\footnote{email: \texttt{soren.edvinsson@umu.se}} \\
+\author{Sören Edvinsson\footnote{email: \texttt{soren.edvinsson@umu.se}} and
+Göran Broström\footnote{email: \texttt{goran.brostrom@umu.se}}
+     \\
 Centre for Demographic and Ageing Research ({\sc Cedar})\\
 Umeå University, SE-90187 Umeå, Sweden}
 
 \title{Social inequality in mortality among
   adults and elderly in northern Sweden 1851--2013\footnote{Paper presented
     at the
-    session 'Socoeconomic inequalities and mortality I: Europe'. 41st Annual Meeting of the Social Science History Association, 
-    Chicago, Illinois
-    November 17--20, 2016}}
+    session 'Health and Mortality in Arctic Populations'. The Ninth International
+    Congress on Arctic Social Sciences,
+    Umeå,
+    June 8--12, 2017}}
 
-\date{November 19, 2016}
+\date{May 18, 2017}
 
 \begin{document}
 
@@ -87,12 +89,11 @@ vbTab$period <- factor(vbTab$period)
 levels(vbTab$hisclass40) <- c("elite", "lowMan", "lowWhiteC", "worker")
 levels(vbTab$hisclass60) <- c("elite", "lowMan", "lowWhiteC", "worker")
 levels(vbTab$period)[8] <- "1991-2001"
-load("data/vb.rda")
-vb$period <- factor(vb$period)
-levels(vb$hisclass) <- c("elite", "lowMan", "lowWhiteC", "worker")
-levels(vb$hisclass40) <- c("elite", "lowMan", "lowWhiteC", "worker")
-levels(vb$hisclass60) <- c("elite", "lowMan", "lowWhiteC", "worker")
-levels(vb$period)[8] <- "1991-2001"
+load("data/vb0.rda")
+vb0$period <- factor(vb0$period)
+vb0$hisclass[is.na(vb0$hisclass)] <- 4
+vb0$hisclass <- factor(vb0$hisclass, labels = c("elite", "middle", "worker", "NA"))
+vb <- vb0
 @ 
 
 \section{Introduction}
@@ -330,8 +331,8 @@ complete.
 
 <<nana, results = 'asis'>>=
 library(xtable)
-load("data/vb0.rda")
-vb0$hisclass <- factor(vb0$hisclass, labels = c("elite", "lowMan", "lowWhiteC", "worker"))
+##load("data/vb0.rda")
+##vb0$hisclass <- factor(vb0$hisclass, labels = c("elite", "lowMan", "lowWhiteC", "worker"))
 x <- with(vb0, table(period, hisclass, useNA = "ifany"))
 x <- round(prop.table(x, 1) * 100)
 xtable(x, caption = "Hisclass by time period, per cent.", label = "tab:nana", digits = 0)
