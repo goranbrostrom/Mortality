@@ -448,18 +448,28 @@ save(vb, file = "../data/vb.rda")
 The next, and final, step is aggregation.
 
 <<aggregate>>=
+vb$poplink <- vb$dataset == "poplink"
 vbTab <- aggregate(vb[, c("event", "exposure")], 
                    vb[, c("sex", "age", "period", "cohort", 
-                          "urban", "civst", "hisclass40", "hisclass60")], 
+                          "urban", "civst", "hisclass40", "hisclass60", "poplink")], 
+                   FUN = sum)
+
+
+vb0$hisclass[is.na(vb0$hisclass)] <- 0
+vb0$poplink <- vb0$dataset == "poplink"
+vb0Tab <- aggregate(vb0[, c("event", "exposure")], 
+                   vb0[, c("sex", "age", "period", "cohort", 
+                          "urban", "civst", "hisclass", "poplink")], 
                    FUN = sum)
 ## Is this necessary: (See above!)
 ##vbTab$hisclass40 <- factor(vbTab$hisclass40)
 ##vbTab$hisclass60 <- factor(vbTab$hisclass60)
 vbTab$age <- factor(vbTab$age)
 save(vbTab, file = "../data/vbTab.rda")
+save(vb0Tab, file = "../data/vb0Tab.rda")
 @
 
-Thus, the one data file to use is {\tt vbTab.rda}.
+Thus, the one data file to use is {\tt vbTab.rda} or {\tt vb0Tab.rda}.
 
 <<lisaold>>=
 lisaold <- age.window(lisaold, c(40, 90))
@@ -472,6 +482,7 @@ loTab <- aggregate(lisaold[, c("event", "exposure")],
                                "civst", "income", "educ")],
                    FUN = sum)
 save(loTab, file = "../data/loTab.rda")
+save(lisaold, file = "../data/lisaold.rda")
 @ 
 
 \ldots and of course {\tt loTab.rda}.

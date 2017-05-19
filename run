@@ -1,3 +1,0 @@
-#!/bin/bash -eu
-R --no-restore -e "library(knitr); knit('slides2.Rnw')"
-pdflatex slides2
