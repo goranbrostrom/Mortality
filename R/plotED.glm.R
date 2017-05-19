@@ -1,6 +1,6 @@
 plotED.glm <- function(res,
                        col = 1:NROW(res[[1]]),
-                       logScale = FALSE,
+                       logScale = TRUE,
                        relative = FALSE,
                        ylab = "",
                        main = "",
@@ -12,7 +12,8 @@ plotED.glm <- function(res,
     ##nper <- NCOL(res[[1]])
 
     ## Assuming 'm == 4', we try:
-    leg = c("elite", "lowMan", "lowWhiteC", "worker")
+    ##leg = c("elite", "lowMan", "lowWhiteC", "worker")
+    leg <- rownames(res[[1]])
     nper <- length(res)
     k <- NCOL(res[[1]])
     m <- NROW(res[[1]])
@@ -27,7 +28,9 @@ plotED.glm <- function(res,
     }
     
     if (logScale){
-        outp <- log(outp)
+        ##outp <- log(outp)
+        outp <- log(1 - exp(-outp))
+        ##outp <- log(outp / (1 - outp))
     }
     if (relative){
         outp <- prop.table(outp, 2)
