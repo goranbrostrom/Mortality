@@ -10,7 +10,8 @@
 
 \usepackage{natbib}
 
-\bibliographystyle{apalike}
+\bibliographystyle{plainnat}
+
 %\usepackage[aboveskip=1pt,labelfont=bf,labelsep=period,justification=raggedright,singlelinecheck=off]{caption}
 \newcommand{\R}{{\bf R}}
 
@@ -122,32 +123,24 @@ observed when it comes to all-cause mortality.
 
 \section{Introduction}
 
-For a long time, it was generally assumed that socio-economic health inequalities were high in historical societies, probably higher than in modern societies. This can be considered as a reasonable assumption since these societies were in most cases characterised by very large differences between groups and classes. Knowing that access to resources provides advantages in all ways, the health advantage of higher classes ought to be obvious. When in recent years new studies have appeared, investigating social inequality in health and mortality with micro-data, the assumed pattern has been questioned. Results from different studies have diverged, some reporting substantial differences but many have found surprisingly small socio-economic differences during the first stages of the transition \citep{bevp11, edli11,edbr12}. The appearance of the consistent pattern of inequality in survival that characterises present-day societies must have developed somewhere on the road from a high-mortality to a low-mortality regime. The complete process is however largely unknown.
+One of the most central aspects of survival on individual level is social class and access to economic and other resources. Even in present welfare societies, social position is a strong determinant when it comes to health and mortality and they seem to be increasing as well \citep{kuetal04, frlu07}. It has been suggested that “… social conditions have been, are and will continue to be irreducible determinants of health outcomes and therefore deserves their appellation as ‘fundamental causes’ of disease and death” \citep{liph95}. For a long time, the general view has been that socio-economic health inequalities were high in historical societies, probably higher than in modern societies. This can be considered as a reasonable assumption since these societies were in most cases characterised by very large differences between groups and classes. Knowing that access to resources provides advantages in all ways, the health advantage of higher classes ought to be obvious. Not only should we expect to find a direct effect of the lack of resources on health, we might even find an independent effect of inequality as \citet{Wipi} suggest. They argue that unequal societies perform less well when it comes to health than equal ones. Even if it not a necessary implication of this, we would still assume that poorer groups were also those most disadvantaged of large inequality in itself. Some recent studies have however indicated that the assumed pattern of distinct socio-economic health differences was not always apparent in pre- and early-transitional societies and some suggest that the modern pattern might be a fairly recent phenomenon \citep{bevp11}. Solid empirical evidence is about the process is however lacking and the available studies focusing on the issue are still few. There is a need for more reliable studies from different geographical and historical settings in order to better understand the role of socio-economic conditions for health over time. 
 
-A long-term perspective on the development of social
-inequalities in mortality in the adult and elderly population is taken in the present paper.
-The area under investigation consists of the Skellefteå and Umeå regions in
-the north of Sweden, and the time period is 1851--2013 for Skellefteå and
-1901--2013 for Umeå.
 
-This paper is a follow-up of an earlier paper \citep{segb16b}, presented at
-the ESHD Conference in Leuven, Belgium, 2016. Here we make a quick look back
-in time for the Skellefteå region (1851--1900), and we also consider causes
-of death from the early 20th century. The {\sc Lisa} data (Swedish population registers) allow
-us to study the effect of income and education on mortality in a more
-direct way for the period 1990--2005, and to compare it with the results of the class-based analysis.
+
+% This paper is a follow-up of an earlier paper \citep{segb16b}, presented at
+% the ESHD Conference in Leuven, Belgium, 2016. Here we make a quick look back
+% in time for the Skellefteå region (1851--1900), and we also consider causes
+% of death from the early 20th century. The {\sc Lisa} data (Swedish population registers) allow
+% us to study the effect of income and education on mortality in a more
+% direct way for the period 1990--2005, and to compare it with the results of the class-based analysis.
 
 \section{Aims and questions}
 
-The aim of the paper is to investigate the development of social
-differences using HISCLASS in mortality for the adult and elderly
-population during the mortality transition. The
-analyses will be performed on data from the Skellefteå and Umeå regions
-1851--2013. The main questions are:
+In the present paper, we take a long-term perspective on the development of social inequalities in mortality in the adult and elderly population. The areas under investigation consist of the Skellefteå and Umeå regions in the north of Sweden, and the time period is 1851--2013 for Skellefteå and 1901--2013 for Umeå.The main questions are:
 
 \begin{enumerate}
 \item Has inequality in mortality between social classes increased among the adult and elderly
-  population, primarily benefiting the highest social positions?
+  population, primarily benefiting the highest social positions and how is it connected to the development of economic inequality in society?
 
 %%\item Is the mortality transition initiated by a certain social class?
 
@@ -155,7 +148,7 @@ analyses will be performed on data from the Skellefteå and Umeå regions
 
 \item Is social position equally important among the retired population as for those in working age?
 \item Is there a difference between classes in mortality from cardiovascular diseases and cancers respectively?
-\item Are there large differences in survival depending on level of education and income categories?
+\item Do class inequalities in survival correspond to those depending on level of education and income categories for the period 1990 onwards?
 \end{enumerate}
 
 \section{Previous research}
@@ -178,6 +171,7 @@ differences. \citet{omran82} state, in the third proposition in his theory
 of the epidemiological transition, that even if the class differential in
 mortality was maintained during the transition, the decline
 set in earlier and was faster among privileged groups.
+When in recent years new studies have appeared, investigating social inequality in health and mortality with micro-data, the assumed pattern has been questioned. Results from different studies have diverged, some reporting substantial differences but many have found surprisingly small socio-economic differences during the first stages of the transition \citep{bevp11, edli11,edbr12}.
 
 These assumptions has however been questioned by later research. According to the present state of knowledge about the development of social
 health inequalities (in Sweden but also in other European countries), no
@@ -201,7 +195,7 @@ show the study areas and their position in Sweden.
 
 
 \begin{figure}
-\includegraphics[height=19cm]{myfigs/skum17}
+\includegraphics[height=19cm]{myfigs/skum}
 \caption{The Skellefteå and Umeå regions.}
 \label{fig:SKEUME}
 \end{figure}
