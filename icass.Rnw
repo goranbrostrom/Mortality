@@ -41,7 +41,7 @@ Umeå University, SE-90187 Umeå, Sweden}
     Umeå,
     June 8--12, 2017}}
 
-\date{May 18, 2017}
+\date{May 22, 2017}
 
 \begin{document}
 
@@ -153,24 +153,9 @@ In the present paper, we take a long-term perspective on the development of soci
 
 \section{Previous research}
 
-For a detailed presentation we refer to \citet{segb16}. Here is a short
-summary.
 
-Several studies have shown how important access to economic and other
-resources are for health, but it is not clear how this has developed in
-history. \citet{ant67} and \citet{smi83} suggest that social inequality in
-health has passed through different phases in history. According to them,
-social health differences were
-comparatively small during the pre-transitional phase when space was a
-strong determinant for the spread of disease. Differences then increased
-during the transitional phase when mortality declined and wealthy groups
-used their resources to gain better health. Finally, health differences
-decreased again in modern low-mortality settings when instead
-health-related behaviour became important, resulting in marginal
-differences. \citet{omran82} state, in the third proposition in his theory
-of the epidemiological transition, that even if the class differential in
-mortality was maintained during the transition, the decline
-set in earlier and was faster among privileged groups.
+Several studies have shown how important access to economic and other resources are for health, but it is not clear how this has developed in history. \citet{ant67} and \citet{smi83} suggest that social inequality in health has passed through different phases in history. According to them, social health differences were
+comparatively small during the pre-transitional phase when space was a strong determinant for the spread of disease. Differences then increased during the transitional phase when mortality declined and wealthy groups used their resources to gain better health. Finally, health differences decreased again in modern low-mortality settings when instead health-related behaviour became important, resulting in marginal differences. \citet{omran82} state, in the third proposition in his theory of the epidemiological transition, that even if the class differential in mortality was maintained during the transition, the decline set in earlier and was faster among privileged groups.
 When in recent years new studies have appeared, investigating social inequality in health and mortality with micro-data, the assumed pattern has been questioned. Results from different studies have diverged, some reporting substantial differences but many have found surprisingly small socio-economic differences during the first stages of the transition \citep{bevp11, edli11,edbr12}.
 
 These assumptions has however been questioned by later research. According to the present state of knowledge about the development of social
@@ -206,36 +191,12 @@ show the study areas and their position in Sweden.
 \label{fig:mapp}
 \end{figure}
 
-Both regions are part
-of the county of Västerbotten in the north of Sweden, along the coast of
-the Gulf of Bothnia. The Skellefteå region in Poplink consists of a selection
-of parishes surrounding the town of Skellefteå, founded in 1845 but with a
-very small population in the 19th century. The data from the period after
-1960 cover the Skellefteå and Malå municipalities, the same area as for the
-earlier period but with the addition of two more parishes. The majority
-of the 19th century population lived in rural villages and hamlets, getting
-their livelihood from agricultural production. The region was vulnerable for
-harvest failures, one living long in memory was the famine of 1867–-1868
-(Edvinsson and Broström, 2014). Towards the end of the century, the region became connected to the Swedish railway system, thus improving the communications and contacts with other parts of the country. During the
-20th century, industrialisation took place, partly by the opening of mines in
-the inlands. This also led to a population increase both in the town and in
-the rural parts, and a much more diversified economy.
-Mortality was fairly low in comparison with other parts of the country
-and the fertility transition was late. The Skellefteå population size as defined
-in our data sets was 16\,473 on January 1, 1850, 41\,352 on January 1, 1900,
-61\,938 on January 1, 1950 and 76\,723 at the end of the century.
+The Skellefteå and Umeå regions are part of county of Västerbotten in the north of Sweden. This was a remote part of the country, where communications with the rest of Sweden were restricted until the late 20th century. During the long winters, sea communication was hindered due to the Gulf of Bothnia being frozen. Communications during winter used the winter roads. The first ships during the year came to Umeå in May? Towards the end of the 19th century, railways were built up to our regions, thereby facilitating contacts with the rest of Sweden. But of course, they were not totally outside what happened in other parts of the country. The inlands were however very remote. But our regions are situated mostly close to the coast. During the 19th century, these parts became integrated in the same epidemiological pattern as in the rest of Sweden. Diseases reached to the places that earlier were saved.
+Both regions are part of the county of Västerbotten in the north of Sweden, along the coast of the Gulf of Bothnia. The Skellefteå region in Poplink consists of a selection of parishes surrounding the town of Skellefteå, founded in 1845 but with a very small population in the 19th century. The data from the period after 1960 cover the Skellefteå and Malå municipalities, the same area as for the earlier period but with the addition of two more parishes. The majority of the 19th century population lived in rural villages and hamlets, getting their livelihood from agricultural production. The region was vulnerable to harvest failures, one living long in memory was the famine of 1867–-1868 (Edvinsson and Broström, 2014). Towards the end of the century, the region became connected to the Swedish railway system, thus improving the communications and contacts with other parts of the country. During the 20th century, industrialisation took place, partly by the opening of mines in the inlands. This also led to a population increase both in the town and in the rural parts, and a much more diversified economy.
 
-The Umeå region in Poplink (from 1900 until 1950s) consists of Umeå urban and
-rural parish, and in the Linneus database from 1960 onwards of Umeå municipality where another three parishes are included. This region has a somewhat different character from that of Skellefteå, even though agriculture dominated the economy for a long time. Umeå town had a
-small population but was substantially larger than Skellefteå town during almost
-the whole studied period. It was the administrative centre in the county of
-Västerbotten and schools and military regiments were placed here. Consequently, Officials,
-teachers and the military were much more common in Umeå than in Skellefteå. Agriculture
-dominated the rural part, there were some foundries, some
-industries for example in forestry and small-scale production. Umeå had a
-much more diversified occupational structure than Skellefteå. The population size
-as defined in our data sets was 18\,970 on January 1, 1900, 32\,900 on
-January 1, 1950 and 103\,970 when the century ended.
+Mortality was fairly low in comparison with other parts of the country and the fertility transition was late. The Skellefteå population size as defined in our data sets was 16\,473 on January 1, 1850, 41\,352 on January 1, 1900, 61\,938 on January 1, 1950 and 76\,723 at the end of the century.
+
+The Umeå region in Poplink (from 1900 until 1950s) consists of Umeå urban and rural parish, and in the Linneus database from 1960 onwards of Umeå municipality where another three parishes are included. This region has a somewhat different character from that of Skellefteå, even though agriculture dominated the economy for a long time. Umeå town had a small population but was substantially larger than Skellefteå town during almost the whole studied period. It was the administrative centre in the county of Västerbotten and schools and military regiments were placed here. Consequently, officials, teachers and the military were much more common in Umeå than in Skellefteå. Agriculture dominated the rural part, there were some foundries, some industries for example in forestry and small-scale production. Umeå had a much more diversified occupational structure than Skellefteå. The population size as defined in our data sets was 18\,970 on January 1, 1900, 32\,900 on January 1, 1950 and 103\,970 when the century ended.
 
 
 
