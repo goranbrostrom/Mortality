@@ -473,35 +473,35 @@ vb4064$age <- factor(vb4064$age)
 ##vb4064$hisclass <- vb4064$hisclass40
 @
 
-We start by looking at cumulative hazards by {\sc Hisclass} over the last four time
-periods, in order to illustrate the process. They are adjusted for {\tt civil status}. We present separate analyses  for women and men, see
-Figures~\ref{fig:hazplotw} and~\ref{fig:hazplotm}.
+% We start by looking at cumulative hazards by {\sc Hisclass} over the last four time
+% periods, in order to illustrate the process. They are adjusted for {\tt civil status}. We present separate analyses  for women and men, see
+% Figures~\ref{fig:hazplotw} and~\ref{fig:hazplotm}.
 
 %\subsubsection{Women}
 
-<<hazcalw>>=
-source("R/getPHglm2.R")
-##nper <- 4
-nper <- length(labb)
-resw <- getPHglm2(vb4064[vb4064$sex == "female", ],
-            nper, labb)
-resm <- getPHglm2(vb4064[vb4064$sex == "male", ],
-            nper, labb)
-@
-
-
-<<hazplotw, fig.cap = cap1w, fig.scap = scap1w, fig.height = 7>>=
-source("R/plotHaz.glm.R")
-
-plotHaz.glm(resw[-(1:6)], main = labb, col = scol, layout = c(2, 2))
-@
-
-<<hazplotm, fig.cap = cap1m, fig.scap = scap1m, fig.height = 7>>=
-plotHaz.glm(resm[-(1:6)], main = labb, col = scol, layout = c(2, 2))
-@
-
-From Figures~\ref{fig:hazplotw} and \ref{fig:hazplotm} it is obvious that
-the idea of proportional hazards is not reasonable. We therefore use another approach.
+% <<hazcalw>>=
+% source("R/getPHglm2.R")
+% ##nper <- 4
+% nper <- length(labb)
+% resw <- getPHglm2(vb4064[vb4064$sex == "female", ],
+%             nper, labb)
+% resm <- getPHglm2(vb4064[vb4064$sex == "male", ],
+%             nper, labb)
+% @
+% 
+% 
+% <<hazplotw, fig.cap = cap1w, fig.scap = scap1w, fig.height = 7>>=
+% source("R/plotHaz.glm.R")
+% 
+% plotHaz.glm(resw[-(1:6)], main = labb, col = scol, layout = c(2, 2))
+% @
+% 
+% <<hazplotm, fig.cap = cap1m, fig.scap = scap1m, fig.height = 7>>=
+% plotHaz.glm(resm[-(1:6)], main = labb, col = scol, layout = c(2, 2))
+% @
+% 
+% From Figures~\ref{fig:hazplotw} and \ref{fig:hazplotm} it is obvious that
+% the idea of proportional hazards is not reasonable. We therefore use another approach.
 
 The "TMR", that is, the summed hazards over the age interval 40--64 is shown in
 Figure~\ref{fig:cumsw}.
