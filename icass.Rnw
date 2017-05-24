@@ -41,7 +41,7 @@ Umeå University, SE-90187 Umeå, Sweden}
     Umeå,
     June 8--12, 2017}}
 
-\date{May 22, 2017}
+\date{May 24, 2017}
 
 \begin{document}
 
@@ -123,7 +123,14 @@ observed when it comes to all-cause mortality.
 
 \section{Introduction}
 
-One of the most central aspects of survival on individual level is social class and access to economic and other resources. Even in present welfare societies, social position is a strong determinant when it comes to health and mortality and the impact seems to be increasing as well \citep{kuetal04, frlu07}. It has been suggested that “… social conditions have been, are and will continue to be irreducible determinants of health outcomes and therefore deserves their appellation as ‘fundamental causes’ of disease and death” \citep{liph95}. For a long time, the general view has been that socio-economic health inequalities were high in historical societies, probably higher than in modern societies. This can be considered as a reasonable assumption since these societies were in most cases characterised by very large differences between groups and classes. Knowing that access to resources provides advantages in all ways, the health advantage of higher classes ought to be obvious. Not only should we expect to find a direct effect of the lack of resources on health, we might even find an independent effect of inequality as \citet{wipi09} suggest. They argue that unequal societies perform less well when it comes to health than equal ones. Even if it not a necessary implication, we would still assume that poorer groups were those most disadvantaged of large inequality in itself. Some recent studies have however indicated that the assumed pattern of distinct socio-economic health differences was not always apparent in pre- and early-transitional societies and some suggest that the modern pattern might be a fairly recent phenomenon \citep{bevp11}. Solid empirical evidence about the process is however lacking and studies focusing on the issue are still few. There is a need for more reliable studies from different geographical and historical settings as well as according to age and gender in order to better understand the role of socio-economic conditions for health and survival over time. 
+One of the most central aspects of survival on individual level is social class and access to economic and other resources. Even in present welfare societies, social position is a strong determinant when it comes to health and mortality and the impact seems to be increasing as well \citep{kuetal04, frlu07}. It has been suggested that “… social conditions have been, are and will continue to be irreducible determinants of health outcomes and therefore deserves their appellation as ‘fundamental causes’ of disease and death” \citep{liph95}. For a long time, the general view has been that socio-economic health inequalities were high in historical societies, probably higher than in modern societies. This can be considered as a reasonable assumption since these societies were in most cases characterised by very large differences between groups and classes. Knowing that access to resources provides advantages in all ways, the health advantage of higher classes ought to be obvious. \citet{ant67} and \citet{smi83} suggest that social inequality in health has passed through different historical phases. According to them, social health differences were comparatively small during the pre-transitional phase when space was a strong determinant for the spread of disease. Differences then increased during the transitional phase when mortality declined and wealthy groups used their resources to gain better health. Finally, health differences decreased again in modern low-mortality settings when instead health-related behaviour became important, resulting in marginal differences. \citet{omran82} state, in the third proposition in his theory of the epidemiological transition, that even if the class differential in mortality was maintained during the transition, the decline set in earlier and was faster among privileged groups. 
+
+
+Recent studies, investigating social inequality in health and mortality with micro-data, has however questioned the assumed pattern. These studies suggest that the modern pattern might be a fairly recent development, although the pattern differs depending on age, gender or historical context. When it comes to the adult and elderly population results from different studies have diverged, some reporting substantial differences but many, particularly those based on Swedish data, have found surprisingly small socio-economic differences or differences in the opposite direction than the expected during the first stages of the transition \citep{bevp11, bedr11, edli11,edbr12}, sharply contrasting against what we know from present-day society. 
+
+Another interesting aspect of the developent of social inequality in mortality, is its relation to economic inequality. \citet{wipi09} argue that income inequality has an independent effect on mortality, separated from the direct effect of the actual different access to economic resources. They argue that unequal societies perform less well when it comes to health than equal ones. Wilkinson and Pickett find a positive association between inequality and health (as well as other social conditions) at country level in the present-day economically developed world. This has initiated a vital scholarly debate and the topic has been extensively studied (see for example \citet{suka04, wado00}. How the association looked like in previous periods is unknown. This is of particular interest since the levels of inequality were very different from what we find during most of the recent decades. Even if it not a necessary implication, we would still assume that poorer groups were those most disadvantaged of large inequality in itself.Data are uncertain for the 19th century, but at least during the late 19th and early 20th century both income and wealth distribution was strongly skewed in Sweden. From a couple of decades into the 20th century, income and wealth inequality continuously diminished to reach the lowest point at around 1980. Thereafter, economic inequality has increased substantially until the present, although far from being as high as a century ago \citep{rowa08, rowa09}. The Swedish development resembles that of other European and North American countries in its basic features \citep{rowa14}.
+
+It thus appears as if a more consistent social health divide appeared at some point during the mortality transition, at least in Sweden. Solid empirical evidence about the process is however lacking and studies focusing on the issue are still few. There is a need for more reliable studies from different geographical and historical settings as well as according to age and gender in order to better understand the role of socio-economic conditions for health and survival over time. 
 
 
 
@@ -151,13 +158,8 @@ In the present paper, we take a long-term perspective on the development of soci
 \item Do class inequalities in survival correspond to those depending on level of education and income categories for the period 1990 onwards?
 \end{enumerate}
 
-\section{Previous research}
 
 
-Several studies have shown how important access to economic and other resources are for health, but it is not clear how this has developed in history. \citet{ant67} and \citet{smi83} suggest that social inequality in health has passed through different historical phases. According to them, social health differences were comparatively small during the pre-transitional phase when space was a strong determinant for the spread of disease. Differences then increased during the transitional phase when mortality declined and wealthy groups used their resources to gain better health. Finally, health differences decreased again in modern low-mortality settings when instead health-related behaviour became important, resulting in marginal differences. \citet{omran82} state, in the third proposition in his theory of the epidemiological transition, that even if the class differential in mortality was maintained during the transition, the decline set in earlier and was faster among privileged groups.
-When in recent years new studies have appeared, investigating social inequality in health and mortality with micro-data, the assumed pattern has been questioned. When it comes to the adult and elderly population results from different studies have diverged, some reporting substantial differences but many, particularly those based on Swedish data, have found surprisingly small socio-economic differences during the first stages of the transition \citep{bevp11, bedr11, edli11,edbr12}. The Swedish results show no consistent social hierarchy before 1900 but substantial differences towards the late 20th and early 21st century. It appears as if a more consequent social health divide developed in the period
-in-between. 
-\citet{wipi09} argue that income inequality has an independent effect on mortality, separated from that of the actual differential levels of economic resources. They find an positive association between inequality and health (as well as other social conditions) at country level in the present-day economically developed world. This has initiated a vital scholarly debate and the topic has been extensively studied (see for example \citet{suka04, wado00}. How the association looked like in previous periods has however not been studied. This is of particular interest since the levels of inequality were very different from what we find during most of the recent decades. Data are uncertain for the 19th century, but at least during the late 19th and early 20th century both income and wealth distribution was strongly skewed in Sweden. From a couple of decades into the 20th century, income and wealth inequality continuously diminished to reach the lowest point at around 1980. Thereafter, economic inequality has increased substantially until the present, although far from being as high as a century ago \citep{rowa08, rowa09}. The Swedish development resembles that of other European and North American countries in its basic features \citep{rowa14}.
 
 
 \section{The Skellefteå and Umeå regions}
@@ -167,11 +169,11 @@ in-between.
 
 
 
-\begin{figure}
-\includegraphics[height=19cm]{myfigs/skum}
-\caption{The Skellefteå and Umeå regions.}
-\label{fig:SKEUME}
-\end{figure}
+% \begin{figure}
+% \includegraphics[height=19cm]{myfigs/skum}
+% \caption{The Skellefteå and Umeå regions.}
+% \label{fig:SKEUME}
+% \end{figure}
 
 \begin{figure}
 \includegraphics[height=19cm]{myfigs/sweden}
@@ -179,29 +181,30 @@ in-between.
 \label{fig:mapp}
 \end{figure}
 
-The Skellefteå and Umeå regions (Figures~\ref{fig:SKEUME} and~\ref{fig:mapp}) are part of the county of Västerbotten in the north of Sweden along the coast of the Gulf of Bothnia. This was a remote part of the country, where communications with the rest of Sweden were restricted until the late 20th century, dominated by agriculture and characterise by a vulnerable economy. Several severe famines struck the regions during the 1800s, making living difficult for the population and increasing mortality \citep{segb14}. During the long winters, sea communication was hindered due to the Gulf of Bothnia being frozen. Communications during winter used the winter roads. The first ships during the year came to this area in May or even as late as June in some cases \citep{fah56}. Towards the end of the 19th century, railways construction reached this part of Sweden, thereby facilitating contacts with the rest of Sweden, improving the economy and mitigating the effects of harvest failures. The inland was particularly remote. During the 19th century, our regions parts became increasingly integrated in the same epidemiological pattern as the rest of Sweden. Diseases reached to the places that earlier were spared.
-The Skellefteå region in Poplink consists of a selection of parishes surrounding the town of Skellefteå, founded in 1845 but with a very small population during the 19th century. The data from the period after 1960 cover the Skellefteå and Malå municipalities, the same area as for the earlier period but with the addition of two more parishes. The majority of the 19th century population lived in rural villages and hamlets, getting their livelihood from agricultural production. The region was vulnerable to harvest failures, one living long in memory was the famine of 1867–-1868 \citep{segb14}. Towards the end of the century, the region became connected to the Swedish railway system, thus improving the communications and contacts with other parts of the country. During the 20th century, industrialisation took place, partly by the opening of mines in the inlands. This also led to a population increase both in the town and in the rural parts, and a much more diversified economy.
+The Skellefteå and Umeå regions (Figure~\ref{fig:mapp}) are part of the county of Västerbotten in the north of Sweden along the coast of the Gulf of Bothnia. This was a remote part of the country, where communications with the rest of Sweden were restricted until the late 20th century, dominated by agriculture and characterise by a vulnerable economy. The county was vulnerable to harvest failures and several severe famines struck the regions during the 1800s. One living long in memory was the famine of 1867–-1868 \citep{segb14}. During the long winters, sea communication was hindered due to the Gulf of Bothnia being frozen. Communications during winter used the winter roads. The first ships during the year came to this area in May or even as late as June in some cases \citep{fah56}. Towards the end of the 19th century, the Swedish railway system reached this part of Sweden, thereby facilitating contacts with the rest of Sweden, improving the economy and mitigating the effects of harvest failures. The inland was particularly remote. During the 19th century, our regions became increasingly integrated in the same epidemiological pattern as the rest of Sweden. Diseases reached to places that earlier were spared.
+
+The Skellefteå region consists of a selection of parishes surrounding the town of Skellefteå, founded in 1845 but with a very small population during the 19th century. The data from the period after 1960 cover the Skellefteå and Malå municipalities, the same area as for the earlier period but with the addition of two more parishes. The majority of the 19th century population lived in rural villages and hamlets, getting their livelihood from agricultural production. During the 20th century, industrialisation took place, partly by the opening of mines in the inlands. This also led to a population increase both in the town and in the rural parts, and a much more diversified economy.
 
 Mortality was fairly low in comparison with other parts of the country and the fertility transition was late. The Skellefteå population size as defined in our data sets was 16\,473 on January 1, 1850, 41\,352 on January 1, 1900, 61\,938 on January 1, 1950 and 76\,723 at the end of the century.
 
-The Umeå region in Poplink (from 1900 until 1950s) consists of Umeå urban and rural parish, and in the Linneus database from 1960 onwards of Umeå municipality where another three parishes are included. This region has a somewhat different character from that of Skellefteå, even though agriculture dominated the economy for a long time. Umeå town had a small population but was substantially larger than Skellefteå town during almost the whole studied period. It was the administrative centre in the county of Västerbotten and schools and military regiments were placed here. Consequently, officials, teachers and the military were much more common in Umeå than in Skellefteå. Agriculture dominated the rural part, there were some foundries, some industries for example in forestry and small-scale production. Umeå had a much more diversified occupational structure than Skellefteå. The population size as defined in our data sets was 18\,970 on January 1, 1900, 32\,900 on January 1, 1950 and 103\,970 when the century ended.
+The Umeå region in this study consists of Umeå urban and rural parish until 1950, and from 1960 onwards of Umeå municipality where another three parishes are included. This region has a somewhat different character from that of Skellefteå, even though agriculture dominated the economy as well for a long time. Umeå town had a small population but was substantially larger than Skellefteå town during almost the whole studied period. It was the administrative centre in the county of Västerbotten and schools and military regiments were placed here. Consequently, officials, teachers and the military were much more common in Umeå than in Skellefteå. Agriculture dominated the rural part, there were some foundries, some industries for example in forestry and small-scale production. Umeå had a much more diversified occupational structure than Skellefteå. The population size as defined in our data sets was 18\,970 on January 1, 1900, 32\,900 on January 1, 1950 and 103\,970 when the century ended.
 
 
 
 \section{Data and variables}
 
-The extension in time of data at the Demographic Data Base, Umeå University (DDB) makes it possible to investigate the long-term development of social inequality in mortality by including the period between 1900 and 1950s when almost no micro-data has been available for research. The databases provide us with with micro-data on a sufficiently large population and with substantial social diversity from the 20th century for the Skellefteå and Umeå regions \citep{wee16}.The data for the present study comes from two large population databases at the DDB, Umeå University. The early period is covered by
+The extension in time of data at the Demographic Data Base, Umeå University (DDB) by including the period between 1900 and 1950s makes it possible to investigate the long-term development of social inequality in mortality, in the present case from 1851 to 2013. The databases provide us with micro-data on a sufficiently large population and with substantial social diversity from the 20th century for the Skellefteå and Umeå regions \citep{wee16}.The data for the present study comes from two large population databases at the DDB, Umeå University. The early period is covered by
 the database Poplink, the digitisation of historical parish registers for
 the Skellefteå and Umeå region \citep{wee16}. Poplink is based on linked parish records, allowing
 us to reconstruct life biographies on people as long as they remained in
 the region. The records are linked within but not between the regions. Data
-from the regions are accessed for the period 1901--1950s.
+from Poplink are accessed for the period 1851--1950s.
 
-The other large data-set comes from the Linnaeus database
-\citep{malm10}. It is based on different linked population registers from
+The other large data-set is extracted from the Linnaeus database
+\citep{malm10}. Linnaeus is based on different linked population registers from
 1960 to 2013 and is used within the ageing program at CEDAR, Umeå
 University. The study period from 1960 to 2000 are constructed from censuses every fifth
-year 1960--1990, with additional information on deaths from National Board of Health and Welfare. For the period 2002--2013 we use the information from the yearly population registers (LISA) together with death information from National Board of Health and Welfare. The construction of these data-sets for analysis is presented below.
+year 1960--1990, with additional information on deaths from National Board of Health and Welfare. For the period 2002--2013 we use the information from the yearly population registers (LISA) together with death information from National Board of Health and Welfare. 
 
 Information on individuals are anonymised and the two databases are not
 linked. This stops us from following individuals present
@@ -210,7 +213,7 @@ also makes it impossible to add information on individuals in the Linnaeus
 database from what we potentially could find in Poplink, for example family
 background or occupations earlier in life.
 
-In the data-set analysed here, all individuals 40 years and older and ever being resident in either
+In the data-set analysed here, all individuals 40 years and older ever being resident in either
 of the regions are included. The data file contains the variables on sex,
 birth date, death date, first and last date of observation and type of
 entrance/exit.Total number of persons are 84.599 leading to 35.001 deaths in Poplink and 197.864 persons leading to 66297 deaths in the Linnaeus database. (SKA VI HA FIGUREN MED THE SAMPLING FRAME HÄR?)
@@ -219,27 +222,25 @@ entrance/exit.Total number of persons are 84.599 leading to 35.001 deaths in Pop
 
 Differences in available information in the two datasets as well as within the Linnaeus data makes it necessary to apply diverging approaches when it comes to identification of presence periods within our
 regions. The Poplink data provides us with exact dates or at least year of
-start and exit of the presence of all individuals in our data, allowing us to have full and continuous control of the de jure population. This is however not the case with the Linnaeus database. For the period 1960--2000 we use presence in the censuses 1960--1990 together with the yearly population registers 1986--2000 and information on deaths from the National Board of Health and Welfare for defining the observation periods as well as their social class (see below) in our analyses. We have however no exact information on what happened in-between the censuses, for example the exact date of exit for persons that moved between two censuses. We have solved this by considering everyone as resident in our regions during the complete five-year period between censuses if the person is missing in the later census. This overestimates their presence in our regions, but should not bias the results when it comes to socioeconomic differences. We furthermore miss those that both moved in and moved out or vice versa between censuses. Exit dates are exact if they refer to death, and in these cases we consider them as constantly present from the last census to the death data even if the death took place in another part of Sweden.
+start and exit of the presence of all individuals in our data, allowing us to have full and continuous control of the de jure population. This is however not the case with the Linnaeus database. For the period 1960--2000 we use presence in the censuses 1960--1990 together with the yearly population registers 1986--2000 and information on deaths from the National Board of Health and Welfare to identify the observation periods in our analyses. We have however no exact information on what happened in-between the censuses, for example the exact date of exit for persons that moved between two censuses. We have solved this by considering everyone as resident in our regions during the complete five-year period between censuses if the person is missing in the later census. This overestimates their presence in our regions, but should not bias the results when it comes to socioeconomic differences. We furthermore miss those that both moved in and moved out or vice versa between censuses. Exit dates are exact if they refer to death, and in these cases we consider them as constantly present from the last census to the death data even if the death took place in another part of Sweden.
 
-For the last period, 2002--2013, we use the yearly population registers (also known as LISA data from Statistics Sweden), together with information on deaths from National Board of Health and Welfare. This data allows a better control of the presence periods in the studied regions.
+For the last period, 2002--2013, we use the yearly population registers (also known as LISA data from Statistics Sweden), together with information on deaths from National Board of Health and Welfare. This data allows good control of the presence periods in the studied regions.
 
 
 
 \subsection{Social class}
 
-In this paper we analyse mortality differences according to social class based on the classification scheme HISCLASS \citep{lema11}. The only type of socio-economic information available both in Linnaeus and Poplink is occupations. Thus, analysing according to social class is apart from being a scientific choice, also a practical one. Using occupational data is the only and obvious alternative for making a longitudinal study of socio-economic mortality differences with consistent classification schemes. The obvious problems connected with using the same classification scheme covering a long time period will be addresed in the discussion section. Social position is treated as a time-dependent variable.
+In this paper we analyse mortality differences according to social class based on the classification scheme HISCLASS \citep{lema11}. The only type of socio-economic information available both in Linnaeus and Poplink is occupations. Thus, analysing according to social class is apart from being a scientific choice, also a practical one. Using occupational data is the only and obvious alternative for making a longitudinal study of socio-economic mortality differences with consistent classification schemes. Social position is treated as a time-dependent variable.
 
-The availability to information on occupations varies over time and between sources. Occupations in Poplink are coded into HISCO \citep{lema02} and the original DDB coding system. The censuses 1960--1990 include occupational codes based on the system used in Sweden at that time, NYK (Nordisk Yrkesklassificering). The yearly population registers (LISA) do not report occupations until 2001, thus there is a window of 11 years from 1990 to 2001 where we lack information. In the censuses, we have solved this by extending the periods for which we consider the defined social class be valid. Thus, the social class in the census 1990 is considered to be kept until 2000. We consider that the social position is kept after retirement (in Sweden usually at age 65).
-
-
-The use of different data sets, forces us to apply different approaches towards defining the social position. In the Poplink data, social class is based on the occupational titles given in the parish records. Some titles are not precise enough to identify the size of the enterprise, or the division between skills, semi-skilled and unskilled workers. We consider however their validity to be sufficient for identification of social position. Another problem is that we in Poplink usually get the occupation only for the head of household, thus under-estimating the female working-force participation and the occupations of adult children residing with their parents \citep{vik10}. In this study and according to the research questions in the present paper, we have chosen to categorise wife according to the position of the head of household, usually the husband/father, assuming that the family shares the same socio-economic position. This strategy makes the problem of under-recording less problematic.
-
-Female labour is much better covered in the Linnaeus database, both in the censuses and the population registers. Another difference is that it is much more difficult to define households in the same way as in Poplink from the Linnaeus database. Extra-marital cohabitation, connected to the Second Demographic Transition \citep{van87, van03}, became common and female labour force participation developed as the norm in Sweden during this period. The occupation of the husband as signifier of social class became if not obsolete at least less relevant. All included persons are signified by their individual occupation for this period. Still, the results for the different periods are not completely comparable and makes the interpretation of the development for women more shaky.
+The availability to information on occupations varies over time and between sources. Occupations in Poplink are coded into HISCO \citep{lema02} and the original DDB coding system. The censuses 1960--1990 include occupational codes based on the system used in Sweden at that time, NYK (Nordisk Yrkesklassificering). The yearly population registers (LISA) do not report occupations until 2001, thus there is a window of 11 years from 1991 to 2001 where we lack information. In the censuses, we have solved this by extending the periods for which we consider the observed social class to be valid. Thus, the social class in the census 1990 is considered to be kept until 2000. This strategy is also used for other cases of missing social class. Furthermore, we consider the social position after retirement (in Sweden usually at age 65) to be the same as the last during working age.
 
 
-Due to the construction of the time-dependent data, some records report unknown social position. This has been updated according to rules in order to optimise available information. Those that still lack information on social class are not included in the analysis, something that have consequences for elderly living in the 1960s in particular, since many were already retired and thus without occupation when we first observe them in the 1960 census. This, together with the circumstance that many women had no occupation in the census 1960 explains the large proportion where we have not been able to determine class during that decade. As a consequence, we leave out the 1960s and 1970s in some analyses.
+The use of different data sets, forces us to apply different approaches towards defining the social position. In the Poplink data, some titles are not precise enough to identify the size of the enterprise, or the division between skills, semi-skilled and unskilled workers. We consider however the validity of the information to be sufficient for identification of social position. Another problem is that Poplink usually only provides the occupation only for the head of household, thus under-estimating female working-force participation as well as that of adult children residing with their parents \citep{vik10}. In this study and according to the research questions in the present paper, we have chosen to categorise wife according to the position of the head of household, usually the husband/father, assuming that the family shares the same socio-economic position. This strategy makes the problem of under-recording less problematic.
 
-The classification scheme used here is  based on HISCLASS \citep{lema11}, a class-based system. The scheme uses HISCO for assigning categories. HISCO \citet{lema02} (Historical International Standard Classifications of Occupations) is a classification system of historical occupations. HISCO categorize occupations according to tasks and skills. We have merged the original 12 classes in HISCLASS, based on position on the labour market, ending up with the following three and an additional fourth category with unknown class four:
+Female labour is much better covered in the Linnaeus database. A complication is however that it is  difficult to define households in the same way as in Poplink. Extra-marital cohabitation, connected to the Second Demographic Transition \citep{van87, van03}, became common and female labour force participation developed as the norm in Sweden during this period. The occupation of the husband as signifier of social class became, if not obsolete at least, less relevant. All included persons are signified by their individual occupation for this period. Still, the results for the different periods are not completely comparable and makes the interpretation of the development for women more shaky.
+
+
+The classification scheme we use is  based on HISCLASS \citep{lema11}, a class-based system. The scheme uses HISCO for assigning categories. HISCO (Historical International Standard Classifications of Occupations) \citet{lema02}  is a classification system of historical occupations, categorizing occupations according to tasks and skills. We have merged the original 12 classes in HISCLASS, based on position on the labour market, ending up with the following three and an additional fourth category with unknown class:
 
 \begin{enumerate}
 \item {\tt elite}, HISCLASS 1 and 2. Higher managers and professionals.
@@ -271,11 +272,10 @@ yy <- round(prop.table(xx, 1) * 100, 1)
 barplot(t(yy)[4:1, ], col = c("red", "blue", "green", "black"), las = 2, ylab = "Per cent")
 @
 
-For the corresponding numbers, with missing values ({\tt NA}) included, see
-Table~\ref{tab:nana}.The proportion with missing class was very low
+Those that we first observe in the first included censuses often lack stated occupations. This is especially the case for women and elderly being retired. The proportion with missing values ({\tt NA}) included is presented in Table~\ref{tab:nana}. It was very low
 during the periods until 1950, between 4 and 8 \% lacked information
 allowing determination of class. This increased considerably during the first two decades of data brom the Linnaeus database. During the 1960s, every second person lacks class category
-and almost a third have missing information during the 1970s. For the most recent period, the information is fairly complete.
+and almost a third have missing information during the 1970s. As a consequence, we only report the results for men 40--64 for the 1960s and 1970s. For the most recent periods, the information is fairly complete.
 
 <<nana, results = 'asis'>>=
 library(xtable)
@@ -291,7 +291,7 @@ xtable(x, caption = "Hisclass by time period, per cent.", label = "tab:nana", di
 
 Marital status is treated as a time-dependent variable in the data file. The statuses used are unmarried, married and dissolved marriages (without distinguishing between widowed and divorces). The status unmarried is often not explicitly noted in the source, which makes the status unknown in the database Poplink for people for people moving into our parishes. If no explicit status is given in the sources and partner is missing, the status has been set to unmarried.
 
-Regarding the distribution of marital status over time, see Figure~\ref{fig:civstskum}.
+Regarding the distribution of marital status over time, see Figure~\ref{fig:civstskum}.The figure indicate an under-registration of those married and and over-registration of previously married during the 1960s. (WHY?)
 
 <<civstskum, fig.cap = "Exposure by civil status (from the top: previously married, married and never married) and time period", fig.height = 4.5>>=
 xx <- with(vb0Tab, tapply(exposure, list(period = period, civst = civst), sum))
@@ -324,7 +324,7 @@ We have made separate analyses for the different periods. The century 1851--1950
 Income is based on disposable individual income from the LISA database at Statistics Sweden, grouped into quartiles. It is only analysed from 1990 to 2005.
 
 \subsection{Education}
-Education is here analysed only for the period 1990 onwards. Years of education are given in 4 categories and is based on level of education according to categories in the LISA database at Statistics Sweden. It ranges from basic education (less than nine years schooling) at the lowest level, to high academic degree (PhD and similar) at the highest level.
+Education is here analysed only for the period 1990 to 2005. Years of education are given in 4 categories and is based on level of education according to categories in the LISA database at Statistics Sweden. It ranges from basic education (less than nine years schooling) at the lowest level, to high academic degree (PhD and similar) at the highest level. Which are the new categories?)
 
 \section{Models}
 
@@ -337,7 +337,7 @@ variable, and the main results are presented graphically.
 Another practical problem is the size of that data set:
 It contains no less than 2\,432\,871 records of 236\,011 individuals, of
 which 68\,244 are observed to die.
-This makes it very inconvenient use the nowadays so popular semi-parametric
+This makes it very inconvenient to use the nowadays so popular semi-parametric
 technique known as
 \emph{Cox regression} \citep{cox72,gb02}. Instead we use a parametric model
 that allows for reduction of the data
@@ -859,82 +859,82 @@ For men, we find a different pattern, a pattern however that to a large extent i
 
 %% HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 
-\subsubsection*{The effect of income and education, 1990--2005}
-
-We have also performed the analysis on the alternative approaches on socio-economic differences for the causes of death. It is based on a separate analysis with income and education as explanatory variables.
-
-<<41lissyoung>>=
-library(eha)
-library(xtable)
-##load("data/loTab.rda")
-loTab$period <- factor(loTab$period)
-liss4064 <- loTab[loTab$age < 64.5, ]
-@
-
-
-The statistical significance of the covariates are shown in
-Table~\ref{tab:41liswom}
-<<41liswom, results = 'asis'>>=
-fitw1 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = poisson, data = liss4064[liss4064$sex == "female", ])
-##cat("Women:\n")
-drw <- drop1(fitw1, test = "Chisq")
-xtable(drw, caption = "Effect of covariates for women 40-64, 1990-2005, cardiovascular death.", label = "tab:41liswom")
-##round(summary(fitw1)$coef[-(1:13), ], 4)
-@
-
-The estimated effect sizes are shown in Figure \ref{fig:41liswomfig}
-
-<<41liswomfig, fig.cap = "Effect sizes, women 40-64, 1990-2005, cardiovascular death.", fig.height = 4>>=
-source("R/plotWEduc.R")
-plotWEduc(fitw1)
-@
-
-
-And for men:
-
-<<41lismen, results='asis'>>=
-fitm1 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = poisson, data = liss4064[liss4064$sex == "male", ])
-##cat("\nMen:\n")
-drm <- drop1(fitm1, test = "Chisq")
-xtable(drm, caption = "Effect of covariates for men 40-64, 1990-2005, cardiovascular death.", label = "tab:41lismen")
-##round(summary(fitm1)$coef[-(1:13), ], 4)
-dcol <- c("blue", "darkgreen", "darkgreen", "red")
-@
-
-<<41lismanfig, fig.cap = "Effect sizes, men 40-64, 1990-2005, cardiovascular death.", fig.height = 4>>=
-#source("R/plotWEduc.R")
-plotWEduc(fitm1)
-@
-
-
-<<41plotliss1, fig.cap = "Cumulative hazards, ages 40--64, 2002--2013, cardiovascular death.", fig.height = 4>>=
-#oldpar <- par(mfrow = c(1, 2))
-#plot(fitw1, fn = "cum", col = dcol, main = "Women")
-#plot(fitm1, fn = "cum", col = dcol, main = "Men")
-#par(oldpar)
-##summary(fitw1)
-##summary(fitm1)
-@
-
-%See Table~\ref{tab:tablisswom1} the PH regression for women.
-<<41tablisswom1, results = "asis">>=
-#fitwo1 <- coxreg(Surv(enter, exit, event) ~ DISPINK + CIV + SUN2000NIVA,
-#                 data = liss4064[liss4064$sex == "female", ])
-#dr <- drop1(fitwo1, test = "Chisq")
-#ltx(fitwo1, dr = dr, caption = "PH regression, women aged 40--64, 2002--2013.",
-#    label = "tab:tablisswom1")
-@
-
-%See Table~\ref{tab:tablissman1} the PH regression for men.
-<<41tablissman1, results = "asis">>=
-#fitma1 <- coxreg(Surv(enter, exit, event) ~ DISPINK + CIV + SUN2000NIVA,
-#                 data = liss4064[liss4064$sex == "male", ])
-#dr <- drop1(fitma1, test = "Chisq")
-#ltx(fitma1, dr = dr, caption = "PH regression, men aged 40--64, 2002--2013.",
- #   label = "tab:tablissman1")
-@
-
-The analysis of cardiovascular mortality according to education and income conforms very well to what we find for all-cause mortality, and we will therefore not delve into detail on this issue. More education as well as higher income is advantageous both for women and men for avoiding deaths related to the circulatory system. This is also well in line with our analysis based on HISCLASS above.
+% \subsubsection*{The effect of income and education, 1990--2005}
+% 
+% We have also performed the analysis on the alternative approaches on socio-economic differences for the causes of death. It is based on a separate analysis with income and education as explanatory variables.
+% 
+% <<41lissyoung>>=
+% library(eha)
+% library(xtable)
+% ##load("data/loTab.rda")
+% loTab$period <- factor(loTab$period)
+% liss4064 <- loTab[loTab$age < 64.5, ]
+% @
+% 
+% 
+% The statistical significance of the covariates are shown in
+% Table~\ref{tab:41liswom}
+% <<41liswom, results = 'asis'>>=
+% fitw1 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = poisson, data = liss4064[liss4064$sex == "female", ])
+% ##cat("Women:\n")
+% drw <- drop1(fitw1, test = "Chisq")
+% xtable(drw, caption = "Effect of covariates for women 40-64, 1990-2005, cardiovascular death.", label = "tab:41liswom")
+% ##round(summary(fitw1)$coef[-(1:13), ], 4)
+% @
+% 
+% The estimated effect sizes are shown in Figure \ref{fig:41liswomfig}
+% 
+% <<41liswomfig, fig.cap = "Effect sizes, women 40-64, 1990-2005, cardiovascular death.", fig.height = 4>>=
+% source("R/plotWEduc.R")
+% plotWEduc(fitw1)
+% @
+% 
+% 
+% And for men:
+% 
+% <<41lismen, results='asis'>>=
+% fitm1 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = poisson, data = liss4064[liss4064$sex == "male", ])
+% ##cat("\nMen:\n")
+% drm <- drop1(fitm1, test = "Chisq")
+% xtable(drm, caption = "Effect of covariates for men 40-64, 1990-2005, cardiovascular death.", label = "tab:41lismen")
+% ##round(summary(fitm1)$coef[-(1:13), ], 4)
+% dcol <- c("blue", "darkgreen", "darkgreen", "red")
+% @
+% 
+% <<41lismanfig, fig.cap = "Effect sizes, men 40-64, 1990-2005, cardiovascular death.", fig.height = 4>>=
+% #source("R/plotWEduc.R")
+% plotWEduc(fitm1)
+% @
+% 
+% 
+% <<41plotliss1, fig.cap = "Cumulative hazards, ages 40--64, 2002--2013, cardiovascular death.", fig.height = 4>>=
+% #oldpar <- par(mfrow = c(1, 2))
+% #plot(fitw1, fn = "cum", col = dcol, main = "Women")
+% #plot(fitm1, fn = "cum", col = dcol, main = "Men")
+% #par(oldpar)
+% ##summary(fitw1)
+% ##summary(fitm1)
+% @
+% 
+% %See Table~\ref{tab:tablisswom1} the PH regression for women.
+% <<41tablisswom1, results = "asis">>=
+% #fitwo1 <- coxreg(Surv(enter, exit, event) ~ DISPINK + CIV + SUN2000NIVA,
+% #                 data = liss4064[liss4064$sex == "female", ])
+% #dr <- drop1(fitwo1, test = "Chisq")
+% #ltx(fitwo1, dr = dr, caption = "PH regression, women aged 40--64, 2002--2013.",
+% #    label = "tab:tablisswom1")
+% @
+% 
+% %See Table~\ref{tab:tablissman1} the PH regression for men.
+% <<41tablissman1, results = "asis">>=
+% #fitma1 <- coxreg(Surv(enter, exit, event) ~ DISPINK + CIV + SUN2000NIVA,
+% #                 data = liss4064[liss4064$sex == "male", ])
+% #dr <- drop1(fitma1, test = "Chisq")
+% #ltx(fitma1, dr = dr, caption = "PH regression, men aged 40--64, 2002--2013.",
+%  #   label = "tab:tablissman1")
+% @
+% 
+% The analysis of cardiovascular mortality according to education and income conforms very well to what we find for all-cause mortality, and we will therefore not delve into detail on this issue. More education as well as higher income is advantageous both for women and men for avoiding deaths related to the circulatory system. This is also well in line with our analysis based on HISCLASS above.
 
 \subsection{Ages 65--89}
 
@@ -976,57 +976,57 @@ par(oldpar)
 @
 
 
-\subsubsection*{The effect of income and education on cardiovascular death, 1990--2005}
-
-The analysis of cardiovascular mortality for the period 1990--2005 is in this section based on a separate analysis with
-income and education as explanatory variables. The statistical significance of the covariates are shown in Table~\ref{tab:41liswom2} for women and Table~\ref{tab:41lismen2} for men. It confirms that most of the variables are strongly significant except
-
-<<41lissyoung2>>=
-library(eha)
-library(xtable)
-##load("data/loTab.rda")
-##loTab$period <- factor(loTab$period)
-liss6589 <- loTab[loTab$age > 64.5, ]
-@
-
-
-
-<<41liswom2, results = 'asis'>>=
-fitw2 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = poisson, data = liss6589[liss6589$sex == "female", ])
-##cat("Women:\n")
-drw2 <- drop1(fitw2, test = "Chisq")
-xtable(drw2, caption = "Effect of covariates for women 65-89, 1990-2005, cardiovascular death.", label = "tab:41liswom2")
-##round(summary(fitw1)$coef[-(1:13), ], 4)
-@
-
-
-<<41lismen2, results='asis'>>=
-fitm2 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = poisson, data = liss6589[liss6589$sex == "male", ])
-##cat("\nMen:\n")
-drm2 <- drop1(fitm2, test = "Chisq")
-xtable(drm2, caption = "Effect of covariates for men 65-89, 1990-2005, cardiovascular death.", label = "tab:41lismen2")
-##round(summary(fitm1)$coef[-(1:13), ], 4)
-dcol <- c("blue", "darkgreen", "darkgreen", "red")
-@
-
-The estimated effect sizes are shown in Figure \ref{fig:liswomfig}
-
-<<41liswomfig2, fig.cap = "Effect sizes, women 65-89, 1990-2005, cardiovascular death.", fig.height = 4>>=
-#source("R/plotWEduc.R")
-plotWEduc(fitw2)
-@
-
-
-And for men:
-
-
-
-<<41lismanfig2, fig.cap = "Effect sizes, men 65-89, 1990-2005, cardiovascular death.", fig.height = 4>>=
-#source("R/plotWEduc.R")
-plotWEduc(fitm2)
-@
-
-The pattern is similar to what we find for all-cause mortality. The higher educational level, the lower cardiovascular mortality, and more income leads to better survival. This association is clear and consistent for women as well as for men. A minor difference between men and women is that mortality in the higher levels of education do not lead to lower mortality among women while that is the case among men.
+% \subsubsection*{The effect of income and education on cardiovascular death, 1990--2005}
+% 
+% The analysis of cardiovascular mortality for the period 1990--2005 is in this section based on a separate analysis with
+% income and education as explanatory variables. The statistical significance of the covariates are shown in Table~\ref{tab:41liswom2} for women and Table~\ref{tab:41lismen2} for men. It confirms that most of the variables are strongly significant except
+% 
+% <<41lissyoung2>>=
+% library(eha)
+% library(xtable)
+% ##load("data/loTab.rda")
+% ##loTab$period <- factor(loTab$period)
+% liss6589 <- loTab[loTab$age > 64.5, ]
+% @
+% 
+% 
+% 
+% <<41liswom2, results = 'asis'>>=
+% fitw2 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = poisson, data = liss6589[liss6589$sex == "female", ])
+% ##cat("Women:\n")
+% drw2 <- drop1(fitw2, test = "Chisq")
+% xtable(drw2, caption = "Effect of covariates for women 65-89, 1990-2005, cardiovascular death.", label = "tab:41liswom2")
+% ##round(summary(fitw1)$coef[-(1:13), ], 4)
+% @
+% 
+% 
+% <<41lismen2, results='asis'>>=
+% fitm2 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = poisson, data = liss6589[liss6589$sex == "male", ])
+% ##cat("\nMen:\n")
+% drm2 <- drop1(fitm2, test = "Chisq")
+% xtable(drm2, caption = "Effect of covariates for men 65-89, 1990-2005, cardiovascular death.", label = "tab:41lismen2")
+% ##round(summary(fitm1)$coef[-(1:13), ], 4)
+% dcol <- c("blue", "darkgreen", "darkgreen", "red")
+% @
+% 
+% The estimated effect sizes are shown in Figure \ref{fig:liswomfig}
+% 
+% <<41liswomfig2, fig.cap = "Effect sizes, women 65-89, 1990-2005, cardiovascular death.", fig.height = 4>>=
+% #source("R/plotWEduc.R")
+% plotWEduc(fitw2)
+% @
+% 
+% 
+% And for men:
+% 
+% 
+% 
+% <<41lismanfig2, fig.cap = "Effect sizes, men 65-89, 1990-2005, cardiovascular death.", fig.height = 4>>=
+% #source("R/plotWEduc.R")
+% plotWEduc(fitm2)
+% @
+% 
+% The pattern is similar to what we find for all-cause mortality. The higher educational level, the lower cardiovascular mortality, and more income leads to better survival. This association is clear and consistent for women as well as for men. A minor difference between men and women is that mortality in the higher levels of education do not lead to lower mortality among women while that is the case among men.
 
 \section{Results, cancer death}
 
@@ -1134,82 +1134,82 @@ Figure~\ref{fig:12cumsw} shows relative mortality levels according to HISCLASS d
 
 %% HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 
-\subsubsection*{The effect of income and education on cancer mortality, 1990--2005}
-
-In the previous section, we concluded that there were no social inequality in cancer mortality according to hisclass. The question here is if the lacking socio-economic differentiation holds also when using education and income as categorising variables. The analysis for the period 1990--2005 is based on a separate analysis with income and education as explanatory variables.
-
-<<12lissyoung>>=
-library(eha)
-library(xtable)
-##load("data/loTab.rda")
-##loTab$period <- factor(loTab$period)
-liss4064 <- loTab[loTab$age < 64.5, ]
-@
-
-
-The statistical significance of the covariates are shown in Table~\ref{tab:12liswom} for women and Table~\ref{tab:12lismen} for men. The variables of interest here are all significant.
-<<12liswom, results = 'asis'>>=
-fitw1 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = poisson, data = liss4064[liss4064$sex == "female", ])
-##cat("Women:\n")
-drw <- drop1(fitw1, test = "Chisq")
-xtable(drw, caption = "Effect of covariates for women 40-64, 1990-2005, cancer death.", label = "tab:12liswom")
-##round(summary(fitw1)$coef[-(1:13), ], 4)
-@
-
-<<12lismen, results='asis'>>=
-fitm1 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = poisson, data = liss4064[liss4064$sex == "male", ])
-##cat("\nMen:\n")
-drm <- drop1(fitm1, test = "Chisq")
-xtable(drm, caption = "Effect of covariates for men 40-64, 1990-2005, cancer death.", label = "tab:12lismen")
-##round(summary(fitm1)$coef[-(1:13), ], 4)
-dcol <- c("blue", "darkgreen", "darkgreen", "red")
-@
-
-The estimated effect sizes are shown in Figure \ref{fig:12liswomfig}.
-
-<<12liswomfig, fig.cap = "Effect sizes, women 40-64, 1990-2005, cancer death.", fig.height = 4>>=
-source("R/plotWEduc.R")
-plotWEduc(fitw1)
-@
-
-
-And for men:
-
-
-<<12lismanfig, fig.cap = "Effect sizes, men 40-64, 1990-2005, cancer death.", fig.height = 4>>=
-#source("R/plotWEduc.R")
-plotWEduc(fitm1)
-@
-
-
-<<12plotliss1, fig.cap = "Cumulative hazards, ages 40--64, 2002--2013, cancer death.", fig.height = 4>>=
-#oldpar <- par(mfrow = c(1, 2))
-#plot(fitw1, fn = "cum", col = dcol, main = "Women")
-#plot(fitm1, fn = "cum", col = dcol, main = "Men")
-#par(oldpar)
-##summary(fitw1)
-##summary(fitm1)
-@
-
-%See Table~\ref{tab:tablisswom1} the PH regression for women.
-<<12tablisswom1, results = "asis">>=
-#fitwo1 <- coxreg(Surv(enter, exit, event) ~ DISPINK + CIV + SUN2000NIVA,
-#                 data = liss4064[liss4064$sex == "female", ])
-#dr <- drop1(fitwo1, test = "Chisq")
-#ltx(fitwo1, dr = dr, caption = "PH regression, women aged 40--64, 2002--2013.",
-#    label = "tab:tablisswom1")
-@
-
-%See Table~\ref{tab:tablissman1} the PH regression for men.
-<<12tablissman1, results = "asis">>=
-#fitma1 <- coxreg(Surv(enter, exit, event) ~ DISPINK + CIV + SUN2000NIVA,
-#                 data = liss4064[liss4064$sex == "male", ])
-#dr <- drop1(fitma1, test = "Chisq")
-#ltx(fitma1, dr = dr, caption = "PH regression, men aged 40--64, 2002--2013.",
- #   label = "tab:tablissman1")
-@
-
-When it comes to the association with education and income, we find the similar pattern as those for all-cause mortality and cardiovascular mortality. There is a strong effect for both men and women of having more education and income. These variables seem to catch up important aspect of socio-economic differences in health and mortality.
+% \subsubsection*{The effect of income and education on cancer mortality, 1990--2005}
+% 
+% In the previous section, we concluded that there were no social inequality in cancer mortality according to hisclass. The question here is if the lacking socio-economic differentiation holds also when using education and income as categorising variables. The analysis for the period 1990--2005 is based on a separate analysis with income and education as explanatory variables.
+% 
+% <<12lissyoung>>=
+% library(eha)
+% library(xtable)
+% ##load("data/loTab.rda")
+% ##loTab$period <- factor(loTab$period)
+% liss4064 <- loTab[loTab$age < 64.5, ]
+% @
+% 
+% 
+% The statistical significance of the covariates are shown in Table~\ref{tab:12liswom} for women and Table~\ref{tab:12lismen} for men. The variables of interest here are all significant.
+% <<12liswom, results = 'asis'>>=
+% fitw1 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = poisson, data = liss4064[liss4064$sex == "female", ])
+% ##cat("Women:\n")
+% drw <- drop1(fitw1, test = "Chisq")
+% xtable(drw, caption = "Effect of covariates for women 40-64, 1990-2005, cancer death.", label = "tab:12liswom")
+% ##round(summary(fitw1)$coef[-(1:13), ], 4)
+% @
+% 
+% <<12lismen, results='asis'>>=
+% fitm1 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = poisson, data = liss4064[liss4064$sex == "male", ])
+% ##cat("\nMen:\n")
+% drm <- drop1(fitm1, test = "Chisq")
+% xtable(drm, caption = "Effect of covariates for men 40-64, 1990-2005, cancer death.", label = "tab:12lismen")
+% ##round(summary(fitm1)$coef[-(1:13), ], 4)
+% dcol <- c("blue", "darkgreen", "darkgreen", "red")
+% @
+% 
+% The estimated effect sizes are shown in Figure \ref{fig:12liswomfig}.
+% 
+% <<12liswomfig, fig.cap = "Effect sizes, women 40-64, 1990-2005, cancer death.", fig.height = 4>>=
+% source("R/plotWEduc.R")
+% plotWEduc(fitw1)
+% @
+% 
+% 
+% And for men:
+% 
+% 
+% <<12lismanfig, fig.cap = "Effect sizes, men 40-64, 1990-2005, cancer death.", fig.height = 4>>=
+% #source("R/plotWEduc.R")
+% plotWEduc(fitm1)
+% @
+% 
+% 
+% <<12plotliss1, fig.cap = "Cumulative hazards, ages 40--64, 2002--2013, cancer death.", fig.height = 4>>=
+% #oldpar <- par(mfrow = c(1, 2))
+% #plot(fitw1, fn = "cum", col = dcol, main = "Women")
+% #plot(fitm1, fn = "cum", col = dcol, main = "Men")
+% #par(oldpar)
+% ##summary(fitw1)
+% ##summary(fitm1)
+% @
+% 
+% %See Table~\ref{tab:tablisswom1} the PH regression for women.
+% <<12tablisswom1, results = "asis">>=
+% #fitwo1 <- coxreg(Surv(enter, exit, event) ~ DISPINK + CIV + SUN2000NIVA,
+% #                 data = liss4064[liss4064$sex == "female", ])
+% #dr <- drop1(fitwo1, test = "Chisq")
+% #ltx(fitwo1, dr = dr, caption = "PH regression, women aged 40--64, 2002--2013.",
+% #    label = "tab:tablisswom1")
+% @
+% 
+% %See Table~\ref{tab:tablissman1} the PH regression for men.
+% <<12tablissman1, results = "asis">>=
+% #fitma1 <- coxreg(Surv(enter, exit, event) ~ DISPINK + CIV + SUN2000NIVA,
+% #                 data = liss4064[liss4064$sex == "male", ])
+% #dr <- drop1(fitma1, test = "Chisq")
+% #ltx(fitma1, dr = dr, caption = "PH regression, men aged 40--64, 2002--2013.",
+%  #   label = "tab:tablissman1")
+% @
+% 
+% When it comes to the association with education and income, we find the similar pattern as those for all-cause mortality and cardiovascular mortality. There is a strong effect for both men and women of having more education and income. These variables seem to catch up important aspect of socio-economic differences in health and mortality.
 
 \subsection{Ages 65--89}
 
@@ -1248,69 +1248,69 @@ par(oldpar)
 @
 
 
-\subsubsection*{The effect of income and education on cancer death, 1990--2005}
-
-Thus, we find indications of social differences in the later decades, particularly between the elite and the workers. The alternative analysis for the last period is based on a separate analysis with
-income and education as explanatory variables.
-
-<<12lissyoung2>>=
-library(eha)
-library(xtable)
-##load("data/loTab.rda")
-##loTab$period <- factor(loTab$period)
-liss6589 <- loTab[loTab$age > 64.5, ]
-@
-
-
-The statistical significance of the covariates are shown in Table~\ref{tab:12liswom2} for women and Table~\ref{tab:12lismen2} for men.
-<<12liswom2, results = 'asis'>>=
-fitw2 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = poisson, data = liss6589[liss6589$sex == "female", ])
-##cat("Women:\n")
-drw2 <- drop1(fitw2, test = "Chisq")
-xtable(drw2, caption = "Effect of covariates for women 65-89, 1990-2005, cancer death.", label = "tab:12liswom2")
-##round(summary(fitw1)$coef[-(1:13), ], 4)
-@
-
-<<12lismen2, results='asis'>>=
-fitm2 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = poisson, data = liss6589[liss6589$sex == "male", ])
-##cat("\nMen:\n")
-drm2 <- drop1(fitm2, test = "Chisq")
-xtable(drm2, caption = "Effect of covariates for men 65-89, 1990-2005, cancer death.", label = "tab:12lismen2")
-##round(summary(fitm1)$coef[-(1:13), ], 4)
-dcol <- c("blue", "darkgreen", "darkgreen", "red")
-@
-
-The estimated effect sizes are shown in Figure \ref{fig:12liswomfig2}
-
-<<12liswomfig2, fig.cap = "Effect sizes, women 65-89, 1990-2005, cancer death.", fig.height = 4>>=
-#source("R/plotWEduc.R")
-plotWEduc(fitw2)
-@
-
-
-And for men:
-
-%% <<12lismen2, results='asis'>>=
-%% fitm2 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = ##poisson, data = liss6589[liss6589$sex == "male", ])
-%% ##cat("\nMen:\n")
-%% drm2 <- drop1(fitm2, test = "Chisq")
-%% xtable(drm2, caption = "Effect of covariates for men 65-89, 1990-2005, cancer death.")
-%% round(summary(fitm1)$coef[-(1:13), ], 4)
-%% dcol <- c("blue", "darkgreen", "darkgreen", "red")
-%% @
-
-<<12lismanfig2, fig.cap = "Effect sizes, men 65-89, 1990-2005, cancer death.", fig.height = 4>>=
-#source("R/plotWEduc.R")
-plotWEduc(fitm2)
-@
-
-The social inequality in cancer mortality is confirmed by the approach of analysing the effect of education and income. We find the same consistent pattern as we have found for all-cause mortality and cardiovascular mortality for this period. Higher levels of education and more income is associated with lower cancer mortality. We can therefore conclude that both education and income are strongly decisive aspects of social differentiation when it comes to mortality during the last decades.
+% \subsubsection*{The effect of income and education on cancer death, 1990--2005}
+% 
+% Thus, we find indications of social differences in the later decades, particularly between the elite and the workers. The alternative analysis for the last period is based on a separate analysis with
+% income and education as explanatory variables.
+% 
+% <<12lissyoung2>>=
+% library(eha)
+% library(xtable)
+% ##load("data/loTab.rda")
+% ##loTab$period <- factor(loTab$period)
+% liss6589 <- loTab[loTab$age > 64.5, ]
+% @
+% 
+% 
+% The statistical significance of the covariates are shown in Table~\ref{tab:12liswom2} for women and Table~\ref{tab:12lismen2} for men.
+% <<12liswom2, results = 'asis'>>=
+% fitw2 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = poisson, data = liss6589[liss6589$sex == "female", ])
+% ##cat("Women:\n")
+% drw2 <- drop1(fitw2, test = "Chisq")
+% xtable(drw2, caption = "Effect of covariates for women 65-89, 1990-2005, cancer death.", label = "tab:12liswom2")
+% ##round(summary(fitw1)$coef[-(1:13), ], 4)
+% @
+% 
+% <<12lismen2, results='asis'>>=
+% fitm2 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = poisson, data = liss6589[liss6589$sex == "male", ])
+% ##cat("\nMen:\n")
+% drm2 <- drop1(fitm2, test = "Chisq")
+% xtable(drm2, caption = "Effect of covariates for men 65-89, 1990-2005, cancer death.", label = "tab:12lismen2")
+% ##round(summary(fitm1)$coef[-(1:13), ], 4)
+% dcol <- c("blue", "darkgreen", "darkgreen", "red")
+% @
+% 
+% The estimated effect sizes are shown in Figure \ref{fig:12liswomfig2}
+% 
+% <<12liswomfig2, fig.cap = "Effect sizes, women 65-89, 1990-2005, cancer death.", fig.height = 4>>=
+% #source("R/plotWEduc.R")
+% plotWEduc(fitw2)
+% @
+% 
+% 
+% And for men:
+% 
+% %% <<12lismen2, results='asis'>>=
+% %% fitm2 <- glm(event ~ offset(log(exposure)) + as.factor(age) + urban + period + civst + income + educ, family = ##poisson, data = liss6589[liss6589$sex == "male", ])
+% %% ##cat("\nMen:\n")
+% %% drm2 <- drop1(fitm2, test = "Chisq")
+% %% xtable(drm2, caption = "Effect of covariates for men 65-89, 1990-2005, cancer death.")
+% %% round(summary(fitm1)$coef[-(1:13), ], 4)
+% %% dcol <- c("blue", "darkgreen", "darkgreen", "red")
+% %% @
+% 
+% <<12lismanfig2, fig.cap = "Effect sizes, men 65-89, 1990-2005, cancer death.", fig.height = 4>>=
+% #source("R/plotWEduc.R")
+% plotWEduc(fitm2)
+% @
+% 
+% The social inequality in cancer mortality is confirmed by the approach of analysing the effect of education and income. We find the same consistent pattern as we have found for all-cause mortality and cardiovascular mortality for this period. Higher levels of education and more income is associated with lower cancer mortality. We can therefore conclude that both education and income are strongly decisive aspects of social differentiation when it comes to mortality during the last decades.
 
 %%{\huge Här ska 'conclusion.tex' in !!!}
 
 \section{Discussion}
 
-The WHO Commission on Social Determinants of Health framework for the social determinants of health discusses how socio-economic position impacts on health. The influences are not direct but works through intermediate determinants related to exposure and vulnerability \citep{who10}. People are placed within socio-economic and political contexts, as well as value systems in the society. The socio-economic position imply different access to resources, power and prestige, all aspects of crucial importance. The framework takes a holistic approach to the social determinants, including not only the effect of pure economic and material resources. The importance of understanding people in their context has also been emphasized by for example Krieger \citet{kri05}. What she calls embodiment refers to the recognition that human beings are simultaneously social beings and biological organisms.
+The WHO Commission on Social Determinants of Health framework for the social determinants of health discusses how socio-economic position impacts on health. The influences are not direct but works through intermediate determinants related to exposure and vulnerability \citep{who10}. People are placed within socio-economic and political contexts, as well as value systems in the society. The socio-economic position imply different access to resources, power and prestige, all aspects of crucial importance. The framework takes a holistic approach to the social determinants, including not only the effect of pure economic and material resources. The importance of understanding people in their context has also been emphasized by for example \citet{kri05}. What she calls embodiment refers to the recognition that human beings are simultaneously social beings and biological organisms.
 
 The authors of this paper have scrutinised different aspects of the social
 pattern of mortality in northern Sweden for quite some time, focusing on
