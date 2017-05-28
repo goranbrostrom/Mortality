@@ -17,15 +17,15 @@
 
 %\usepackage[tablesonly]{endfloat}
 %\usepackage[figuresonly]{endfloat}
-\usepackage{endfloat}
+%\usepackage[tablesonly]{endfloat}
 
-\renewcommand{\efloatseparator}{\vfill}
+%\renewcommand{\efloatseparator}{\vfill}
 
 % patch \efloat@iwrite to use \protected@write
-\makeatletter
-\renewcommand\efloat@iwrite[1]{%
-   \immediate\expandafter\protected@write\csname efloat@post#1\endcsname{}}
-\makeatother
+%\makeatletter
+%\renewcommand\efloat@iwrite[1]{%
+%   \immediate\expandafter\protected@write\csname efloat@post#1\endcsname{}}
+%\makeatother
 
 \author{Sören Edvinsson\footnote{email: \texttt{soren.edvinsson@umu.se}} and
 Göran Broström\footnote{email: \texttt{goran.brostrom@umu.se}}
@@ -41,7 +41,7 @@ Umeå University, SE-90187 Umeå, Sweden}
     Umeå,
     June 8--12, 2017}}
 
-\date{May 24, 2017}
+\date{May 28, 2017}
 
 \begin{document}
 
@@ -128,7 +128,7 @@ One of the most central aspects of survival on individual level is social class 
 
 Recent studies, investigating social inequality in health and mortality with micro-data, has however questioned the assumed pattern. These studies suggest that the modern pattern might be a fairly recent development, although the pattern differs depending on age, gender or historical context. When it comes to the adult and elderly population results from different studies have diverged, some reporting substantial differences but many, particularly those based on Swedish data, have found surprisingly small socio-economic differences or differences in the opposite direction than the expected during the first stages of the transition \citep{bevp11, bedr11, edli11,edbr12}, sharply contrasting against what we know from present-day society. 
 
-Another interesting aspect of the developent of social inequality in mortality, is its relation to economic inequality. \citet{wipi09} argue that income inequality has an independent effect on mortality, separated from the direct effect of the actual different access to economic resources. They argue that unequal societies perform less well when it comes to health than equal ones. Wilkinson and Pickett find a positive association between inequality and health (as well as other social conditions) at country level in the present-day economically developed world. This has initiated a vital scholarly debate and the topic has been extensively studied (see for example \citet{suka04, wado00}. How the association looked like in previous periods is unknown. This is of particular interest since the levels of inequality were very different from what we find during most of the recent decades. Even if it not a necessary implication, we would still assume that poorer groups were those most disadvantaged of large inequality in itself.Data are uncertain for the 19th century, but at least during the late 19th and early 20th century both income and wealth distribution was strongly skewed in Sweden. From a couple of decades into the 20th century, income and wealth inequality continuously diminished to reach the lowest point at around 1980. Thereafter, economic inequality has increased substantially until the present, although far from being as high as a century ago \citep{rowa08, rowa09}. The Swedish development resembles that of other European and North American countries in its basic features \citep{rowa14}.
+Another interesting aspect of the development of social inequality in mortality, is its relation to economic inequality. \citet{wipi09} argue that income inequality has an independent effect on mortality, separated from the direct effect of the actual different access to economic resources. They argue that unequal societies perform less well when it comes to health than equal ones. Wilkinson and Pickett find a positive association between inequality and health (as well as other social conditions) at country level in the present-day economically developed world. This has initiated a vital scholarly debate and the topic has been extensively studied (see for example \citet{suka04, wado00}. How the association looked like in previous periods is unknown. This is of particular interest since the levels of inequality were very different from what we find during most of the recent decades. Even if it not a necessary implication, we would still assume that poorer groups were those most disadvantaged of large inequality in itself.Data are uncertain for the 19th century, but at least during the late 19th and early 20th century both income and wealth distribution was strongly skewed in Sweden. From a couple of decades into the 20th century, income and wealth inequality continuously diminished to reach the lowest point at around 1980. Thereafter, economic inequality has increased substantially until the present, although far from being as high as a century ago \citep{rowa08, rowa09}. The Swedish development resembles that of other European and North American countries in its basic features \citep{rowa14}.
 
 It thus appears as if a more consistent social health divide appeared at some point during the mortality transition, at least in Sweden. Solid empirical evidence about the process is however lacking and studies focusing on the issue are still few. There is a need for more reliable studies from different geographical and historical settings as well as according to age and gender in order to better understand the role of socio-economic conditions for health and survival over time. 
 
@@ -155,7 +155,7 @@ In the present paper, we take a long-term perspective on the development of soci
 
 \item Is social position equally important among the retired population as for those in working age?
 \item Is there a difference between classes in mortality from cardiovascular diseases and cancers respectively?
-\item Do class inequalities in survival correspond to those depending on level of education and income categories for the period 1990 onwards?
+\item Do class inequalities in survival correspond to those depending on level of education and income categories for the period 1990 on-wards?
 \end{enumerate}
 
 
@@ -183,11 +183,11 @@ In the present paper, we take a long-term perspective on the development of soci
 
 The Skellefteå and Umeå regions (Figure~\ref{fig:mapp}) are part of the county of Västerbotten in the north of Sweden along the coast of the Gulf of Bothnia. This was a remote part of the country, where communications with the rest of Sweden were restricted until the late 20th century, dominated by agriculture and characterise by a vulnerable economy. The county was vulnerable to harvest failures and several severe famines struck the regions during the 1800s. One living long in memory was the famine of 1867–-1868 \citep{segb14}. During the long winters, sea communication was hindered due to the Gulf of Bothnia being frozen. Communications during winter used the winter roads. The first ships during the year came to this area in May or even as late as June in some cases \citep{fah56}. Towards the end of the 19th century, the Swedish railway system reached this part of Sweden, thereby facilitating contacts with the rest of Sweden, improving the economy and mitigating the effects of harvest failures. The inland was particularly remote. During the 19th century, our regions became increasingly integrated in the same epidemiological pattern as the rest of Sweden. Diseases reached to places that earlier were spared.
 
-The Skellefteå region consists of a selection of parishes surrounding the town of Skellefteå, founded in 1845 but with a very small population during the 19th century. The data from the period after 1960 cover the Skellefteå and Malå municipalities, the same area as for the earlier period but with the addition of two more parishes. The majority of the 19th century population lived in rural villages and hamlets, getting their livelihood from agricultural production. During the 20th century, industrialisation took place, partly by the opening of mines in the inlands. This also led to a population increase both in the town and in the rural parts, and a much more diversified economy.
+The Skellefteå region consists of a selection of parishes surrounding the town of Skellefteå, founded in 1845 but with a very small population during the 19th century. The data from the period after 1960 cover the Skellefteå and Malå municipalities, the same area as for the earlier period but with the addition of two more parishes. The majority of the 19th century population lived in rural villages and hamlets, getting their livelihood from agricultural production. During the 20th century, industrialisation took place, partly by the opening of mines in the in-lands. This also led to a population increase both in the town and in the rural parts, and a much more diversified economy.
 
 Mortality was fairly low in comparison with other parts of the country and the fertility transition was late. The Skellefteå population size as defined in our data sets was 16\,473 on January 1, 1850, 41\,352 on January 1, 1900, 61\,938 on January 1, 1950 and 76\,723 at the end of the century.
 
-The Umeå region in this study consists of Umeå urban and rural parish until 1950, and from 1960 onwards of Umeå municipality where another three parishes are included. This region has a somewhat different character from that of Skellefteå, even though agriculture dominated the economy as well for a long time. Umeå town had a small population but was substantially larger than Skellefteå town during almost the whole studied period. It was the administrative centre in the county of Västerbotten and schools and military regiments were placed here. Consequently, officials, teachers and the military were much more common in Umeå than in Skellefteå. Agriculture dominated the rural part, there were some foundries, some industries for example in forestry and small-scale production. Umeå had a much more diversified occupational structure than Skellefteå. The population size as defined in our data sets was 18\,970 on January 1, 1900, 32\,900 on January 1, 1950 and 103\,970 when the century ended.
+The Umeå region in this study consists of Umeå urban and rural parish until 1950, and from 1960 on-wards of Umeå municipality where another three parishes are included. This region has a somewhat different character from that of Skellefteå, even though agriculture dominated the economy as well for a long time. Umeå town had a small population but was substantially larger than Skellefteå town during almost the whole studied period. It was the administrative centre in the county of Västerbotten and schools and military regiments were placed here. Consequently, officials, teachers and the military were much more common in Umeå than in Skellefteå. Agriculture dominated the rural part, there were some foundries, some industries for example in forestry and small-scale production. Umeå had a much more diversified occupational structure than Skellefteå. The population size as defined in our data sets was 18\,970 on January 1, 1900, 32\,900 on January 1, 1950 and 103\,970 when the century ended.
 
 
 
@@ -216,7 +216,38 @@ background or occupations earlier in life.
 In the data-set analysed here, all individuals 40 years and older ever being resident in either
 of the regions are included. The data file contains the variables on sex,
 birth date, death date, first and last date of observation and type of
-entrance/exit.Total number of persons are 84.599 leading to 35.001 deaths in Poplink and 197.864 persons leading to 66297 deaths in the Linnaeus database. (SKA VI HA FIGUREN MED THE SAMPLING FRAME HÄR?)
+entrance/exit.Total number of persons are 84\,599 leading to 35\,001 deaths in Poplink and 197\,864 persons leading to 66\,297 deaths in the Linnaeus database. See Figure~\ref{fig:lexis2}.
+
+<<lexis2,fig.cap="The sampling frame.", fig.height = 5>>=
+plot(c(1851, 1851, 1951, 1951, 1851), c(40, 90, 90, 40, 40),
+     type = "l", xlim = c(1851, 2014), lwd = 2, col = "red",
+     xlab = "Year", ylab = "Age", axes = FALSE, ylim = c(0, 90))
+axis(1, at = c(1851, 1901, 1951, 1961, 1981, 2014), las = 2)
+axis(2, las = 2, at = c(0, 40, 65, 90))
+axis(4, las = 2, at = c(0, 40, 65, 90))
+box()
+abline(h = 0)
+lines(c(1961, 1961, 2014, 2014, 1961), c(40, 90, 90, 40, 40),
+      col = "blue", lwd = 2)
+#
+n.rec <- NROW(vb0[vb0$dataset == "poplink", ] )
+n.pl <- with(vb0[vb0$dataset == "poplink", ], length(unique(id)))
+n.d <-  with(vb0[vb0$dataset == "poplink", ], sum(event))
+text(1900, 70, "PopLink", cex = 2, col = "red")
+text(1899, 60, paste(n.rec, "records"))
+text(1900, 55, paste(n.pl, "persons"))
+text(1899.5, 50, paste(n.d, "deaths"))
+#
+n.rec <- NROW(vb0[vb0$dataset != "poplink", ] )
+n.pl <- with(vb0[vb0$dataset != "poplink", ], length(unique(id)))
+n.d <-  with(vb0[vb0$dataset != "poplink", ], sum(event))
+
+
+text(1985, 70, "Linnaeus", cex = 2, col = "blue")
+text(1984, 60, paste(n.rec, "records"))
+text(1985.2, 55, paste(n.pl, "persons"))
+text(1985.2, 50, paste(n.d, "deaths"))
+@
 
 \subsection{Presence periods}
 
@@ -240,7 +271,7 @@ The use of different data sets, forces us to apply different approaches towards 
 Female labour is much better covered in the Linnaeus database. A complication is however that it is  difficult to define households in the same way as in Poplink. Extra-marital cohabitation, connected to the Second Demographic Transition \citep{van87, van03}, became common and female labour force participation developed as the norm in Sweden during this period. The occupation of the husband as signifier of social class became, if not obsolete at least, less relevant. All included persons are signified by their individual occupation for this period. Still, the results for the different periods are not completely comparable and makes the interpretation of the development for women more shaky.
 
 
-The classification scheme we use is  based on HISCLASS \citep{lema11}, a class-based system. The scheme uses HISCO for assigning categories. HISCO (Historical International Standard Classifications of Occupations) \citet{lema02}  is a classification system of historical occupations, categorizing occupations according to tasks and skills. We have merged the original 12 classes in HISCLASS, based on position on the labour market, ending up with the following three and an additional fourth category with unknown class:
+The classification scheme we use is  based on HISCLASS \citep{lema11}, a class-based system. The scheme uses HISCO for assigning categories. HISCO (Historical International Standard Classifications of Occupations) \citet{lema02}  is a classification system of historical occupations, categorising occupations according to tasks and skills. We have merged the original 12 classes in HISCLASS, based on position on the labour market, ending up with the following three and an additional fourth category with unknown class:
 
 \begin{enumerate}
 \item {\tt elite}, HISCLASS 1 and 2. Higher managers and professionals.
@@ -259,47 +290,54 @@ later in use, SSYK (the Swedish version of ISCO88). Thereafter the
 SSYK, both those transferred from the censuses and those given in the
 population registers 2001-2013, can be re-coded into HISCLASS.
 
-Figure~\ref{fig:hiscskum} shows the distribution (per cent) of exposure
+Figures~\ref{fig:hiscskumm} and \ref{fig:hiscumw} show the distribution (per cent) of exposure
 time over class  for our selected periods. The category of workers is
 fairly stable over time. The highest class has
 increased substantially, although from a very low level in the 19th
 century. The increase of academics in connection to the establishment of
 Umeå University explains much of this increase. Within the middle group, there has been a transfer from a majority of farmer during the 19th century to lower white collar from the middle of the 20th century. 
 
-<<hiscskumm, fig.cap = "Exposure by hisclass, men (from the top: elite, middle, workers, missing) and time period", fig.height = 4.5>>=
+<<hiscskumm, fig.cap = "Exposure by hisclass, men (from the top: elite, middle, workers, missing) and time period.", fig.height = 4.5>>=
 xx <- with(vb0Tab[vb0Tab$sex == "male", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 yy <- round(prop.table(xx, 1) * 100, 1)
 barplot(t(yy)[4:1, ], col = c("red", "blue", "green", "black"), las = 2, ylab = "Per cent")
 @
 
-<<hiscskumw, fig.cap = "Exposure by hisclass, women (from the top: elite, middle, workers, missing) and time period", fig.height = 4.5>>=
+<<hiscskumw, fig.cap = "Exposure by hisclass, women (from the top: elite, middle, workers, missing) and time period.", fig.height = 4.5>>=
 xx <- with(vb0Tab[vb0Tab$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 yy <- round(prop.table(xx, 1) * 100, 1)
 barplot(t(yy)[4:1, ], col = c("red", "blue", "green", "black"), las = 2, ylab = "Per cent")
 @
 
-Those that we first observe in the first included censuses often lack stated occupations. This is especially the case for women and elderly being retired. The proportion with missing values ({\tt NA}) included is presented in Table~\ref{tab:nana}. It was very low
+Those that we first observe in the first included censuses often lack stated 
+occupations. This is especially the case for women and elderly being retired. 
+The proportion with missing values ({\tt NA}) is shown at the bottom of the 
+figures. It was very low
 during the periods until 1950, between 4 and 8 \% lacked information
-allowing determination of class. This increased considerably during the first two decades of data brom the Linnaeus database. During the 1960s, every second person lacks class category
-and almost a third have missing information during the 1970s. As a consequence, we only report the results for men 40--64 for the 1960s and 1970s. For the most recent periods, the information is fairly complete.
+allowing determination of class. This increased considerably during the first 
+two decades of data from the Linnaeus database. During the 1960s, every second 
+person lacks class category
+and almost a third have missing information during the 1970s. As a consequence, 
+we only report the results for men 40--64 for the 1960s and 1970s. For the most 
+recent periods, the information is fairly complete.
 
-<<nanam, results = 'asis'>>=
-library(xtable)
-##load("data/vb0.rda")
-##vb0$hisclass <- factor(vb0$hisclass, labels = c("elite", "lowMan", "lowWhiteC", "worker"))
-x <- with(vb0[vb0$sex == "male", ], table(period, hisclass, useNA = "ifany"))
-x <- round(prop.table(x, 1) * 100)
-xtable(x, caption = "Hisclass by time period, men. Per cent.", label = "tab:nana", digits = 0)
-@
-
-<<nanaw, results = 'asis'>>=
-##library(xtable)
-##load("data/vb0.rda")
-##vb0$hisclass <- factor(vb0$hisclass, labels = c("elite", "lowMan", "lowWhiteC", "worker"))
-x <- with(vb0[vb0$sex == "female", ], table(period, hisclass, useNA = "ifany"))
-x <- round(prop.table(x, 1) * 100)
-xtable(x, caption = "Hisclass by time period, per cent.", label = "tab:nana", digits = 0)
-@
+% <<nanam, results = 'asis'>>=
+% library(xtable)
+% ##load("data/vb0.rda")
+% ##vb0$hisclass <- factor(vb0$hisclass, labels = c("elite", "lowMan", "lowWhiteC", "worker"))
+% x <- with(vb0[vb0$sex == "male", ], table(period, hisclass, useNA = "ifany"))
+% x <- round(prop.table(x, 1) * 100)
+% xtable(x, caption = "Hisclass by time period, men. Per cent.", label = "tab:nana", digits = 0)
+% @
+% 
+% <<nanaw, results = 'asis'>>=
+% ##library(xtable)
+% ##load("data/vb0.rda")
+% ##vb0$hisclass <- factor(vb0$hisclass, labels = c("elite", "lowMan", "lowWhiteC", "worker"))
+% x <- with(vb0[vb0$sex == "female", ], table(period, hisclass, useNA = "ifany"))
+% x <- round(prop.table(x, 1) * 100)
+% xtable(x, caption = "Hisclass by time period, per cent.", label = "tab:nana", digits = 0)
+% @
 
 
 \subsection{Marital status}
@@ -333,7 +371,7 @@ barplot(ttt[3:1, -(1:2)], col = 3:1, las = 2, ylab = "Per cent")
 @
 
 \subsection{Periods for analysis}
-We have made separate analyses for the different periods. The century 1851--1950 is divided into four periods of 25 years each. The nineteenth century periods represent a mainly pre-industrial society dominated by agriculture and with restricted welfare provisions. During the years 1901--1950, industrialisation had started and the urban environments increased in population size. The modern welfare state began to develop during this time. For the period 1960 onwards, there are separate analyses on decades except for the two last periods. Sweden had developed into a wealthy welfare society with low income inequality in international comparison, particularly until the 1990s. A financial crisis struck Sweden in the early 1990s, which among other things increased unemployment and changed parts of the welfare system to not being as generous as before. The start of the last period (2008--2013) coincides with the international financial crisis.
+We have made separate analyses for the different periods. The century 1851--1950 is divided into four periods of 25 years each. The nineteenth century periods represent a mainly pre-industrial society dominated by agriculture and with restricted welfare provisions. During the years 1901--1950, industrialisation had started and the urban environments increased in population size. The modern welfare state began to develop during this time. For the period 1960 on-wards, there are separate analyses on decades except for the two last periods. Sweden had developed into a wealthy welfare society with low income inequality in international comparison, particularly until the 1990s. A financial crisis struck Sweden in the early 1990s, which among other things increased unemployment and changed parts of the welfare system to not being as generous as before. The start of the last period (2008--2013) coincides with the international financial crisis.
 
 \subsection{Income}
 Income is based on disposable individual income from the LISA database at Statistics Sweden, grouped into quartiles. It is only analysed from 1990 to 2005.
@@ -368,7 +406,7 @@ combinations. However, in this scheme there are many structural zeroes
 combinations we end up with is 24\,326. The data set is thus reduced in
 size by 99 per cent.
 
-The parametric model we use for the baseline hazard function is piecewise
+The parametric model we use for the baseline hazard function is piece-wise
 constant on five-year intervals, so we arrive at the following proportional
 hazards regression model:
 
@@ -402,10 +440,13 @@ the original data set.
 
 
 The analyses are performed in the \R\ environment for statistical computing
-and graphics \citep{cran}, especially using the package {\tt eha} \citep{gb12,eha}
+and graphics \citep{cran}, especially using the package {\tt eha} 
+\citep{gb12,eha}
 The proportional hazards model allow us to scrutinise the differences and
 the development in more detail. We divide the analysis into two age groups,
-40--64 and 65--89 years of age, the first age group representing people that were still mainly in the workforce, and the second those that mainly were retired. The model controls for period, marital
+40--64 and 65--89 years of age, the first age group representing people that
+were still mainly in the workforce, and the second those that mainly were 
+retired. The model controls for period, marital
 status and whether the individual resides in the urban or rural part. There
 are no serious signs of deviation from proportionality assumption, except
 regarding {\sc Hisclass}.
@@ -427,12 +468,14 @@ and Poisson regression, this is simply achieved by introducing an
 interaction term between {\tt age} and {\tt hisclass}. Then, the main
 results are
 presented \emph{graphically}. There is some  lack of information in the higher
-ages around 1960--1980 (see Table~\ref{tab:nana}), because that kind of information is simply missing
-to a large extent.
+ages around 1960--1980 (see Table~\ref{tab:nana}), because that kind of 
+information is simply missing to a large extent.
 
 
 
-\section{The effect of Hisclass on All causes of death}
+\section{The effect of Hisclass, 1851--1950, 1961--2013}
+
+\subsection{All causes of death}
 
 <<colorc>>=
 ## Colors for plotting strata:
@@ -456,7 +499,7 @@ graphically illustrating the development over time.
 %\emph{health disparity index}, \emph{Social Inequality Mortality Index, (SIMI)}?
 %Something catchy.).
 
-\subsection{Ages 40--64}
+\subsubsection{Ages 40--64}
 
 %The distribution over time periods.
 <<getske4060>>=
@@ -467,8 +510,8 @@ scap1m <-  "Cumulative hazards, ages 40--64, men."
 ##
 cap0 <- "Total hazard of dying before age 65 for a 40 year old person by HISCLASS and decade, women (top) and men (bottom)."
 scap0 <- "Total hazard by HISCLASS, ages 40--64."
-cap12 <- "Total hazard of dying before age 65 for a 40 year old person standardized by HISCLASS and decade, women (top) and men (bottom)."
-scap12 <- "Total hazard standardized by HISCLASS, ages 40--64."
+cap12 <- "Total hazard of dying before age 65 for a 40 year old person standardised by HISCLASS and decade, women (top) and men (bottom)."
+scap12 <- "Total hazard standardised by HISCLASS, ages 40--64."
 cap12log <- "Total hazard of dying before age 65 for a 40 year old person by HISCLASS and decade, women (top) and men (bottom). The last decades."
 scap12log <- "Total hazard by HISCLASS, ages 40--64, last years."
 
@@ -477,7 +520,7 @@ scap2w <-  "Cumulative hazards, ages 65--89, women."
 cap2m <-  "Cumulative hazards for HISCLASS by time period, ages 65--89, men."
 scap2m <-  "Cumulative hazards, ages 65--89, men."
 ##
-cap22 <- "Total hazard of dying before age 90 for a 65 year old person by HISCLASS and decade, women (top) and men (bottom)."
+cap22 <- "Total hazard of dying before age 90 for a 65 year old person by HISCLASS and decade, women (top) and men (bottom). Standardised."
 scap22 <- "Total hazard by HISCLASS, ages 65--89."
 cap22log <- "Total hazard of dying before age 90 for a 65 year old person by HISCLASS and decade, women (top) and men (bottom). The last decades."
 scap22log <- "Total hazard by HISCLASS, ages 65--89, last years."
@@ -525,14 +568,17 @@ Figure~\ref{fig:cumsw}.
 <<cumsw, fig.cap = cap0, fig.scap = scap0, fig.height = 10>>=
 source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
-woutp <- plotED.glm(resw, col = scol, logScale = FALSE, ylab = "H(65|40)",
-                main = "Women 40-64")##, exclude = 5:6)
-moutp <- plotED.glm(resm, col = scol, logScale = FALSE, ylab = "H(65|40)",
+woutp <- plotED.glm(resw, col = scol, logScale = FALSE, ylab = "TMR(65|40)",
+                main = "Women 40-64", exclude = 5:6)
+moutp <- plotED.glm(resm, col = scol, logScale = FALSE, ylab = "TMR(65|40)",
                 main = "Men 40-64")##, exclude = 5:6)
 par(oldpar)
 @
 
-Figure~\ref{fig:cumsw} shows mortality levels during the different periods. Obviously, and not surprisingly, mortality is decreasing over time, and we can already identify some interesting social patterns in mortality which will be commented more on below. Apart from
+Figure~\ref{fig:cumsw} shows mortality levels during the different periods. 
+Obviously, and not surprisingly, mortality is decreasing over time, and we can 
+already identify some interesting social patterns in mortality which will be 
+commented more on below. Apart from
 the social pattern that will be commented on below, there are a couple of
 observations to be made from the figure. Women have consistently
 better survival than men. This is a well-known phenomenon in Swedish
@@ -548,13 +594,16 @@ clear indication of homogenisation of mortality levels between social
 classes.
 
 
-However, we are mainly interested in illustrating the change in relative position among the HISCLASSES over time rather than the absolute levels, so we \emph{standardize} the levels in each time period. It is illustrated in
-Figure~\ref{fig:cumswstand}. In the rest of the paper, we only present these relative mortality levels for the different classes.
+However, we are mainly interested in illustrating the change in relative 
+position among the HISCLASSES over time rather than the absolute levels, so we 
+\emph{standardise} the levels in each time period. It is illustrated in
+Figure~\ref{fig:cumswstand}. In the rest of the paper, we only present these 
+relative mortality levels for the different classes.
 
 <<cumswstand, fig.cap = cap12, fig.scap = scap12, fig.height = 10>>=
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "TMR(65|40)", main = "Women 40-64")##, exclude = 5:6)
+                    ylab = "TMR(65|40)", main = "Women 40-64", exclude = 5:6)
 moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE,
                     ylab = "TMR(65|40)", main = "Men 40-64")##, exclude = 5:6)
 par(oldpar)
@@ -767,7 +816,7 @@ recent phenomenon.
 
 
 
-\subsection{Ages 65--89}
+\subsubsection{Ages 65--89}
 
 %The distribution over time periods.
 <<getske6089>>=
@@ -792,7 +841,7 @@ Concerning the social pattern, the pattern is a little more difficult to interpr
 
 For men we find indications of the same intriguing change among elderly as for
 the adult population 40--64 years. Mortality was in fact substantially
-higher among men from the elite  but the disadvantage is mainly apparent during the 19th century. Differences are fairly small during the first half of the 20th century. Only during the second half of the 20th century, we find periods with much better survival for the highest social class while retired workers had fairly high mortality. But even in recent times, the pattern is not completely clear. During the last periods, we do not find a social gradient on HISCLASSES among elderly men (even in this case, the new analyses differ somewhat from the ones in \citet{segb16}). This is quite unexpected, since other studies have shown clear socio-economic differences in Sweden during recent decades.
+higher among men from the elite  but the disadvantage is mainly apparent during the 19th century. Differences are fairly small during the first half of the 20th century. Only during the second half of the 20th century, we find periods with much better survival for the highest social class while retired workers had fairly high mortality. But even in recent times, the pattern is not completely clear. During the last periods, we do not find a social gradient on HISCLASSES among elderly men (even in this case, the new analyses differ somewhat from the ones in \citet{segb16}). This is quite unexpected, since other studies have shown clear socio-economic differences in Sweden during recent decades. See Figure~\ref{fig:cumswold}.
 
 
 <<cumswold, fig.cap = cap22, fig.scap = scap22, fig.height = 10>>=
@@ -804,7 +853,7 @@ resm <- getPHglm2(vb6589[vb6589$sex == "male", ],
 
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "TMR(90|65)", main = "Women 65-89")##, exclude = 5:6)
+                    ylab = "TMR(90|65)", main = "Women 65-89", exclude = 5:6)
 moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE,
                     ylab = "TMR(90|65)", main = "Men 65-89")##, exclude = 5:6)
 par(oldpar)
@@ -859,13 +908,13 @@ par(oldpar)
 % 
 % These figures show clear associations both with income and education and for women as well as for men. More years of education resulted in lower mortality. For women the association with additional levels became however smaller at the higher levels, the effect is more visible at the steps above the basic levels. In a similar fashion, increased incomes is associated with improved survival both for men and for women. Apparently, education and income is better to catch up socio-economic differences compared to hisclass, at least for this period.
 
-\section{The effect of Hisclass on cardiovascular death}
+\subsection{Cardiovascular death}
 
 We now turn to a special analysis of mortality for the two dominating causes of death among the adult and elderly population. We start with cardiovascular diseases. Many studies have shown that socio-economic conditions are strongly associated with mortality in this disease group. Belonging to working class, having less education and low income increases the mortality risks. We would therefore expect to find a clear social pattern in the present analysis.
 
 First, a general observation is that the analysis of causes of death and their development are more difficult to interpret, partly because the number of cases are fewer but also that the quality and coverage of reported death causes differ. Thus, many deaths during the 19th century were not diagnosed at all, and there was still a substantial part of all death in the early twentieth century where death cause is designated as unknown or dying from old age, despite reporting causes of death had become mandatory. For the period 1901-1925, the proportion of deaths from cardiovascular diseases increased from 25 to 43 per cent for the age group 40 and above, but at the same time unknown cause and death of old age decreased from 28 percent to 18 per cent. Are there many cardiovascular deaths disguised there?
 <<causes41>>=
-cvb <- vb
+cvb <- vb0
 cvb$event <- cvb$heart ## Can this be done better?
 cvb <- cvb[!(cvb$period %in% c("1851-1875", "1876-1900")), ]
 cvb$period <- factor(cvb$period)
@@ -907,7 +956,7 @@ graphically illustrating the development over time.
 %\emph{health disparity index}, \emph{Social Inequality Mortality Index, (SIMI)}?
 %Something catchy.).
 
-\subsection{Ages 40--64}
+\subsubsection{Ages 40--64}
 
 %The distribution over time periods.
 <<41getske4060>>=
@@ -916,7 +965,7 @@ scap1w <-  "Cumulative hazards, ages 40--64, women, cardiovascular death."
 cap1m <-  "Cumulative hazards for HISCLASS by time period, ages 40--64, men, cardiovascular death."
 scap1m <-  "Cumulative hazards, ages 40--64, men, cardiovascular death."
 ##
-cap12 <- "Total hazard of dying before age 65 for a 40 year old person standardized by HISCLASS and decade, women (top) and men (bottom), cardiovascular death."
+cap12 <- "Total hazard of dying before age 65 for a 40 year old person standardised by HISCLASS and decade, women (top) and men (bottom), cardiovascular death."
 scap12 <- "Total hazard by HISCLASS, ages 40--64, cardiovascular death."
 cap12log <- "Total hazard of dying before age 65 for a 40 year old person by HISCLASS and decade, women (top) and men (bottom). The last decades, cardiovascular death."
 scap12log <- "Total hazard by HISCLASS, ages 40--64, last years, cardiovascular death."
@@ -926,8 +975,8 @@ scap2w <-  "Cumulative hazards, ages 65--89, women, cardiovascular death."
 cap2m <-  "Cumulative hazards for HISCLASS by time period, ages 65--89, men, cardiovascular death."
 scap2m <-  "Cumulative hazards, ages 65--89, men, cardiovascular death."
 ##
-cap22 <- "Total hazard of dying before age 90 for a 65 year old person standardized by HISCLASS and decade, women (top) and men (bottom), cardiovascular death."
-scap22 <- "Total hazard standardized by HISCLASS, ages 65--89, cardiovascular death."
+cap22 <- "Total hazard of dying before age 90 for a 65 year old person standardised by HISCLASS and decade, women (top) and men (bottom), cardiovascular death."
+scap22 <- "Total hazard standardised by HISCLASS, ages 65--89, cardiovascular death."
 cap22log <- "Total hazard of dying before age 90 for a 65 year old person by HISCLASS and decade, women (top) and men (bottom). The last decades, cardiovascular death."
 scap22log <- "Total hazard by HISCLASS, ages 65--89, last years, cardiovascular death."
 
@@ -956,7 +1005,7 @@ age 65, given survival to age 40.
 <<41cumsw, fig.cap = cap12, fig.scap = scap12, fig.height = 10>>=
 source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
-woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE, ##exclude = 1:2,
+woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE, exclude = 3:4,
                     ylab = "TMR(65|40)",  main = "Women 40-64")
 moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE, ##exclude = 1:2,
                     ylab = "TMR(65|40)", main = "Men 40-64")
@@ -966,9 +1015,9 @@ par(oldpar)
 %%<<cumsm, fig.cap = "Total haz of deaths in ages 40--64 per individual by HISCLASS and decade, men.">>=
 %%@
 
-Figure~\ref{fig:cumsw} shows mortality levels during different periods from 1901 onwards. A couple of observations can be made. Women from the highest social class had almost consistently lower mortality from cardiovascular diseases compared to others.This is apparent even for the periods with deficient cause of death data. The pattern concerning the other groups are less clear, but if we compare the two largest groups, the workers and the lower manager/farmer group, the differences were rather small during most of the time. A new pattern has however developed from 1990 onwards. Now working class women have substantially higher cardiovascular compared to others.
+Figure~\ref{fig:cumsw} shows mortality levels during different periods from 1901 on-wards. A couple of observations can be made. Women from the highest social class had almost consistently lower mortality from cardiovascular diseases compared to others.This is apparent even for the periods with deficient cause of death data. The pattern concerning the other groups are less clear, but if we compare the two largest groups, the workers and the lower manager/farmer group, the differences were rather small during most of the time. A new pattern has however developed from 1990 on-wards. Now working class women have substantially higher cardiovascular compared to others.
 
-For men, we find a different pattern, a pattern however that to a large extent is consistent with what we observed concerning all-cause mortality. The elite group had much higher cardiovascular diseases up until the middle of the 20th century, but instead have the lowest mortality from 1980 onwards. Working class men had a fairly low cardiovascular mortality, but in the same way as among women, the levels were fairly similar to the one of the other large group, lower manager/farmers. And in the same way as for women at this age, working class me have by far the highest mortality from this cause of death during the last decades. A social hierarchy in cardiovascular mortality seems to have developed both for men and women.
+For men, we find a different pattern, a pattern however that to a large extent is consistent with what we observed concerning all-cause mortality. The elite group had much higher cardiovascular diseases up until the middle of the 20th century, but instead have the lowest mortality from 1980 on-wards. Working class men had a fairly low cardiovascular mortality, but in the same way as among women, the levels were fairly similar to the one of the other large group, lower manager/farmers. And in the same way as for women at this age, working class me have by far the highest mortality from this cause of death during the last decades. A social hierarchy in cardiovascular mortality seems to have developed both for men and women.
 
 %% HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 
@@ -1049,7 +1098,7 @@ For men, we find a different pattern, a pattern however that to a large extent i
 % 
 % The analysis of cardiovascular mortality according to education and income conforms very well to what we find for all-cause mortality, and we will therefore not delve into detail on this issue. More education as well as higher income is advantageous both for women and men for avoiding deaths related to the circulatory system. This is also well in line with our analysis based on HISCLASS above.
 
-\subsection{Ages 65--89}
+\subsubsection{Ages 65--89}
 
 %The distribution over time periods.
 <<41getske6089>>=
@@ -1082,7 +1131,7 @@ Notice that the results for the 1960s must be interpreted with caution due to mu
 ##source("R/plotED.R")
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "H(90|65)",  main = "Women 65-89")
+                    ylab = "H(90|65)",  main = "Women 65-89", exclude = 3:4)
 moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE,
                     ylab = "H(90|65)", main = "Men 65-89")
 par(oldpar)
@@ -1141,12 +1190,12 @@ par(oldpar)
 % 
 % The pattern is similar to what we find for all-cause mortality. The higher educational level, the lower cardiovascular mortality, and more income leads to better survival. This association is clear and consistent for women as well as for men. A minor difference between men and women is that mortality in the higher levels of education do not lead to lower mortality among women while that is the case among men.
 
-\section{The effect of Hisclass on cancer death}
+\subsection{Cancer death}
 
 While we assume clear social differences in cardiovascular diseases, this is not necessarily an obvious assumption when it comes to cancers. Different forms of cancers have very different origin and different pathways to disease and death. The social pattern of higher mortality in classes with less power and accordingly less life chances are considered to be less clear when it comes to cancers. In the present analysis we include cancer deaths 1901--2013, but with an unregistered and not analysed period between 1951--1960. There is a risk that cancer mortality is under-estimated during the first half of the 20th century, illustrated above by the large proportion of unknown or vague causes at that time. We believe however that cancers were better diagnosed than cardiovascular deaths. This is supported by the stability in proportion of cancer deaths between the two periods, 12,5 per cent 1901--1925 and 13,5 per cent for the period 1926--1950.
 
 <<causes12>>=
-cvb <- vb
+cvb <- vb0
 cvb$event <- cvb$cancer ## Can this be done better?
 cvb <- cvb[!(cvb$period %in% c("1851-1875", "1876-1900")), ]
 cvb$period <- factor(cvb$period)
@@ -1188,7 +1237,7 @@ graphically illustrating the development over time.
 %\emph{health disparity index}, \emph{Social Inequality Mortality Index, (SIMI)}?
 %Something catchy.).
 
-\subsection{Ages 40--64}
+\subsubsection{Ages 40--64}
 
 %The distribution over time periods.
 <<12getske4060>>=
@@ -1197,7 +1246,7 @@ scap1w <-  "Cumulative hazards, ages 40--64, women, cancer death."
 cap1m <-  "Cumulative hazards for HISCLASS by time period, ages 40--64, men, cancer death."
 scap1m <-  "Cumulative hazards, ages 40--64, men, cancer death."
 ##
-cap12 <- "Total hazard of dying before age 65 for a 40 year old person standardized by HISCLASS and decade, women (top) and men (bottom), cancer death."
+cap12 <- "Total hazard of dying before age 65 for a 40 year old person standardised by HISCLASS and decade, women (top) and men (bottom), cancer death."
 scap12 <- "Total hazard by HISCLASS, ages 40--64, cancer death."
 cap12log <- "Total hazard of dying before age 65 for a 40 year old person by HISCLASS and decade, women (top) and men (bottom). The last decades, cancer death."
 scap12log <- "Total hazard by HISCLASS, ages 40--64, last years, cancer death."
@@ -1207,8 +1256,8 @@ scap2w <-  "Cumulative hazards, ages 65--89, women, cancer death."
 cap2m <-  "Cumulative hazards for HISCLASS by time period, ages 65--89, men, cancer death."
 scap2m <-  "Cumulative hazards, ages 65--89, men, cancer death."
 ##
-cap22 <- "Total hazard of dying before age 90 for a 65 year old person standardized by HISCLASS and decade, women (top) and men (bottom), cancer death."
-scap22 <- "Total hazard standardized by HISCLASS, ages 65--89, cancer death."
+cap22 <- "Total hazard of dying before age 90 for a 65 year old person standardised by HISCLASS and decade, women (top) and men (bottom), cancer death."
+scap22 <- "Total hazard standardised by HISCLASS, ages 65--89, cancer death."
 cap22log <- "Total hazard of dying before age 90 for a 65 year old person by HISCLASS and decade, women (top) and men (bottom). The last decades, cancer death."
 scap22log <- "Total hazard by HISCLASS, ages 65--89, last years, cancer death."
 
@@ -1233,7 +1282,7 @@ resm <- getPHglm2(cvb4064[cvb4064$sex == "male", ],
 <<12cumsw, fig.cap = cap12, fig.scap = scap12, fig.height = 10>>=
 source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
-woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE, ##exclude = 1:2,
+woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE, exclude = 3:4,
                     ylab = "TMR(65|40)",  main = "Women 40-64")
 moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE, ##exclude = 1:2,
                     ylab = "TMR(65|40)", main = "Men 40-64")
@@ -1324,7 +1373,7 @@ Figure~\ref{fig:12cumsw} shows relative mortality levels according to HISCLASS d
 % 
 % When it comes to the association with education and income, we find the similar pattern as those for all-cause mortality and cardiovascular mortality. There is a strong effect for both men and women of having more education and income. These variables seem to catch up important aspect of socio-economic differences in health and mortality.
 
-\subsection{Ages 65--89}
+\subsubsection{Ages 65--89}
 
 %The distribution over time periods.
 <<12getske6089>>=
@@ -1348,15 +1397,15 @@ We use the value of the cumulative hazards at
 duration 25 (age 90) as a summary measure, starting from age 65.
 
 
-The relation between different classes and cancer mortality fluctuates considerably both for women and men in this age group. For some periods it has to do with quite few events to analyse, particularly for the 1960s where HISCLASS has been difficult to determine for the elderly. Women of higher classes sometimes have favourable mortality, but unfavourable at other times. It seems however that the higher classes have reached lower cancer levels compared to the working class from 2001 onwards. Men from the elite had higher mortality until the 1970s, but a social gradient has appeared thereafter. Now the elite with assumed more resources have lower mortality than other groups. Elderly of workers origin on the other side have higher cancer mortality during the last decades, sometimes substantially higher than the others.The pattern is however not completely clear.
+The relation between different classes and cancer mortality fluctuates considerably both for women and men in this age group. For some periods it has to do with quite few events to analyse, particularly for the 1960s where HISCLASS has been difficult to determine for the elderly. Women of higher classes sometimes have favourable mortality, but unfavourable at other times. It seems however that the higher classes have reached lower cancer levels compared to the working class from 2001 on-wards. Men from the elite had higher mortality until the 1970s, but a social gradient has appeared thereafter. Now the elite with assumed more resources have lower mortality than other groups. Elderly of workers origin on the other side have higher cancer mortality during the last decades, sometimes substantially higher than the others.The pattern is however not completely clear.
 
 <<12cumswold, fig.cap = cap22, fig.scap = scap22, fig.height = 10>>=
 ##source("R/plotED.R")
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "H(90|65)",  main = "Women 65-89")
+                    ylab = "TMR(90|65)",  main = "Women 65-89", exclude = 3:4)
 moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "H(90|65)", main = "Men 65-89")
+                    ylab = "TMR(90|65)", main = "Men 65-89")
 par(oldpar)
 @
 
@@ -1421,7 +1470,9 @@ par(oldpar)
 
 %%{\huge Här ska 'conclusion.tex' in !!!}
 
-\section{The effect of Education on All causes of death, 1990--2013}
+\section{The effect of Education, 1990--2013}
+
+\subsection{All causes of death}
 
 A common alternative to a class analysis is to use income or education for investigating socio-economic health differences. 
 Comparing different approaches are furthermore valuable in order to understand why some are advantaged and others 
@@ -1429,7 +1480,7 @@ disadvantaged. For the time being, we have to restrict such a comparative analys
 
 The analysis for the period 1990--2005 is based on a separate analysis with 
 income and education as explanatory variables and with controls of period 
-and marital status.
+and marital status. See Figure~\ref{fig:ploteduc}.
 
 <<lissyoung3>>=
 library(eha)
@@ -1462,20 +1513,20 @@ cols <- c("red", "darkgreen", "black")
 oldpar <- par(mfrow = c(1, 2))
 
 plot(survfit(fitm, start.time = 40), mark.time = FALSE, main = "Men",
-     col = cols, lwd = 1.5, axes = FALSE, xlab = "Age", ylab = "Surviving fraction")
+     col = cols, lwd = 1.5, lty = c(1, 2, 5), axes = FALSE, xlab = "Age", ylab = "Surviving fraction")
 axis(1)
 axis(2, at = c(0, 0.5, 1.0), las = 1)
 abline(h = 0.5, lty = 3)
 box()
-legend("bottomleft", legend = levels(educ$educ), col = cols, lty = 1, lwd = 1.5)
+legend("bottomleft", legend = levels(educ$educ), col = cols, lty = c(1, 2, 5), lwd = 1.5)
 
 plot(survfit(fitf, start.time = 40), mark.time = FALSE, main = "Women",
-     col = cols, lwd = 1.5, axes = FALSE, xlab = "Age", ylab = "Surviving fraction")
+     col = cols, lty = c(1, 2, 5), lwd = 1.5, axes = FALSE, xlab = "Age", ylab = "Surviving fraction")
 axis(1)
 axis(2, at = c(0, 0.5, 1.0), las = 1)
 abline(h = 0.5, lty = 3)
 box()
-legend("bottomleft", legend = levels(educ$educ), col = cols, lty = 1, lwd = 1.5)
+legend("bottomleft", legend = levels(educ$educ), col = cols, lty = c(1, 2, 5), lwd = 1.5)
 
 par(oldpar)
 @
@@ -1484,11 +1535,87 @@ Those with the two lowest education level hade the highest mortality, while thos
 
 
 
-\section{The effect of Education on Cardiovascular death}
+\subsection{Cardiovascular death}
 
-\section{The effect of Education on Cancer death}
+<<cardeduc>>=
+ulcard <- unique(vb0$ULORSAK[vb0$heart])
+educ$heart <- FALSE
+educ$heart <- !is.na(educ$ULORSAK) & (educ$ULORSAK %in% ulcard) & educ$event
+fitm <- coxph(Surv(enter, exit, heart) ~ strata(educ) + civst + urban,
+             data = educ[educ$sex == "male", ])
+fitf <- coxph(Surv(enter, exit, heart) ~ strata(educ) + civst + urban,
+             data = educ[educ$sex == "female", ])
+@
 
-\section{The effect of Income on All causes of death, 1986--2005}
+Illustrating differences for cause-specific mortality is conveniently done by comparing 
+cumulative hazards, see Figure~\ref{fig:ploteducheart}, where educational effects on 
+cardiovascular mortality is illustrated. The pattern is exactly the same as for total 
+mortality.
+
+<<ploteducheart, fig.cap="Cumulative hazards by education and sex, cardiovascular death, 1990--2013.">>=
+oldpar <- par(mfrow = c(1, 2))
+
+plot(survfit(fitm, start.time = 40), fun = "cumhaz", mark.time = FALSE, main = "Men",
+     col = cols, lty = c(1, 2, 5), lwd = 1.5, xlab = "Age", ylab = "Cumulative hazards", ylim = c(0, 0.9))
+#axis(1)
+#axis(2, at = c(0, 0.5, 1.0), las = 1)
+#abline(h = 0.5, lty = 3)
+#box()
+legend("topleft", legend = levels(educ$educ), col = cols, lty = c(1, 2, 5), lwd = 1.5)
+abline(h = 0)
+plot(survfit(fitf, start.time = 40), fun = "cumhaz", mark.time = FALSE, main = "Women",
+     col = cols, lty = c(1:2, 5), lwd = 1.5, xlab = "Age", ylab = "Cumulative hazards", ylim = c(0, 0.9))
+#axis(1)
+#axis(2, at = c(0, 0.5, 1.0), las = 1)
+#abline(h = 0.5, lty = 3)
+#box()
+legend("topleft", legend = levels(educ$educ), col = cols, lty = c(1:2, 5), lwd = 1.5)
+abline(h = 0)
+par(oldpar)
+@
+
+
+\subsection{Cancer death}
+
+<<canceduc>>=
+ulcard <- unique(vb0$ULORSAK[vb0$cancer])
+educ$cancer <- FALSE
+educ$cancer <- !is.na(educ$ULORSAK) & (educ$ULORSAK %in% ulcard) & educ$event
+fitm <- coxph(Surv(enter, exit, cancer) ~ strata(educ) + civst + urban,
+             data = educ[educ$sex == "male", ])
+fitf <- coxph(Surv(enter, exit, cancer) ~ strata(educ) + civst + urban,
+             data = educ[educ$sex == "female", ])
+@
+
+Although mortality in cancer is lower than mortality in cardiovascular diseases,
+the pattern is the same: The more education, the less mortality. See 
+Figure~\ref{fig:ploteduccancer}.
+
+<<ploteduccancer, fig.cap="Cumulative hazards by education and sex, cancer death, 1990--2013.">>=
+oldpar <- par(mfrow = c(1, 2))
+
+plot(survfit(fitm, start.time = 40), fun = "cumhaz", mark.time = FALSE, main = "Men",
+     col = cols, lty = c(1, 2, 5), lwd = 1.5, xlab = "Age", ylab = "Cumulative hazards", ylim = c(0, 0.5))
+#axis(1)
+#axis(2, at = c(0, 0.5, 1.0), las = 1)
+#abline(h = 0.5, lty = 3)
+#box()
+legend("topleft", legend = levels(educ$educ), col = cols, lty = c(1, 2, 5), lwd = 1.5)
+abline(h = 0)
+plot(survfit(fitf, start.time = 40), fun = "cumhaz", mark.time = FALSE, main = "Women",
+     col = cols, lty = c(1, 2, 5), lwd = 1.5, xlab = "Age", ylab = "Cumulative hazards", ylim = c(0, 0.5))
+#axis(1)
+#axis(2, at = c(0, 0.5, 1.0), las = 1)
+#abline(h = 0.5, lty = 3)
+#box()
+legend("topleft", legend = levels(educ$educ), col = cols, lty = c(1, 2, 5), lwd = 1.5)
+abline(h = 0)
+par(oldpar)
+@
+
+\section{The effect of Income, 1986--2005}
+
+\subsection{All causes of death}
 
 
 <<femeduc>>=
@@ -1510,20 +1637,20 @@ cols <- c("darkgreen", "red", "blue", "black")
 oldpar <- par(mfrow = c(1, 2))
 
 plot(survfit(fitm, start.time = 40), mark.time = FALSE, main = "Men",
-     col = cols, lwd = 1.5, axes = FALSE, xlab = "Age", ylab = "Surviving fraction")
+     col = cols, lty = c(1, 2, 4, 5), lwd = 1.5, axes = FALSE, xlab = "Age", ylab = "Surviving fraction")
 axis(1)
 axis(2, at = c(0, 0.5, 1.0), las = 1)
 abline(h = 0.5, lty = 3)
 box()
-legend("bottomleft", legend = levels(income$income), col = cols, lty = 1, lwd = 1.5)
+legend("bottomleft", legend = levels(income$income), col = cols, lty = c(1, 2, 4, 5), lwd = 1.5)
 
 plot(survfit(fitf, start.time = 40), mark.time = FALSE, main = "Women",
-     col = cols, lwd = 1.5, axes = FALSE, xlab = "Age", ylab = "Surviving fraction")
+     col = cols, lty = c(1, 2, 4, 5), lwd = 1.5, axes = FALSE, xlab = "Age", ylab = "Surviving fraction")
 axis(1)
 axis(2, at = c(0, 0.5, 1.0), las = 1)
 abline(h = 0.5, lty = 3)
 box()
-legend("bottomleft", legend = levels(income$income), col = cols, lty = 1, lwd = 1.5)
+legend("bottomleft", legend = levels(income$income), col = cols, lty = c(1, 2, 4, 5), lwd = 1.5)
 
 par(oldpar)
 @
@@ -1534,14 +1661,84 @@ Notice however that we cannot establish a causal relationship between
 income and mortality. Bad health, for instance, may be a confounder.
 
 
-\section{The effect of Income on Cardiovascular death}
+\subsection{Cardiovascular death}
 
-\section{The effect of Income on Cancer death}
+<<heartincome>>=
+ulcard <- unique(vb0$ULORSAK[vb0$heart])
+income$heart <- FALSE
+income$heart <- !is.na(income$ULORSAK) & (income$ULORSAK %in% ulcard) & income$event
+fitm <- coxph(Surv(enter, exit, heart) ~ strata(income) + civst + urban,
+             data = income[income$sex == "male", ])
+fitf <- coxph(Surv(enter, exit, heart) ~ strata(income) + civst + urban,
+             data = income[income$sex == "female", ])
+
+@
+
+The overall pattern is the same for cardiovascular mortality, high income pays off.
+<<plotincheart, fig.cap="Cumulative hazards by income and sex, cardiovascular death, 1990--2013.">>=
+oldpar <- par(mfrow = c(1, 2))
+
+plot(survfit(fitm, start.time = 40), fun = "cumhaz", mark.time = FALSE, main = "Men",
+     col = cols, lty = c(1, 2, 4, 5), lwd = 1.5, xlab = "Age", ylab = "Cumulative hazards", ylim = c(0, 1.5))
+#axis(1)
+#axis(2, at = c(0, 0.5, 1.0), las = 1)
+#abline(h = 0.5, lty = 3)
+#box()
+legend("topleft", legend = levels(income$income), col = cols, lty = c(1, 2, 4, 5), lwd = 1.5)
+abline(h = 0)
+plot(survfit(fitf, start.time = 40), fun = "cumhaz", mark.time = FALSE, main = "Women",
+     col = cols, lty = c(1, 2, 4, 5), lwd = 1.5, xlab = "Age", ylab = "Cumulative hazards", ylim = c(0, 1.5))
+#axis(1)
+#axis(2, at = c(0, 0.5, 1.0), las = 1)
+#abline(h = 0.5, lty = 3)
+#box()
+legend("topleft", legend = levels(income$income), col = cols, lty = c(1, 2, 4, 5), lwd = 1.5)
+abline(h = 0)
+par(oldpar)
+@
+
+
+\subsection{Cancer death}
+
+<<cancerincome>>=
+ulcard <- unique(vb0$ULORSAK[vb0$cancer])
+income$cancer <- FALSE
+income$cancer <- !is.na(income$ULORSAK) & (income$ULORSAK %in% ulcard) & income$event
+fitm <- coxph(Surv(enter, exit, cancer) ~ strata(income) + civst + urban,
+             data = income[income$sex == "male", ])
+fitf <- coxph(Surv(enter, exit, cancer) ~ strata(income) + civst + urban,
+             data = income[income$sex == "female", ])
+
+@
+
+The same goes for cancer mortality, but the relative differences are smaller. See Figure~\ref{fig:plotinccancer}.
+
+<<plotinccancer, fig.cap="Cumulative hazards by income and sex, cancer death, 1990--2013.">>=
+oldpar <- par(mfrow = c(1, 2))
+
+plot(survfit(fitm, start.time = 40), fun = "cumhaz", mark.time = FALSE, main = "Men",
+     col = cols, lty = c(1, 2, 4, 5), lwd = 1.5, xlab = "Age", ylab = "Cumulative hazards", ylim = c(0, 0.5))
+#axis(1)
+#axis(2, at = c(0, 0.5, 1.0), las = 1)
+#abline(h = 0.5, lty = 3)
+#box()
+legend("topleft", legend = levels(income$income), col = cols, lty = c(1, 2, 4, 5), lwd = 1.5)
+abline(h = 0)
+plot(survfit(fitf, start.time = 40), fun = "cumhaz", mark.time = FALSE, main = "Women",
+     col = cols, lty = c(1, 2, 4, 5), lwd = 1.5, xlab = "Age", ylab = "Cumulative hazards", ylim = c(0, 0.5))
+#axis(1)
+#axis(2, at = c(0, 0.5, 1.0), las = 1)
+#abline(h = 0.5, lty = 3)
+#box()
+legend("topleft", legend = levels(income$income), col = cols, lty = c(1, 2, 4, 5), lwd = 1.5)
+abline(h = 0)
+par(oldpar)
+@
 
 
 \section{Discussion}
 
-The WHO Commission on Social Determinants of Health framework for the social determinants of health discusses how socio-economic position impacts on health. The influences are not direct but works through intermediate determinants related to exposure and vulnerability \citep{who10}. People are placed within socio-economic and political contexts, as well as value systems in the society. The socio-economic position imply different access to resources, power and prestige, all aspects of crucial importance. The framework takes a holistic approach to the social determinants, including not only the effect of pure economic and material resources. The importance of understanding people in their context has also been emphasized by for example \citet{kri05}. What she calls embodiment refers to the recognition that human beings are simultaneously social beings and biological organisms.
+The WHO Commission on Social Determinants of Health framework for the social determinants of health discusses how socio-economic position impacts on health. The influences are not direct but works through intermediate determinants related to exposure and vulnerability \citep{who10}. People are placed within socio-economic and political contexts, as well as value systems in the society. The socio-economic position imply different access to resources, power and prestige, all aspects of crucial importance. The framework takes a holistic approach to the social determinants, including not only the effect of pure economic and material resources. The importance of understanding people in their context has also been emphasised by for example \citet{kri05}. What she calls embodiment refers to the recognition that human beings are simultaneously social beings and biological organisms.
 
 The authors of this paper have scrutinised different aspects of the social
 pattern of mortality in northern Sweden for quite some time, focusing on
