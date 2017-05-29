@@ -365,10 +365,10 @@ barplot(ttt[3:1, -(1:2)], col = 3:1, las = 2, ylab = "Per cent")
 We have made separate analyses for the different periods. The century 1851--1950 is divided into four periods of 25 years each. The 19th century periods represent a mainly pre-industrial society dominated by agriculture and with restricted welfare provisions. During the years 1901--1950, industrialisation started and the urban environments increased in population size. The modern welfare state began to develop during this time. For the period 1960 on-wards, there are separate analyses on decades except for the two last periods. Sweden had developed into a wealthy welfare society with low income inequality in international comparison, particularly until the 1990s. A financial crisis struck Sweden in the early 1990s, which among other things increased unemployment and changed parts of the welfare system to being less generous than before. The start of the last period (2008--2013) coincides with the international financial crisis.
 
 \subsection{Income}
-Income is based on disposable individual income from the LISA database at Statistics Sweden, grouped into quartiles. It is only analysed from 1990 to 2005.
+Income is based on disposable individual income from the LISA database at Statistics Sweden, grouped into quartiles. It is only analysed from 1986 to 2005.
 
 \subsection{Education}
-Education is here analysed only for the period 1990 to 2005. Years of education are given in 3 categories and is based on level of education according to categories in the LISA database at Statistics Sweden. It ranges from basic education (nine years of schooling or less) at the lowest level, secondary education (high school or similar) for the middle group and to academic degree at the highest level.
+Education is here analysed only for the period 1990 to 2013. Years of education are given in 3 categories and is based on level of education according to categories in the LISA database at Statistics Sweden. It ranges from basic education (nine years of schooling or less) at the lowest level, secondary education (high school or similar) for the middle group and to academic degree at the highest level.
 
 \section{Models}
 
@@ -480,8 +480,8 @@ nper <- length(labb)
 @
 
 Models are fitted separately for each time period, from  1851 to
-2013, with the exception of the period 1951--1960. We stratify on HISCLASS
-and control for the covariates {\tt sex} and {\tt   civst}. The cumulative
+2013, with the exception of the period 1951--1960 and separately for sex. We stratify on HISCLASS
+and control for the covariates {\tt   civst} and urban/rural residence. The cumulative
 hazards at the end of the time period (65 if 40--64, 90 if 65--89) are the
 main target in our analysis: These numbers are used in the process of
 graphically illustrating the development over time.
@@ -553,8 +553,8 @@ resm <- getPHglm2(vb4064[vb4064$sex == "male", ],
 % From Figures~\ref{fig:hazplotw} and \ref{fig:hazplotm} it is obvious that
 % the idea of proportional hazards is not reasonable. We therefore use another approach.
 
-The "TMR", that is, the summed hazards over the age interval 40--64 is shown in
-Figure~\ref{fig:cumsw}.
+%The "TMR", that is, the summed hazards over the age interval 40--64 is shown in
+%Figure~\ref{fig:cumsw}.
 
 <<cumsw, fig.cap = cap0, fig.scap = scap0, fig.height = 10>>=
 source("R/plotED.glm.R")
@@ -566,29 +566,16 @@ moutp <- plotED.glm(resm, col = scol, logScale = FALSE, ylab = "TMR(65|40)",
 par(oldpar)
 @
 
-Figure~\ref{fig:cumsw} shows mortality levels during the different periods. 
-Obviously, and not surprisingly, mortality is decreasing over time, and we can 
-already identify some interesting social patterns in mortality which will be 
-commented more on below. Apart from
-the social pattern that will be commented on below, there are a couple of
-observations to be made from the figure. Women have consistently
-better survival than men. This is a well-known phenomenon in Swedish
+Figure~\ref{fig:cumsw} shows the summed hazards of dying in the age interval 40--64 during the different periods. Obviously, and not surprisingly, mortality is decreasing over time for both sexes. Women have consistently better survival than men. This is a well-known phenomenon in Swedish
 demographic history. Male mortality has almost always been higher than
 female in all age groups \citep{wil99, suwi07}. We also observe a
 substantial decline in mortality for both sexes, resulting in smaller
 absolute differences between social classes. The compression that is
 visible for later decades is partly explained by the decreasing general
-mortality. It is not
-obvious that differences between social classes have diminished. This
-conclusion has been confirmed by separate analyses (results not shown). There is no
-clear indication of homogenisation of mortality levels between social
-classes.
+mortality and is not necessarily representing a homogenisation of relative risks.
 
 
-However, we are mainly interested in illustrating the change in relative 
-position among the HISCLASSES over time rather than the absolute levels, so we 
-\emph{standardise} the levels in each time period. It is illustrated in
-Figure~\ref{fig:cumswstand}. In the rest of the paper, we only present these 
+By \emph{standardising e} the levels in each time period for each class, we illustrate the relative risks in Figure~\ref{fig:cumswstand}. In the rest of the paper, we only present these 
 relative mortality levels for the different classes.
 
 <<cumswstand, fig.cap = cap12, fig.scap = scap12, fig.height = 10>>=
@@ -606,33 +593,22 @@ par(oldpar)
 
 %% HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 
-Notice that we have not analysed the 1950s due to
-the fact that we only have data for some parishes at that time,
-consequently having no corresponding population for that
-decade. Furthermore, we need to be cautious when interpreting the results for the 1960s in particular, but also for the 1970s due to much missing information on HISCLASS for these decades, something that have restricted the size of the population observed. The changing economy
-also have consequences for the analysis, particularly when it comes to the
-agricultural sector. While farmers were common occupations during the first
-half of the 20th century, these occupations has constantly decreased in
-numbers thereafter. This means that the second HISCLASS group has somewhat different character during the last periods in the figures.
+Notice that we have not analysed the 1950s due to the fact that we only have data for some parishes at that time, consequently having no corresponding population for that decade. Furthermore, we have excluded the results for women during the 1960s and 1970 of reasons discussed above. The changing economy also have consequences for the analysis, particularly when it comes to the agricultural sector. While farmers were common occupations during the first half of the 20th century, these occupations has constantly decreased in numbers thereafter. This means that the middle class has somewhat different character during the last periods in the figures.
 
-The social pattern of mortality among women is quite much in accordance with previous
+The most striking result of the analysis is the different patterns for men and women. The social pattern of mortality among women is quite much in accordance with previous
 analyses from the present research group on other regions in northern
-Sweden and for other periods \citep{edli11,edbr12,segb16}. The highest
+Sweden and for other periods \citep{edli11,edbr12}. The highest
 social class usually have comparatively low mortality, while working
-class women have high. This is especially the case during the latest
-decades of the century and until 2013. We once again remind that the results from the 1960s must be interpreted with caution due to the large proportion of missing cases.
+class women have high. There is however no substantial change in the relative risks between the classes. Only the group with unknown social class is distinguished by moch higher mortality from the 1980s onwards. This can however have to do with the differences how social position for women is defined before and after 1950. After 1950 it is based on the own occupation. Being without occupation might include women that are more frail both when it comes to health and socially. 
 
-A different pattern appears among men. The groups we would expect to have
-the lowest mortality, if we assume that access to different resources and
-having a high status determines survival, instead have the highest during the nineteenth and
-much of the 20th century. This is also in accordance with our previous studies
-\citep{edli11, edbr12, segb16}. Workers on the other hand have comparatively
-low mortality until the 1960s. This changes however towards the end the 20th century. From
-the 1980s, there is a clear advantage when it comes to survival for higher
-managers and professionals. The expected social gradient in mortality has developed. This is also what we usually find in analyses
-of social health inequalities in present-day Sweden as well as in most
+A different pattern appears among men, being the most surprising finding in our analyses. The groups we would expect to have the lowest mortality, if we assume that access to different resources and
+having a high status determines survival, instead have by far the highest hazards of dying during the nineteenth and much of the 20th century. This is also in accordance with our previous studies
+\citep{edli11, edbr12}. Workers on the other hand have comparatively low mortality until the 1960s, at the same level as the middle class. The relative positions change radically towards the end the 20th century. From the 1980s, there is a clear advantage when it comes to survival for higher
+managers and professionals. The relative differences are however more compressed than for the period until 1950. The expected social gradient in mortality has developed. This is also what we usually find in analyses of social health inequalities in present-day Sweden as well as in most
 other countries. In the regions we are studying, this is however a quite
-recent phenomenon.
+recent phenomenon. Corresponding to what we find for women, those without known occupation have much higher mortality than the others from the 1960s onwards. The assumption made for women of unknowns social class is probably even more relevant for men. They probably represent groups in society that are more vulnerable when it comes to mortality.
+
+A further observation can be made from Figure~\ref{fig:cumsw}. The gender difference in death hazards is very big for the élite group from 1851--1950, men having about three times higher risks than women in the same class. In the other classes, the difference was much smaller. It was men in high position that experienced the largest risks.
 
 % \subsubsection{The effect of income and education, 1986--2013}
 % 
@@ -816,23 +792,17 @@ vb6589$age <- factor(vb6589$age) # NOTE:: Change to '6589'!
 ##vb6589$hisclass <- vb6589$hisclass60
 @
 
-We now turn to the elderly, i.e. those that mostly have left the workforce.
+We now turn to the elderly, i.e. those that in most cases have left the workforce.
 Corresponding to the previous analysis, we use the value of the cumulative hazards at
 duration 25 (age 90), starting from age 65 as a summary measure.
 
-The general pattern and development of mortality (not shown here) do not differ that much from the younger age group, of course representing a much higher mortality level. Mortality among women was, as expected, lower than among
-men. We find a clear decline in mortality, but this decline did not
-set in definitely until sometimes after the Second World War (results not shown here), i.e. later than for the age group 40--64 years. This corresponds to the
-Swedish development where we find a turning point at this time with better
-survival among elderly, to a large extent caused by lower mortality in
-cardiovascular diseases. The results for the 1960s are however uncertain as
-discussed above, especially for women due to the difficulty to determine HISCLASS for the majority of them.
+The general pattern and development of mortality (not shown here) do not differ that much from the younger age group, of course representing a much higher mortality level earlier in history. Mortality among women was, as expected, lower than among men. We find a clear decline in mortality, but the fasted decline did not set in definitely until sometimes after the Second World War (results not shown here), i.e. later than for the age group 40--64 years. This corresponds to the Swedish development where we find a turning point at this time with better survival among elderly, to a large extent caused by lower mortality in cardiovascular diseases. 
 
-Concerning the social pattern, the pattern is a little more difficult to interpret, compared to the younger age group (the new analyses differ somewhat from the ones in \citet{segb16}). For women the results are mixed. We do not find the same clear advantage for elite women during period until 1950, and neither do we find any large disadvantage for working class elderly women. In some periods, the social differences were small, and the elite even had substantially higher mortality during the early 20th century. Notice however that this group was rather small at the time. During the recent decades, the pattern is not very clear, but for the two last periods, the elite have the lowest mortality. It is however not possible to identify a clear social gradient in mortality.
+Concerning the social pattern, the pattern is less clear compared to what we found for the younger age group (see Figure~\ref{fig:cumswold}). For women the results are mixed. Once again, too much missing data on social class leaves out the results for the 1960s and 1970s. We do not find the same clear advantage for élite women during period until 1950, but neither do we find any large disadvantage for working class elderly women at that time. In some periods, the social differences were small, and the élite even had substantially higher mortality during the early 20th century. Notice however that this group was rather small at the time. The social differences continued to be small during the last decades of the 20th century. Only during the two last periods (after the year 2000) is it possible to establish the expected social gradient in mortality.
 
 For men we find indications of the same intriguing change among elderly as for
-the adult population 40--64 years. Mortality was in fact substantially
-higher among men from the elite  but the disadvantage is mainly apparent during the 19th century. Differences are fairly small during the first half of the 20th century. Only during the second half of the 20th century, we find periods with much better survival for the highest social class while retired workers had fairly high mortality. But even in recent times, the pattern is not completely clear. During the last periods, we do not find a social gradient on HISCLASSES among elderly men (even in this case, the new analyses differ somewhat from the ones in \citet{segb16}). This is quite unexpected, since other studies have shown clear socio-economic differences in Sweden during recent decades. See Figure~\ref{fig:cumswold}.
+the adult male opulation 40--64 years. Mortality was in fact substantially
+higher among élite men  but their disadvantage was primarily apparent during the 19th century. Differences are fairly small during the first half of the 20th century. Not until the second half of the 20th century is the survival much better for the highest social class while workers in the age of retirement had high mortality in comparison. ). This is quite unexpected, since other studies have shown clear socio-economic differences in Sweden during recent decades. 
 
 
 <<cumswold, fig.cap = cap22, fig.scap = scap22, fig.height = 10>>=
@@ -901,9 +871,9 @@ par(oldpar)
 
 \subsection{Cardiovascular death}
 
-We now turn to a special analysis of mortality for the two dominating causes of death among the adult and elderly population. We start with cardiovascular diseases. Many studies have shown that socio-economic conditions are strongly associated with mortality in this disease group. Belonging to working class, having less education and low income increases the mortality risks. We would therefore expect to find a clear social pattern in the present analysis.
+In this section, the focus is on analyses of mortality for the two dominating causes of death among the adult and elderly population. We start with cardiovascular diseases. Many studies have shown that socio-economic conditions are strongly associated with mortality in this disease group. Belonging to working class, having less education and low income increases the mortality risks. We would therefore expect to find a clear social pattern in the present analysis.
 
-First, a general observation is that the analysis of causes of death and their development are more difficult to interpret, partly because the number of cases are fewer but also that the quality and coverage of reported death causes differ. Thus, many deaths during the 19th century were not diagnosed at all, and there was still a substantial part of all death in the early twentieth century where death cause is designated as unknown or dying from old age, despite reporting causes of death had become mandatory. For the period 1901-1925, the proportion of deaths from cardiovascular diseases increased from 25 to 43 per cent for the age group 40 and above, but at the same time unknown cause and death of old age decreased from 28 percent to 18 per cent. Are there many cardiovascular deaths disguised there?
+First, a general observation is that the analysis of causes of death and their development are more difficult to interpret, partly because the number of cases are fewer but also that the quality and coverage of reported death causes differ. Thus, many deaths during the early 20th got quite unspecific causes reported in the death registers. There was still a substantial part of all deaths where cause was diagnosed as unknown or dying from old age, despite the fact that reporting causes of death had become mandatory. For the period 1901--1925 to 1926--1950, the proportion of deaths from cardiovascular diseases increased from 25 to 43 per cent for the age group 40 and above, thus indicating an increase of these diseases. However, at the same time unknown cause and death of old age decreased from 28 percent to 18 per cent. It is quite reasonable to suspect that many cardiovascular deaths were disguised in unspecific categories and the increase therefore is explained by improvements in how deaths were diagnosed.
 <<causes41>>=
 cvb <- vb0
 cvb$event <- cvb$heart ## Can this be done better?
@@ -936,9 +906,9 @@ nper <- length(labb)
 ## End 'common'
 @
 
-As before, models are fitted separately for each ten-year time period, from  1851 to
-2013. We stratify on HISCLASS
-and use the covariates {\tt sex} and {\tt   civst}. The cumulative
+As before, models are fitted separately for sex and each ten-year time period, from  1901 to
+2013 and . We stratify on HISCLASS
+and use the covariates urban/rural and {\tt   civst}. The cumulative
 hazards at the end of the time period (65 if 40--64, 90 if 65--89) are the
 main target in our analysis: These numbers are used in the process of
 graphically illustrating the development over time.
@@ -1752,7 +1722,7 @@ possible, and the results continue to surprise us. The consistent advantage
 for higher social classes do not appear until quite late in the regions we
 have analysed. The social pattern of female mortality are closer to what is
 expected, but a social gradient in male adult mortality seems to be a
-recent phenomenon. Furthermore, this transition and the class pattern of mortality differ depending on age group. Inequality in mortality appear clearer for the population at working age, while the differences are smaller among the elderly, a somewhat modified result from what we found in the first and preliminary analyses presented in Leuven this year \citep{segb16b}.
+recent phenomenon. Furthermore, this transition and the class pattern of mortality differ depending on age group. Inequality in mortality appear clearer for the population at working age, while the differences are smaller among the elderly. 
 
 We have also added analyses of cause-specific mortality to the previous version. Mortality from cardiovascular diseases contributes to a large proportion of all deaths during the 20th century, and we are not surprised that it has a fairly similar pattern as for all-cause mortality. What is surprising is however the small class differences among the elderly. Cancer is sometimes considered less connected to social class, and we find mixed results in our analyses. There are however indications of a social gradient during the last decades in both studied age groups. Development of death causes are however problematic since the ways they have been diagnosed and the proportion with missing or vague information has changed over time.
 
