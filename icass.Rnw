@@ -309,8 +309,24 @@ yy <- round(prop.table(xx, 1) * 100, 1)
 barplot(t(yy)[4:1, ], col = c("red", "blue", "green", "black"), las = 2, ylab = "Per cent")
 @
 
- 
+
+
+<<hiscskummyoung, fig.cap = "Exposure by hisclass, men 40-65 (from the top: elite, middle, workers, missing) and time period.", fig.height = 4.5>>=
+xx <- with(vb0Tab[vb0Tab$sex == "male" & vb0Tab$age %in% c("40", "45", "50", "55", "60"), ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
+yy <- round(prop.table(xx, 1) * 100, 1)
+barplot(t(yy)[4:1, ], col = c("red", "blue", "green", "black"), las = 2, ylab = "Per cent")
+@
+
+<<hiscskumwyoung, fig.cap = "Exposure by hisclass, women 40-65 (from the top: elite, middle, workers, missing) and time period.", fig.height = 4.5>>=
+xx <- with(vb0Tab[vb0Tab$sex == "female" & vb0Tab$age %in% c("40", "45", "50", "55", "60"), ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
+yy <- round(prop.table(xx, 1) * 100, 1)
+barplot(t(yy)[4:1, ], col = c("red", "blue", "green", "black"), las = 2, ylab = "Per cent")
+@
+
 The proportion with missing values among women is however a larger problem, see Figure~\ref{fig:hiscskumw}. Corresponding to what we found for men, the proportion without social position is very low until the middle of the 20th century. This is a reflection of how womens social position is defined for that period. Missing social class is however a real problem during the 1960s and 1970s in particular. Around 80 \% lack information for the 1960s and 50 \% for the 1970s. Since social class for this period is defined according to own occupation, the consequence of many women being outside the workforce, the proportion missing becomes very high. We have chosen not to report results for women for these two decades. For the later decades, the results are fairly complete and ought to be representative.
+
+The corresponding numbers for the age group 40--65 are shown in Figures~\ref{fig:hiscskummyoung} and 
+\ref{fig:hiscskumwyoung}. Slightly lower rates of missing occupation in comparison to Figures~\ref{fig:hiscskumm} and \ref{fig:hiscskumw} are noted. 
 
 % <<nanam, results = 'asis'>>=
 % library(xtable)
