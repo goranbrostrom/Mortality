@@ -591,7 +591,7 @@ visible for later decades is partly explained by the decreasing general
 mortality and is not necessarily representing a homogenisation of relative risks.
 
 
-By \emph{standardising e} the levels in each time period for each class, we illustrate the relative risks in Figure~\ref{fig:cumswstand}. In the rest of the paper, we only present these 
+By \emph{standardising} the levels in each time period for each class, we illustrate the relative risks in Figure~\ref{fig:cumswstand}. In the rest of the paper, we only present these 
 relative mortality levels for the different classes.
 
 <<cumswstand, fig.cap = cap12, fig.scap = scap12, fig.height = 10>>=
@@ -962,8 +962,7 @@ cvb4064 <- cvbTab[as.numeric(as.character(cvbTab$age)) < 64.5, ]
 cvb4064$age <- factor(cvb4064$age)
 @
 
-We start by looking at cumulative hazards by {\sc Hisclass} over time
-periods. They are adjusted for {\tt civil status}. We present separate analyses for women and men.
+Performing the same types of analyses as for all-cause mortality, we start by looking at cumulative hazards by {\sc Hisclass} at age 65, given survival to age 40. They are adjusted for {\tt marital status}. We present separate analyses for women and men.
 
 %\subsubsection{Women}
 
@@ -976,8 +975,8 @@ resm <- getPHglm2(cvb4064[cvb4064$sex == "male", ],
 @
 
 
-We will use as a summary measure the value of the cumulative hazards at
-age 65, given survival to age 40.
+% We will use as a summary measure the value of the cumulative hazards at
+% age 65, given survival to age 40.
 
 <<41cumsw, fig.cap = cap12, fig.scap = scap12, fig.height = 10>>=
 source("R/plotED.glm.R")
@@ -992,9 +991,11 @@ par(oldpar)
 %%<<cumsm, fig.cap = "Total haz of deaths in ages 40--64 per individual by HISCLASS and decade, men.">>=
 %%@
 
-Figure~\ref{fig:cumsw} shows mortality levels during different periods from 1901 on-wards. A couple of observations can be made. Women from the highest social class had almost consistently lower mortality from cardiovascular diseases compared to others.This is apparent even for the periods with deficient cause of death data. The pattern concerning the other groups are less clear, but if we compare the two largest groups, the workers and the lower manager/farmer group, the differences were rather small during most of the time. A new pattern has however developed from 1990 on-wards. Now working class women have substantially higher cardiovascular compared to others.
+Figure~\ref{fig:41cumsw} shows mortality levels during different periods from 1901 on-wards. Women from the highest social class had consistently lower mortality from cardiovascular diseases compared to the others. We also observe increasing social differences from the first half of the century to the last decades. A new pattern has developed from 1980 onwards. Now working class women have substantially higher cardiovascular compared to others. We can however not exclude that this is an artefact of different diagnostics for deaths in different groups. Working class women may have had less precise diagnoses in the early 20th century.
 
-For men, we find a different pattern, a pattern however that to a large extent is consistent with what we observed concerning all-cause mortality. The elite group had much higher cardiovascular diseases up until the middle of the 20th century, but instead have the lowest mortality from 1980 on-wards. Working class men had a fairly low cardiovascular mortality, but in the same way as among women, the levels were fairly similar to the one of the other large group, lower manager/farmers. And in the same way as for women at this age, working class me have by far the highest mortality from this cause of death during the last decades. A social hierarchy in cardiovascular mortality seems to have developed both for men and women.
+For men, there is a different pattern, a pattern however that to a large extent is consistent with what we observed concerning all-cause mortality. The elite group had much higher cardiovascular diseases up until the middle of the 20th century, but instead have the lowest mortality from 1980 onwards. Working class men had a fairly low cardiovascular mortality, but in the same way as among women, the levels were fairly similar to the one of the other large group, lower manager/farmers. And in the same way as for women at this age, working class men have by far the highest mortality from this cause of death during the last decades. A social hierarchy in cardiovascular mortality seems to have developed both for men and women.
+
+A word of caution is however needed when it comes to these results. We can not exclude that the smaller differences in cardiovascular diseases for women in the early periods are an artefact of how deaths were diagnose. Working class men and women may have had less precise diagnoses in the early 20th century.
 
 %% HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 
@@ -1097,11 +1098,10 @@ resm <- getPHglm2(cvb6589[cvb6589$sex == "male", ],
 
 
 
-Concerning the social pattern, we find rather mixed results but with some similarities to the ones
-for the age group 40--64. For women mortality in this disease group were somewhat higher among the elite and the lower manager/farmer group than the others until only the last decades. Elderly from a working class background have not been disadvantaged for most of the 20th century. The social class pattern has changed somewhat during the last periods and more in line to what is expected. The differences are however not that large. Cardiovascular disease mortality among elderly women do not present a consistent class pattern. Also for men, we find high cardiovascular mortality during the period 1926--1950 and the 1980s for the elite, but also for lower-managers/farmers during the first half of the 20th century. As for women, we find no clear class pattern during the last periods and the differences are quite small.The diffuse pattern of class differences in cardiovascular mortality is surprising. It is therefore of interest to find out what other aspects of social differentiation tell us.
+Concerning the social pattern, we find somewhat different results from that of the younger age group of women. Cardiovascular mortality among elderly women do not present a consistent class pattern. Female cardiovascular mortality was somewhat higher among the elite and the middle group than among working class women until the last decades. Elderly from a working class background were not disadvantaged for most of the 20th century. The social class pattern has changed somewhat during the last periods and more in line to what is expected. The differences are however not that large. 
 
-Notice that the results for the 1960s must be interpreted with caution due to much missing data on HISCLASS among the elderly.
 
+Even if results for elderly men point in different directions for some periods, the general trend resembles that of working-active men. The highest class had high cardiovascular mortality during the first half of the 20th century, while the expected social pattern has developed only during the most recent periods.  
 
 
 <<41cumswold, fig.cap = cap22, fig.scap = scap22, fig.height = 10>>=
@@ -1169,7 +1169,7 @@ par(oldpar)
 
 \subsection{Cancer death}
 
-While we assume clear social differences in cardiovascular diseases, this is not necessarily an obvious assumption when it comes to cancers. Different forms of cancers have very different origin and different pathways to disease and death. The social pattern of higher mortality in classes with less power and accordingly less life chances are considered to be less clear when it comes to cancers. In the present analysis we include cancer deaths 1901--2013, but with an unregistered and not analysed period between 1951--1960. There is a risk that cancer mortality is under-estimated during the first half of the 20th century, illustrated above by the large proportion of unknown or vague causes at that time. We believe however that cancers were better diagnosed than cardiovascular deaths. This is supported by the stability in proportion of cancer deaths between the two periods, 12,5 per cent 1901--1925 and 13,5 per cent for the period 1926--1950.
+While we assume clear social differences in cardiovascular diseases, this is not necessarily an obvious assumption when it comes to cancers. Different forms of cancers have very different origin and different pathways to disease and death. The social pattern of higher mortality in classes with less power and accordingly less life chances are considered to be less clear when it comes to cancers. In our analyses, there is a risk that cancer mortality is under-estimated during the first half of the 20th century, illustrated by the already mentioned large proportion of unknown or vague causes at that time. We believe however that cancers were better diagnosed than cardiovascular deaths. This is supported by the stability in proportion of cancer deaths between the two first periods, 12,5 per cent 1901--1925 and 13,5 per cent for the period 1926--1950.
 
 <<causes12>>=
 cvb <- vb0
@@ -1203,11 +1203,9 @@ source("R/getPHglm.R")
 ## End 'common'
 @
 
-Models are fitted separately for each period, from  1851 to
-2013. We stratify on HISCLASS
-and use the covariates {\tt sex} and {\tt   civst}. The cumulative
+We use similar types of analyses as in the earlier sections. The cumulative
 hazards at the end of the period (65 if 40--64, 90 if 65--89) are the
-main target in our analysis: These numbers are used in the process of
+main target in our analysis. These numbers are used in the process of
 graphically illustrating the development over time.
 
 %creating an \emph{heterogeneity index} (a better name is needed:
@@ -1269,7 +1267,7 @@ par(oldpar)
 %%<<cumsm, fig.cap = "Total haz of deaths in ages 40--64 per individual by HISCLASS and decade, men.">>=
 %%@
 
-Figure~\ref{fig:12cumsw} shows relative mortality levels according to HISCLASS during the different studied periods. The social differences were small until the middle of the 20th century, for women as well as for men. For the periods after 1980, the rather small differences remain. There is an indication of the elite having lower cancer mortality for women sexes during the last periods, but these differences are small and we do not find any clear social gradient in the risks. Thus, for this age group cancer mortality is not something that distinguishes between classes.
+Figure~\ref{fig:12cumsw} shows relative mortality levels according to HISCLASS during the different studied periods for the age group 40--64. Cancer mortality among the élite women was in fact lower than that for the other classes during the complete studied period, while working class women had the highest levels during almost all periods. Consequently, we find a more consistent advantage of higher class in cancers compared to cardiovascular diseases for women. We do however not find the same pattern for men. It is difficult to identify any general features of 20th century male cancer mortality when it comes to social differences. 
 
 %% HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 
@@ -1358,7 +1356,7 @@ cvb6589 <- cvbTab[as.numeric(as.character(cvbTab$age)) >= 64.5, ]
 cvb6589$age <- factor(cvb6589$age) # NOTE:: Now change to '6589'!
 @
 
-We finally turn to cancer mortality among the elderly. In accordance with the analyses for the age group 40--64, the model adjusts for {\tt civil status} and with separate analyses for women and men.
+In our analyses of class patterns in mortality, we finally turn to cancer mortality among the elderly. 
 
 %\subsubsection{Women}
 
@@ -1370,11 +1368,11 @@ resm <- getPHglm2(cvb6589[cvb6589$sex == "male", ],
 @
 
 
-We use the value of the cumulative hazards at
-duration 25 (age 90) as a summary measure, starting from age 65.
 
 
-The relation between different classes and cancer mortality fluctuates considerably both for women and men in this age group. For some periods it has to do with quite few events to analyse, particularly for the 1960s where HISCLASS has been difficult to determine for the elderly. Women of higher classes sometimes have favourable mortality, but unfavourable at other times. It seems however that the higher classes have reached lower cancer levels compared to the working class from 2001 on-wards. Men from the elite had higher mortality until the 1970s, but a social gradient has appeared thereafter. Now the elite with assumed more resources have lower mortality than other groups. Elderly of workers origin on the other side have higher cancer mortality during the last decades, sometimes substantially higher than the others.The pattern is however not completely clear.
+The relation between different classes and cancer mortality fluctuates considerably both for women and men in this age group. For some periods it has to do with quite few events to analyse. Women of the highest class have favourable mortality during several periods, consistent with the advantages we found for women in the younger age group, but on the other hand had high levels at other times. The social differences are however quite small during the most recent periods. 
+
+For men we find a similar lack of social pattern in cancer mortality as we found for men in working-active ages. There is however a tendency during the last decades of higher mortality among working class men.
 
 <<12cumswold, fig.cap = cap22, fig.scap = scap22, fig.height = 10>>=
 ##source("R/plotED.R")
