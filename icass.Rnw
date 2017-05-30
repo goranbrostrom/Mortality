@@ -105,10 +105,9 @@ however depending on gender. Women of higher classes were comparatively
 favoured in most of the studied periods, while higher class men were
 disadvantaged when it comes to survival at least until the middle of the
 20th century. The modern pattern of clear socio-economic differences
-appeared surprisingly late. Additional analyses based on education and
+appeared surprisingly late. Additional and alternative analyses based on education and
 income categories confirmed large inequality in mortality
-between different groups during the most recent decades, but also demonstrated more distinct differences between categories with better survival the more income and the higher education level people have. Both cardiovascular diseases and cancers conform with the pattern already
-observed when it comes to all-cause mortality.
+between different groups during the most recent decades. There were no clear signs of qualitative differences depending on whether it was the working-active or the retired population that was analysed, but the differences according to social class was larger in the first-mentioned group. Both cardiovascular diseases and cancers conform with the pattern already observed when it comes to all-cause mortality.
 
 \end{abstract}
 
