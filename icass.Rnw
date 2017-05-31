@@ -455,17 +455,17 @@ The proportional hazards model allow us to scrutinise the differences and
 the development in more detail. We divide the analysis into two age groups,
 40--64 and 65--89 years of age, the first age group representing people that
 were still mainly in the workforce, and the second those that mainly were 
-retired. The model controls for period, marital
+retired. The model controls for marital
 status and whether the individual resides in the urban or rural part. There
 are no serious signs of deviation from proportionality assumption, except
-regarding {\sc Hisclass}.
-
-We analyse both regions together but perform separate analyses for men and
-women and for the age groups 40--64 and 65--89. The model in the analyses
-include social class, sex and marital status. Each decade
-during the 20th century gets separate analyses, but we then combine results
+regarding {\sc Hisclass}. Each period are analysed separately, but we then combine results
 in order to show the development of the social patterning of mortality
-during the studied period. 
+during the studied period.
+
+% We analyse both regions together but perform separate analyses for men and
+% women and for the age groups 40--64 and 65--89. The model in the analyses
+% include social class, sex and marital status. 
+ 
 
 % We present the results for the period 2001--2013
 % separately. We suggest a heterogeneity index in order to investigate a
@@ -1450,12 +1450,12 @@ par(oldpar)
 
 \section{The effect of Education, 1990--2013}
 
-\subsection{All causes of death}
+%\subsection{All causes of death}
 
 A common alternative to a class analysis is to use income or education for investigating socio-economic health differences. \citet{goldk10} criticize how many economists and epidemiologists operationalize inequality in their studies, for example by not distinguishing between class and status aspects. Class refers to relational aspects in society, while many other variables focus on the distribution of material and/or immaterial resources. He advocates studies of different aspects, which together complement each other. Comparing different approaches are valuable in order to understand why some are advantaged and others disadvantaged and what sort of factors determines health differences. In this and the following section, we introduce analyses of education and income. In that way, we can compare the class analyses with these alternative categorizations. For the time being, we have to restrict such a comparative analysis to the last decades.
 
-The analysis for the period 1990--2005 for the whole population 40 years and older is based on separate analyses with income and education as explanatory variables and with controls of period 
-and marital status. See Figure~\ref{fig:ploteduc}.
+In this section we analyse differences according to education level for the period 1990--2013 for the whole population 40 years and older. Education is a good indicator of both human and cultural capital, but aer also strongly associated with income and social class. We present analyses on all cause mortality (survival curves) as well as on the cause of death groups of cardiovascular diseases and cancers (cumulative hazards). The pattern is clear in total mortality as well as cause specific mortality, and this is valid for both men and women, see Figures~\ref{fig:ploteduc},~\ref{fig:ploteducheart} and~\ref{fig:ploteduccancer}. Education had a strong, statistically significant, effect on survival, as expected. Those with the lowest education levels hade the highest mortality, while those with highest level of education had by far the best survival. The differences must be considered large, and it follows a continuous improvement according to increasing levels. 
+
 
 <<lissyoung3>>=
 library(eha)
@@ -1467,7 +1467,7 @@ load(con)
 close(con)
 @
 
-Education had a strong, statistically significant, effect on survival, as expected.
+
 
 <<educ>>=
 
@@ -1506,11 +1506,10 @@ legend("bottomleft", legend = levels(educ$educ), col = cols, lty = c(1, 2, 5), l
 par(oldpar)
 @
 
-Those with the two lowest education level hade the highest mortality, while those with highest level of education had by far the best survival. The differences must be considered large, and it follows almost a continuous improvement according to increasing levels. 
 
 
 
-\subsection{Cardiovascular death}
+%\subsection{Cardiovascular death}
 
 <<cardeduc>>=
 ulcard <- unique(vb0$ULORSAK[vb0$heart])
@@ -1522,10 +1521,10 @@ fitf <- coxph(Surv(enter, exit, heart) ~ strata(educ) + civst + urban,
              data = educ[educ$sex == "female", ])
 @
 
-Illustrating differences for cause-specific mortality is conveniently done by comparing 
-cumulative hazards, see Figure~\ref{fig:ploteducheart}, where educational effects on 
-cardiovascular mortality is illustrated. The pattern is exactly the same as for total 
-mortality.
+% Illustrating differences for cause-specific mortality is conveniently done by comparing 
+% cumulative hazards, see Figure~\ref{fig:ploteducheart}, where educational effects on 
+% cardiovascular mortality is illustrated. The pattern is exactly the same as for total 
+% mortality.
 
 <<ploteducheart, fig.cap="Cumulative hazards by education and sex, cardiovascular death, 1990--2013.">>=
 oldpar <- par(mfrow = c(1, 2))
@@ -1550,7 +1549,7 @@ par(oldpar)
 @
 
 
-\subsection{Cancer death}
+%\subsection{Cancer death}
 
 <<canceduc>>=
 ulcard <- unique(vb0$ULORSAK[vb0$cancer])
@@ -1562,9 +1561,9 @@ fitf <- coxph(Surv(enter, exit, cancer) ~ strata(educ) + civst + urban,
              data = educ[educ$sex == "female", ])
 @
 
-Although mortality in cancer is lower than mortality in cardiovascular diseases,
-the pattern is the same: The more education, the less mortality. See 
-Figure~\ref{fig:ploteduccancer}.
+% Although mortality in cancer is lower than mortality in cardiovascular diseases,
+% the pattern is the same: The more education, the less mortality. See 
+% Figure~\ref{fig:ploteduccancer}.
 
 <<ploteduccancer, fig.cap="Cumulative hazards by education and sex, cancer death, 1990--2013.">>=
 oldpar <- par(mfrow = c(1, 2))
@@ -1590,7 +1589,7 @@ par(oldpar)
 
 \section{The effect of Income, 1986--2005}
 
-\subsection{All causes of death}
+%\subsection{All causes of death}
 
 
 <<femeduc>>=
@@ -1630,13 +1629,10 @@ legend("bottomleft", legend = levels(income$income), col = cols, lty = c(1, 2, 4
 par(oldpar)
 @
 
-Higher incomes result in lower mortality. This is also what could be expected, 
-and conforms to what we know of social health differences in present-day Sweden. 
-Notice however that we cannot establish a causal relationship between 
-income and mortality. Bad health, for instance, may be a confounder.
+Finally, we present analyses of different income levels for the age group 40 and above and the period 1986--2005. Disposable individual income must be considered as a robust measure of economic condition, and increases the possibility to allocate these economic resources towards health promoting living conditions and behaviours. We categorize the income according to quartiles. As expected, we find that higher incomes result in lower mortality, both when it comes to total mortality as to deaths from cardiovascular diseases, see Figures~\ref{fig:plotincome} and~\ref{fig:plotincheart}. This is also what could be expected, and conforms to what we know of social health differences in present-day Sweden. We also find indications of a similar difference for cancers but less clear, particularly for male cancer mortality, see Figure~\ref{fig:plotinccancer}. Notice however that we cannot establish a causal relationship between income and mortality. Bad health may be a confounder, causing both low incomes and higher death risks.
 
 
-\subsection{Cardiovascular death}
+%\subsection{Cardiovascular death}
 
 <<heartincome>>=
 ulcard <- unique(vb0$ULORSAK[vb0$heart])
@@ -1649,7 +1645,7 @@ fitf <- coxph(Surv(enter, exit, heart) ~ strata(income) + civst + urban,
 
 @
 
-The overall pattern is the same for cardiovascular mortality, high income pays off.
+%The overall pattern is the same for cardiovascular mortality, high income pays off.
 <<plotincheart, fig.cap="Cumulative hazards by income and sex, cardiovascular death, 1990--2013.">>=
 oldpar <- par(mfrow = c(1, 2))
 
@@ -1673,7 +1669,7 @@ par(oldpar)
 @
 
 
-\subsection{Cancer death}
+%\subsection{Cancer death}
 
 <<cancerincome>>=
 ulcard <- unique(vb0$ULORSAK[vb0$cancer])
@@ -1686,7 +1682,7 @@ fitf <- coxph(Surv(enter, exit, cancer) ~ strata(income) + civst + urban,
 
 @
 
-The same goes for cancer mortality, but the relative differences are smaller. See Figure~\ref{fig:plotinccancer}.
+% The same goes for cancer mortality, but the relative differences are smaller. See Figure~\ref{fig:plotinccancer}.
 
 <<plotinccancer, fig.cap="Cumulative hazards by income and sex, cancer death, 1990--2013.">>=
 oldpar <- par(mfrow = c(1, 2))
@@ -1775,7 +1771,7 @@ eating, drinking, smoking and sometimes also taking risks.  Different historical
 
 One of the major findings in this study relate to gender. As several researchers have pointed out, demography has often ignored power relations and different roles within families \citep{watkins93, mack95, jans07}. By investigating possible differences in mortality patterns according to sex, we have identified gendered patterns within the family. Different patterns between the sexes may be caused by discrimination on the female part in the household. We know that the society was
 strongly segregated according to gender and that women were discriminated
-and had less space for action. In our case, we do not find this had negative consequences for women, indicating that the relation between sexessociety was characterised by distinct gendered expectations on behaviour. 
+and had less space for action. In our case, we do not find this to have negative consequences for women, indicating that the relation between sexes in the society was characterised by distinct gendered expectations on behaviour. 
 
 Another question is if our results can be generalised to other historical contexts. We have studied
 environments in northern Sweden without any large metropolis. Perhaps
