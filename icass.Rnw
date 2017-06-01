@@ -12,8 +12,8 @@
 
 \usepackage{natbib}
 
-\bibliographystyle{apalike}
-%\bibliographystyle{plainnat}
+%\bibliographystyle{apalike}
+\bibliographystyle{plainnat}
 
 %\usepackage[aboveskip=1pt,labelfont=bf,labelsep=period,justification=raggedright,singlelinecheck=off]{caption}
 \newcommand{\R}{{\bf R}}
@@ -460,7 +460,7 @@ the development in more detail. We divide the analysis into two age groups,
 40--64 and 65--89 years of age, the first age group representing people that
 were still mainly in the workforce, and the second those that mainly were 
 retired. The model controls for marital
-status and whether the individual resides in the urban or rural part. There
+status and whether the individual resides in the urban or rural parts of the regions. There
 are no serious signs of deviation from proportionality assumption, except
 regarding {\sc Hisclass}. Each period are analysed separately, but we then combine results
 in order to show the development of the social patterning of mortality
@@ -481,7 +481,7 @@ reason for this choice is that the effect of {\sc Hisclass} on survival is
 non-proportional, that is, it varies with age. With the reduced data set
 and Poisson regression, this is simply achieved by introducing an
 interaction term between {\tt age} and {\tt hisclass}. Then, the main
-results are presented \emph{graphically}. 
+results are presented \emph{graphically}. Tables with results from the different models are presented at the end of the article, but are not commented on in detail. The comments on the results are primarily based on the figures and focuses on the central variable in our study -- {\sc Hisclass}. As can be seen from the tables, most variables in the model are significant at 5 per cent level.
 
 % There is some  lack of information in the higher
 % ages around 1960--1980 (see Figures~\ref{fig:hiscskumm} and \ref{fig:hiscskumw}), because that kind of 
@@ -504,9 +504,7 @@ nper <- length(labb)
 ## End 'common'
 @
 
-Models are fitted separately for each time period, from  1851 to
-2013, with the exception of the period 1951--1960 and separately for sex. We stratify on HISCLASS
-and control for the covariates {\tt   civst} and urban/rural residence. The cumulative
+The cumulative
 hazards at the end of the time period (65 if 40--64, 90 if 65--89) are the
 main target in our analysis: These numbers are used in the process of
 graphically illustrating the development over time.
@@ -993,7 +991,7 @@ cvb4064 <- cvbTab[as.numeric(as.character(cvbTab$age)) < 64.5, ]
 cvb4064$age <- factor(cvb4064$age)
 @
 
-Performing the same types of analyses as for all-cause mortality, we start by looking at cumulative hazards by {\sc Hisclass} at age 65, given survival to age 40. They are adjusted for {\tt marital status} and urban/rural residence. We present separate analyses for women and men.
+Performing the same types of analyses as for all-cause mortality, we start by looking at cumulative hazards by {\sc Hisclass} at age 65, given survival to age 40. 
 
 %\subsubsection{Women}
 
@@ -1125,7 +1123,7 @@ cvb6589 <- cvbTab[as.numeric(as.character(cvbTab$age)) >= 64.5, ]
 cvb6589$age <- factor(cvb6589$age) # NOTE:: Now change to '6589'!
 @
 
-In this section we focus on cardiovascular mortality among those that mostly have left the workforce, the age group 65--89 years. In accordance with the analyses for the age group 40--64, the model adjusts for {\tt civil status} and urban/rural residence and with separate analyses for women and men. We use as a summary measure the value of the cumulative hazards at
+In this section we focus on cardiovascular mortality among those that mostly have left the workforce, the age group 65--89 years. We use as a summary measure the value of the cumulative hazards at
 duration 25 (age 90), starting from age 65.
 
 %\subsubsection{Women}
