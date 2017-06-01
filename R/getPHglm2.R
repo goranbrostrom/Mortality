@@ -13,7 +13,7 @@ getPHglm2 <- function(dat, nper, labb, from = 40){
     levs <- matrix(0, nrow = m, ncol = k + 1)
    
     for (i in 1:nper){
-        fit <- glm(event ~ offset(log(exposure)) + ##urban + ##civst 
+        fit <- glm(event ~ offset(log(exposure)) + urban + civst +
                        age * hisclass, 
                    data = dat[dat$period == labb[i], ], family = poisson)
         
