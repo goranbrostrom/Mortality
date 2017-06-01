@@ -5,27 +5,30 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
+\usepackage{float}
+
 \usepackage{epstopdf}
 \usepackage{url}
 
 \usepackage{natbib}
 
-\bibliographystyle{plainnat}
+\bibliographystyle{apalike}
+%\bibliographystyle{plainnat}
 
 %\usepackage[aboveskip=1pt,labelfont=bf,labelsep=period,justification=raggedright,singlelinecheck=off]{caption}
 \newcommand{\R}{{\bf R}}
 
-%\usepackage[tablesonly]{endfloat}
+\usepackage[tablesonly]{endfloat}
 %\usepackage[figuresonly]{endfloat}
 %\usepackage[tablesonly]{endfloat}
 
-%\renewcommand{\efloatseparator}{\vfill}
+\renewcommand{\efloatseparator}{\vfill}
 
 % patch \efloat@iwrite to use \protected@write
-%\makeatletter
-%\renewcommand\efloat@iwrite[1]{%
-%   \immediate\expandafter\protected@write\csname efloat@post#1\endcsname{}}
-%\makeatother
+\makeatletter
+\renewcommand\efloat@iwrite[1]{%
+   \immediate\expandafter\protected@write\csname efloat@post#1\endcsname{}}
+\makeatother
 
 \author{Sören Edvinsson\footnote{email: \texttt{soren.edvinsson@umu.se}} and
 Göran Broström\footnote{email: \texttt{goran.brostrom@umu.se}}
@@ -43,13 +46,10 @@ Umeå University, SE-90187 Umeå, Sweden}
 
 \date{May 31, 2017}
 
-\begin{document}
-
-\maketitle
 
 <<setup, include = FALSE>>=
 library(knitr)
-opts_chunk$set(engine='R',dev='pdf',fig.path='figs/slide-',tidy=FALSE,fig.height=5.5,fig.width=8,strip.white=TRUE,cache=TRUE,echo=FALSE,message=FALSE,comment=NA,show.signif.stars = FALSE)##$
+opts_chunk$set(engine='R',dev='pdf',fig.path='figs/slide-',tidy=FALSE,fig.height=3.5,fig.width=8,strip.white=TRUE,cache=TRUE,echo=FALSE,message=FALSE,comment=NA,show.signif.stars = FALSE,fig.pos='ht')##$
 library(knitr)
 library(eha)
 library(xtable)
@@ -86,6 +86,10 @@ vb0Tab <- aggregate(vb0[, c("event", "exposure")],
                    FUN = sum)
 vb0Tab$age <- factor(vb0Tab$age)
 @
+
+\begin{document}
+
+\maketitle
 
 \begin{abstract}
 A long-term perspective on the development of social
@@ -577,7 +581,7 @@ resm <- getPHglm2(vb4064[vb4064$sex == "male", ],
 %The "TMR", that is, the summed hazards over the age interval 40--64 is shown in
 %Figure~\ref{fig:cumsw}.
 
-<<cumsw, fig.cap = cap0, fig.scap = scap0, fig.height = 10>>=
+<<cumsw, fig.cap = cap0, fig.scap = scap0, fig.height = 8>>=
 source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, ylab = "TMR(65|40)",
@@ -587,7 +591,21 @@ moutp <- plotED.glm(resm, col = scol, logScale = FALSE, ylab = "TMR(65|40)",
 par(oldpar)
 @
 
-Figure~\ref{fig:cumsw} shows the summed hazards of dying in the age interval 40--64 during the different periods. Obviously, and not surprisingly, mortality is decreasing over time for both sexes. Women have consistently better survival than men. This is a well-known phenomenon in Swedish
+From Table~\ref{tab:cumswtab} it is obvious that the statistical significance is strong.
+The most interesting feature is the three-way interaction with sex, period, and hisclass.
+
+<<cumswtab,results='asis',cap="Table">>=
+fitt <- glm(event ~ offset(log(exposure)) + urban + civst + age + sex * hisclass * period, 
+            data = vb4064, family = poisson)
+dr <- drop1(fitt, test = "Chisq")
+##knitr::kable(dr)
+xtable(dr,label = "tab:cumswtab", caption = "Anova, all causes of death, 40-65.")
+@
+
+Figure~\ref{fig:cumsw} shows the summed hazards of dying in the age interval 
+40--64 during the different periods. Obviously, and not surprisingly, mortality 
+is decreasing over time for both sexes. Women have consistently better survival 
+than men. This is a well-known phenomenon in Swedish
 demographic history. Male mortality has almost always been higher than
 female in all age groups \citep{wil99, suwi07}. We also observe a
 substantial decline in mortality for both sexes, resulting in smaller
@@ -599,7 +617,7 @@ mortality and is not necessarily representing a homogenisation of relative risks
 By \emph{standardising} the levels in each time period for each class, we illustrate the relative risks in Figure~\ref{fig:cumswstand}. In the rest of the paper, we only present these 
 relative mortality levels for the different classes.
 
-<<cumswstand, fig.cap = cap12, fig.scap = scap12, fig.height = 10>>=
+<<cumswstand, fig.cap = cap12, fig.scap = scap12, fig.height = 8>>=
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE,
                     ylab = "TMR(65|40)", main = "Women 40-64", exclude = 5:6)
@@ -826,7 +844,7 @@ the adult male population 40--64 years. Mortality was in fact substantially
 higher among élite men  but their disadvantage was primarily apparent during the 19th century. Differences are fairly small during the first half of the 20th century. Not until the second half of the 20th century is the survival much better for the highest social class while workers in the age of retirement had high mortality in comparison. ). This is quite unexpected, since other studies have shown clear socio-economic differences in Sweden during recent decades. 
 
 
-<<cumswold, fig.cap = cap22, fig.scap = scap22, fig.height = 10>>=
+<<cumswold, fig.cap = cap22, fig.scap = scap22, fig.height = 8>>=
 ##source("R/plotED.R")
 resw <- getPHglm2(vb6589[vb6589$sex == "female", ],
             nper, labb)
@@ -839,6 +857,16 @@ woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE,
 moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE,
                     ylab = "TMR(90|65)", main = "Men 65-89")##, exclude = 5:6)
 par(oldpar)
+@
+
+See Table~\ref{tab:cumswoldtab}.
+
+<<cumswoldtab,results='asis'>>=
+fitt <- glm(event ~ offset(log(exposure)) + urban + civst + age + sex * hisclass * period, 
+            data = vb6589, family = poisson)
+dr <- drop1(fitt, test = "Chisq")
+##knitr::kable(dr)
+xtable(dr,label = "tab:cumswoldtab", caption = "Anova, all causes of death, 65-89.")
 @
 
 % \subsubsection{The effect of income and education, 1990--2005}
@@ -981,7 +1009,7 @@ resm <- getPHglm2(cvb4064[cvb4064$sex == "male", ],
 % We will use as a summary measure the value of the cumulative hazards at
 % age 65, given survival to age 40.
 
-<<41cumsw, fig.cap = cap12, fig.scap = scap12, fig.height = 10>>=
+<<41cumsw, fig.cap = cap12, fig.scap = scap12, fig.height = 8>>=
 source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE, exclude = 3:4,
@@ -993,6 +1021,16 @@ par(oldpar)
 
 %%<<cumsm, fig.cap = "Total haz of deaths in ages 40--64 per individual by HISCLASS and decade, men.">>=
 %%@
+<<41cumswtab,results='asis'>>=
+fitt <- glm(event ~ offset(log(exposure)) + urban + civst + age + sex * hisclass + 
+                sex * period + hisclass * period, 
+            data = cvb4064, family = poisson)
+dr <- drop1(fitt, test = "Chisq")
+##knitr::kable(dr)
+xtable(dr,label = "tab:41cumswtab", caption = "Anova, cardiovascular deaths, 40-64.")
+@
+
+See Table~\ref{tab:41cumswtab}.
 
 Figure~\ref{fig:41cumsw} shows mortality levels during different periods from 1901 on-wards. Women from the highest social class had consistently lower mortality from cardiovascular diseases compared to the others. We also observe increasing social differences from the first half of the century to the last decades. A new pattern has developed from 1980 onwards. Now working class women have substantially higher cardiovascular mortality compared to others. We can however not exclude that this is an artefact of different diagnostics for deaths in different groups. Working class women may have had less precise diagnoses in the early 20th century.
 
@@ -1107,7 +1145,7 @@ Concerning the social pattern, we find somewhat different results from that of t
 Even if results for elderly men point in different directions for some periods, the general trend resembles that of working-active men. The highest class had high cardiovascular mortality during the first half of the 20th century, while the expected social pattern has developed only during the most recent periods.  
 
 
-<<41cumswold, fig.cap = cap22, fig.scap = scap22, fig.height = 10>>=
+<<41cumswold, fig.cap = cap22, fig.scap = scap22, fig.height = 8>>=
 ##source("R/plotED.R")
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE,
@@ -1117,6 +1155,16 @@ moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE,
 par(oldpar)
 @
 
+<<41cumswoldtab,results='asis'>>=
+fitt <- glm(event ~ offset(log(exposure)) + urban + civst + age + sex * period *hisclass,
+                ##sex * period + hisclass * period, 
+            data = cvb6589, family = poisson)
+dr <- drop1(fitt, test = "Chisq")
+##knitr::kable(dr)
+xtable(dr,label = "tab:41cumswoldtab", caption = "Anova, cardiovascular deaths, 65-90.")
+@
+
+See Table~\ref{tab:41cumswoldtab}.
 
 % \subsubsection{The effect of income and education on cardiovascular death, 1990--2005}
 % 
@@ -1257,7 +1305,7 @@ resm <- getPHglm2(cvb4064[cvb4064$sex == "male", ],
 %%We will use as a summary measure the value of the cumulative hazards at
 %%age 65, given survival to age 40.
 
-<<12cumsw, fig.cap = cap12, fig.scap = scap12, fig.height = 10>>=
+<<12cumsw, fig.cap = cap12, fig.scap = scap12, fig.height = 8>>=
 source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE, exclude = 3:4,
@@ -1269,6 +1317,17 @@ par(oldpar)
 
 %%<<cumsm, fig.cap = "Total haz of deaths in ages 40--64 per individual by HISCLASS and decade, men.">>=
 %%@
+
+<<12cumswtab,results='asis'>>=
+fitt <- glm(event ~ offset(log(exposure)) + urban + civst + age + sex *hisclass +
+                sex * period + hisclass * period, 
+            data = cvb4064, family = poisson)
+dr <- drop1(fitt, test = "Chisq")
+##knitr::kable(dr)
+xtable(dr,label = "tab:12cumswtab", caption = "Anova, cancer deaths, 40-64.")
+@
+
+See Table~\ref{tab:12cumswtab}.
 
 Figure~\ref{fig:12cumsw} shows relative mortality levels according to HISCLASS during the different studied periods for the age group 40--64. Cancer mortality among the élite women was lower than that for the other classes during the complete studied period, while working class women had the highest levels during almost all periods. Consequently, we find a more consistent advantage of higher class in cancers compared to cardiovascular diseases for women. We do however not find the same pattern for men. It is difficult to identify any general features of 20th century male cancer mortality when it comes to social differences. 
 
@@ -1377,7 +1436,7 @@ The relation between different classes and cancer mortality fluctuates considera
 
 For men we find a similar lack of social pattern in cancer mortality as we found for men in working-active ages. There is however a tendency during the last decades of higher mortality among working class men.
 
-<<12cumswold, fig.cap = cap22, fig.scap = scap22, fig.height = 10>>=
+<<12cumswold, fig.cap = cap22, fig.scap = scap22, fig.height = 8>>=
 ##source("R/plotED.R")
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE,
@@ -1387,7 +1446,16 @@ moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE,
 par(oldpar)
 @
 
+<<12cumswoldtab,results='asis'>>=
+fitt <- glm(event ~ offset(log(exposure)) + urban + civst + age + sex +
+                sex * period + hisclass * period, 
+            data = cvb6589, family = poisson)
+dr <- drop1(fitt, test = "Chisq")
+##knitr::kable(dr)
+xtable(dr,label = "tab:12cumswoldtab", caption = "Anova, cancer deaths, 65-90.")
+@
 
+See Table~\ref{tab:12cumswoldtab}.
 % \subsubsection{The effect of income and education on cancer death, 1990--2005}
 % 
 % Thus, we find indications of social differences in the later decades, particularly between the elite and the workers. The alternative analysis for the last period is based on a separate analysis with
@@ -1506,7 +1574,15 @@ legend("bottomleft", legend = levels(educ$educ), col = cols, lty = c(1, 2, 5), l
 par(oldpar)
 @
 
+<<tableeduc,results='asis'>>=
+fit <- coxreg(Surv(enter, exit, event) ~ educ + civst + urban + sex, data = educ[!is.na(educ$civst), ], 
+              hazards = FALSE)
+dr <- drop1(fit, test = "Chisq")
+ltx(fit, dr = dr, caption = "Effect of education on mortality in ages 40-90, 1990-2013.", 
+    label = "tab:tableeduc", digits = 4)
+@
 
+See Table~\ref{tab:tableeduc}.
 
 
 %\subsection{Cardiovascular death}
@@ -1548,6 +1624,15 @@ abline(h = 0)
 par(oldpar)
 @
 
+<<tableeducheart,results='asis'>>=
+fit <- coxreg(Surv(enter, exit, heart) ~ educ + civst + urban + sex, data = educ[!is.na(educ$civst), ], 
+              hazards = FALSE)
+dr <- drop1(fit, test = "Chisq")
+ltx(fit, dr = dr, caption = "Effect of education on cardiovascular mortality in ages 40-90, 1990-2013.", 
+    label = "tab:tableeducheart", digits = 4)
+@
+
+See Table~\ref{tab:tableeduc}.
 
 %\subsection{Cancer death}
 
@@ -1586,6 +1671,16 @@ legend("topleft", legend = levels(educ$educ), col = cols, lty = c(1, 2, 5), lwd 
 abline(h = 0)
 par(oldpar)
 @
+
+<<tableeduccancer,results='asis'>>=
+fit <- coxreg(Surv(enter, exit, cancer) ~ educ + civst + urban + sex, data = educ[!is.na(educ$civst), ], 
+              hazards = FALSE)
+dr <- drop1(fit, test = "Chisq")
+ltx(fit, dr = dr, caption = "Effect of education on cancer mortality in ages 40-89, 1990-2013.", 
+    label = "tab:tableeduccancer", digits = 4)
+@
+
+See Table~\ref{tab:tableeduc}.
 
 \section{The effect of Income, 1986--2005}
 
@@ -1629,6 +1724,19 @@ legend("bottomleft", legend = levels(income$income), col = cols, lty = c(1, 2, 4
 par(oldpar)
 @
 
+<<tableinc>>=
+fit <- coxreg(Surv(enter, exit, event) ~ income + civst + urban + sex, data = income[!is.na(income$civst), ],
+              hazards = FALSE)
+dr <- drop1(fit, test = "Chisq")
+@
+
+<<tableincpr,results='asis'>>=
+ltx(fit, dr = dr, caption = "Effect of income on mortality in ages 40-89, 1986-2005.", 
+    label = "tab:tableincpr", digits = 4)
+@
+
+See Table~\ref{tab:tableincpr}.
+
 Finally, we present analyses of different income levels for the age group 40 and above and the period 1986--2005. Disposable individual income must be considered as a robust measure of economic condition, and increases the possibility to allocate these economic resources towards health promoting living conditions and behaviours. We categorize the income according to quartiles. As expected, we find that higher incomes result in lower mortality, both when it comes to total mortality as to deaths from cardiovascular diseases, see Figures~\ref{fig:plotincome} and~\ref{fig:plotincheart}. This is also what could be expected, and conforms to what we know of social health differences in present-day Sweden. We also find indications of a similar difference for cancers but less clear, particularly for male cancer mortality, see Figure~\ref{fig:plotinccancer}. Notice however that we cannot establish a causal relationship between income and mortality. Bad health may be a confounder, causing both low incomes and higher death risks.
 
 
@@ -1646,7 +1754,7 @@ fitf <- coxph(Surv(enter, exit, heart) ~ strata(income) + civst + urban,
 @
 
 %The overall pattern is the same for cardiovascular mortality, high income pays off.
-<<plotincheart, fig.cap="Cumulative hazards by income and sex, cardiovascular death, 1990--2013.">>=
+<<plotincheart, fig.cap="Cumulative hazards by income and sex, cardiovascular death, 1986-2005.">>=
 oldpar <- par(mfrow = c(1, 2))
 
 plot(survfit(fitm, start.time = 40), fun = "cumhaz", mark.time = FALSE, main = "Men",
@@ -1668,6 +1776,18 @@ abline(h = 0)
 par(oldpar)
 @
 
+<<tableincheart>>=
+fit <- coxreg(Surv(enter, exit, heart) ~ income + civst + urban + sex, data = income[!is.na(income$civst), ],
+              hazards = FALSE)
+dr <- drop1(fit, test = "Chisq")
+@
+
+<<tableincprheart,results='asis'>>=
+ltx(fit, dr = dr, caption = "Effect of income on cardiovascular mortality in ages 40-89, 1986-2005.", 
+    label = "tab:tableincpr", digits = 4)
+@
+
+See Table~\ref{tab:tableincpr}.
 
 %\subsection{Cancer death}
 
@@ -1705,6 +1825,19 @@ legend("topleft", legend = levels(income$income), col = cols, lty = c(1, 2, 4, 5
 abline(h = 0)
 par(oldpar)
 @
+
+<<tableinccancer>>=
+fit <- coxreg(Surv(enter, exit, heart) ~ income + civst + urban + sex, data = income[!is.na(income$civst), ],
+              hazards = FALSE)
+dr <- drop1(fit, test = "Chisq")
+@
+
+<<tableincprcancer,results='asis'>>=
+ltx(fit, dr = dr, caption = "Effect of income on cancer mortality in ages 40-89, 1986-2005.", 
+    label = "tab:tableincprcancer", digits = 4)
+@
+
+See Table~\ref{tab:tableincpr}.
 
 
 \section{Discussion}
