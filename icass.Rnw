@@ -12,8 +12,8 @@
 
 \usepackage{natbib}
 
-%\bibliographystyle{apalike}
-\bibliographystyle{plainnat}
+\bibliographystyle{apalike}
+%\bibliographystyle{plainnat}
 
 %\usepackage[aboveskip=1pt,labelfont=bf,labelsep=period,justification=raggedright,singlelinecheck=off]{caption}
 \newcommand{\R}{{\bf R}}
@@ -36,7 +36,7 @@ Göran Broström\footnote{email: \texttt{goran.brostrom@umu.se}}
 Centre for Demographic and Ageing Research ({\sc Cedar})\\
 Umeå University, SE-90187 Umeå, Sweden}
 
-\title{Long--term perspectives of social inequality in mortality among
+\title{Long-term perspectives of social inequality in mortality among
   adults and elderly in northern Sweden 1851--2013\footnote{Paper presented
     at the
     session 'Health and Mortality in Arctic Populations'. The Ninth International
@@ -98,7 +98,7 @@ this paper. The area under investigation consists of the Skellefteå and Umeå r
 the north of Sweden, and the time period is 1851--2013. The outcome is all
 cause mortality and cause specific mortality for the categories
 cardiovascular diseases and cancers. The analysis of inequality is based on
-three social classes, reorganized from Hisclass.
+three social classes, reorganized from {\sc Hisclass}.
 
 The main findings are that a consistent social gradient implying better
 survival for classes with more access to economic and other resources, only
@@ -145,7 +145,8 @@ It thus appears as if a more consistent social health divide appeared at some po
 
 \section{Aims and questions}
 
-In the present paper, we take a long-term perspective on the development of social inequalities in mortality in the adult and elderly population. The areas under investigation are the Skellefteå and Umeå regions in the north of Sweden, and the time period is 1851--2013 for Skellefteå and 1901--2013 for Umeå. The main question we investigate is if inequality in mortality between social classes increased among the adult and elderly population, primarily benefiting the highest social positions and how this is connected to the development of economic inequality in society. This issue is then analysed according to gender, age-group (working age vs retired) and cause of death (cardiovascular and cancer). Furthermore, we compare our results witn analyses of alternative inequality indicators, education and income for the period 1986--2013.
+In the present paper, we take a long-term perspective on the development of social inequalities in mortality in the adult and elderly population. The areas under investigation are the Skellefteå and Umeå regions in the north of Sweden, and the time period is 1851--2013 for Skellefteå and 1901--2013 for Umeå. The main question we investigate is if inequality in mortality between social classes increased among the adult and elderly population, primarily benefiting the highest social positions and how this is connected to the development of economic inequality in society. This issue is then analysed according to gender, age-group (working age vs retired) and cause of death (cardiovascular and cancer). Furthermore, we compare our results witn analyses of alternative inequality indicators, education and income for the period 
+1986--2013.
 
 % ? :
 % 
@@ -185,7 +186,7 @@ In the present paper, we take a long-term perspective on the development of soci
 \label{fig:mapp}
 \end{figure}
 
-The Skellefteå and Umeå regions (Figure~\ref{fig:mapp}) are part of the county of Västerbotten in the north of Sweden along the coast of Gulf of Bothnia. This was a remote part of the country, where communication with the rest of Sweden was difficult until the late 19th century. The economy was dominated by agriculture, making it vulnerable to harvest failures, and several severe famines affected the regions during the 1800s. One living long in memory was the famine of 1867–-1868 \citep{segb14}. During the long winters, sea communication was hindered due to the Gulf of Bothnia being frozen. The first ships during the year came to this area in May or even as late as June in some cases \citep{fah56}. Towards the end of the 19th century, the Swedish railway system reached this part of Sweden, thereby facilitating contacts with the rest of Sweden, improving the economy and mitigating the effects of harvest failures. The inland was particularly remote and isolated. During the 19th century, our regions became increasingly integrated in the same epidemiological pattern as the rest of Sweden. Diseases reached to places that earlier were spared.
+The Skellefteå and Umeå regions (Figure~\ref{fig:mapp}) are part of the county of Väster\-bot\-ten in the north of Sweden along the coast of Gulf of Bothnia. This was a remote part of the country, where communication with the rest of Sweden was difficult until the late 19th century. The economy was dominated by agriculture, making it vulnerable to harvest failures, and several severe famines affected the regions during the 1800s. One living long in memory was the famine of 1867–-1868 \citep{segb14}. During the long winters, sea communication was hindered due to the Gulf of Bothnia being frozen. The first ships during the year came to this area in May or even as late as June in some cases \citep{fah56}. Towards the end of the 19th century, the Swedish railway system reached this part of Sweden, thereby facilitating contacts with the rest of Sweden, improving the economy and mitigating the effects of harvest failures. The inland was particularly remote and isolated. During the 19th century, our regions became increasingly integrated in the same epidemiological pattern as the rest of Sweden. Diseases reached to places that earlier were spared.
 
 The Skellefteå region until the 1950 in our dataset consists of a selection of parishes surrounding the town of Skellefteå, founded in 1845 but with a very small population during the 19th century. The data from the period after 1960 cover the Skellefteå and Malå municipalities, the same area as for the earlier period but with the addition of two more parishes. The majority of the 19th century population lived in rural villages and hamlets, getting their livelihood from agricultural production. During the 20th century, industrialisation took place, partly by the opening of mines in the in-lands. This also led to a population increase both in the town and in the rural parts, and a much more diversified economy.
 
@@ -218,7 +219,7 @@ database from what we potentially could find in Poplink, for example family
 background or occupations earlier in life.
 
 In the data-set analysed here, all individuals 40 years and older ever being resident in either
-of the regions are included. The data file contains the variables on social class (HISCLASS) sex, urban/rural residence, birth date, death date, first and last date of observation and type of
+of the regions are included. The data file contains the variables on social class ({\sc Hisclass}) sex, urban/rural residence, birth date, death date, first and last date of observation and type of
 entrance/exit. Total number of persons are 84\,599 leading to 35\,001 deaths in Poplink and 197\,864 persons leading to 66\,297 deaths in the Linnaeus database. See Figure~\ref{fig:lexis2}.
 
 <<lexis2,fig.cap="The sampling frame.", fig.height = 5>>=
@@ -264,23 +265,23 @@ For the last period, 2002--2013, we use the yearly population registers (LISA da
 
 \subsection{Social class}
 
-In this paper we analyse mortality differences according to social class based on the classification scheme HISCLASS \citep{lema11}. The only type of socio-economic information available both in Linnaeus and Poplink is occupations. Thus, analysing according to social class is apart from being a scientific choice, also a practical one. Using occupational data is the only and obvious alternative for making a longitudinal study of socio-economic mortality differences with consistent classification schemes. Social position is treated as a time-dependent variable.
+In this paper we analyse mortality differences according to social class based on the classification scheme {\sc Hisclass} \citep{lema11}. The only type of socio-economic information available both in Linnaeus and Poplink is occupations. Thus, analysing according to social class is apart from being a scientific choice, also a practical one. Using occupational data is the only and obvious alternative for making a longitudinal study of socio-economic mortality differences with consistent classification schemes. Social position is treated as a time-dependent variable.
 
-The availability to information on occupations varies over time and between sources. Occupations in Poplink are coded into HISCO \citep{lema02} and the original DDB coding system. The censuses 1960--1990 include occupational codes based on the system used in Sweden at that time, NYK (Nordisk Yrkesklassificering). The yearly population registers (LISA) do not report occupations until 2001, thus there is a window of 11 years from 1991 to 2001 where we lack information. In the censuses, we have solved this by extending the periods for which we consider the observed social class to be valid. Thus, the social class in the census 1990 is considered to be kept until 2001. This strategy is also used for other cases of missing social class. Furthermore, we consider the last social position before retirement to be kept until death or last observation for those above 65. For the Linnaeus data, we use a script recoding HISCO into HISCLASS, provided to us by Jonas Helgertz, Lund University. 
+The availability to information on occupations varies over time and between sources. Occupations in Poplink are coded into HISCO \citep{lema02} and the original DDB coding system. The censuses 1960--1990 include occupational codes based on the system used in Sweden at that time, NYK (Nordisk Yrkesklassificering). The yearly population registers (LISA) do not report occupations until 2001, thus there is a window of 11 years from 1991 to 2001 where we lack information. In the censuses, we have solved this by extending the periods for which we consider the observed social class to be valid. Thus, the social class in the census 1990 is considered to be kept until 2001. This strategy is also used for other cases of missing social class. Furthermore, we consider the last social position before retirement to be kept until death or last observation for those above 65. For the Linnaeus data, we use a script recoding HISCO into {\sc Hisclass}, provided to us by Jonas Helgertz, Lund University. 
 
 
 The use of different data sets, forces us to apply different approaches towards defining the social position in some respects. A problem is that Poplink usually only provides the occupation for the head of household, thus under-estimating female working-force participation as well as that of adult children residing with their parents \citep{vik10}. In this study and according to the research questions in the present paper, we have chosen to categorise wife according to the position of the head of household, usually the husband/father, assuming that the family shares the same socio-economic position. This strategy makes the problem of under-recording less problematic.
 
 Female labour is much better covered in the Linnaeus database. A complication is however that it is  difficult to define households in the same way as in Poplink. Extra-marital cohabitation, connected to the Second Demographic Transition \citep{van87, van03}, became common and female labour force participation developed as the norm in Sweden during this period. The occupation of the husband as signifier of social class became, if not obsolete, at least less relevant. All included persons are signified by their individual occupation for this period. Still, the results for the different periods are not completely comparable and makes the interpretation of the development for women more shaky.
 
-HISCLASS, the classification system used here, is a ”. . . HISCO-based
-historical international social class scheme” \citep{lema11, lema02}. The different classes in HISCLASS represent distinct categories, based on whether the work is manual or non–manual, skill level, supervision and sector. Implicitly it reflects large differences in what is in the forefront of other
-categorisations, as for example access to economic and other resources, status, social power et cetera. We have merged the original 12 classes in HISCLASS, based on position in the labour market, ending up with the following three and an additional fourth category with unknown class:
+{\sc Hisclass}, the classification system used here, is a "\ldots HISCO-based
+historical international social class scheme" \citep{lema11, lema02}. The different classes in {\sc Hisclass} represent distinct categories, based on whether the work is manual or non–manual, skill level, supervision and sector. Implicitly it reflects large differences in what is in the forefront of other
+categorisations, as for example access to economic and other resources, status, social power et cetera. We have merged the original 12 classes in {\sc Hisclass}, based on position in the labour market, ending up with the following three and an additional fourth category with unknown class:
 
 \begin{enumerate}
-\item {\tt elite}, HISCLASS 1 and 2. Higher managers, professionals and higher white collar.
-\item {\tt middle}, HISCLASS 3, 4, 5, 6 and 8. Lower managers, farmers and lower white collar.
-\item {\tt worker}, HISCLASS 7, 9, 10, 11 and 12. Workers including farm workers.
+\item {\tt elite}, {\sc Hisclass} 1 and 2. Higher managers, professionals and higher white collar.
+\item {\tt middle}, {\sc Hisclass} 3, 4, 5, 6 and 8. Lower managers, farmers and lower white collar.
+\item {\tt worker}, {\sc Hisclass} 7, 9, 10, 11 and 12. Workers including farm workers.
 %%\item Lower skilled farm workers, HISCLASS 10 and 12, Lower and unskilled farm workers
 \end{enumerate}
 
@@ -364,7 +365,7 @@ barplot(t(yy)[3:1, ], col = c("red", "blue", "black"), las = 2, ylab = "Per cent
 
 \subsection{Cause of death}
 In the present study, we analyse mortality in the two most common disease
-groups in the ages we are investigating -- cardiovascular diseases and
+groups in the ages we are investigating---cardiovascular diseases and
 cancers. National compulsory reporting of cause of death was introduced in 1911, thus our analysis of the two disease groups starts from that year. Classification systems have however changed. Sweden did not join ICD until 1952, but the historical causes of death in the Poplink database have been coded according to the ICD10 system. In the present study, we have identified the codes relevant for cardiovascular diseases and cancers in the ICD 8, 9 and 10.
 
 The distribution of causes of death is shown in Figure~\ref{fig:causeskum}. Notice the high proportion of other causes in the first two periods. This category include cases with unknown or unspecific causes which has implications for the cause-specific analyses (see later discussion). The total dominance of our two disease groups is apparent.
@@ -475,13 +476,13 @@ during the studied period.
 % separately. We suggest a heterogeneity index in order to investigate a
 % possible homogenisation of mortality between social classes.
 
-The important explanatory variable, {\sc Hisclass}, is included in the
+The important explanatory variable, {\tt hisclass}, is included in the
 proportional hazards models as a \emph{stratification} variable. The main
-reason for this choice is that the effect of {\sc Hisclass} on survival is
+reason for this choice is that the effect of {\tt hisclass} on survival is
 non-proportional, that is, it varies with age. With the reduced data set
 and Poisson regression, this is simply achieved by introducing an
 interaction term between {\tt age} and {\tt hisclass}. Then, the main
-results are presented \emph{graphically}. Tables with results from the different models are presented at the end of the article, but are not commented on in detail. The comments on the results are primarily based on the figures and focuses on the central variable in our study -- {\sc Hisclass}. As can be seen from the tables, most variables in the model are significant at 5 per cent level.
+results are presented \emph{graphically}. Tables with results from the different models are presented at the end of the article, but are not commented on in detail. The comments on the results are primarily based on the figures and focuses on the central variable in our study---{\tt hisclass}. As can be seen from the tables, most variables in the model are significant at 5 per cent level.
 
 % There is some  lack of information in the higher
 % ages around 1960--1980 (see Figures~\ref{fig:hiscskumm} and \ref{fig:hiscskumw}), because that kind of 
@@ -489,7 +490,7 @@ results are presented \emph{graphically}. Tables with results from the different
 
 
 
-\section{The effect of Hisclass, 1851--1950, 1961--2013}
+\section{The effect of {\sc Hisclass}, 1851--1950, 1961--2013}
 
 \subsection{All causes of death}
 
@@ -590,7 +591,7 @@ par(oldpar)
 @
 
 From Table~\ref{tab:cumswtab} it is obvious that the statistical significance is strong.
-The most interesting feature is the three-way interaction with sex, period, and hisclass.
+The most interesting feature is the three-way interaction with {\tt sex}, {\tt period}, and {\tt hisclass}.
 
 <<cumswtab,results='asis',cap="Table">>=
 fitt <- glm(event ~ offset(log(exposure)) + urban + civst + age + sex * hisclass * period, 
@@ -954,8 +955,9 @@ nper <- length(labb)
 @
 
 As before, models are fitted separately for sex and each ten-year time period, from  1901 to
-2013. We stratify on HISCLASS and use the covariates urban/rural and {\tt   civst}. The cumulative
-hazards at the end of the time period (65 if 40--64, 90 if 65--89) are the
+2013. We stratify on {\tt hisclass} and include the covariates {\tt urban} (TRUE or FALSE) and 
+{\tt civst} (marital status). The cumulative
+hazards at the end of the age period (65 if 40--64, 90 if 65--89) are the
 main target in our analysis: These numbers are used in the process of graphically illustrating the development over time.
 
 %creating an \emph{heterogeneity index} (a better name is needed:
@@ -1218,7 +1220,7 @@ See Table~\ref{tab:41cumswoldtab}.
 
 \subsection{Cancer mortality}
 
-While we assume clear social differences in cardiovascular diseases, this is not necessarily an obvious assumption when it comes to cancers. Different forms of cancers have very different origin and different pathways to disease and death. The social pattern of higher mortality in classes with less power and accordingly less life chances are considered to be less clear when it comes to cancers. In our analyses, there is a risk that cancer mortality is under-estimated during the first half of the 20th century, illustrated by the already mentioned large proportion of unknown or vague causes at that time. We believe however that cancers were better diagnosed than cardiovascular deaths. This is supported by the stability in proportion of cancer deaths between the two first periods, 12,5 per cent 1901--1925 and 13,5 per cent for the period 1926--1950.
+While we assume clear social differences in cardiovascular diseases, this is not necessarily an obvious assumption when it comes to cancers. Different forms of cancers have very different origin and different pathways to disease and death. The social pattern of higher mortality in classes with less power and accordingly less life chances are considered to be less clear when it comes to cancers. In our analyses, there is a risk that cancer mortality is under-estimated during the first half of the 20th century, illustrated by the already mentioned large proportion of unknown or vague causes at that time. We believe however that cancers were better diagnosed than cardiovascular deaths. This is supported by the stability in proportion of cancer deaths between the two first periods, 12.5 per cent 1901--1925 and 13.5 per cent for the period 1926--1950.
 
 <<causes12>>=
 cvb <- vb0
@@ -1327,7 +1329,7 @@ xtable(dr,label = "tab:12cumswtab", caption = "Anova, cancer deaths, 40-64.")
 
 See Table~\ref{tab:12cumswtab}.
 
-Figure~\ref{fig:12cumsw} shows relative mortality levels according to HISCLASS during the different studied periods for the age group 40--64. Cancer mortality among the élite women was lower than that for the other classes during the complete studied period, while working class women had the highest levels during almost all periods. Consequently, we find a more consistent advantage of higher class in cancers compared to cardiovascular diseases for women. We do however not find the same pattern for men. It is difficult to identify any general features of 20th century male cancer mortality when it comes to social differences. 
+Figure~\ref{fig:12cumsw} shows relative mortality levels according to {\sc Hisclass} during the different studied periods for the age group 40--64. Cancer mortality among the élite women was lower than that for the other classes during the complete studied period, while working class women had the highest levels during almost all periods. Consequently, we find a more consistent advantage of higher class in cancers compared to cardiovascular diseases for women. We do however not find the same pattern for men. It is difficult to identify any general features of 20th century male cancer mortality when it comes to social differences. 
 
 %% HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 
@@ -1630,7 +1632,7 @@ ltx(fit, dr = dr, caption = "Effect of education on cardiovascular mortality in 
     label = "tab:tableeducheart", digits = 4)
 @
 
-See Table~\ref{tab:tableeduc}.
+See Table~\ref{tab:tableeducheart}.
 
 %\subsection{Cancer death}
 
@@ -1678,7 +1680,7 @@ ltx(fit, dr = dr, caption = "Effect of education on cancer mortality in ages 40-
     label = "tab:tableeduccancer", digits = 4)
 @
 
-See Table~\ref{tab:tableeduc}.
+See Table~\ref{tab:tableeduccancer}.
 
 \section{The effect of Income, 1986--2005}
 
@@ -1782,10 +1784,10 @@ dr <- drop1(fit, test = "Chisq")
 
 <<tableincprheart,results='asis'>>=
 ltx(fit, dr = dr, caption = "Effect of income on cardiovascular mortality in ages 40-89, 1986-2005.", 
-    label = "tab:tableincpr", digits = 4)
+    label = "tab:tableincprheart", digits = 4)
 @
 
-See Table~\ref{tab:tableincpr}.
+See Table~\ref{tab:tableincprheart} for the effect of income on cardiovascular death.
 
 %\subsection{Cancer death}
 
@@ -1835,7 +1837,7 @@ ltx(fit, dr = dr, caption = "Effect of income on cancer mortality in ages 40-89,
     label = "tab:tableincprcancer", digits = 4)
 @
 
-See Table~\ref{tab:tableincpr}.
+See Table~\ref{tab:tableincprcancer} for the income effect on cancer death.
 
 
 \section{Discussion}
@@ -1843,7 +1845,8 @@ See Table~\ref{tab:tableincpr}.
 
 The authors of this paper have scrutinised different aspects of the social
 pattern of mortality in historical northern Sweden for some time, focusing on
-different regions, different age groups and different time periods \citep{edv92, edv04, edli11, edbr12}. When it comes to infant and child mortality pre-- and early--transitional time, the expected socio-economic differences was often but not always confirmed \citep{edv92, edv04}, something that has been found in other studies as well \citep{bredro02, bube01, mol17}. Studies based on microdata on the adult population in history have been rare, mainly due to lack of adequate data. The results from such studies show other patterns than that of infant and child mortality. The expected social gradient in
+different regions, different age groups and different time periods \citep{edv92, edv04, edli11, edbr12}. When it comes to infant and child mortality pre---and 
+early---transitional time, the expected socio-economic differences was often but not always confirmed \citep{edv92, edv04}, something that has been found in other studies as well \citep{bredro02, bube01, mol17}. Studies based on microdata on the adult population in history have been rare, mainly due to lack of adequate data. The results from such studies show other patterns than that of infant and child mortality. The expected social gradient in
 survival, meaning that people from higher social classes always had an
 advantage, was in many cases, particularly among adult men, not found
 despite the well-documented socio-economic differences \citep{edli11, edbr12}. There were however large differences between men and women and for different age groups. These earlier studies have suggested that distinct and consistent differences to the advantage of higher classes developed somewhere during and probably quite early in the 20th century \citep{bevp11}. Until now we have however not been able to investigate the continuous development on mortality differences among the adult and elderly
@@ -1869,7 +1872,7 @@ resources, capacities and power. Available data, for example from the 1930 censu
 
 
 In this paper we have analysed social inequality in health from the
-perspective of social classes using HISCLASS. However, there are
+perspective of social classes using {\sc Hisclass}. However, there are
 alternative ways to analyse social inequality, and we cannot exclude that
 such analyses gives other results or at least would modify the image
 presented here. In many modern studies categorisations based on income, wealth
@@ -1966,10 +1969,12 @@ inequality and health is worth further studies.
 
 This work was undertaken within the Centre for Demographic and Ageing
 Research (CEDAR) at Umeå University and with support from the Swedish
-Research Council (VR) (grant no. 421-2012-892) and the project Old age, health and inequality: mortality from a life course perspective in Sweden 1986-2009, financed by the Swedish Research Council (grant no 421-2012-892. We thank Demographic Data
+Research Council (VR) (grant No. 421-2012-892) and the project 
+\emph{Old age, health, and inequality: Mortality from a life course perspective in Sweden 1986--2009}, 
+ financed by the Swedish Research Council (grant No. 421-2012-892). We thank The Demographic Data
 Base for giving us access to data and Jonas Helgertz, Department of
 Economic History, Lund University, for providing us with scripts for
-creating HISCLASS from Swedish Census data.
+creating {\sc Hisclass} from Swedish Census data.
 
 
 \bibliography{mybib}
