@@ -1967,14 +1967,7 @@ inequality and health is worth further studies.
 
 \section{Acknowledgements}
 
-This work was undertaken within the Centre for Demographic and Ageing
-Research (CEDAR) at Umeå University and with support from the Swedish
-Research Council (VR) (grant No. 421-2012-892) and the project 
-\emph{Old age, health, and inequality: Mortality from a life course perspective in Sweden 1986--2009}, 
- financed by the Swedish Research Council (grant No. 421-2012-892). We thank The Demographic Data
-Base for giving us access to data and Jonas Helgertz, Department of
-Economic History, Lund University, for providing us with scripts for
-creating {\sc Hisclass} from Swedish Census data.
+This work was undertaken within the research program \emph{Ageing and Living Conditions} at the Centre for Demographic and Ageing Research (CEDAR) at Umeå University, financed by the Swedish Research Council (grant No 349-2008-6592) and the project \emph{Old age, health and inequality: Mortality from a life course perspective in Sweden 1986--2009}, financed by the Swedish Research Council (grant No 421-2012-892). We thank the Demographic Data Base, Umeå University, for giving us access to data and Jonas Helgertz, Department of Economic History, Lund University, for providing us with scripts for creating {\sc Hisclass} from Swedish Census data.
 
 
 \bibliography{mybib}
