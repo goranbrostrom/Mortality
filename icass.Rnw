@@ -5,7 +5,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
-\usepackage{float}
+%\usepackage{float}
 
 \usepackage{epstopdf}
 \usepackage{url}
@@ -23,6 +23,11 @@
 %\usepackage[tablesonly]{endfloat}
 
 \renewcommand{\efloatseparator}{\vfill}
+
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\topfraction}{0.8}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\floatpagefraction}{0.75}
 
 % patch \efloat@iwrite to use \protected@write
 \makeatletter
