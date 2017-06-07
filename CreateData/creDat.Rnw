@@ -28,11 +28,9 @@ Centre for Demographic and Ageing Research ({\sc Cedar})\\
 Umeå University, Umeå, Sweden}
 
 \title{Creating Data for "Social inequality in mortality among
-  adults and elderly in northern Sweden 1850--2013"\footnote{Paper presented
-    at CEDAR, 27 April 2017,
-    Version 2017-03-28.}}
+  adults and elderly in northern Sweden 1850--2013"\footnote{Version 2017-05-27.}}
 
-\date{March 28, 2017}
+\date{\today}
 
 \begin{document}
 
