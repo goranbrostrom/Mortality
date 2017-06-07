@@ -19,13 +19,14 @@
 \newcommand{\R}{{\bf R}}
 \newcommand{\code}[1]{{\tt #1}}
 
-\title{Social inequality in mortality among adults and elderly in
-  northern  Sweden 1851--2013\footnote{Seminar June 10, 2017, ICASS, Umeå}
+\title{Long--term perspectives of social inequality in mortality among adults and elderly in
+  northern  Sweden 1851--2013\footnote{Session "Health and Mortality in Arctic Populations" at The Ninth International Congress on Arctic Social Sciences (ICASS IX) June 10, 2017, Umeå}
 }
 
 \date{\today}
 
-\author{Sören Edvinsson and Göran Broström}
+\author{Sören Edvinsson and Göran Broström \\
+Centre for Ageing and Demographic Research, Umeå University}
 
 \begin{document}
 
@@ -68,30 +69,47 @@ vb0Tab$age <- factor(vb0Tab$age)
 @
 
 
-\begin{frame}{Questions}
+\begin{frame}{Aims}
 
-\begin{enumerate}
-\item Has \emp{inequality in mortality} between \emp{social classes}
-  increased in the adult and elderly
-  population?
+To investigate the association between social class and mortality among adults and elderly from the 19th century to the present and how it is connected to socio-economic inequality in society.
+This is analysed according to 
+\begin{itemize}
+\item gender
+\item age group (working age vs retired)
+\item cause of death (cardiovascular, cancer)
+\item (education 1990--2013)
+\item (income 1986-2005)
+
+% \item Has \emp{inequality in mortality} between \emp{social classes}
+%   increased in the adult and elderly
+%   population?
 
 %%\item Is the mortality transition initiated by a certain social class?
 
-\item Are there any \emp{gender differences} in the effect of social position?
+% \item Are there any \emp{gender differences} in the effect of social position?
+% 
+% \item Is social position \emp{equally important} among the \emp{retired} population as
+%   for those in \emp{working age}?
+% \item Is there a difference between classes in mortality from
+%   \emp{cardiovascular} diseases and \emp{cancers} respectively?
+% \item Are there large differences in survival depending on level of
+%   \emp{education} and \emp{income} categories?
 
-\item Is social position \emp{equally important} among the \emp{retired} population as
-  for those in \emp{working age}?
-\item Is there a difference between classes in mortality from
-  \emp{cardiovascular} diseases and \emp{cancers} respectively?
-\item Are there large differences in survival depending on level of
-  \emp{education} and \emp{income} categories?
-
-\end{enumerate}
-
+\end{itemize}
 
 \end{frame}
 
-\begin{frame}{Top incomes}
+\begin{frame}{Main results}
+
+\begin{itemize}
+\item A consistent mortality difference according to social class appears surprisingly late in our regions and has no clear connection to the development of income inequality.
+\item However, there is a strong gender difference in the development of social inequality.
+\item We argue that health-related behavior is an important aspect in historical as well as present-day mortality, and that such behaviours are based on strong gender and class expectations.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Economic inequality}
 
 \includegraphics[height=8cm]{myfigs/Top_incomes.jpg}
 
@@ -106,14 +124,14 @@ vb0Tab$age <- factor(vb0Tab$age)
 \item \emp{Modeling} considerations
 \item \emp{Analysis}
 \item \emp{Results}
-\item \emp{Alternative} Results
+\item \emp{Implications} of the results
 \end{enumerate}
 
 \end{center}
 
 \end{frame}
 
-\begin{frame}{Here!}
+\begin{frame}{Two regions in Västerbotten}
 
 \begin{columns}
 
@@ -125,11 +143,14 @@ vb0Tab$age <- factor(vb0Tab$age)
 
 \begin{column}{0.5\textwidth}
 
-Skellefteå:
 
+Remote area in northern Sweden, dominated by agriculture until well into the 20th century. 19th century communications were rudimentary.
+
+
+Skellefteå:
 \begin{itemize}
 
-\item Small town, heavy industry in the nineteenth century.
+\item Small town, industrialization of the region during the 20th century.
 
 \end{itemize}
 
@@ -137,17 +158,17 @@ Umeå:
 
 \begin{itemize}
 
-\item Not so small town, older. Center for administration, education, and military.
+\item Center for administration, education, and military. University from 1965
 
 \end{itemize}
 
-Rural areas:
-
-\begin{itemize}
-
-\item Very similar: Small farms dominating.
-
-\end{itemize}
+% Rural areas:
+% 
+% \begin{itemize}
+% 
+% \item Very similar: Small farms dominating.
+% 
+% \end{itemize}
 
 \end{column}
 \end{columns}
@@ -231,18 +252,18 @@ text(1985.2, 50, paste(n.d, "deaths"))
 \item[death date] By day (\emp{Socialstyrelsen})
 \item[cause of death] from \emp{Socialstyrelsen}
 \item[parish] Urban/Rural
-\item[\sc Hisclass] elite, middle, worker.
+\item[Social class] elite, middle, worker. Household definition 1851--1950. Individual definition 1960--2013
 \item[income] 1990--2005, grouped by quartiles.
-\item[education] 1990--2005, seven categories.
+\item[education] 1990--2005, three categories.
 \item[period]  1851--1875, \ldots,  2008--2013 (10 periods).
-\item[cohort] 1761--1771, \ldots, 1971--1974 (22 birth cohorts).
+%\item[cohort] 1761--1771, \ldots, 1971--1974 (22 birth cohorts).
 
 \end{description}
 
 \end{frame}
 
 
-\begin{frame}{\sc Hisclass}
+\begin{frame}{\sc Social class}
 
 \begin{enumerate}
 \item \emp{\tt elite}, HISCLASS 1 and 2. Higher managers and professionals.
@@ -253,10 +274,10 @@ text(1985.2, 50, paste(n.d, "deaths"))
 
 \end{frame}
 
-\begin{frame}{No proportional hazards (wrt \sc Hisclass)!}
+\begin{frame}{No proportional hazards (wrt class)!}
 
 \begin{itemize}
-\item Fit each {\sc Hisclass} \emp{separately}, for each time period.
+\item Fit each social class \emp{separately}, for each time period.
 \item Use the \emp{cumulative hazard} at 65 (or 90) for comparison.
 \end{itemize}
 
@@ -265,7 +286,7 @@ So, we fit separate PH models for each combination of
 \begin{itemize}
   \item \emp{\tt sex}
   \item \emp{\tt period}: 1851--75, 1876--1900, 1901--10, etc.
-  \item \emp{\tt hisclass}
+  \item \emp{\tt class}
   \item \emp{\tt age group}: 40--64, 65--89.
   \item \emp{\tt cause of death}
 \end{itemize}
@@ -308,7 +329,7 @@ par(oldpar)
 \begin{frame}{Relative differences, ages 40--64 and 65--89}
 
   %\begin{center}
-\includegraphics[height = 7.5cm]{figs/slide-cumswstand-1}\includegraphics[height=7.5cm]{figs/slide-cumswold-1}
+\includegraphics[height=7.5cm,width=5.4cm]{figs/slide-cumswstand-1}\includegraphics[height=7.5cm,width=5.4cm]{figs/slide-cumswold-1}
    %\end{center}
 \end{frame}
 
@@ -398,23 +419,53 @@ par(oldpar)
 
 %%% Stop here!
 
-
-\begin{frame}{Conclusion}
+\begin{frame}{Summarizing the results}
 
 %\scriptsize
 
 \begin{itemize}
 \item \emp{Improved} survival characterised all {\sc Hisclass}es.
-\item There are \emp{gender differences} in the social pattern
-\item No difference in the social pattern in the two studied age groups.
+\item \emp{Late} appearance of the “modern” pattern of social differences in mortality among men
+\item Distinct \emp{gender} differences in the development.
 \item The \emp{upper} class(es) gradually take over as the \emp{most healthy} group.
-\item \emp{Education} and \emp{income} are the \emp{most important}
-  variables during late
-  time period.
+\item No \emp{qualitative} but partly \emp{quantitative} differences between those in working age compared to the retired population.
+\item \emp{Educational} and \emp{income} differences during the last decades conform to what we found for class differences.
+\item In the long run, no clear connection between income inequality and social differences in mortality.
 \end{itemize}
 
 
 \end{frame}
+
+\begin{frame}{Some implications}
+
+%\scriptsize
+
+\begin{itemize}
+\item The development of social health inequalities and the role of \emp{health-related behavior} in different phases of the transition (Antonovsky and Omran).
+\item Inequality as a \emp{contextual} health risk (Wilkinson/Pickett).
+\item The role of \emp{living standard} for mortality decline (McKeown).
+\item \emp{Gender} and mortality (Watkins, Mckinnon, Janssens).
+\item Social conditions as \emp{fundamental causes of death} (Link/Phelan).
+
+\end{itemize}
+
+
+\end{frame}
+
+%\begin{frame}{Conclusion}
+
+%\scriptsize
+
+% \begin{itemize}
+% \item \emp{Improved} survival characterised all {\sc Hisclass}es.
+% \item There are \emp{gender differences} in the social pattern
+% \item No difference in the social pattern in the two studied age groups.
+% \item The \emp{upper} class(es) gradually take over as the \emp{most healthy} group.
+% \item \emp{Educational} and \emp{income} income differences during the last decades conform with what we found for class differences.
+% \end{itemize}
+
+
+%\end{frame}
 
 
 \end{document}
