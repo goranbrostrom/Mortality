@@ -252,10 +252,10 @@ text(1985.2, 50, paste(n.d, "deaths"))
 \item[death date] By day (\emp{Socialstyrelsen})
 \item[cause of death] from \emp{Socialstyrelsen}
 \item[parish] Urban/Rural
-\item[Social class] elite, middle, worker. Household definition 1851--1950. Individual definition 1960--2013
+\item[Social class] Elite, middle, worker. Household definition 1851--1950. Individual definition 1960--2013
 \item[income] 1990--2005, grouped by quartiles.
 \item[education] 1990--2005, three categories.
-\item[period]  1851--1875, \ldots,  2008--2013 (10 periods).
+\item[period]  1851--1875, \ldots,  2008--2013 (10 periods). No results presented for women 1961-70, 1971-80 due to missing information on class.
 %\item[cohort] 1761--1771, \ldots, 1971--1974 (22 birth cohorts).
 
 \end{description}
@@ -424,7 +424,7 @@ par(oldpar)
 %\scriptsize
 
 \begin{itemize}
-\item \emp{Improved} survival characterised all {\sc Hisclass}es.
+\item \emp{Improved} survival characterised all social classes.
 \item \emp{Late} appearance of the “modern” pattern of social differences in mortality among men
 \item Distinct \emp{gender} differences in the development.
 \item The \emp{upper} class(es) gradually take over as the \emp{most healthy} group.
@@ -441,8 +441,9 @@ par(oldpar)
 %\scriptsize
 
 \begin{itemize}
-\item The development of social health inequalities and the role of \emp{health-related behavior} in different phases of the transition (Antonovsky and Omran).
+\item The \emp{development} of social health inequalities and the role of \emp{health-related behavior} in different phases of the transition (Antonovsky and Omran).
 \item Inequality as a \emp{contextual} health risk (Wilkinson/Pickett).
+\item \emp{Status syndrome} (Marmot)
 \item The role of \emp{living standard} for mortality decline (McKeown).
 \item \emp{Gender} and mortality (Watkins, Mckinnon, Janssens).
 \item Social conditions as \emp{fundamental causes of death} (Link/Phelan).
