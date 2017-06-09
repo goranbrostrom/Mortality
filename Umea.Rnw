@@ -20,10 +20,10 @@
 \newcommand{\code}[1]{{\tt #1}}
 
 \title{Long--term perspectives of social inequality in mortality among adults and elderly in
-  northern  Sweden 1851--2013\footnote{Session "Health and Mortality in Arctic Populations" at The Ninth International Congress on Arctic Social Sciences (ICASS IX) June 10, 2017, Umeå}
+  northern  Sweden 1851--2013\footnote{Session "Health and Mortality in Arctic Populations" at The Ninth International Congress on Arctic Social Sciences (ICASS IX) June 11, 2017, Umeå}
 }
 
-\date{\today}
+\date{June 11, 2017}
 
 \author{Sören Edvinsson and Göran Broström \\
 Centre for Ageing and Demographic Research, Umeå University}
@@ -76,9 +76,9 @@ This is analysed according to
 \begin{itemize}
 \item gender
 \item age group (working age vs retired)
-\item cause of death (cardiovascular, cancer)
-\item (education 1990--2013)
-\item (income 1986-2005)
+\item *cause of death (cardiovascular, cancer)
+\item *education 1990--2013
+\item *income 1986-2005
 
 % \item Has \emp{inequality in mortality} between \emp{social classes}
 %   increased in the adult and elderly
@@ -109,12 +109,6 @@ This is analysed according to
 
 \end{frame}
 
-\begin{frame}{Economic inequality}
-
-\includegraphics[height=8cm]{myfigs/Top_incomes.jpg}
-
-\end{frame}
-
 \begin{frame}{Outline}
 
 \begin{center}
@@ -130,6 +124,14 @@ This is analysed according to
 \end{center}
 
 \end{frame}
+
+\begin{frame}{Economic inequality}
+
+\includegraphics[height=8cm]{myfigs/Top_incomes.jpg}
+
+\end{frame}
+
+
 
 \begin{frame}{Two regions in Västerbotten}
 
@@ -247,15 +249,16 @@ text(1985.2, 50, paste(n.d, "deaths"))
 
 \begin{description}
 
-\item[sex]
-\item[birth date] By quarter (15 Feb, May, Aug, Nov)
-\item[death date] By day (\emp{Socialstyrelsen})
-\item[cause of death] from \emp{Socialstyrelsen}
-\item[parish] Urban/Rural
+\item[Sex]
+\item[Marital status]
+\item[Birth date] By quarter (15 Feb, May, Aug, Nov)
+\item[Death date] By day (\emp{Socialstyrelsen})
+\item[Cause of death] from \emp{Socialstyrelsen}
+\item[Parish] Urban/Rural
 \item[Social class] Elite, middle, worker. Household definition 1851--1950. Individual definition 1960--2013
-\item[income] 1990--2005, grouped by quartiles.
-\item[education] 1990--2005, three categories.
-\item[period]  1851--1875, \ldots,  2008--2013 (10 periods). No results presented for women 1961-70, 1971-80 due to missing information on class.
+\item[Income] 1990--2005, grouped by quartiles.
+\item[Education] 1990--2005, three categories.
+\item[Period]  1851--1875, \ldots,  2008--2013 (10 periods). No results presented for women 1961-70, 1971-80 due to missing information on class.
 %\item[cohort] 1761--1771, \ldots, 1971--1974 (22 birth cohorts).
 
 \end{description}
@@ -288,7 +291,7 @@ So, we fit separate PH models for each combination of
   \item \emp{\tt period}: 1851--75, 1876--1900, 1901--10, etc.
   \item \emp{\tt class}
   \item \emp{\tt age group}: 40--64, 65--89.
-  \item \emp{\tt cause of death}
+  \item \emp{\tt *cause of death}
 \end{itemize}
 \end{frame}
 
