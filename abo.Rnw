@@ -77,9 +77,9 @@ This is analysed according to
 \begin{itemize}
 \item gender
 \item age group (working age vs retired)
-\item cause of death (cardiovascular, cancer)
-\item (education 1990--2013)
-\item (income 1986-2005)
+\item *cause of death (cardiovascular, cancer)
+\item *education 1990--2013)
+\item *income 1986-2005)
 
 % \item Has \emp{inequality in mortality} between \emp{social classes}
 %   increased in the adult and elderly
@@ -110,7 +110,7 @@ This is analysed according to
 
 \end{frame}
 
-\begin{frame}{Economic inequality}
+\begin{frame}{Economic inequality (figure from Roine and Waldenström 2008)}
 
 \includegraphics[height=8cm]{myfigs/Top_incomes.jpg}
 
@@ -145,13 +145,13 @@ This is analysed according to
 \begin{column}{0.5\textwidth}
 
 
-Remote area in northern Sweden, dominated by agriculture until well into the 20th century. 19th century communications were rudimentary.
+Remote area in northern Sweden, dominated by agriculture until well into the 20th century.
 
 
 Skellefteå:
 \begin{itemize}
 
-\item Small town, industrialization of the region during the 20th century.
+\item Small town with rural hinterland, industrialization of the region during the 20th century.
 
 \end{itemize}
 
@@ -210,6 +210,7 @@ Umeå:
 \end{frame}
 
 \begin{frame}{The sampling frame}
+{Two separate datasets}
 
 <<lexis2>>=
 plot(c(1851, 1851, 1951, 1951, 1851), c(40, 90, 90, 40, 40),
@@ -248,15 +249,17 @@ text(1985.2, 50, paste(n.d, "deaths"))
 
 \begin{description}
 
-\item[sex]
-\item[birth date] By quarter (15 Feb, May, Aug, Nov)
-\item[death date] By day (\emp{Socialstyrelsen})
-\item[cause of death] from \emp{Socialstyrelsen}
-\item[parish] Urban/Rural
+\item[Sex]
+\item[Marital status]
+\item[Birth date] By quarter (15 Feb, May, Aug, Nov)
+\item[Death date] By day (\emp{Socialstyrelsen}, \emp{Poplink})
+\item[*Death cause] from \emp{Socialstyrelsen} and \emp{Poplink}. Adapted to ICD10
+\item[Parish] Urban/Rural
 \item[Social class] Elite, middle, worker. Household definition 1851--1950. Individual definition 1960--2013
-\item[income] 1990--2005, grouped by quartiles.
-\item[education] 1990--2005, three categories.
-\item[period]  1851--1875, \ldots,  2008--2013 (10 periods). No results presented for women 1961-70, 1971-80 due to missing information on class.
+\item[*Income] 1986--2005, grouped by quartiles.
+\item[*Education] 1990--2013, three categories.
+\item[Period]  1851--1875, \ldots,  2008--2013 (10 periods). No results presented for women 1961-70, 1971-80 due to missing information on class.
+\item[Age group] Separate analyses for working active (40-65) vs retired (65-89) population
 %\item[cohort] 1761--1771, \ldots, 1971--1974 (22 birth cohorts).
 
 \end{description}
@@ -335,87 +338,87 @@ par(oldpar)
 \end{frame}
 
 
-\begin{frame}[fragile]{Education 1990--2013}
+% \begin{frame}[fragile]{Education 1990--2013}
+% 
+% <<educ>>=
+% 
+% educ <- lisaold[!(lisaold$period %in% c("1986-1987", "1988-1989")), ]
+% educ$period <- factor(educ$period)
+% educ <- educ[!is.na(educ$educ), ]
+% levels(educ$educ) <- c("low", "low", "middle", "middle", "middle", "high", "high")
+% educ$educ <- relevel(educ$educ, ref = "middle")
+% educ$civst <- relevel(educ$civst, ref = "married")
+% fitm <- coxph(Surv(enter, exit, event) ~ strata(educ) + civst + urban,
+%              data = educ[educ$sex == "male", ])
+% fitf <- coxph(Surv(enter, exit, event) ~ strata(educ) + civst + urban,
+%              data = educ[educ$sex == "female", ])
+% cols <- c("darkgreen", "red", "black")
+% @
+% 
+% <<ploteduc>>=
+% oldpar <- par(mfrow = c(1, 2))
+% 
+% plot(survfit(fitm, start.time = 40), mark.time = FALSE, main = "Men",
+%      col = cols, lwd = 1.5, axes = FALSE, xlab = "Age", ylab = "Surviving fraction")
+% axis(1)
+% axis(2, at = c(0, 0.5, 1.0), las = 1)
+% abline(h = 0.5, lty = 3)
+% box()
+% legend("bottomleft", legend = levels(educ$educ), col = cols, lty = 1, lwd = 1.5)
+% 
+% plot(survfit(fitf, start.time = 40), mark.time = FALSE, main = "Women",
+%      col = cols, lwd = 1.5, axes = FALSE, xlab = "Age", ylab = "Surviving fraction")
+% axis(1)
+% axis(2, at = c(0, 0.5, 1.0), las = 1)
+% abline(h = 0.5, lty = 3)
+% box()
+% legend("bottomleft", legend = levels(educ$educ), col = cols, lty = 1, lwd = 1.5)
+% 
+% par(oldpar)
+% @
+% 
+% \end{frame}
 
-<<educ>>=
-
-educ <- lisaold[!(lisaold$period %in% c("1986-1987", "1988-1989")), ]
-educ$period <- factor(educ$period)
-educ <- educ[!is.na(educ$educ), ]
-levels(educ$educ) <- c("low", "low", "middle", "middle", "middle", "high", "high")
-educ$educ <- relevel(educ$educ, ref = "middle")
-educ$civst <- relevel(educ$civst, ref = "married")
-fitm <- coxph(Surv(enter, exit, event) ~ strata(educ) + civst + urban,
-             data = educ[educ$sex == "male", ])
-fitf <- coxph(Surv(enter, exit, event) ~ strata(educ) + civst + urban,
-             data = educ[educ$sex == "female", ])
-cols <- c("darkgreen", "red", "black")
-@
-
-<<ploteduc>>=
-oldpar <- par(mfrow = c(1, 2))
-
-plot(survfit(fitm, start.time = 40), mark.time = FALSE, main = "Men",
-     col = cols, lwd = 1.5, axes = FALSE, xlab = "Age", ylab = "Surviving fraction")
-axis(1)
-axis(2, at = c(0, 0.5, 1.0), las = 1)
-abline(h = 0.5, lty = 3)
-box()
-legend("bottomleft", legend = levels(educ$educ), col = cols, lty = 1, lwd = 1.5)
-
-plot(survfit(fitf, start.time = 40), mark.time = FALSE, main = "Women",
-     col = cols, lwd = 1.5, axes = FALSE, xlab = "Age", ylab = "Surviving fraction")
-axis(1)
-axis(2, at = c(0, 0.5, 1.0), las = 1)
-abline(h = 0.5, lty = 3)
-box()
-legend("bottomleft", legend = levels(educ$educ), col = cols, lty = 1, lwd = 1.5)
-
-par(oldpar)
-@
-
-\end{frame}
-
-\begin{frame}{Income 1986--2005}
-
-<<femeduc>>=
-income <- lisaold[!is.na(lisaold$income), ]
-income$period <- factor(income$period)
-##income <- income[!is.na(income$income), ]
-##levels(income$income) <- c("low", "low", "middle", "middle", "middle", "high", "high")
-income$income <- relevel(income$income, ref = "low")
-income$civst <- relevel(income$civst, ref = "married")
-fitm <- coxph(Surv(enter, exit, event) ~ strata(income) + civst + urban,
-             data = income[income$sex == "male", ])
-fitf <- coxph(Surv(enter, exit, event) ~ strata(income) + civst + urban,
-             data = income[income$sex == "female", ])
-cols <- c("darkgreen", "red", "blue", "black")
-
-@
-
-<<plotincome>>=
-oldpar <- par(mfrow = c(1, 2))
-
-plot(survfit(fitm, start.time = 40), mark.time = FALSE, main = "Men",
-     col = cols, lwd = 1.5, axes = FALSE, xlab = "Age", ylab = "Surviving fraction")
-axis(1)
-axis(2, at = c(0, 0.5, 1.0), las = 1)
-abline(h = 0.5, lty = 3)
-box()
-legend("bottomleft", legend = levels(income$income), col = cols, lty = 1, lwd = 1.5)
-
-plot(survfit(fitf, start.time = 40), mark.time = FALSE, main = "Women",
-     col = cols, lwd = 1.5, axes = FALSE, xlab = "Age", ylab = "Surviving fraction")
-axis(1)
-axis(2, at = c(0, 0.5, 1.0), las = 1)
-abline(h = 0.5, lty = 3)
-box()
-legend("bottomleft", legend = levels(income$income), col = cols, lty = 1, lwd = 1.5)
-
-par(oldpar)
-@
-
-\end{frame}
+% \begin{frame}{Income 1986--2005}
+% 
+% <<femeduc>>=
+% income <- lisaold[!is.na(lisaold$income), ]
+% income$period <- factor(income$period)
+% ##income <- income[!is.na(income$income), ]
+% ##levels(income$income) <- c("low", "low", "middle", "middle", "middle", "high", "high")
+% income$income <- relevel(income$income, ref = "low")
+% income$civst <- relevel(income$civst, ref = "married")
+% fitm <- coxph(Surv(enter, exit, event) ~ strata(income) + civst + urban,
+%              data = income[income$sex == "male", ])
+% fitf <- coxph(Surv(enter, exit, event) ~ strata(income) + civst + urban,
+%              data = income[income$sex == "female", ])
+% cols <- c("darkgreen", "red", "blue", "black")
+% 
+% @
+% 
+% <<plotincome>>=
+% oldpar <- par(mfrow = c(1, 2))
+% 
+% plot(survfit(fitm, start.time = 40), mark.time = FALSE, main = "Men",
+%      col = cols, lwd = 1.5, axes = FALSE, xlab = "Age", ylab = "Surviving fraction")
+% axis(1)
+% axis(2, at = c(0, 0.5, 1.0), las = 1)
+% abline(h = 0.5, lty = 3)
+% box()
+% legend("bottomleft", legend = levels(income$income), col = cols, lty = 1, lwd = 1.5)
+% 
+% plot(survfit(fitf, start.time = 40), mark.time = FALSE, main = "Women",
+%      col = cols, lwd = 1.5, axes = FALSE, xlab = "Age", ylab = "Surviving fraction")
+% axis(1)
+% axis(2, at = c(0, 0.5, 1.0), las = 1)
+% abline(h = 0.5, lty = 3)
+% box()
+% legend("bottomleft", legend = levels(income$income), col = cols, lty = 1, lwd = 1.5)
+% 
+% par(oldpar)
+% @
+% 
+% \end{frame}
 
 
 %%% Stop here!
@@ -429,9 +432,10 @@ par(oldpar)
 \item \emp{Late} appearance of the “modern” pattern of social differences in mortality among men
 \item Distinct \emp{gender} differences in the development.
 \item The \emp{upper} class(es) gradually take over as the \emp{most healthy} group.
-\item No \emp{qualitative} but partly \emp{quantitative} differences between those in working age compared to the retired population.
-\item \emp{Educational} and \emp{income} differences during the last decades conform to what we found for class differences.
-\item In the long run, no clear connection between income inequality and social differences in mortality.
+% \item No \emp{qualitative} but partly \emp{quantitative} differences between those in working age compared to the retired population.
+% \item \emp{Educational} and \emp{income} differences during the last decades conform to what we found for class differences.
+\item In the long run, no clear connection in the development of income inequality and social differences in mortality.
+\item This suggests an important role of gender and class related expectations on health behaviour
 \end{itemize}
 
 
