@@ -19,8 +19,10 @@
 \newcommand{\R}{{\bf R}}
 \newcommand{\code}[1]{{\tt #1}}
 
-\title{Increasing the mortality gap? Social inequality in mortality among elderly and adults in
-  Northern  Sweden 1851--2013\footnote{Session "Health, morbidity, and mortality" at the Nordic Demographic Symposium 14--16 June 2017, Turku, Finland}
+\title{Increasing the mortality gap? Social inequality in mortality among 
+elderly and adults in Northern  Sweden 1851--2013\footnote{Session "Health, 
+morbidity, and mortality" at the Nordic Demographic Symposium 14--16 June 2017, 
+Turku, Finland}
 }
 
 \date{\today}
