@@ -1,0 +1,128 @@
+---
+title: "Data issues"
+author: "Göran Broström and Sören Edvinsson"
+date: "28 juni 2017"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 2
+    toc_float: true
+    number_sections: true
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Inledning
+
+**Sören:** Jag har försökt identifiera vilka skillnader som finns mellan våra 
+analyser baserade på Poplink respektive Linné. Om du kommer på några fler kan du 
+meddela mig det. Vi kan behöva fundera över vad dessa skillnader innebär för 
+analysen, och om det finns några risker för säkerheten i våra resultat. Om det 
+skulle vara så, kan man behöva överväga sätt att hantera det, alternativt 
+diskutera dessa begränsningar i artikeln. Jag tror inte att det ska ha någon 
+betydelse, men om något går att göra bättre med befintliga data och utan stora 
+extrainsatser kan man förstås överväga förändringar. (Idealt skulle vi göra helt 
+nytt dataset från Poplink där vi använder HISCO-koder direkt och låta SCB länka 
+till data från 1960 och framåt). Hur som helst bör vi fundera på konsekvenserna 
+av skillnader och också vad som är nödvändigt att redogöra för i artikeln.
+
+**Göran:** *Så länge vi noggrant och korrekt beskriver skillnaderna så ser jag 
+inga risker för säkerheten i våra resultat.* 
+
+# Definition av socialklass
+
+**Sören:** Definition av social klass: I Poplink är social klass hushållsbaserat 
+(bygger på hushållsföreståndarens, alltså i allmänhet mannens, yrke) medan Linné 
+är individbaserat. Orsaken är dels källmässiga, att vi i praktiken inte kommer 
+åt alla individers yrken i Poplink och att det finns problem att definiera 
+hushåll i Linné (samboförhållanden osv), samt att arbetsmarknadsförhållanden 
+förändrats så att kvinnors arbetslivsdeltagande har kraftigt ökat. Det kan vara 
+motiverat att betrakta kvinnor som självständiga på det sättet. Om vi skulle 
+göra det hushållsbaserat, skulle vi också behöva hantera en 
+klassificeringsproblematik, är det mannens yrke som ska styra, eller kan det 
+lika gärna vara kvinnans, alternativt att man tar det som betraktas högst, eller 
+att man gör någon sammanjämkning. De skilda principerna gör att alla i samma 
+hushåll tillhör samma sociala klass i Poplink, medan de kan tillhöra olika i 
+Linné. Det kommer inte att ha någon betydelse för analysen av sociala skillnader 
+bland män, men det kan ha vissa effekter för kvinnor. Vi kan säkert ändå 
+argumentera att resultaten inte borde påverkas. Män och kvinnor kommer tämligen 
+ofta att tillhöra samma sociala klass (skulle kanske behövas referens för 
+detta). Det som gör skillnad är att många kvinnor kommer att bli odefinierade 
+socialt, men detta finner vi framförallt under 1960- och 70-talet, och vi väljer 
+därför att inte presentera analyser för dessa decennier.
+
+**Göran:** *Här är naturligtvis svagheten i vår artikel: Även sent, när vi har 
+kvinnans yrke i Linnédatabasen så speglar det inte nödvändigtvis den sociala 
+tillhörigheten, eftersom hon kan vara gift med en man i helt annan socialklass 
+baserat på yrke. Jag tror att det kan vara vanligt i början på Linnéperioden 
+åtminstone. Vi borde verkligen ha länkar mellan sambos/gifta. Jag tror för 
+övrigt att Martin Dribe och Maria Stanfors har studerat "poer couples" och kan 
+ha relevant information i ämnet.*  
+
+#   Närvarodefinition
+
+**Sören:** I Poplink analyseras dödligheten efter närvaron i våra regioner, en 
+närvaro som vi kan följa kontinuerligt. Dödsfallen sker därför också i dessa 
+regioner. I Linnédatat 1960-2000 identifierar vi närvaron utifrån tvärsnitten i 
+Fobbarna vart femte år 1960-1990. Vi betraktar individerna som under observation 
+fram till följande Fob, och om de också då är närvarande fram till nästa Fob 
+osv, alternativt fram till dödsdatum om det sker mellan två Fobbar. Dödsfallen 
+inom intervall mellan två Fobbar (eller Fobben 1990 fram till 2000) kan inträffa 
+vart som helst i Sverige. Det blir således en viss skillnad mot vad vi gör för 
+Poplink. Dödsfall behöver inte inträffa i regionen, och vi kommer att 
+(marginellt) överskatta närvaron i regionerna. För de två sista perioderna 
+(2002-2007, 2008-2013) följer vi däremot individerna kontinuerligt (kan vi väl 
+säga, vi har uppgift om närvaro under året) och vi analyserar dödsfallen i våra 
+regioner (visst stämmer det?). I teorin skulle vi också kunna skapa ”exakta” 
+närvaroperioder för hela tiden 1986-2013 (el 1985-2013) från LISA-data, men det 
+skulle kräva en del ytterligare organisering av data.
+
+**Göran:** *Här är jag däremot inte så orolig: Vad vi beskriver är utvecklingen 
+för de som var närvarande i vår region som fyrtioåringar. Möjligen skulle vi 
+inte censurera de som inte är närvarande i "nästa" Fob utan att ha dött på 
+vägen. Ja, det vore kanske det mest konsekventa. Tyvärr kan vi inte göra 
+motsvarande för Poplinkperioden, så vi släpper det.*  
+
+# Församlingsunderlaget
+
+**Sören:** Poplink innehåller data från ett antal församlingar i vad som är 
+DDB:s Skellefteå- och Umeå-regioner. Från Linnédatabasen använder vi de som är 
+boende i Skellefteå, Malå och Umeå kommuner. I huvudsak sammanfaller det 
+geografiska området över tid, men det tillkommer några fler församlingar i 
+analyserna efter 1960. I princip skulle man kunna identifiera exakt 
+församlingarna i Poplink också i Linné, men det tillför knappast något av värde, 
+och skulle inte förändra resultaten.
+
+**Göran:** *Vi har ju också den stora geografiska skillnaden före och efter 
+förra sekelskiftet, då Umeå tillkommer. Vi borde egentligen hålla Umeå utanför
+det hela, alternativt ha en separat artikel om denna Västerbottens pärla.*
+
+# Undersökta tidsperioder
+
+**Sören:** Skellefteå-regionen analyseras 1851-2013, medan Umeå-regionen är 
+begränsad till tiden 1901-2013. Konsekvensen är att vi troligen undersöker 
+en mindre socialt diversifierad miljö under 1800-talet. Tidigare gjorde vi 
+separata analyser för de två regionerna, men resultaten var väl inte olika i 
+något avgörande avseende?
+
+**Göran:** *Se ovan!*
+
+# Skapandet av social klass
+
+**Sören:** I Linné baseras social klass på en omkodning av Fobbarnas och LISA:s 
+yrken till HISCO och därifrån till HISCLASS vilket sedan förts samman till de 
+tre grupper vi har valt. För Poplink-tiden är underlaget baserat på DDB:s 
+traditionella yrkeskodning men redan grupperat i större sociala kategorier för 
+att skapa närvaroperioder enligt klass. Dessa kategorier har vi identifierat 
+enligt kategorierna i HISCLASS. Detta har i huvudsak varit oproblematiskt, men 
+det finns vissa placeringar som skulle krävt att vi hade mer exakt 
+yrkesinformation för att få systemet att helt motsvara HISCLASS. Vi hanterar 
+detta rätt väl genom att bara använda tre kategorier, något som således har en 
+praktisk komponent men som vi också kan motivera utifrån teoretiska skäl.
+
+**Göran:** *Hänger samman med "Definition av socialklass". Jag känner en viss 
+oro här, men som jag påpekade inledningsvis: Redovisa ärligt och läsaren får
+själv dra sina slutsatser (med viss hjälp av författarna ...).*
