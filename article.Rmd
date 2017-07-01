@@ -1,0 +1,47 @@
+---
+title: "Long-term perspectives of social inequality in mortality among
+  adults and elderly in northern Sweden 1851--2013"
+author: "Sören Edvinsson and Göran Broström"
+date: "28 juni 2017"
+output:
+  bookdown::html_document2:
+    toc: yes
+    toc_depth: 2
+    toc_float: true
+    number_sections: true
+bibliography: ["mybib.bib"]
+biblio-style: "apalike"
+link-citations: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+One of the central aspects of survival is social class and access to economic 
+and other resources. Even in present-day welfare societies, social position is a 
+strong determinant when it comes to health and mortality and the impact even 
+seems to be increasing \citep{kuetal04, frlu07}. It has been suggested that 
+"... social conditions have been, are and will continue to be irreducible 
+determinants of health outcomes and therefore deserves their appellation as 
+'fundamental causes' of disease and death" \citep{liph95}. For a long time, 
+the general view has been that socio-economic health inequalities were high in 
+historical societies, probably higher than in modern societies. This is a 
+reasonable assumption since these societies were in most cases characterised by 
+very large differences between groups and classes. Knowing that access to 
+resources provides advantages in all ways, the health advantage of higher 
+classes ought to be obvious. \citet{ant67} and \citet{smi83} suggest that social 
+inequality in health has passed through different historical phases. According 
+to them, social health differences were comparatively small during the 
+pre-transitional phase when space was a strong determinant for the spread of 
+disease. Differences then increased during the transitional phase when mortality 
+declined and wealthy groups used their resources to gain better health. Finally, 
+health differences decreased again in modern low-mortality settings when instead 
+health-related behaviour became important, resulting in marginal differences. 
+\citet{omran82} state, in the third proposition in his theory of the 
+epidemiological transition, that even if the class differential in mortality was 
+maintained during the transition, the decline set in earlier and was faster 
+among privileged groups. 
+
