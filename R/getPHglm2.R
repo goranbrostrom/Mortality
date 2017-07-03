@@ -27,7 +27,7 @@ getPHglm2 <- function(dat, nper, labb, from = 40){
         inter <- matrix(co[interact], ncol = k - 1, byrow = TRUE)
         tmp <- matrix(0, nrow = m, ncol = k)
         for (j in 1:m){
-            cat("j = ", j, "\n")
+            ##cat("j = ", j, "\n")
             tmp[j, ] <- c(co[1], co[1] + amain)
         }
         for (j in 2:m){
