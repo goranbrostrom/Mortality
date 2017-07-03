@@ -1,17 +1,21 @@
 ---
-title: "Long-term perspectives of social inequality in mortality among
-  adults and elderly in northern Sweden 1851--2013"
+title: Long-term perspectives of social inequality in mortality among adults and elderly
+  in northern Sweden 1851--2013
 author: "Sören Edvinsson and Göran Broström"
 date: "28 juni 2017"
 output:
-  bookdown::html_document2:
+  bookdown::pdf_document2:
+    number_sections: yes
     toc: yes
     toc_depth: 2
-    toc_float: true
-    number_sections: true
-bibliography: ["mybib.bib"]
-biblio-style: "apalike"
-link-citations: true
+  bookdown::html_document2:
+    number_sections: yes
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
+link-citations: yes
+bibliography: mybib.bib
+biblio-style: apalike
 ---
 
 ```{r setup, include=FALSE}
@@ -156,16 +160,10 @@ for the period 1986--2013.
 
 # The Skellefteå and Umeå regions
 
-\begin{figure}
-\includegraphics[height=19cm]{myfigs/sweden}
-\caption{The Skellefteå and Umeå regions in Sweden.}
-\label{fig:mapp}
-\end{figure}
 
-```{r mapp,fig.cap = "The regions."}
+```{r mapp,fig.cap = "The Skellefteå and Umeå regions in Sweden.", out.width="3in"}
 include_graphics("myfigs/sweden.png")
 ```
-
 The Skellefteå and Umeå regions (Figure \@ref(fig:mapp)) are part of the
 county of Västerbotten in the north of Sweden along the coast of Gulf
 of Bothnia. This was a remote part of the country, where communication with
@@ -254,7 +252,7 @@ contains the variables on social class (Hisclass) sex, urban/rural
 residence, birth date, death date, first and last date of observation and
 type of entrance/exit. Total number of persons are 84\,599 leading to
 35\,001 deaths in Poplink and 197\,864 persons leading to 66\,297 deaths in
-the Linnaeus database. See Figure @\ref(fig:lexis2).
+the Linnaeus database. See Figure \@ref(fig:lexis2).
 
 ```{r lexis2,fig.cap="The sampling frame.", fig.height = 5}
 plot(c(1851, 1851, 1951, 1951, 1851), c(40, 90, 90, 40, 40),
@@ -390,13 +388,13 @@ farm workers.
 
 
 
-Figures @\ref(fig:hiscskumm) and @\ref{fig:hiscskumw} show the distribution
+Figures \@ref(fig:hiscskumm) and \@ref{fig:hiscskumw} show the distribution
 (per cent) of exposure time according to class for men and women
 respectively. The category of workers is fairly stable over time. The
 highest class has increased substantially, although from a very low level
 in the 19th century. The increase of academics in connection to the
 establishment of Umeå University explains much of this increase. What is
-hidden in Figure @\ref(fig:hiscskumm) is the transfer within the middle
+hidden in Figure \@ref(fig:hiscskumm) is the transfer within the middle
 group from a majority of farmers during the 19th century to lower white
 collar from the middle of the 20th century. Furthermore we observe an
 increase during the 1960s and partly during later decades as well in those
@@ -434,7 +432,7 @@ barplot(t(yy)[4:1, ], col = c("red", "blue", "green", "black"), las = 2, ylab = 
 % ```
 
 The proportion with missing values among women is however a larger problem,
-see Figure @\ref(fig:hiscskumw). Corresponding to what we found for men, the
+see Figure \@ref(fig:hiscskumw). Corresponding to what we found for men, the
 proportion without social position is very low until the middle of the 20th
 century. This is a reflection of how womens social position is defined for
 that period. Missing social class is however a real problem during the
@@ -595,9 +593,9 @@ because the table is a \emph{sufficient statistic} for \eqref{eq:prop} and
 the original data set.
 
 
-The analyses are performed in the \R\ environment for statistical computing
-and graphics [@cran], especially using the package {\tt eha}
-[@gb12,@eha]
+The analyses are performed in the **R** environment for statistical computing
+and graphics [@cran], especially using the package **eha**
+[@gb12,@eha].
 The proportional hazards model allow us to scrutinise the differences and
 the development in more detail. We divide the analysis into two age groups,
 40--64 and 65--89 years of age, the first age group representing people that
@@ -609,17 +607,17 @@ regarding Hisclass. Each period are analysed separately, but we then combine res
 in order to show the development of the social patterning of mortality
 during the studied period.
 
-The important explanatory variable, {\tt hisclass}, is included in the
-proportional hazards models as a \emph{stratification} variable. The main
-reason for this choice is that the effect of {\tt hisclass} on survival is
+The important explanatory variable, **hisclass**, is included in the
+proportional hazards models as a *stratification* variable. The main
+reason for this choice is that the effect of **hisclass** on survival is
 non-proportional, that is, it varies with age. With the reduced data set
 and Poisson regression, this is simply achieved by introducing an
-interaction term between {\tt age} and {\tt hisclass}. Then, the main
-results are presented \emph{graphically}. Tables with results from the
+interaction term between **age** and **hisclass**. Then, the main
+results are presented graphically. Tables with results from the
 different models are presented at the end of the article, but are not
 commented on in detail. The comments on the results are primarily based on
-the figures and focuses on the central variable in our study---{\tt
-hisclass}. As can be seen from the tables, most variables in the model are
+the figures and focuses on the central variable in our study---**hisclass**. 
+As can be seen from the tables, most variables in the model are
 significant at 5 per cent level.
 
 
@@ -697,7 +695,7 @@ par(oldpar)
 ```
 
 From Table~\ref{tab:cumswtab} it is obvious that the statistical significance is strong.
-The most interesting feature is the three-way interaction with {\tt sex}, {\tt period}, and {\tt hisclass}.
+The most interesting feature is the three-way interaction with **sex**, **period**, and **hisclass**.
 
 ```{r cumswtab,results='asis',cap="Table"}
 fitt <- glm(event ~ offset(log(exposure)) + urban + civst + age + sex * hisclass * period,
@@ -719,7 +717,7 @@ visible for later decades is partly explained by the decreasing general
 mortality and is not necessarily representing a homogenisation of relative risks.
 
 
-By \emph{standardising} the levels in each time period for each class, we 
+By standardising the levels in each time period for each class, we 
 illustrate the relative risks in Figure \@ref(fig:cumswstand). In the rest of 
 the paper, we only present these
 relative mortality levels for the different classes.
@@ -916,8 +914,8 @@ nper <- length(labb)
 ```
 
 As before, models are fitted separately for sex and each ten-year time period, from  1901 to
-2013. We stratify on {\tt hisclass} and include the covariates {\tt urban} (TRUE or FALSE) and
-{\tt civst} (marital status). The cumulative
+2013. We stratify on **hisclass** and include the covariates **urban** (TRUE or FALSE) and
+**civst** (marital status). The cumulative
 hazards at the end of the age period (65 if 40--64, 90 if 65--89) are the
 main target in our analysis: These numbers are used in the process of
 graphically illustrating the development over time.
@@ -984,7 +982,7 @@ dr <- drop1(fitt, test = "Chisq")
 xtable(dr,label = "tab:41cumswtab", caption = "Anova, cardiovascular deaths, 40-64.")
 ```
 
-See Table~\ref{tab:41cumswtab}.
+See Table \@ref(tab:41cumswtab).
 
 Figure \@ref(fig:41cumsw) shows mortality levels during different periods
 from 1901 on-wards. Women from the highest social class had consistently
@@ -1069,7 +1067,7 @@ dr <- drop1(fitt, test = "Chisq")
 xtable(dr,label = "tab:41cumswoldtab", caption = "Anova, cardiovascular deaths, 65-90.")
 ```
 
-See Table~\ref{tab:41cumswoldtab}.
+See Table \@ref(tab:41cumswoldtab).
 
 
 ## Cancer mortality
@@ -1251,7 +1249,7 @@ dr <- drop1(fitt, test = "Chisq")
 xtable(dr,label = "tab:12cumswoldtab", caption = "Anova, cancer deaths, 65-90.")
 ```
 
-See Table~\ref{tab:12cumswoldtab}.
+See Table \@ref(tab:12cumswoldtab).
 
 # The effect of Education, 1990--2013
 
@@ -1344,7 +1342,7 @@ ltx(fit, dr = dr, caption = "Effect of education on mortality in ages 40-90, 199
     label = "tab:tableeduc", digits = 4)
 ```
 
-See Table~\ref{tab:tableeduc}.
+See Table ref{tab:tableeduc}.
 
 
 ```{r cardeduc}
@@ -1809,11 +1807,11 @@ inequality and health is worth further studies.
 
 # Acknowledgements
 
-This work was undertaken within the research program \emph{Ageing and
-Living Conditions} at the Centre for Demographic and Ageing Research
+This work was undertaken within the research program *Ageing and
+Living Conditions* at the Centre for Demographic and Ageing Research
 (CEDAR) at Umeå University, financed by the Swedish Research Council (grant
-No 349-2008-6592) and the project \emph{Old age, health and inequality:
-Mortality from a life course perspective in Sweden 1986--2009}, financed by
+No 349-2008-6592) and the project *Old age, health and inequality:
+Mortality from a life course perspective in Sweden 1986--2009*, financed by
 the Swedish Research Council (grant No 421-2012-892). We thank the
 Demographic Data Base, Umeå University, for giving us access to data and
 Jonas Helgertz, Department of Economic History, Lund University, for
