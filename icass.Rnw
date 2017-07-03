@@ -63,26 +63,27 @@ library(skum)
 
 <<readalldata>>=
 ## Load remote data:
-con <- url("http://capa.ddb.umu.se/data/vb0.rda")
-##load("data/vb0.rda")
-load(con)
-close(con)
+##con <- url("http://capa.ddb.umu.se/data/vb0.rda")
+load("data/vb0.rda")
+##load(con)
+##close(con)
 vb0$hisclass[is.na(vb0$hisclass)] <- 4
 vb0$hisclass <- factor(vb0$hisclass, labels = c("elite", "middle", "worker", "NA"))
 ##
-con <- url("http://capa.ddb.umu.se/data/vb.rda")
-##load("data/vb.rda")
-load(con)
-close(con)
+##con <- url("http://capa.ddb.umu.se/data/vb.rda")
+load("data/vb.rda")
+##load(con)
+##close(con)
 ##
-con <- url("http://capa.ddb.umu.se/data/lisaold.rda")
-##load("data/lisaold.rda")
-load(con)
-close(con)
+##con <- url("http://capa.ddb.umu.se/data/lisaold.rda")
+load("data/lisaold.rda")
+##load(con)
+##close(con)
 ##
-con <- url("http://capa.ddb.umu.se/data/loTab.rda")
-load(con)
-close(con)
+##con <- url("http://capa.ddb.umu.se/data/loTab.rda")
+##load(con)
+##close(con)
+load("data/loTab.rda")
 loTab$period <- factor(loTab$period)
 ##
 vb0Tab <- aggregate(vb0[, c("event", "exposure")],
@@ -1534,10 +1535,10 @@ In this section we analyse differences according to education level for the peri
 library(eha)
 library(xtable)
 liss4064 <- loTab[loTab$age < 64.5, ]
-con <- url("http://capa.ddb.umu.se/data/lisaold.rda")
+##con <- url("http://capa.ddb.umu.se/data/lisaold.rda")
 ##load("data/lisaold.rda")
-load(con)
-close(con)
+##load(con)
+##close(con)
 @
 
 
