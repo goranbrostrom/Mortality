@@ -4,15 +4,15 @@ title: Long-term perspectives of social inequality in mortality among adults and
 author: "Sören Edvinsson and Göran Broström"
 date: "28 juni 2017"
 output:
-  bookdown::pdf_document2:
-    number_sections: yes
-    toc: yes
-    toc_depth: 2
   bookdown::html_document2:
     number_sections: yes
     toc: yes
     toc_depth: 2
     toc_float: yes
+  bookdown::pdf_document2:
+    number_sections: yes
+    toc: yes
+    toc_depth: 2
 link-citations: yes
 bibliography: mybib.bib
 biblio-style: apalike
@@ -30,37 +30,18 @@ library(skum)
 ```{r readalldata}
 source("R/get.file.R")
 vb0 <- get.file("vb0")
-##if (file.exists("data/vb0.rda")){
-##    load("data/vb0.rda")
-##}else{
-## Load remote data:
-##   con <- url("http://capa.ddb.umu.se/data/vb0.rda")
-##   load(con)
-##   close(con)
-##   save(vb0, file = "data/vb0.rda")
-##}
+
 vb0$hisclass[is.na(vb0$hisclass)] <- 4
 vb0$hisclass <- factor(vb0$hisclass, labels = c("elite", "middle", "worker", "NA"))
 ##
 
-vb <- get.file("vb")
-##if (file.exists("data/vb.rda"))
-##con <- url("http://capa.ddb.umu.se/data/vb.rda")
-##load("data/vb.rda")
-##load(con)
-##close(con)
-##
-##con <- url("http://capa.ddb.umu.se/data/lisaold.rda")
+## We don't need "vb", do we?
+## vb <- get.file("vb")
+
 lisaold <- get.file("lisaold")
-##load("data/lisaold.rda")
-##load(con)
-##close(con)
-##
-##con <- url("http://capa.ddb.umu.se/data/loTab.rda")
-##load(con)
-##close(con)
+
 loTab <- get.file("loTab")
-##load("data/loTab.rda")
+
 loTab$period <- factor(loTab$period)
 ##
 vb0Tab <- aggregate(vb0[, c("event", "exposure")],
