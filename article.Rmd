@@ -1,8 +1,7 @@
 ---
-title: Long-term perspectives of social inequality in mortality among adults and elderly
-  in northern Sweden 1851--2013
+title: Is high social class always beneficial for survival? Long-term perspectives of social inequality in mortality among adults and elderly: Northern Sweden 1851--2013
 author: "Sören Edvinsson and Göran Broström"
-date: "28 juni 2017"
+date: "24 JulY 2017"
 output:
   bookdown::html_document2:
     number_sections: yes
@@ -56,7 +55,7 @@ vb0Tab$age <- factor(vb0Tab$age)
 One of the central aspects of survival is social class and access to economic
 and other resources. Even in present-day welfare societies, social position is a
 strong determinant when it comes to health and mortality and the impact even
-seems to be increasing [@kuetal04, @frlu07]. It has been suggested that
+seems to be increasing [@kuetal04, @macketal16, @frlu07, @broba12, @strand2010]. It has been suggested that
 "... social conditions have been, are and will continue to be irreducible
 determinants of health outcomes and therefore deserves their appellation as
 'fundamental causes' of disease and death" [@liph95]. For a long time,
