@@ -1,7 +1,7 @@
 ---
-title: Is high social class always beneficial for survival? Long-term perspectives of social inequality in mortality among adults and elderly: Northern Sweden 1851--2013
+title: "Is high social class always beneficial for survival? Long-term perspectives of social inequality in mortality among adults and elderly: Northern Sweden 1851--2013"
 author: "Sören Edvinsson and Göran Broström"
-date: "24 JulY 2017"
+date: "24 July 2017"
 output:
   bookdown::html_document2:
     number_sections: yes
@@ -55,7 +55,7 @@ vb0Tab$age <- factor(vb0Tab$age)
 One of the central aspects of survival is social class and access to economic
 and other resources. Even in present-day welfare societies, social position is a
 strong determinant when it comes to health and mortality and the impact even
-seems to be increasing [@kuetal04, @macketal16, @frlu07, @broba12, @strand2010]. It has been suggested that
+seems to be increasing [@kuetal04, @macketal16, @frlu07, @broba12, @strand10]. It has been suggested that
 "... social conditions have been, are and will continue to be irreducible
 determinants of health outcomes and therefore deserves their appellation as
 'fundamental causes' of disease and death" [@liph95]. For a long time,
@@ -224,13 +224,6 @@ also makes it impossible to add information on individuals in the Linnaeus
 database from what we potentially could find in Poplink, for example family
 background or occupations earlier in life.
 
-In the data-set analysed here, all individuals 40 years and older ever
-being resident in either of the regions are included. The data file
-contains the variables on social class (Hisclass) sex, urban/rural
-residence, birth date, death date, first and last date of observation and
-type of entrance/exit. Total number of persons are 84\,599 leading to
-35\,001 deaths in Poplink and 197\,864 persons leading to 66\,297 deaths in
-the Linnaeus database. See Figure \@ref(fig:lexis2).
 
 ```{r lexis2,fig.cap="The sampling frame.", fig.height = 5}
 plot(c(1851, 1851, 1951, 1951, 1851), c(40, 90, 90, 40, 40),
@@ -244,24 +237,34 @@ abline(h = 0)
 lines(c(1961, 1961, 2014, 2014, 1961), c(40, 90, 90, 40, 40),
       col = "blue", lwd = 2)
 #
-n.rec <- NROW(vb0[vb0$dataset == "poplink", ] )
-n.pl <- with(vb0[vb0$dataset == "poplink", ], length(unique(id)))
-n.d <-  with(vb0[vb0$dataset == "poplink", ], sum(event))
+pn.rec <- NROW(vb0[vb0$dataset == "poplink", ] )
+pn.pl <- with(vb0[vb0$dataset == "poplink", ], length(unique(id)))
+pn.d <-  with(vb0[vb0$dataset == "poplink", ], sum(event))
+pn.d <- as.integer(pn.d)
 text(1900, 70, "PopLink", cex = 2, col = "red")
-text(1899, 60, paste(n.rec, "records"))
-text(1900, 55, paste(n.pl, "persons"))
-text(1899.5, 50, paste(n.d, "deaths"))
+text(1899, 60, paste(pn.rec, "records"))
+text(1900, 55, paste(pn.pl, "persons"))
+text(1899.5, 50, paste(pn.d, "deaths"))
 #
 n.rec <- NROW(vb0[vb0$dataset != "poplink", ] )
 n.pl <- with(vb0[vb0$dataset != "poplink", ], length(unique(id)))
 n.d <-  with(vb0[vb0$dataset != "poplink", ], sum(event))
-
+n.d <- as.integer(n.d)
 
 text(1985, 70, "Linnaeus", cex = 2, col = "blue")
 text(1984, 60, paste(n.rec, "records"))
 text(1985.2, 55, paste(n.pl, "persons"))
 text(1985.2, 50, paste(n.d, "deaths"))
 ```
+
+In the data-set analysed here, all individuals 40 years and older ever
+being resident in either of the regions are included. The data file
+contains the variables on social class (Hisclass) sex, urban/rural
+residence, birth date, death date, first and last date of observation and
+type of entrance/exit. Total number of persons are `r pn.pl` leading to
+`r pn.d` deaths in Poplink and `r n.pl` persons leading 
+to `r n.d` deaths in the Linnaeus database. See 
+Figure \@ref(fig:lexis2).
 
 ## Presence periods
 
@@ -343,7 +346,7 @@ by their individual occupation for this period. Still, the results for the
 different periods are not completely comparable and makes the
 interpretation of the development for women more shaky.
 
-Hisclass, the classification system used here, is a "\ldots
+Hisclass, the classification system used here, is a "...
 HISCO-based historical international social class scheme" [@lema11,
 @lema02]. The different classes in Hisclass represent distinct
 categories, based on whether the work is manual or non–manual, skill level,
@@ -366,7 +369,7 @@ farm workers.
 
 
 
-Figures \@ref(fig:hiscskumm) and \@ref{fig:hiscskumw} show the distribution
+Figures \@ref(fig:hiscskumm) and \@ref(fig:hiscskumw) show the distribution
 (per cent) of exposure time according to class for men and women
 respectively. The category of workers is fairly stable over time. The
 highest class has increased substantially, although from a very low level
@@ -397,18 +400,6 @@ barplot(t(yy)[4:1, ], col = c("red", "blue", "green", "black"), las = 2, ylab = 
 
 
 
-% ```{r hiscskummyoung, fig.cap = "Exposure by hisclass, men 40-65 (from the top: elite, middle, workers, missing) and time period.", fig.height = 4.5}
-% xx <- with(vb0Tab[vb0Tab$sex == "male" & vb0Tab$age %in% c("40", "45", "50", "55", "60"), ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
-% yy <- round(prop.table(xx, 1) * 100, 1)
-% barplot(t(yy)[4:1, ], col = c("red", "blue", "green", "black"), las = 2, ylab = "Per cent")
-% ```
-%
-% ```{r hiscskumwyoung, fig.cap = "Exposure by hisclass, women 40-65 (from the top: elite, middle, workers, missing) and time period.", fig.height = 4.5}
-% xx <- with(vb0Tab[vb0Tab$sex == "female" & vb0Tab$age %in% c("40", "45", "50", "55", "60"), ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
-% yy <- round(prop.table(xx, 1) * 100, 1)
-% barplot(t(yy)[4:1, ], col = c("red", "blue", "green", "black"), las = 2, ylab = "Per cent")
-% ```
-
 The proportion with missing values among women is however a larger problem,
 see Figure \@ref(fig:hiscskumw). Corresponding to what we found for men, the
 proportion without social position is very low until the middle of the 20th
@@ -421,7 +412,7 @@ the workforce, the proportion missing becomes very high. We have chosen not
 to report results for women for these two decades. For the later decades,
 the results are fairly complete and should be representative.
 
-\subsection{Marital status}
+## Marital status
 
 Marital status is treated as a time-dependent variable in the data
 file. The statuses used are unmarried, married and dissolved marriages
@@ -434,7 +425,7 @@ Figure \@ref(fig:civstskum). The figure indicates an under-registration of
 those married and and over-registration of previously married during the
 1960s.
 
-```{r civstskum, fig.cap = "Exposure by civil status (from the top: previously married, married and never married) and time period", fig.height = 4.5}
+```{r civstskum, fig.cap = "Exposure by civil status (from the top: never married, married and previously married) and time period", fig.height = 4.5}
 xx <- with(vb0Tab, tapply(exposure, list(period = period, civst = civst), sum))
 yy <- round(prop.table(xx, 1) * 100, 1)
 barplot(t(yy)[3:1, ], col = c("red", "blue", "black"), las = 2, ylab = "Per cent")
@@ -506,8 +497,8 @@ proportionality property, the analyses are stratified with respect to the
 variable, and the main results are presented graphically.
 
 Another practical problem is the size of that data set:
-It contains no less than 2432871 records of 236011 individuals, of
-which 68244 are observed to die.
+It contains no less than `r n.rec + pn.rec` records of `r n.pl + pn.pl` individuals, of
+which `r n.d + pn.d` are observed to die.
 This makes it very inconvenient to use the nowadays so popular semi-parametric
 technique known as
 \emph{Cox regression} [@cox72,@gb02]. Instead we use a parametric model
@@ -942,8 +933,8 @@ fitt <- glm(event ~ offset(log(exposure)) + urban + civst + age + sex * hisclass
                 sex * period + hisclass * period,
             data = cvb4064, family = poisson)
 dr <- drop1(fitt, test = "Chisq")
-##knitr::kable(dr)
-xtable(dr,label = "tab:41cumswtab", caption = "Anova, cardiovascular deaths, 40-64.")
+knitr::kable(dr, caption = "Anova, cardiovascular deaths, 40-64.")
+#print(xtable(dr,label = "tab:41cumswtab", caption = "Anova, cardiovascular deaths, 40-64."), type = "html")
 ```
 
 See Table \@ref(tab:41cumswtab).
@@ -1027,8 +1018,8 @@ fitt <- glm(event ~ offset(log(exposure)) + urban + civst + age + sex * period *
                 ##sex * period + hisclass * period,
             data = cvb6589, family = poisson)
 dr <- drop1(fitt, test = "Chisq")
-##knitr::kable(dr)
-xtable(dr,label = "tab:41cumswoldtab", caption = "Anova, cardiovascular deaths, 65-90.")
+knitr::kable(dr, caption = "Anova, cardiovascular deaths, 65-90.")
+##xtable(dr,label = "tab:41cumswoldtab", caption = "Anova, cardiovascular deaths, 65-90.")
 ```
 
 See Table \@ref(tab:41cumswoldtab).
@@ -1142,8 +1133,8 @@ fitt <- glm(event ~ offset(log(exposure)) + urban + civst + age + sex *hisclass 
                 sex * period + hisclass * period,
             data = cvb4064, family = poisson)
 dr <- drop1(fitt, test = "Chisq")
-##knitr::kable(dr)
-xtable(dr,label = "tab:12cumswtab", caption = "Anova, cancer deaths, 40-64.")
+knitr::kable(dr, caption = "Anova, cancer deaths, 40-64.")
+##xtable(dr,label = "tab:12cumswtab", caption = "Anova, cancer deaths, 40-64.")
 ```
 
 See Table \@ref(tab:12cumswtab).
@@ -1209,8 +1200,8 @@ fitt <- glm(event ~ offset(log(exposure)) + urban + civst + age + sex +
                 sex * period + hisclass * period,
             data = cvb6589, family = poisson)
 dr <- drop1(fitt, test = "Chisq")
-##knitr::kable(dr)
-xtable(dr,label = "tab:12cumswoldtab", caption = "Anova, cancer deaths, 65-90.")
+knitr::kable(dr, caption = "Anova, cancer deaths, 65-90.")
+##xtable(dr,label = "tab:12cumswoldtab", caption = "Anova, cancer deaths, 65-90.")
 ```
 
 See Table \@ref(tab:12cumswoldtab).
