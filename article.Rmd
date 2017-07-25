@@ -1,17 +1,18 @@
 ---
-title: "Is high social class always beneficial for survival? Long-term perspectives of social inequality in mortality among adults and elderly: Northern Sweden 1851--2013"
-author: "Sören Edvinsson and Göran Broström"
+title: "'Is high social class always beneficial for survival? Long-term perspectives"
+  of social inequality in mortality among adults and elderly: Northern Sweden 1851--2013'
+author: "SÃ¶ren Edvinsson and GÃ¶ran BrostrÃ¶m"
 date: "24 July 2017"
 output:
+  bookdown::pdf_document2:
+    number_sections: yes
+    toc: yes
+    toc_depth: 2
   bookdown::html_document2:
     number_sections: yes
     toc: yes
     toc_depth: 2
     toc_float: yes
-  bookdown::pdf_document2:
-    number_sections: yes
-    toc: yes
-    toc_depth: 2
 link-citations: yes
 bibliography: mybib.bib
 biblio-style: apalike
@@ -52,6 +53,13 @@ vb0Tab$age <- factor(vb0Tab$age)
 
 # Introduction
 
+In the present paper, we take a long-term perspective on the development of
+social inequalities in mortality in the adult and elderly population, and how this is connected
+to the development of economic inequality in society. The areas under investigation are the Skellefteå and Umeå regions in the north of Sweden, and the time period is 1851--2013 for Skellefteå and 1901--2013 for Umeå. This issue is then analysed according to gender and age-group (working age vs retired) and major causes of death (cardiovascular diseases and cancers). The results are then discussed in relation to our understanding of the mortality transition and the social determinants of health and mortality, and their implications on some of the hypotheses and concepts in health research.
+
+On the basis of these results, we argue that a consistent hierarchical social gradient in mortality appears surprisingly late, but that there were large gender differences in trends and levels. We suggest that more attention should be paid on health-related behaviour also in earlier phases of the mortality transition.
+
+
 One of the central aspects of survival is social class and access to economic
 and other resources. Even in present-day welfare societies, social position is a
 strong determinant when it comes to health and mortality and the impact even
@@ -59,41 +67,50 @@ seems to be increasing [@kuetal04, @macketal16, @frlu07, @broba12, @strand10]. I
 "... social conditions have been, are and will continue to be irreducible
 determinants of health outcomes and therefore deserves their appellation as
 'fundamental causes' of disease and death" [@liph95]. For a long time,
-the general view has been that socio-economic health inequalities were high in
+the general view has been that socio-economic health and mortality inequalities were high in
 historical societies, probably higher than in modern societies. This is a
 reasonable assumption since these societies were in most cases characterised by
 very large differences between groups and classes. Knowing that access to
-resources provides advantages in all ways, the health advantage of higher
+resources provides advantages in all aspects of life, the health advantage of higher
 classes ought to be obvious. @ant67 and @smi83 suggest that social
-inequality in health has passed through different historical phases. According
-to them, social health differences were comparatively small during the
+inequality in mortality has passed through different historical phases. According
+to them, differences were comparatively small during the
 pre-transitional phase when space was a strong determinant for the spread of
 disease. Differences then increased during the transitional phase when mortality
-declined and wealthy groups used their resources to gain better health. Finally,
-health differences decreased again in modern low-mortality settings when instead
-health-related behaviour became important, resulting in marginal differences.
-@omran82 states, in the third proposition in his theory of the
+declined and wealthy groups used their economic and human resources to gain better health. Finally,
+mortality differences decreased again resulting in marginal levels of inequality in modern low-mortality societies when instead
+health-related behaviour became the decisive determinant for health and survival.
+@omran82 comes to a similar conclusion states, in the third proposition in his theory of the
 epidemiological transition, that even if the class differential in mortality was
 maintained during the transition, the decline set in earlier and was faster
-among privileged groups.
+among privileged groups. These assumption if partly supported by data from England and Wales [@pamuk85]. 
 
 
 Recent studies, investigating social inequality in health and mortality
 with micro-data, has however questioned how generalizable the assumed
 pattern is [@bevp11]. Instead, some studies suggest that the modern
-pattern might be a fairly recent development, although the pattern differs
+pattern might be a fairly recent development [@bedr11], although the pattern differs
 depending on age, gender or historical context. When it comes to the adult
 and elderly population results from different studies have diverged, some
 reporting substantial differences but many, particularly those based on
 Swedish data, have found surprisingly small or even reversed socio-economic
-differences during the first stages of the transition [@bedr11,
-@edli11,@edbr12], sharply contrasting against what we know from present-day
-society.
+differences during the 19th and early 20th century [@bedr11,
+@edli11,@edbr12], sharply contrasting from the situation in present-day society.
 
-Another question of the development of social inequality in mortality,
+
+
+It thus appears as if a more consistent social health divide appeared at
+some point during the mortality transition, at least in Sweden. Solid
+empirical evidence about the process is however lacking and studies
+focusing on the issue are still few. There is a need for more reliable
+studies from different geographical and historical settings in order to 
+better understand the role of socio-economic conditions for health and survival over time. 
+Furthermore, previous studies indicate substantial differences in the development according to age and gender.
+
+Another aspect of the development of social inequality in mortality,
 concerns its relation to economic inequality. @wipi09 argue that
 income inequality has an independent effect on mortality, separate from the
-direct effect of actual different access to economic resources. They argue
+direct effect of actual access to economic resources. They argue
 that unequal societies perform less well when it comes to health than equal
 ones. Wilkinson and Pickett find a positive association between inequality
 and health (as well as other social conditions) at country level in the
@@ -102,38 +119,15 @@ scholarly debate and the topic has been extensively studied [@suka04,
 @wado00]. How the association looked like in previous periods is
 unknown. This is of particular interest since the levels of economic
 inequality were very different from those of the recent decades. Even if it
-not a necessary implication, we would still assume that poorer groups were
-those most disadvantaged of large inequality in itself. The situation
-during the 19th century is uncertain, but at least during the late 19th and
-early 20th century both income and wealth distribution was strongly skewed
-in Sweden. From a couple of decades into the 20th century, income and
+not a necessary implication, it is reasonable to assume that poorer groups were
+those most disadvantaged of large inequality in itself. During the last decades, the association between trends of inequalities in mortality and income respectively are weak or non-existant according to @hoetal16. 
+
+When it comes to Sweden both income and wealth distribution was strongly skewed from the 1870's to the early 20th century. Starting during the inter-war period, income and
 wealth inequality continuously diminished to reach a low point at around
 1980. Thereafter, economic inequality has increased substantially until the
 present, although far from being as high as a century ago [@rowa08,
 @rowa09]. The Swedish development resembles that of other European and North
 American countries in its basic features [@rowa14].
-
-It thus appears as if a more consistent social health divide appeared at
-some point during the mortality transition, at least in Sweden. Solid
-empirical evidence about the process is however lacking and studies
-focusing on the issue are still few. There is a need for more reliable
-studies from different geographical and historical settings as well as
-according to age and gender in order to better understand the role of
-socio-economic conditions for health and survival over time.
-
-
-# Aims and questions
-
-In the present paper, we take a long-term perspective on the development of
-social inequalities in mortality in the adult and elderly population. The
-areas under investigation are the Skellefteå and Umeå regions in the north
-of Sweden, and the time period is 1851--2013 for Skellefteå and 1901--2013
-for Umeå. The main question we investigate is if inequality in mortality
-between social classes increased among the adult and elderly population,
-primarily benefiting the highest social positions and how this is connected
-to the development of economic inequality in society. This issue is then
-analysed according to gender, age-group (working age vs retired) and cause
-of death (cardiovascular and cancer). 
 
 
 # The Skellefteå and Umeå regions
@@ -157,7 +151,7 @@ facilitating contacts with the rest of Sweden, improving the economy and
 mitigating the effects of harvest failures. The inland was particularly
 remote and isolated. During the 19th century, our regions became
 increasingly integrated in the same epidemiological pattern as the rest of
-Sweden. Diseases reached to places that earlier were spared.
+Sweden. Diseases reached to places that were spared in earlier times.
 
 The Skellefteå region until the 1950 in our dataset consists of a selection
 of parishes surrounding the town of Skellefteå, founded in 1845 but with a
@@ -282,7 +276,7 @@ analyses. There is however no full information on what happened in-between
 the censuses, for example the exact date of exit for persons that moved
 between two censuses. We have solved this by considering everyone as
 resident in our regions during the complete five-year period between
-censuses if the person is missing in the later census. This overestimates
+censuses if the person is missing in the later census (the last period covering ten years). This overestimates
 their presence in our regions, but should not bias the results when it
 comes to socioeconomic differences. We furthermore miss those that both
 moved in and moved out or vice versa between censuses. Exit dates are exact
@@ -292,7 +286,7 @@ in another part of Sweden.
 
 For the last period, 2002--2013, we use the yearly population registers
 (LISA data), together with information on deaths from National Board of
-Health and Welfare. This data allows good control of the presence periods
+Health and Welfare. This data allows for full control of the presence periods
 in the studied regions.
 
 
