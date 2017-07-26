@@ -1,7 +1,7 @@
 ---
 title: "'Is high social class always beneficial for survival? Long-term perspectives"
   of social inequality in mortality among adults and elderly: Northern Sweden 1851--2013'
-author: "SÃ¶ren Edvinsson and GÃ¶ran BrostrÃ¶m"
+author: "SÃƒÆ’Ã‚Â¶ren Edvinsson and GÃƒÆ’Ã‚Â¶ran BrostrÃƒÆ’Ã‚Â¶m"
 date: "24 July 2017"
 output:
   bookdown::pdf_document2:
@@ -293,9 +293,21 @@ in the studied regions.
 
 ## Social class
 
+
+The choice of variable for analysing social differences vary between studies. A common alternative to a class analysis is to use income or education for
+investigating socio-economic health differences. @goldk10 criticize
+how many economists and epidemiologists operationalize inequality in their
+studies, for example by not distinguishing between class and status
+aspects. Class refers to relational aspects in society, while many other
+variables focus on the distribution of material and/or immaterial
+resources. He advocates studies of different aspects, which together
+complement each other. Comparing different approaches are valuable in order
+to understand why some are advantaged and others disadvantaged and what
+sort of factors determines health differences. 
+
 In this paper we analyse mortality differences according to social class
 based on the classification scheme Hisclass [@lema11]. The only
-type of socio-economic information available both in Linnaeus and Poplink
+type of socio-economic information available both in the Linnaeus and Poplink database
 is occupations. Thus, analysing according to social class is apart from
 being a scientific choice, also a practical one. Using occupational data is
 the only and obvious alternative for making a longitudinal study of
@@ -303,15 +315,10 @@ socio-economic mortality differences with consistent classification
 schemes. Social position is treated as a time-dependent variable.
 
 The availability to information on occupations varies over time and between
-sources. Occupations in Poplink are coded into HISCO [@lema02] and the
-original DDB coding system. The censuses 1960--1990 include occupational
+sources. Occupations in the version of Poplink we are using are coded according to the original DDB coding system that then has been adapted to Hisclass. The censuses 1960--1990 include occupational
 codes based on the system used in Sweden at that time, NYK (Nordisk
-Yrkesklassificering). The yearly population registers (LISA) do not report
-occupations until 2001, thus there is a window of 11 years from 1991 to
-2001 where we lack information. In the censuses, we have solved this by
-extending the periods for which we consider the observed social class to be
-valid. Thus, the social class in the census 1990 is considered to be kept
-until 2001. This strategy is also used for other cases of missing social
+Yrkesklassificering). We consider the observed social class in a census to be valid for the full period until the next census, corresponding to our treatment of presence periods. For the period 1991--2000 the social class in the census 1990 is considered to be kept
+until 2001. This strategy is also used for cases of missing social
 class. Furthermore, we consider the last social position before retirement
 to be kept until death or last observation for those above 65. For the
 Linnaeus data, we use a script recoding HISCO into Hisclass, provided
@@ -319,12 +326,12 @@ to us by Jonas Helgertz, Lund University.
 
 
 The use of different data sets, forces us to apply different approaches
-towards defining the social position in some respects. A problem is that
+towards defining the social position. A problem is that
 Poplink usually only provides the occupation for the head of household,
 thus under-estimating female working-force participation as well as that of
 adult children residing with their parents [@vik10]. In this study and
 according to the research questions in the present paper, we have chosen to
-categorise wife according to the position of the head of household, usually
+categorise wives according to position of the head of household, usually
 the husband/father, assuming that the family shares the same socio-economic
 position. This strategy makes the problem of under-recording less
 problematic.
@@ -338,7 +345,7 @@ period. The occupation of the husband as signifier of social class became,
 if not obsolete, at least less relevant. All included persons are signified
 by their individual occupation for this period. Still, the results for the
 different periods are not completely comparable and makes the
-interpretation of the development for women more shaky.
+interpretation of the development for women more uncertain. Notice however that there is a strong social homogeneity between partners in a marriage, indicating that the results would not differ in any decisive way if we use social class on household level also for the Linneaus data. 
 
 Hisclass, the classification system used here, is a "...
 HISCO-based historical international social class scheme" [@lema11,
@@ -346,7 +353,7 @@ HISCO-based historical international social class scheme" [@lema11,
 categories, based on whether the work is manual or non–manual, skill level,
 supervision and sector. Implicitly it reflects large differences in what is
 in the forefront of other categorisations, as for example access to
-economic and other resources, status, social power et cetera. We have
+economic and other resources, status, social power et cetera. Longitudinal analyses of social classes for such a long period covered in this study involves several problems, related to changes in occupational structure and the meaning and contents of occupations and social positions. We have
 merged the original 12 classes in Hisclass, based on position in the
 labour market, ending up with the following three and an additional fourth
 category with unknown class:
@@ -369,11 +376,11 @@ respectively. The category of workers is fairly stable over time. The
 highest class has increased substantially, although from a very low level
 in the 19th century. The increase of academics in connection to the
 establishment of Umeå University explains much of this increase. What is
-hidden in Figure \@ref(fig:hiscskumm) is the transfer within the middle
+invisible in Figure \@ref(fig:hiscskumm) is the transfer within the middle
 group from a majority of farmers during the 19th century to lower white
 collar from the middle of the 20th century. Furthermore we observe an
 increase during the 1960s and partly during later decades as well in those
-with undefined. When first observed in the earliest included censuses,
+with undefined class. When first observed in the earliest included censuses,
 occupation is often missing. For men the proportion is somewhat higher in
 the age group 65 and above, i.e. those that were retired, but still low
 enough to be used in our analyses. Until 1950, there were however very few
@@ -404,7 +411,7 @@ and 50 \% for the 1970s. Since social class for this period is defined
 according to own occupation, the consequence of many women being outside
 the workforce, the proportion missing becomes very high. We have chosen not
 to report results for women for these two decades. For the later decades,
-the results are fairly complete and should be representative.
+the results are fairly complete.
 
 ## Marital status
 
@@ -416,7 +423,7 @@ set to unmarried.
 
 Regarding the distribution of marital status over time, see
 Figure \@ref(fig:civstskum). The figure indicates an under-registration of
-those married and and over-registration of previously married during the
+those married and over-registration of unmarried during the
 1960s.
 
 ```{r civstskum, fig.cap = "Exposure by civil status (from the top: never married, married and previously married) and time period", fig.height = 4.5}
@@ -1199,24 +1206,6 @@ knitr::kable(dr, caption = "Anova, cancer deaths, 65-90.")
 ```
 
 See Table \@ref(tab:12cumswoldtab).
-
-# The effect of Education, 1990--2013
-
-
-A common alternative to a class analysis is to use income or education for
-investigating socio-economic health differences. @goldk10 criticize
-how many economists and epidemiologists operationalize inequality in their
-studies, for example by not distinguishing between class and status
-aspects. Class refers to relational aspects in society, while many other
-variables focus on the distribution of material and/or immaterial
-resources. He advocates studies of different aspects, which together
-complement each other. Comparing different approaches are valuable in order
-to understand why some are advantaged and others disadvantaged and what
-sort of factors determines health differences. In this and the following
-section, we introduce analyses of education and income. In that way, we can
-compare the class analyses with these alternative categorizations. For the
-time being, we have to restrict such a comparative analysis to the last
-decades.
 
 
 
