@@ -1,7 +1,6 @@
 ---
-title: "'Is high social class always beneficial for survival? Long-term perspectives"
-  of social inequality in mortality among adults and elderly: Northern Sweden 1851--2013'
-author: "SÃƒÆ’Ã‚Â¶ren Edvinsson and GÃƒÆ’Ã‚Â¶ran BrostrÃƒÆ’Ã‚Â¶m"
+title: Is high social class always beneficial for survival? Long-term perspectives of social inequality in mortality among adults and elderly in Northern Sweden 1851--2013
+author: Sören Edvinsson and Göran Broström
 date: "24 July 2017"
 output:
   bookdown::pdf_document2:
@@ -54,8 +53,8 @@ vb0Tab$age <- factor(vb0Tab$age)
 # Introduction
 
 In the present paper, we take a long-term perspective on the development of
-social inequalities in mortality in the adult and elderly population, and how this is connected
-to the development of economic inequality in society. The areas under investigation are the Skellefteå and Umeå regions in the north of Sweden, and the time period is 1851--2013 for Skellefteå and 1901--2013 for Umeå. This issue is then analysed according to gender and age-group (working age vs retired) and major causes of death (cardiovascular diseases and cancers). The results are then discussed in relation to our understanding of the mortality transition and the social determinants of health and mortality, and their implications on some of the hypotheses and concepts in health research.
+social inequalities in mortality in the adult and elderly population. The areas under investigation are the Skellefteå and Umeå regions in the north of Sweden, and the time period is 1851--2013 for Skellefteå and 1901--2013 for Umeå. This issue is then analysed according to gender and age-group (working age vs retired) and major causes of death (cardiovascular diseases and cancers). Furthermore we put this in he context of how the inequality in mortality is associated
+with the development of economic inequality in society.The results are then discussed in relation to our understanding of the mortality transition and the social determinants of health and mortality, and their implications on some of the most influential hypotheses and concepts in health research.
 
 On the basis of these results, we argue that a consistent hierarchical social gradient in mortality appears surprisingly late, but that there were large gender differences in trends and levels. We suggest that more attention should be paid on health-related behaviour also in earlier phases of the mortality transition.
 
@@ -465,26 +464,26 @@ barplot(ttt[3:1, -(1:2)], col = 3:1, las = 2, ylab = "Per cent")
 ## Urban vs rural residence
 
 In 19th and early 20th century Sweden (as in other countries), mortality
-was much higher in urban environments. The unsanitary and overcrowded
+was much higher in urban environments [@hani94, @edv92]. The unsanitary and overcrowded
 living conditions as well as the risks for importing infections made the
 health risks higher in towns and cities. In the present paper, we control
 for this aspect by distinguishing between urban and rural residence, based
-on in which parish people lived.
+on parish of residence.
 
 ## Periods for analysis
 
 We have made separate analyses for the different periods. The century
 1851--1950 is divided into four periods of 25 years each. The 19th century
 periods represent a mainly pre-industrial society dominated by agriculture
-and with restricted welfare provisions. During the years 1901--1950,
+and with only basic welfare provisions. During the years 1901--1950,
 industrialisation started and the urban environments increased in
-population size. The modern welfare state began to develop during this
-time. For the period 1960 on-wards, there are separate analyses on decades
+population size. The modern Swedish welfare state began to develop during this
+time. For the period 1960 onwards, there are separate analyses on decades
 except for the two last periods. Sweden had developed into a wealthy
-welfare society with low income inequality in international comparison,
+welfare society with low income inequality,
 particularly until the 1990s. A financial crisis struck Sweden in the early
 1990s, which among other things increased unemployment and changed parts of
-the welfare system to being less generous than before. The start of the
+the welfare system towards being less generous than before. The start of the
 last period (2008--2013) coincides with the international financial
 crisis.
 
@@ -492,8 +491,8 @@ crisis.
 # Models
 
 The proportional hazards model in a survival analysis context is used,
-allowing for adjustment for civil status and rural/urban environment. Since
-the central explanatory variable, Hisclass, do not follow the
+allowing for adjustment for marital status and rural/urban environment. Since
+the central explanatory variable, social class (Hisclass), do not follow the
 proportionality property, the analyses are stratified with respect to the
 variable, and the main results are presented graphically.
 
@@ -508,8 +507,8 @@ to \emph{sufficient statistics} [@fisher22]. The idea is to keep all
 relevant covariates \emph{categorical}, and then create a table with all
 possible combinations of levels of the covariates. For each such
 combination, the total amount of exposure and the number of deaths are
-calculated.  We have two sexes, three civil statuses, ten periods, two
-urban/rural groups, four hisclasses at age 40,  four hisclasses at age 60,
+calculated.  We have two sexes, three marital statuses, ten periods, two
+urban/rural groups, four social classes at age 40,  four social classes at age 60,
 ten age groups, and 22 cohorts, in all 422\,400 possible
 combinations. However, in this scheme there are many structural zeroes
 (impossible combinations) and some random zeros, so the actual number of
@@ -559,25 +558,25 @@ were still mainly in the workforce, and the second those that mainly were
 retired. The model controls for marital
 status and whether the individual resides in the urban or rural parts of the regions. There
 are no serious signs of deviation from proportionality assumption, except
-regarding Hisclass. Each period are analysed separately, but we then combine results
+regarding docial class. Each period are analysed separately, but we then combine results
 in order to show the development of the social patterning of mortality
 during the studied period.
 
-The important explanatory variable, **hisclass**, is included in the
+The important explanatory variable, social class (**hisclass**), is included in the
 proportional hazards models as a *stratification* variable. The main
-reason for this choice is that the effect of **hisclass** on survival is
+reason for this choice is that the effect of social class (**hisclass**) on survival is
 non-proportional, that is, it varies with age. With the reduced data set
 and Poisson regression, this is simply achieved by introducing an
-interaction term between **age** and **hisclass**. Then, the main
+interaction term between **age** and social class (**hisclass**). Then, the main
 results are presented graphically. Tables with results from the
 different models are presented at the end of the article, but are not
 commented on in detail. The comments on the results are primarily based on
-the figures and focuses on the central variable in our study---**hisclass**. 
-As can be seen from the tables, most variables in the model are
+the figures and focuses on the central variable in our study--- social class (**hisclass**). 
+As can be seen from the tables, most variables in the models are
 significant at 5 per cent level.
 
 
-# The effect of Hisclass, 1851--1950, 1961--2013
+# The effect of social class, 1851--1950, 1961--2013
 
 ## All causes of death
 
@@ -651,7 +650,7 @@ par(oldpar)
 ```
 
 From Table~\ref{tab:cumswtab} it is obvious that the statistical significance is strong.
-The most interesting feature is the three-way interaction with **sex**, **period**, and **hisclass**.
+The most interesting feature is the three-way interaction with **sex**, **period**, and social class (**hisclass**).
 
 ```{r cumswtab,results='asis',cap="Table"}
 fitt <- glm(event ~ offset(log(exposure)) + urban + civst + age + sex * hisclass * period,
@@ -668,7 +667,7 @@ than men. This is a well-known phenomenon in Swedish
 demographic history. Male mortality has almost always been higher than
 female in all age groups [@wil99, @suwi07]. We also observe a
 substantial decline in mortality for both sexes, resulting in smaller
-absolute differences between social classes. The compression that is
+absolute differences between social classes. We must however distinguish between differences in absolute risks compared to relative risks [@hoetal16). The compression that is
 visible for later decades is partly explained by the decreasing general
 mortality and is not necessarily representing a homogenisation of relative risks.
 
@@ -676,7 +675,7 @@ mortality and is not necessarily representing a homogenisation of relative risks
 By standardising the levels in each time period for each class, we 
 illustrate the relative risks in Figure \@ref(fig:cumswstand). In the rest of 
 the paper, we only present these
-relative mortality levels for the different classes.
+relative mortality levels for the different classes since they are the main focus in this study.
 
 ```{r cumswstand, fig.cap = cap12, fig.scap = scap12, fig.height = 8}
 oldpar <- par(mfrow = c(2, 1))
@@ -689,9 +688,8 @@ par(oldpar)
 
 
 Notice that we have not analysed the 1950s due to the fact that we only
-have data for some parishes at that time, consequently having no
-corresponding population for that decade. Furthermore, we have excluded the
-results for women during the 1960s and 1970 of reasons discussed above. The
+have data for some parishes at that time. Furthermore, we have excluded the
+results for women during the 1960s and 1970 out of the reasons discussed above. The
 changing economy also have consequences for the analysis, particularly when
 it comes to the agricultural sector. While farmers were common occupations
 during the first half of the 20th century, these occupations has constantly
@@ -705,11 +703,11 @@ regions in northern Sweden and for other periods [@edli11,@edbr12]. The
 highest social class usually have comparatively low mortality, while
 working class women have high. There is however no substantial change in
 the relative risks between the classes. Only the group with unknown social
-class is distinguished by moch higher mortality from the 1980s
+class is distinguished by much higher mortality from the 1980s
 onwards. This can however have to do with the differences how social
 position for women is defined before and after 1950. After 1950 it is based
 on the own occupation. Being without occupation might include women that
-are more frail both when it comes to health and socially.
+are more frail both when it comes to health and social characteristics.
 
 A different pattern appears among men, being the most surprising finding in
 our analyses. The groups we would expect to have the lowest mortality, if
