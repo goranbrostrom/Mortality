@@ -1,15 +1,27 @@
 ---
 title: Is high social class always beneficial for survival? Long-term perspectives
   of social inequality in mortality among adults and elderly in Northern Sweden 1851--2013
-author: "SÃ¶ren Edvinsson and GÃ¶ran BrostrÃ¶m"
+author: "Sören Edvinsson and Göran Broström"
 date: '`r Sys.Date()`'
 output:
   bookdown::pdf_document2:
+<<<<<<< HEAD
     number_sections: yes
     toc: yes
     toc_depth: 2
   bookdown::html_document2:
     number_sections: yes
+=======
+    number_sections: yes
+    toc: yes
+    toc_depth: 2
+  bookdown::html_document2:
+    number_sections: yes
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
+  bookdown::word_document2:
+>>>>>>> 80903b87c2da75ccd57db6e83ba68faab8a8164f
     toc: yes
     toc_depth: 2
     toc_float: yes
@@ -1246,9 +1258,7 @@ similar pattern as for all-cause mortality. Cancer is sometimes considered
 less connected to social class, and we find mixed results in our analyses.
 
 The surprising results makes it reasonable to consider the validity and
-possible weaknesses in the study. (We nead to address some limitations. We recognize four that has to do with data. One is how social class is defined, one is how presence is identified, one is that there are some differences in which parishes are included and the last one is the use of HISCLASS.)
-
-One obstacle concerns the quality of
+possible weaknesses in the study. One obstacle concerns the quality of
 available information. Occupational titles in historical sources are not
 always distinct enough to define the correct class. It can be difficult to
 identify the skill level in the working class population because many were
