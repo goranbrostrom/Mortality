@@ -1,25 +1,26 @@
 ---
 title: Is high social class always beneficial for survival? Social inequality in mortality
   among adults and elderly in Northern Sweden 1851--2013
-author: "SÃ¶ren Edvinsson and GÃ¶ran BrostrÃ¶m"
-date: '`r Sys.Date()`'
+author: "SÃ¶ren Edvinsson and Göran Broström"
+date: "`r Sys.Date()`"
+documentclass: article
+citation-package: natbib
+bibliography: "mybib.bib"
+biblio-style: "apalike"
 output:
+  bookdown::pdf_document2:
+    number_sections: yes
+    toc: yes
+    toc_depth: 2
   bookdown::html_document2:
     number_sections: yes
     toc: yes
     toc_depth: 2
     toc_float: yes
-  bookdown::pdf_document2:
-    number_sections: yes
-    toc: yes
-    toc_depth: 2
   bookdown::word_document2:
     toc: yes
     toc_depth: 2
     toc_float: yes
-link-citations: yes
-bibliography: mybib.bib
-biblio-style: apalike
 ---
 
 ```{r setup, include=FALSE}
@@ -138,7 +139,7 @@ American countries in its basic features [@rowa14].
 
 
 ```{r mapp,fig.cap = "The Skellefteå and Umeå regions in Sweden.", out.width="3in"}
-include_graphics("myfigs/sweden.png")
+knitr::include_graphics("myfigs/sweden.png")
 ```
 The Skellefteå and Umeå regions (Figure \@ref(fig:mapp)) are part of the
 county of Västerbotten in the north of Sweden along the coast of Gulf
@@ -1220,13 +1221,13 @@ from such studies show other patterns than that of infant and child
 mortality. The expected social gradient in survival, meaning that people
 from higher social classes always had an advantage, was in many cases,
 particularly among adult men, not found despite the well-documented
-socio-economic differences in society [@edli11, @edbr12]. Until recently it has not been possible to investigate the development on mortality differences among the adult and elderly population. The present study is unique in its time perspective by investigating the development from the 19th century until the present. The results probably surprise most readers, and partly surprised us as well. The consistent advantage for higher social classes do not appear until quite late in the investigated regions. The results of small socio-economic gradient in the past and its late development are however in accordance with other studies [@bevp11], for example by @bedr11 in a different setting, a couple of Scanian parishes in southern Sweden, although with somewhat different social categories. They find the first indications of an emerging social gradient in the 1950s. Similar results have also been found in Estonia [@jaadla17]. A study of mortality and social class in Sweden 1960—1968 find that self-employed men and non-manual male workers in fact had higher mortality than manual workers in total and cardiovascular mortality [@vano89]. Apparently high social class are not always beneficial for survival.
+socio-economic differences in society [@edli11, @edbr12]. Until recently it has not been possible to investigate the development on mortality differences among the adult and elderly population. The present study is unique in its time perspective by investigating the development from the 19th century until the present. The results probably surprise most readers, and partly surprised us as well. The consistent advantage for higher social classes do not appear until quite late in the investigated regions. The results of small socio-economic gradient in the past and its late development are however in accordance with other studies [@bevp11], for example by @bedr11 in a different setting, a couple of Scanian parishes in southern Sweden, although with somewhat different social categories. They find the first indications of an emerging social gradient in the 1950s. Similar results have also been found in Estonia [@jaadla17]. A study of mortality and social class in Sweden 1960--1968 found that self-employed men and non-manual male workers in fact had higher mortality than manual workers in total and cardiovascular mortality [@vano89]. Apparently high social class is not always beneficial for survival.
 
 There were however large differences in the pattern between men and women as well as between different age groups. The social pattern of female mortality are in line with the expected, but a social gradient in male adult mortality is a recent phenomenon. Furthermore, inequality in mortality appears clearer for the working—age population, while the differences are smaller among the elderly.  Concerning specific causes of death, the analysis shows that cardiovascular diseases contributes to a large proportion of all deaths during the 20th century, and we are not surprised that it has a fairly similar pattern as for all-cause mortality. Cancer is often considered less connected to social class, and we find mixed results in our analyses.
 
-The surprising results makes it reasonable to consider the validity and possible weaknesses in the study. Some of the limitations have been addressed in the presentation of the variables – the fact that social class was defined according to household until 1950 but individually defined from 1960 (mainly affecting the social class of women), different definitions of households during the same two periods, some differences in parishes included at different periods. These differences are however not of the magnitude that the main conclusions would be affected. Most women would end up in the same category as their husbands. 
+The surprising results make it reasonable to consider the validity and possible weaknesses in the study. Some of the limitations have been addressed in the presentation of the variables---The fact that social class was defined according to household until 1950 but individually defined from 1960 (mainly affecting the social class of women), different definitions of households during the same two periods, some differences in parishes included at different periods. These differences are however not of the magnitude that the main conclusions would be affected. Most women would end up in the same category as their husbands. 
 
-One obstacle concerns the quality of available information. Occupational titles in historical sources are not always distinct enough to define the correct class. Studies covering long periods face the problem that occupations and classes change character - they do not represent the same thing. Nevertheless, these ambiguities and possible misclassifications should not radically change the basic patterns observed. The social classes identified during the different periods represent distinct groups with very large differences in resources, capacities and power. 
+One obstacle concerns the quality of available information. Occupational titles in historical sources are not always distinct enough to define the correct class. Studies covering long periods face the problem that occupations and classes change character---they do not represent the same thing. Nevertheless, these ambiguities and possible misclassifications should not radically change the basic patterns observed. The social classes identified during the different periods represent distinct groups with very large differences in resources, capacities and power. 
 
 In this paper we have analysed social inequality in health from the
 perspective of social classes. However, there are
