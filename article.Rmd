@@ -682,12 +682,12 @@ the relative risks between classes. Only the group with unknown social
 class is distinguished by much higher mortality from the 1980s
 onwards. This can however have to do with how we have defined social
 position for women before and after 1950. After 1950 it is based
-on their own occupation. Being without occupation might include women that
-are more frail both when it comes to health and social characteristics.
+on their own occupation. Being without occupation probably include women that
+are more frail when it comes to health and vulnerable concerning social characteristics.
 
-A different pattern appears among men, being the most surprising finding in
+A completely different pattern appears among men, being the most surprising finding in
 our analyses. The groups we would expect to have the lowest mortality, if
-we assume that access to different resources and belonging to a high social class
+we assume that access to important resources and belonging to a high social class
 determines survival, instead have by far the highest hazards of dying
 during the nineteenth and much of the 20th century. Workers on the
 other hand have comparatively low mortality until the 1960s, at the same
@@ -702,12 +702,12 @@ this is however a quite recent phenomenon. Corresponding to what we find
 for women, those without known occupation have much higher mortality than
 the others from the 1960s onwards. The assumption made for women of
 unknowns social class is probably even more relevant for men. They probably
-represent groups in society that are particularly vulnerable, having difficulties getting into the laour force.
+represent groups in society that are particularly vulnerable, having difficulties getting into the labour force.
 
 A further observation can be made from Figure \@ref(fig:cumsw). The gender
-difference in death hazards is very big for the élite group from
+difference in death hazards is extremely large for the elite group from
 1851--1950, men having about three times higher risks than women in the
-same class. In the other classes, the difference was much smaller. It was
+same class (and in the same households). In the other classes, the difference was much smaller. It was
 men in high position that experienced the largest risks.
 
 
@@ -737,20 +737,20 @@ find a turning point at this time with better survival among elderly, to a
 large extent caused by lower mortality in cardiovascular diseases.
 
 Concerning the social pattern, the pattern is less clear compared to what
-we found for the younger age group (see Figure \@ref(fig:cumswold). For
+we find for the younger age group (see Figure \@ref(fig:cumswold). For
 women the results are mixed. Once again, too much missing data on social
-class leaves out the results for the 1960s and 1970s. We do not find the
-same clear advantage for élite women during the period before 1950, but neither
+class force us to leave out the results for the 1960s and 1970s. We do not find the
+same clear advantage for elite women during the period before 1950, but neither
 do we find any large disadvantage for working class elderly women at that
-time. In some periods, the social differences were small, and the élite
+time. In some periods, the social differences were small, and the elite
 even had substantially higher mortality during the early 20th century. The
-social differences continued to be small during the last decades of the
+social differences continued to be small until the last decades of the
 20th century. Only during the two last periods (after the year 2000) is it
 possible to establish the expected social gradient in mortality.
 
 For men we find indications of the same intriguing change among elderly as
 for the adult male population 40--64 years. Mortality was in fact
-substantially higher among élite men  but their disadvantage was most 
+substantially higher among elite men but their disadvantage was mainly 
 apparent during the 19th century. Differences are fairly small during the
 first half of the 20th century. Not until the second half of the 20th
 century is the survival much better for the highest social class while
@@ -786,7 +786,7 @@ xtable(dr,label = "tab:cumswoldtab", caption = "Anova, all causes of death, 65-8
 ## Cardiovascular mortality
 
 In this and the following section, the focus is on analyses of mortality from the two
-dominant causes of death groups among the adult and elderly population. We start
+dominant groups of death causes in the adult and elderly population. We start
 with cardiovascular diseases. Many studies have shown that socio-economic
 conditions are strongly associated with mortality in this disease
 group. Belonging to working class, having less education and low income
@@ -843,7 +843,7 @@ As before, models are fitted separately for sex and each ten-year time period, f
 2013. We stratify on social class (**hisclass**) and include the covariates **urban** (TRUE or FALSE) and
 **civst** (marital status). The cumulative
 hazards at the end of the age period (65 if 40--64, 90 if 65--89) are the
-main target in our analysis: These numbers are used in the process of
+main target in our analysis. These numbers are used in the process of
 graphically illustrating the development over time.
 
 ### Ages 40--64
