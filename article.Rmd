@@ -1,12 +1,7 @@
 ---
-title: Is high social class always beneficial for survival? Social inequality in mortality
-  among adults and elderly in Northern Sweden 1851--2013
+title: Is high social class always beneficial for survival? A study of adults and elderly in Northern Sweden 1851--2013
 author: "Sören Edvinsson and Göran Broström"
-date: "`r Sys.Date()`"
-documentclass: article
-citation-package: natbib
-bibliography: "mybib.bib"
-biblio-style: "apalike"
+date: '`r Sys.Date()`'
 output:
   bookdown::html_document2:
     number_sections: yes
@@ -21,6 +16,10 @@ output:
     toc: yes
     toc_depth: 2
     toc_float: yes
+bibliography: mybib.bib
+documentclass: article
+citation-package: natbib
+biblio-style: apalike
 ---
 
 ```{r setup, include=FALSE}
@@ -58,11 +57,10 @@ vb0Tab$age <- factor(vb0Tab$age)
 
 # Introduction
 
-In the present paper, we take a long-term perspective on the development of
-social inequalities in mortality in the adult and elderly population. The areas under investigation are the Skellefteå and Umeå regions in the north of Sweden, and the time period is 1851--2013 for Skellefteå and 1901--2013 for Umeå. This issue is then analysed according to gender and age-group (working age vs retired) and major causes of death (cardiovascular diseases and cancers). Furthermore we put this in he context of how the inequality in mortality is associated
+A major theme in demographic and epidemiological studies, is the seemingly persistent effect of social class on mortality. In the present study, we approach this issue by taking a long-term perspective on the development of social inequalities in mortality in the adult and elderly population. Our main focus is on the relative differences. The areas under investigation are the Skellefteå and Umeå regions in the north of Sweden for the period 1851--2013 for Skellefteå and 1901--2013 for Umeå. The main issue is then analysed according to gender and age-group (working age vs retired) and major causes of death (cardiovascular diseases and cancers). Furthermore we put this in he context of how the inequality in mortality is associated
 with the development of economic inequality in society.The results are then discussed in relation to our understanding of the mortality transition and the social determinants of health and mortality, and their implications on some of the most influential hypotheses and concepts in health research.
 
-On the basis of these results, we argue that a consistent hierarchical social gradient in mortality appears surprisingly late, but that there were large gender differences in trends and levels. We suggest that more attention should be paid on health-related behaviour also in earlier phases of the mortality transition.
+On the basis of these results, we argue that high social class is not necessarily favourable for survival. This is based on the finding that a consistent hierarchical social gradient in mortality appears surprisingly late in the studied regions, but that there were large gender differences in trends and levels. We suggest that health-related behaviour was important not only in present-day societies, but were decisive also in earlier phases of the mortality transition. The results implicate that the association between social class and health are more complex than is assumed in many of the dominant theories in demography and epidemiology.
 
 
 One of the central aspects of survival is social class and access to economic
@@ -77,22 +75,21 @@ historical societies, probably higher than in modern societies. This is a
 reasonable assumption since these societies were in most cases characterised by
 very large differences between groups and classes. Knowing that access to
 resources provides advantages in all aspects of life, the health advantage of higher
-classes ought to be obvious. @ant67 and @smi83 suggest that social
+classes ought to be obvious. @ant67 suggests that social
 inequality in mortality has passed through different historical phases. According
-to them, differences were comparatively small during the
+to him, differences were comparatively small during the
 pre-transitional phase when space was a strong determinant for the spread of
 disease. Differences then increased during the transitional phase when mortality
 declined and wealthy groups used their economic and human resources to gain better health. Finally,
 mortality differences decreased again resulting in marginal levels of inequality in modern low-mortality societies when instead
 health-related behaviour became the decisive determinant for health and survival.
-@omran82 comes to a similar conclusion states, in the third proposition in his theory of the
-epidemiological transition, that even if the class differential in mortality was
+@omran82 comes to a similar conclusion in his theory of the epidemiologic transition. He states in the third proposition in the theory, that even if the class differentials in mortality were
 maintained during the transition, the decline set in earlier and was faster
-among privileged groups. These assumption if partly supported by data from England and Wales [@pamuk85, @wowi95]. 
+among privileged groups. These assumptions are primarily based on studies of England and Wales [@ant67, @wowi95], for example @pamuk85. 
 
 
 Recent studies, investigating social inequality in health and mortality
-with micro-data, has however questioned how generalizable the assumed
+with micro-data, has however questioned how general the assumed
 pattern is [@bevp11]. Instead, some studies suggest that the modern
 pattern might be a fairly recent development [@bedr11], although the pattern differs
 depending on age, gender or historical context. When it comes to the adult
@@ -100,32 +97,23 @@ and elderly population results from different studies have diverged, some
 reporting substantial differences but many, particularly those based on
 Swedish data, have found surprisingly small or even reversed socio-economic
 differences during the 19th and early 20th century [@bedr11,
-@edli11,@edbr12], sharply contrasting from the situation in present-day society.
-
-
-
-It thus appears as if a more consistent social health divide appeared at
+@edli11,@edbr12], sharply contrasting from the situation in present-day society. It thus appears as if a more consistent social health divide in adult age appeared at
 some point during the mortality transition, at least in Sweden. Solid
 empirical evidence about the process is however lacking and studies
 focusing on the issue are still few. There is a need for more reliable
 studies from different geographical and historical settings in order to 
 better understand the role of socio-economic conditions for health and survival over time. 
-Furthermore, previous studies indicate substantial differences in the development according to age and gender.
+
 
 Another aspect of the development of social inequality in mortality,
 concerns its relation to economic inequality. @wipi09 argue that
 income inequality has an independent effect on mortality, separate from the
 direct effect of actual access to economic resources. They argue
-that unequal societies perform less well when it comes to health than equal
-ones. Wilkinson and Pickett find a positive association between inequality
-and health (as well as other social conditions) at country level in the
-present-day economically developed world. This has initiated a vital
-scholarly debate and the topic has been extensively studied [@suka04,
-@wado00]. How the association looked like in previous periods is
-unknown. This is of particular interest since the levels of economic
+that unequal societies (basically countries) perform less well when it comes to health (as well as other social conditions) than equal ones in the present-day economically developed world. This has initiated a vital scholarly debate and the topic has been extensively studied [@suka04,
+@wado00]. During the last decades, the association between trends of inequalities in mortality and income respectively are weak or non-existant according to @hoetal16. How the association looked like in previous periods is unknown. This is of particular interest since the levels of economic
 inequality were very different from those of the recent decades. Even if it
 not a necessary implication, it is reasonable to assume that poorer groups were
-those most disadvantaged of large inequality in itself. During the last decades, the association between trends of inequalities in mortality and income respectively are weak or non-existant according to @hoetal16. 
+those most disadvantaged of large inequalities. 
 
 When it comes to Sweden both income and wealth distribution was strongly skewed from the 1870's to the early 20th century. Starting during the inter-war period, income and
 wealth inequality continuously diminished to reach a low point at around
@@ -146,17 +134,13 @@ county of Västerbotten in the north of Sweden along the coast of Gulf
 of Bothnia. This was a remote part of the country, where communication with
 the rest of Sweden was difficult until the late 19th century. The economy
 was dominated by agriculture, making it vulnerable to harvest failures, and
-several severe famines affected the regions during the 1800s. One living
-long in memory was the famine of 1867–-1868 [@segb14]. During the long
-winters, sea communication was hindered due to the Gulf of Bothnia being
-frozen. The first ships during the year came to this area in May or even as
+several severe famines frequently affected the regions during the 1800s, for example after the harvest failure in 1867 [@segb14]. During the long winters, sea communication was hindered due to the Gulf of Bothnia being frozen. The first ships during the year came to this area in May or even as
 late as June in some cases [@fah56]. Towards the end of the 19th
-century, the Swedish railway system reached this part of Sweden, thereby
-facilitating contacts with the rest of Sweden, improving the economy and
-mitigating the effects of harvest failures. The inland was particularly
+century, the Swedish railway system reached this part of Sweden. Thereby
+contacts with the rest of Sweden were facilitated, improving the economy and making it possible to mitigate the effects of harvest failures. The inland was particularly
 remote and isolated. During the 19th century, our regions became
 increasingly integrated in the same epidemiological pattern as the rest of
-Sweden. Diseases reached to places that were spared in earlier times.
+Sweden.
 
 The Skellefteå region until the 1950 in our dataset consists of a selection
 of parishes surrounding the town of Skellefteå, founded in 1845 but with a
@@ -195,11 +179,11 @@ the century ended.
 The recent extension in time of data at the Demographic Data Base (DDB),
 Umeå University (www.cedar.umu.se) by including the period between 1900 and
 1950s makes it possible to investigate the long-term development of social
-inequality in mortality, in the present case from 1851 to 2013. The
-databases provide us with micro-data on a sufficiently large population and
+inequality in mortality in a part of Sweden. The available
+databases  The data for the present study comes from two large
+population databases at the DDB, whom provide us with micro-data on a sufficiently large population and
 with substantial social diversity for the Skellefteå and Umeå regions
-[@wee16]. The data for the present study comes from two large
-population databases at the DDB. The early period until 1950 is covered by
+[@wee16]. The early period until 1950 is covered by
 the database Poplink, the digitisation of historical parish registers for
 the Skellefteå and Umeå region [@wee16]. Poplink is based on linked
 parish records, allowing us to reconstruct life biographies on people as
@@ -220,8 +204,8 @@ Information on individuals are anonymised and the two databases are not
 linked. This stops us from following individuals present
 in both databases throughout their lives, thus they are treated separately. This
 also makes it impossible to add information on individuals in the Linnaeus
-database from what we potentially could find in Poplink, for example family
-background or occupations earlier in life.
+database from what we potentially could extract from Poplink, for example family
+background or previous social class.
 
 
 ```{r lexis2,fig.cap="The sampling frame.", fig.height = 5}
@@ -258,7 +242,7 @@ text(1985.2, 50, paste(n.d, "deaths"))
 
 In the data-set analysed here, all individuals 40 years and older ever
 being resident in either of the regions are included. The data file
-contains the variables on social class (Hisclass) sex, urban/rural
+contains the variables social class, sex, urban/rural
 residence, birth date, death date, first and last date of observation and
 type of entrance/exit. Total number of persons are `r pn.pl` leading to
 `r pn.d` deaths in Poplink and `r n.pl` persons leading 
@@ -269,20 +253,16 @@ Figure \@ref(fig:lexis2).
 
 Differences in available information in the two datasets as well as within
 the Linnaeus data makes it necessary to apply different approaches when it
-comes to identification of presence periods within our
-regions. The Poplink data provides us with exact dates or at least year of
-start and exit of the presence of all individuals in our data, allowing us
+comes to identification of presence periods. The Poplink data provides us with exact dates or at least year of start and exit of the presence of all individuals in our data, allowing us
 to have full and continuous control of the de jure population. This is
 however not the case with the Linnaeus database. For the period 1960--2000
-we use presence in the censuses 1960--1990 together with the yearly
-population registers 1986--2000 and information on deaths from the National
+we use presence in the censuses 1960--1990 and information on deaths from the National
 Board of Health and Welfare to identify the observation periods in our
 analyses. There is however no full information on what happened in-between
-the censuses, for example the exact date of exit for persons that moved
+the censuses, for example on the exact date of exit for persons having moved
 between two censuses. We have solved this by considering everyone as
 resident in our regions during the complete five-year period between
-censuses if the person is missing in the later census (the last period covering ten years). This overestimates
-their presence in our regions, but should not bias the results when it
+censuses if the person is missing in the later census (the last period covering ten years). This overestimates their presence, but should not bias the results when it
 comes to socioeconomic differences. We furthermore miss those that both
 moved in and moved out or vice versa between censuses. Exit dates are exact
 if they refer to death, and in these cases we consider them as constantly
@@ -311,7 +291,7 @@ to understand why some are advantaged and others disadvantaged and what
 sort of factors determines health differences. 
 
 In this paper we analyse mortality differences according to social class
-based on the classification scheme Hisclass [@lema11]. The only
+based on the classification scheme Hisclass in modified form [@lema11]. The only
 type of socio-economic information available both in the Linnaeus and Poplink database
 is occupations. Thus, analysing according to social class is apart from
 being a scientific choice, also a practical one. Using occupational data is
@@ -334,9 +314,7 @@ The use of different data sets, forces us to apply different approaches
 towards defining the social position. A problem is that
 Poplink usually only provides the occupation for the head of household,
 thus under-estimating female working-force participation as well as that of
-adult children residing with their parents [@vik10]. In this study and
-according to the research questions in the present paper, we have chosen to
-categorise wives according to position of the head of household, usually
+adult children residing with their parents [@vik10]. For the Poplink period (until 1950), we have chosen to categorise wives according to position of the head of household, usually
 the husband/father, assuming that the family shares the same socio-economic
 position. This strategy makes the problem of under-recording less
 problematic.
@@ -350,7 +328,7 @@ period. The occupation of the husband as signifier of social class became,
 if not obsolete, at least less relevant. All included persons are signified
 by their individual occupation for this period. Still, the results for the
 different periods are not completely comparable and makes the
-interpretation of the development for women more uncertain. Notice however that there is a strong social homogeneity between partners in a marriage, indicating that the results would not differ in any decisive way if we use social class on household level also for the Linneaus data. 
+interpretation of the development for women uncertain for some periods. Notice however that there is a strong social homogeneity between partners in a marriage, indicating that the results would not differ in any decisive way by using occupations on individual level instead of on household level for defining social class from the Linneaus data. 
 
 Hisclass, the classification system used here, is a "...
 HISCO-based historical international social class scheme" [@lema11,
@@ -409,10 +387,7 @@ barplot(t(yy)[4:1, ], col = c("red", "blue", "green", "black"), las = 2, ylab = 
 The proportion with missing values among women is however a larger problem,
 see Figure \@ref(fig:hiscskumw). Corresponding to what we found for men, the
 proportion without social position is very low until the middle of the 20th
-century. This is a reflection of how womens social position is defined for
-that period. Missing social class is however a real problem during the
-1960s and 1970s in particular. Around 80 \% lack information for the 1960s
-and 50 \% for the 1970s. Since social class for this period is defined
+century, reflecting the way womens social position is defined. Missing social class is however a real problem during particularly the 1960s and 1970s. Around 80 \% lack information for the 1960s and 50 \% for the 1970s. Since social class for this period is defined
 according to own occupation, the consequence of many women being outside
 the workforce, the proportion missing becomes very high. We have chosen not
 to report results for women for these two decades. For the later decades,
@@ -442,11 +417,9 @@ barplot(t(yy)[3:1, ], col = c("red", "blue", "black"), las = 2, ylab = "Per cent
 In the present study, we analyse mortality in the two most common disease
 groups in the ages we are investigating---cardiovascular diseases and
 cancers. National compulsory reporting of cause of death was introduced in
-1911, thus our analysis of the two disease groups starts from that
-year. Classification systems have however changed. Sweden did not join ICD
+1911, but our analysis of the two disease groups starts from 1901 since deaths were fairly frequently reported even before 1911. Classification systems have however changed. Sweden did not join ICD
 until 1952, but the historical causes of death in the Poplink database have
-been coded according to the ICD10 system. In the present study, we have
-identified the codes relevant for cardiovascular diseases and cancers in
+been coded according to the ICD10 system. In the present study, we identify the codes relevant for cardiovascular diseases and cancers in
 the ICD 8, 9 and 10.
 
 The distribution of causes of death is shown in
@@ -491,7 +464,7 @@ particularly until the 1990s. A financial crisis struck Sweden in the early
 1990s, which among other things increased unemployment and changed parts of
 the welfare system towards being less generous than before. The start of the
 last period (2008--2013) coincides with the international financial
-crisis.
+crisis. During the last decades income inequality has increased considerably.
 
 
 # Models
@@ -556,15 +529,12 @@ the original data set.
 
 The analyses are performed in the **R** environment for statistical computing
 and graphics [@cran], especially using the package **eha**
-[@gb12,@eha].
-The proportional hazards model allow us to scrutinise the differences and
+[@gb12,@eha]. The proportional hazards model allows us to scrutinise the differences and
 the development in more detail. We divide the analysis into two age groups,
 40--64 and 65--89 years of age, the first age group representing people that
 were still mainly in the workforce, and the second those that mainly were
-retired. The model controls for marital
-status and whether the individual resides in the urban or rural parts of the regions. There
-are no serious signs of deviation from proportionality assumption, except
-regarding docial class. Each period are analysed separately, but we then combine results
+retired. The model controls for marital status and whether the individual resides in the urban or rural parts of the regions. There are no serious signs of deviation from proportionality assumption, except
+regarding social class. Each period are analysed separately, but we then combine results
 in order to show the development of the social patterning of mortality
 during the studied period.
 
@@ -712,12 +682,12 @@ the relative risks between classes. Only the group with unknown social
 class is distinguished by much higher mortality from the 1980s
 onwards. This can however have to do with how we have defined social
 position for women before and after 1950. After 1950 it is based
-on their own occupation. Being without occupation might include women that
-are more frail both when it comes to health and social characteristics.
+on their own occupation. Being without occupation probably include women that
+are more frail when it comes to health and vulnerable concerning social characteristics.
 
-A different pattern appears among men, being the most surprising finding in
+A completely different pattern appears among men, being the most surprising finding in
 our analyses. The groups we would expect to have the lowest mortality, if
-we assume that access to different resources and belonging to a high social class
+we assume that access to important resources and belonging to a high social class
 determines survival, instead have by far the highest hazards of dying
 during the nineteenth and much of the 20th century. Workers on the
 other hand have comparatively low mortality until the 1960s, at the same
@@ -732,12 +702,12 @@ this is however a quite recent phenomenon. Corresponding to what we find
 for women, those without known occupation have much higher mortality than
 the others from the 1960s onwards. The assumption made for women of
 unknowns social class is probably even more relevant for men. They probably
-represent groups in society that are particularly vulnerable, having difficulties getting into the laour force.
+represent groups in society that are particularly vulnerable, having difficulties getting into the labour force.
 
 A further observation can be made from Figure \@ref(fig:cumsw). The gender
-difference in death hazards is very big for the élite group from
+difference in death hazards is extremely large for the elite group from
 1851--1950, men having about three times higher risks than women in the
-same class. In the other classes, the difference was much smaller. It was
+same class (and in the same households). In the other classes, the difference was much smaller. It was
 men in high position that experienced the largest risks.
 
 
@@ -767,20 +737,20 @@ find a turning point at this time with better survival among elderly, to a
 large extent caused by lower mortality in cardiovascular diseases.
 
 Concerning the social pattern, the pattern is less clear compared to what
-we found for the younger age group (see Figure \@ref(fig:cumswold). For
+we find for the younger age group (see Figure \@ref(fig:cumswold). For
 women the results are mixed. Once again, too much missing data on social
-class leaves out the results for the 1960s and 1970s. We do not find the
-same clear advantage for élite women during the period before 1950, but neither
+class force us to leave out the results for the 1960s and 1970s. We do not find the
+same clear advantage for elite women during the period before 1950, but neither
 do we find any large disadvantage for working class elderly women at that
-time. In some periods, the social differences were small, and the élite
+time. In some periods, the social differences were small, and the elite
 even had substantially higher mortality during the early 20th century. The
-social differences continued to be small during the last decades of the
+social differences continued to be small until the last decades of the
 20th century. Only during the two last periods (after the year 2000) is it
 possible to establish the expected social gradient in mortality.
 
 For men we find indications of the same intriguing change among elderly as
 for the adult male population 40--64 years. Mortality was in fact
-substantially higher among élite men  but their disadvantage was most 
+substantially higher among elite men but their disadvantage was mainly 
 apparent during the 19th century. Differences are fairly small during the
 first half of the 20th century. Not until the second half of the 20th
 century is the survival much better for the highest social class while
@@ -816,7 +786,7 @@ xtable(dr,label = "tab:cumswoldtab", caption = "Anova, all causes of death, 65-8
 ## Cardiovascular mortality
 
 In this and the following section, the focus is on analyses of mortality from the two
-dominant causes of death groups among the adult and elderly population. We start
+dominant groups of death causes in the adult and elderly population. We start
 with cardiovascular diseases. Many studies have shown that socio-economic
 conditions are strongly associated with mortality in this disease
 group. Belonging to working class, having less education and low income
@@ -873,7 +843,7 @@ As before, models are fitted separately for sex and each ten-year time period, f
 2013. We stratify on social class (**hisclass**) and include the covariates **urban** (TRUE or FALSE) and
 **civst** (marital status). The cumulative
 hazards at the end of the age period (65 if 40--64, 90 if 65--89) are the
-main target in our analysis: These numbers are used in the process of
+main target in our analysis. These numbers are used in the process of
 graphically illustrating the development over time.
 
 ### Ages 40--64
@@ -1221,9 +1191,9 @@ from such studies show other patterns than that of infant and child
 mortality. The expected social gradient in survival, meaning that people
 from higher social classes always had an advantage, was in many cases,
 particularly among adult men, not found despite the well-documented
-socio-economic differences in society [@edli11, @edbr12]. Until recently it has not been possible to investigate the development on mortality differences among the adult and elderly population. The present study is unique in its time perspective by investigating the development from the 19th century until the present. The results probably surprise most readers, and partly surprised us as well. The consistent advantage for higher social classes do not appear until quite late in the investigated regions. The results of small socio-economic gradient in the past and its late development are however in accordance with other studies [@bevp11], for example by @bedr11 in a different setting, a couple of Scanian parishes in southern Sweden, although with somewhat different social categories. They find the first indications of an emerging social gradient in the 1950s. Similar results have also been found in Estonia [@jaadla17]. A study of mortality and social class in Sweden 1960--1968 found that self-employed men and non-manual male workers in fact had higher mortality than manual workers in total and cardiovascular mortality [@vano89]. Apparently high social class is not always beneficial for survival.
+socio-economic differences in society [@edli11, @edbr12]. The results presented here show that the consistent advantage for higher social classes do not appear until quite late in the investigated regions. The results of small socio-economic gradient in the past and its late development are however in accordance with other studies [@bevp11], for example by @bedr11 in a different setting, a couple of Scanian parishes in southern Sweden, although with somewhat different social categories. They find the first indications of an emerging social gradient in the 1950s. Similar results have also been found in Estonia [@jaadla17]. A study of mortality and social class in Sweden 1960--1968 found that self-employed men and non-manual male workers in fact had higher mortality than manual workers in total and cardiovascular mortality [@vano89]. 
 
-There were however large differences in the pattern between men and women as well as between different age groups. The social pattern of female mortality are in line with the expected, but a social gradient in male adult mortality is a recent phenomenon. Furthermore, inequality in mortality appears clearer for the working—age population, while the differences are smaller among the elderly.  Concerning specific causes of death, the analysis shows that cardiovascular diseases contributes to a large proportion of all deaths during the 20th century, and we are not surprised that it has a fairly similar pattern as for all-cause mortality. Cancer is often considered less connected to social class, and we find mixed results in our analyses.
+
 
 The surprising results make it reasonable to consider the validity and possible weaknesses in the study. Some of the limitations have been addressed in the presentation of the variables---The fact that social class was defined according to household until 1950 but individually defined from 1960 (mainly affecting the social class of women), different definitions of households during the same two periods, some differences in parishes included at different periods. These differences are however not of the magnitude that the main conclusions would be affected. Most women would end up in the same category as their husbands. 
 
@@ -1248,12 +1218,19 @@ This makes us consider the possible impact of behavioural factors. Our results o
 
 In the present-day high-income world, smoking and drinking contributes to a substantial part of the socio-economic health differences [@mapemy14]. Our study suggests a strong impact also in historical Sweden. If this interpretation is correct, the hypothesis of @ant67 on an increasing role of health related behaviour in the modern low-mortality régime, while economic inequality determined the social mortality pattern during the early phases of the mortality transition can be questioned. Instead, health-related can be equally strong earlier in history but with a completely different expression. To corroborate this claim, we would need to have evidence on the social differentiation of consumption patterns and behaviours in history. Unfortunately, such data are rarely available before the 1960’s. At best, we have circumstantial and anecdotal evidence. Such evidence can however support the idea of less health-beneficial ways of living among elite men (@edli11 ). @vano89 find a higher total as well as cardiovascular mortality among self-employed men and non-manual male workers, something they suggest can be explained the higher tobacco consumption among men in these groups. The social pattern among women was however reversed, something that is in line with the present study. There is no solid information on smoking in different social classes before the 1960, but there are international studies indicating higher prevalence and consumption of tobacco in higher classes during the early phases of the tobacco epidemic, illustrated for example by the fact that smoking initially was more prevalent among physicians. There was also an association between higher incomes and consumption [@loco94]. The same lack of statistical evidence characterizes alcohol consumption in different social classes before 1960s. Access to alcohol was however easier for the wealthy during the period of strong alcohol restriction 1915-1955.  Overweight and obesity was also probably higher in higher social classes.
 
-An intriguing aspect of this study is the lack of association between level of economic inequality and social differences in mortality. Even though our study do not address the hypothesis raised by [@wipi09] directly, our results are of interest for this question as well. The early 20th century, in Sweden as well as in other countries, was characterised by very large economic differences, still this did in our regions not lead to any consistent advantage for the highest social class. After the Second World War, economic differences diminished, and was at its lowest in Sweden at about 1980, i.e. at a time when a more expected pattern of a social hierarchy in survival appeared. The period thereafter is characterized by increasing economic differences, coinciding with increasing health differences as well. The long-term relation between economic inequality and health require further studies.
-
-A relevant question is if our results can be generalised to other historical contexts. We have studied environments in northern Sweden without any large metropolis. Perhaps Sweden and/or this part of Sweden is a special case. The involvement of government both at the national and local level may have been stronger, thus mitigating socio-economic disadvantages. The level of income inequality was certainly lower in our regions than in other parts of the country but it was still substantially higher in 1930 than towards the end of the 20th century. In comparison with many other countries, the level of mortality has been fairly low. These are relevant questions, which hopefully can be addressed in other and maybe comparative studies.
 
 
 
+\section{Conclusion}
+In this article we set up to analyse social differences in mortality from a long-term perspective.Until recently it has not been possible to investigate the development on mortality differences among the adult and elderly population. Still, the prevailing idea in many parts of the scholarly society is that strong socio--economic differences in health and mortality have always existed and were possibly even stronger in historical societies due to the large class differences. The present study is unique in its time perspective by investigating the development from the 19th century until the present. The results probably surprise most readers, and partly surprised us as well. The consistent advantage of belonging to the elite have not always existed and the modern pattern of social divide in health appeared much later than expected in the regions we have studied. Apparently high social class is not always beneficial for survival. 
+
+There were however large differences in the pattern between men and women as well as between different age groups. The social pattern of female mortality are in line with the expected, but a social gradient in male adult mortality is a recent phenomenon. Furthermore, inequality in mortality appears clearer for the working—age population, while the differences are smaller among the elderly.  Concerning specific causes of death, the analysis shows that cardiovascular diseases contributes to a large proportion of all deaths during the 20th century, and we are not surprised that it has a fairly similar pattern as for all-cause mortality. Cancer is often considered less connected to social class, and we find mixed results in our analyses.
+
+To explain the observed differences is difficult and we can only provide tentative hypotheses. We have discussed the possible role of behavioural influences on mortality in different historical context, suggesting that such aspects are not only important in the modern epidemiological regime but might have been decisive in earlier phases of the epidemiologic transition as well. The results indicate that we should consider the role of gender and class expectations of behaviour. Unfortunately, the evidence for behavioural differences in history are usually circumstantial and anecdotal, at least when it comes to social class. Studies of these aspects and their role for the health and mortality in different times and places require further development.  
+
+An intriguing aspect of this study is the lack of association between level of economic inequality and social differences in mortality. Even though our study do not directly address the hypothesis raised by [@wipi09], our results are of interest for this question as well. The early 20th century, in Sweden as well as in other countries, was characterised by very large economic differences, still this did in our regions not lead to any consistent advantage for the highest social class. After the Second World War, economic differences diminished, and was at its lowest in Sweden at about 1980, i.e. at a time when a more expected pattern of a social hierarchy in survival appeared. The period thereafter is characterized by increasing economic differences, coinciding with increasing health differences as well. The long-term relation between economic inequality and health require further studies.
+
+An important question is if our results can be generalised to other historical contexts. We have studied environments in northern Sweden without any large metropolis. Perhaps Sweden and/or this part of Sweden is a special case. The involvement of government both at the national and local level may have been stronger, thus mitigating socio-economic disadvantages. The level of income inequality was certainly lower in our regions than in other parts of the country but it was still substantially higher in 1930 than towards the end of the 20th century. In comparison with many other countries, the level of mortality has been fairly low. This is a relevant question, which hopefully can be addressed in other and maybe comparative studies.
 
 # Acknowledgements
 
