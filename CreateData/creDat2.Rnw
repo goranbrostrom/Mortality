@@ -381,7 +381,7 @@ print(xtable(round(y, 1), digits = 0,
 
 Then we group the {\tt birthdate} variable into ten-year intervals ("birth
 cohorts"). Since we are interested only in ages 40--89 in the time period
-1901--2013, we can remove all born 1810 and earlier and all born 1974 or
+1801--2013, we can remove all born 1710 and earlier and all born 1974 or
 later. Finally we apply an "age window" of 40-89. 
 
 <<getageWin>>=
@@ -437,8 +437,8 @@ vb$hisclass40 <- factor(vb$hisclass40, labels = c("1+2", "3+4+5+6+8", "7+9+10+11
 vb$hisclass60 <- factor(vb$hisclass60, labels = c("1+2", "3+4+5+6+8", "7+9+10+11+12"))
 vb$hisclass <- factor(vb$hisclass, labels = c("1+2", "3+4+5+6+8", "7+9+10+11+12"))
 ## End cut ####################################################
-levels(vb$period)[8] <- "1991-2001" ## Changed from "1991-2000", fob90 extended.
-levels(vb0$period)[8] <- "1991-2001"
+##levels(vb$period)[8] <- "1991-2001" ## Changed from "1991-2000", fob90 extended.
+##levels(vb0$period)[8] <- "1991-2001"
 save(vb0, file = "../data2/vb0.rda")
 save(vb, file = "../data2/vb.rda")
 @
