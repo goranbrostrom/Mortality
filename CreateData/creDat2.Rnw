@@ -376,12 +376,12 @@ vb$period <- as.factor(vb$period)
 x <- with(vb, table(period, hisclass, useNA = "ifany"))
 y <- prop.table(x, margin = 1) * 100
 print(xtable(round(y, 1), digits = 0, 
-             caption = "Hisclass by time period, 1901--2013 (per cent)."))
+             caption = "Hisclass by time period, 1801--2013 (per cent)."))
 @
 
 Then we group the {\tt birthdate} variable into ten-year intervals ("birth
 cohorts"). Since we are interested only in ages 40--89 in the time period
-1901--2013, we can remove all born 1810 and earlier and all born 1974 or
+1801--2013, we can remove all born 1710 and earlier and all born 1974 or
 later. Finally we apply an "age window" of 40-89. 
 
 <<getageWin>>=
@@ -390,9 +390,9 @@ ageWin
 @
 
 <<groupbirths, results = 'asis'>>=
-vb <- vb[vb$birthdate > 1761 & vb$birthdate < 1974, ]
+vb <- vb[vb$birthdate > 1711 & vb$birthdate < 1974, ]
 vb <- ageWin(vb, c(40, 90))
-starts <- seq(1761, 1981, by = 10)
+starts <- seq(1711, 1981, by = 10)
 vb$cohort <- cut(vb$birthdate, starts, labels = starts[-length(starts)])
 x <- with(vb, table(cohort, hisclass, useNA = "ifany"))
 y <- prop.table(x, margin = 1) * 100
@@ -437,10 +437,10 @@ vb$hisclass40 <- factor(vb$hisclass40, labels = c("1+2", "3+4+5+6+8", "7+9+10+11
 vb$hisclass60 <- factor(vb$hisclass60, labels = c("1+2", "3+4+5+6+8", "7+9+10+11+12"))
 vb$hisclass <- factor(vb$hisclass, labels = c("1+2", "3+4+5+6+8", "7+9+10+11+12"))
 ## End cut ####################################################
-levels(vb$period)[8] <- "1991-2001" ## Changed from "1991-2000", fob90 extended.
-levels(vb0$period)[8] <- "1991-2001"
-save(vb0, file = "../data/vb0.rda")
-save(vb, file = "../data/vb.rda")
+##levels(vb$period)[8] <- "1991-2001" ## Changed from "1991-2000", fob90 extended.
+##levels(vb0$period)[8] <- "1991-2001"
+save(vb0, file = "../data2/vb0.rda")
+save(vb, file = "../data2/vb.rda")
 @
 
 The next, and final, step is aggregation.
@@ -463,8 +463,8 @@ vb0Tab <- aggregate(vb0[, c("event", "exposure")],
 ##vbTab$hisclass40 <- factor(vbTab$hisclass40)
 ##vbTab$hisclass60 <- factor(vbTab$hisclass60)
 vbTab$age <- factor(vbTab$age)
-save(vbTab, file = "../data/vbTab.rda")
-save(vb0Tab, file = "../data/vb0Tab.rda")
+save(vbTab, file = "../data2/vbTab.rda")
+save(vb0Tab, file = "../data2/vb0Tab.rda")
 @
 
 Thus, the one data file to use is {\tt vbTab.rda} or {\tt vb0Tab.rda}.
@@ -479,21 +479,67 @@ loTab <- aggregate(lisaold[, c("event", "exposure")],
                    lisaold[, c("sex", "age", "period", "urban", 
                                "civst", "income", "educ")],
                    FUN = sum)
-save(loTab, file = "../data/loTab.rda")
-save(lisaold, file = "../data/lisaold.rda")
+save(loTab, file = "../data2/loTab.rda")
+save(lisaold, file = "../data2/lisaold.rda")
 @ 
 
 \ldots and of course {\tt loTab.rda}.
 
-Now let us put on emph{partner} on {\bf lisaold}.
+Now let us put on \emph{partner} on {\bf lisaold}. First we need to fix the file {\bf partner} so that we can distinguish 
+females and males. We also remove homosexual couples: We want to check a female's status compared to her male partner's.
 
 <<partner>>=
 load("../../Data/partner.rda")
-##females <- lisaold[lisaold$sex == "female", ]
-##par.fem <- partner[partner$LINNEID1 %in% females$LINNEID | partner$LINNEID2 %in% females$LINNEID2, ]
 partner$id1 <- pmin(partner$LINNEID1, partner$LINNEID2)
 partner$id2 <- pmax(partner$LINNEID1, partner$LINNEID2)
 partner <- unique(partner[, c("LINNEIDAR", "id1", "id2")])
+indx <- match(partner$id1, lisaold$LINNEID)
+partner$sex1 <- lisaold$sex[indx]
+indx <- match(partner$id2, lisaold$LINNEID)
+partner$sex2 <- lisaold$sex[indx]
+partner <- partner[!(is.na(partner$sex1) | is.na(partner$sex2)), ]
+partner <- partner[partner$sex1 != partner$sex2, ]
+dim(partner)
+partner$female <- ifelse(partner$sex1 == "female", partner$id1, partner$id2)
+partner$male <- ifelse(partner$sex1 == "male", partner$id1, partner$id2)
+partner <- data.frame(AR = partner$LINNEIDAR,
+                      female = partner$female,
+                      male = partner$male)
 @
+
+Next, put on partners on the females of {\bf lisaold}:
+
+<<putonpartner>>=
+key <- paste(lisaold$LINNEID, lisaold$AR)
+partner$key <- paste(partner$female, partner$AR)
+indx <- match(key, partner$key)
+lisaold$partner <- partner$male[indx]
+@
+
+Next, put on partner's \emph{education} and \emph{income}:
+
+<<putinceduc>>=
+males <- lisaold[lisaold$LINNEID %in% lisaold$partner, ]
+females <- lisaold[!is.na(lisaold$partner), ]
+indx <- match(females$partner, males$LINNEID)
+females$m.educ <- males$educ[indx]
+females$m.income <- males$income[indx]
+@
+
+Tabulating female's income and partner's income (\emph{m.income}):
+
+<<tabminc>>=
+x <- with(females, table(income, m.income))
+x
+@
+
+Tabulating female's education and partner's education (\emph{m.educ}):
+
+<<tabmeduc>>=
+x <- with(females, table(educ, m.educ))
+x
+@
+
+No comments!
 
 \end{document}
