@@ -51,7 +51,7 @@ plotED.glm <- function(res,
     plot(xv[out], outp[1, -exclude], type = "b", lty = 1, col = col[1], pch = 1,
          ylim = c(fr, to), main = main,
          axes = FALSE, ylab = ylab, cex.axis = 0.4, xlab = "", 
-         xlim = c(min(xv), max(xv) + 25))
+         xlim = c(min(xv), max(xv) + 33))
     axis(1, at = xv, lab = labb, las = 2)
     axis(2, las = 2)
     box()
