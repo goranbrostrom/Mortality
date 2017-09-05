@@ -1,7 +1,8 @@
 ---
-title: Is high social class always beneficial for survival? A study of adults and elderly in Northern Sweden 1851--2013
+title: Is high social class always beneficial for survival? A study of adults and
+  elderly in Northern Sweden 1801--2013
 author: "Sören Edvinsson and Göran Broström"
-date: '`r Sys.Date()`'
+date: "`r Sys.Date()`"
 output:
   bookdown::pdf_document2:
     number_sections: yes
@@ -38,11 +39,13 @@ skel <- get.file("skel")
 skume <- get.file("skume")
 ##
 foli <- get.file("foli")
+skel$urban <- FALSE
+vb0Tab <- rbind(skel, skume[, names(skel)], foli[, names(skel)])
 ```
 
 # Introduction
 
-A major theme in demographic and epidemiological studies, is the seemingly persistent effect of social class on mortality. In the present study, we approach this issue by taking a long-term perspective on the development of social inequalities in mortality in the adult and elderly population. Our main focus is on the relative differences. The areas under investigation are the Skellefteå and Umeå regions in the north of Sweden for the period 1851--2013 for Skellefteå and 1901--2013 for Umeå. The main issue is then analysed according to gender and age-group (working age vs retired) and major causes of death (cardiovascular diseases and cancers). Furthermore we put this in the context of how the inequality in mortality is associated with the development of economic inequality in society. The results are discussed in relation to our understanding of the mortality transition and the social determinants of health and mortality, and their implications on some of the most influential hypotheses and concepts in health research.
+A major theme in demographic and epidemiological studies, is the seemingly persistent effect of social class on mortality. In the present study, we approach this issue by taking a long-term perspective on the development of social inequalities in mortality in the adult and elderly population. Our main focus is on the relative differences. The areas under investigation are the Skellefteå and Umeå regions in the north of Sweden for the period 1801--2013 for Skellefteå and 1901--2013 for Umeå. The main issue is then analysed according to gender and age-group (working age vs retired) and major causes of death (cardiovascular diseases and cancers). Furthermore we put this in the context of how the inequality in mortality is associated with the development of economic inequality in society. The results are discussed in relation to our understanding of the mortality transition and the social determinants of health and mortality, and their implications on some of the most influential hypotheses and concepts in health research.
 
 On the basis of the results we present, we argue that high social class is not necessarily favourable for survival. Mortality risks in different contexts must be understood in the intersection between class and gender. We suggest that health-related behaviour was important not only in present-day societies, but were decisive also in earlier phases of the mortality transition. The results implicate that the association between social class and health is more complex than is assumed in many of the dominant theories in demography and epidemiology.
 
@@ -138,9 +141,9 @@ and in the rural parts, and a much more diversified economy.
 
 Mortality was fairly low in comparison with other parts of the country and
 the fertility transition was late [@coa86]. The Skellefteå population
-size as defined in our data sets was 16\,473 on January 1, 1850, 41\,352 on
-January 1, 1900, 61\,938 on January 1, 1950 and 76\,723 at the end of the
-century.
+size as defined in our data sets (all ages) was 6142 on January 1, 1801, 17355 on January 1, 1851, 43212 on
+January 1, 1901, 62136 on December 31, 1950 and 76723 at the end of the
+20th century.
 
 The Umeå region consists of Umeå urban and rural parish until
 1950, and from 1960 onwards of Umeå municipality when another three
@@ -151,9 +154,9 @@ the administrative centre in the county of Västerbotten. Schools and
 military regiments were placed here and the economy was more diversified
 compared to Skellefteå. Agriculture dominated the rural part, but there
 were also some foundries as well as industries for example in forestry and
-small-scale production. The population size as defined in our data sets was
-18\,970 on January 1, 1900, 32\,900 on January 1, 1950 and 103\,970 when
-the century ended.
+small-scale production. The population size as defined in our data sets (all ages) was
+19138 on January 1, 1901, 33393 on December 31, 1950 and 103970 when
+the 20th century ended.
 
 
 
@@ -223,8 +226,8 @@ In the data-set analysed here, all individuals 40 years and older ever
 being resident in either of the regions are included. The data file
 contains the variables social class, sex, urban/rural
 residence, birth date, death date, first and last date of observation and
-type of entrance/exit. Total number of person years is `r pn.exp` leading to
-`r pn.d` deaths in Poplink and `r n.exp` person years leading 
+type of entrance/exit. Total number of person years is `r as.integer(pn.exp)` leading to
+`r pn.d` deaths in Poplink and `r as.integer(n.exp)` person years leading 
 to `r n.d` deaths in the Linnaeus database. See 
 Figure \@ref(fig:lexis2).
 
@@ -389,8 +392,11 @@ those married and over-registration of unmarried during the
 1960s.
 
 ```{r civstskum, fig.cap = "Exposure by civil status (from the top: never married, married and previously married) and time period", fig.height = 4.5}
-xx <- with(vb0Tab, tapply(exposure, list(period = period, civst = civst), sum))
-yy <- round(prop.table(xx, 1) * 100, 1)
+xx <- with(skel, tapply(exposure, list(period = period, civst = civst), sum))
+xy <- with(skume, tapply(exposure, list(period = period, civst = civst), sum))
+xz <- with(foli, tapply(exposure, list(period = period, civst = civst), sum))
+xxx <- rbind(xx, xy, xz)
+yy <- round(prop.table(xxx, 1) * 100, 1)
 barplot(t(yy)[3:1, ], col = c("red", "blue", "black"), las = 2, ylab = "Per cent")
 ```
 
@@ -412,14 +418,14 @@ unspecific causes which has implications for the cause-specific analyses
 apparent.
 
 ```{r causeskum, fig.cap = "Causes of death by time period (top: cancer, middle: cardiovascular, bottom: other).", fig.height = 4.5}
-vb01 <- vb0[vb0$event == 1, ]
-cancer <- tapply(vb01$cancer, vb01$period, sum)
-heart <- tapply(vb01$heart, vb01$period, sum)
-death <- tapply(vb01$period, vb01$period, length)
+##vb01 <- vb0[vb0$event == 1, ]
+cancer <- c(tapply(skume$cancer, skume$period, sum), tapply(foli$cancer, foli$period, sum))
+heart <- c(tapply(skume$heart, skume$period, sum), tapply(foli$heart, foli$period, sum))
+death <- c(tapply(skume$event, skume$period, sum), tapply(foli$event, foli$period, sum))
 other <- death - cancer - heart
 ttt <- rbind(cancer, heart, other)
 ttt <- prop.table(ttt, 2) * 100
-barplot(ttt[3:1, -(1:2)], col = 3:1, las = 2, ylab = "Per cent")
+barplot(ttt[3:1, ], col = 3:1, las = 2, ylab = "Per cent")
 ```
 
 ## Urban vs rural residence
@@ -438,7 +444,9 @@ We have made separate analyses for the different periods. The century
 periods represent a mainly pre-industrial society dominated by agriculture
 and with only basic welfare provisions. During the years 1901--1950,
 industrialisation started and the urban environments increased in
-population size. The modern Swedish welfare state began to develop. For the period 1960 onwards, there are separate analyses on decades except for the two last periods. Sweden had developed into a wealthy
+population size. The modern Swedish welfare state began to develop. For the 
+period 1960 onwards, there are separate analyses on decades except for the two 
+last periods. Sweden had developed into a wealthy
 welfare society with low income inequality,
 particularly until the 1990s. A financial crisis struck Sweden in the early
 1990s, which among other things increased unemployment and changed parts of
@@ -456,8 +464,8 @@ proportionality property, the analyses are stratified with respect to the
 variable, and the main results are presented graphically.
 
 Another practical problem is the size of that data set:
-It contains no less than `r n.rec + pn.rec` records of `r n.pl + pn.pl` individuals, of
-which `r n.d + pn.d` are observed to death.
+It contains no less than `r as.integer(round(n.exp + pn.exp))` person years and
+ `r n.d + pn.d` deaths.
 This makes it very inconvenient to use the nowadays so popular semi-parametric
 technique known as
 \emph{Cox regression} [@cox72, @gb02]. Instead we use a parametric model
@@ -497,24 +505,25 @@ and
 \end{equation*}
 
 Since all components of $\mathbf{x}$ are categorical covariates, the
-estimation of \eqref{eq:prop} can be performed in two ways, first by the
+estimation of \@ref(eq:prop) can be performed in two ways, first by the
 original data set and a survival analysis routine handling a piecewise
 constant hazard, or second, by the reduced data set (table) and
 \emph{Poisson regression}. The second way is faster than the first by a
 factor of size at least 100, often much more, depending on hardware, and
 the point is that the two ways give exactly the same results. This is
-because the table is a \emph{sufficient statistic} for \eqref{eq:prop} and
+because the table is a \emph{sufficient statistic} for \@ref(eq:prop) and
 the original data set.
 
 
 The analyses are performed in the **R** environment for statistical computing
 and graphics [@cran], especially using the package **eha**
-[@gb12,@eha]. The proportional hazards model allows us to scrutinise the differences and
+[@gb12;@eha]. The proportional hazards model allows us to scrutinise the differences and
 the development in more detail. We divide the analysis into two age groups,
 40--64 and 65--89 years of age, the first age group representing people that
 were still mainly in the workforce, and the second those that mainly were
-retired. The model controls for marital status and whether the individual resides in the urban or rural parts of the regions. There are no serious signs of deviation from proportionality assumption, except
-regarding social class. Each period are analysed separately, but we then combine results
+retired. The model controls for marital status and whether the individual resides 
+in the urban or rural parts of the regions. Each period are analysed separately, 
+but we then combine results
 in order to show the development of the social patterning of mortality
 during the studied period.
 
@@ -524,15 +533,10 @@ reason for this choice is that the effect of social class (**hisclass**) on surv
 non-proportional, that is, it varies with age. With the reduced data set
 and Poisson regression, this is simply achieved by introducing an
 interaction term between **age** and social class (**hisclass**). Then, the main
-results are presented graphically. Tables with results from the
-different models are presented at the end of the article, but are not
-commented on in detail. The comments on the results are primarily based on
+results are presented graphically.  The comments on the results are based on
 the figures and focuses on the central variable in our study--- social class (**hisclass**). 
-As can be seen from the tables, most variables in the models are
-significant at 5 per cent level.
 
-
-# The effect of social class, 1851--1950, 1961--2013
+# The effect of social class, 1801--1950, 1961--2013
 
 ## All causes of death
 
@@ -599,21 +603,22 @@ resm <- getPHglm2(vb4064[vb4064$sex == "male", ],
 source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, ylab = "TMR(65|40)",
-                main = "Women 40-64", exclude = 5:6)
+                main = "Women 40-64")##, exclude = 5:6)
 moutp <- plotED.glm(resm, col = scol, logScale = FALSE, ylab = "TMR(65|40)",
                 main = "Men 40-64")##, exclude = 5:6)
 par(oldpar)
 ```
 
-From Table~\ref{tab:cumswtab} it is obvious that the statistical significance is strong.
+From Table \@ref(tab:cumswtab) it is obvious that the statistical significance is strong.
 The most interesting feature is the three-way interaction with **sex**, **period**, and social class (**hisclass**).
 
-```{r cumswtab,results='asis',cap="Table"}
+```{r cumswtab,cap="Table",results="asis"}
 fitt <- glm(event ~ offset(log(exposure)) + urban + civst + age + sex * hisclass * period,
             data = vb4064, family = poisson)
 dr <- drop1(fitt, test = "Chisq")
 ##knitr::kable(dr)
-xtable(dr,label = "tab:cumswtab", caption = "Anova, all causes of death, 40-65.")
+print(xtable(dr,label = "tab:cumswtab", caption = "Anova, all causes of death, ages 40--65."), 
+      type = "latex", comment = FALSE)
 ```
 
 Figure \@ref(fig:cumsw) shows the summed hazards of dying in the age interval
@@ -636,7 +641,7 @@ relative mortality levels for the different classes since they are the main focu
 ```{r cumswstand, fig.cap = cap12, fig.scap = scap12, fig.height = 8}
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "TMR(65|40)", main = "Women 40-64", exclude = 5:6)
+                    ylab = "TMR(65|40)", main = "Women 40-64")##, exclude = 5:6)
 moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE,
                     ylab = "TMR(65|40)", main = "Men 40-64")##, exclude = 5:6)
 par(oldpar)
@@ -644,8 +649,8 @@ par(oldpar)
 
 
 Notice that we have not analysed the 1950s due to the fact that we only
-have data for some parishes at that time. Furthermore, we have excluded the
-results for women during the 1960s and 1970 out of the reasons discussed above. The
+have data for some parishes at that time. Furthermore, the
+results for women during the 1960s and 1970 are highly misleading for the reasons discussed above. The
 changing economy also have consequences for the analysis, particularly when
 it comes to the agricultural sector. While farmers were common occupations
 up until the first half of the 20th century, these occupations has constantly
@@ -703,7 +708,7 @@ vb6589$age <- factor(vb6589$age) # NOTE:: Change to '6589'!
 
 We now turn to the elderly, i.e. those that in most cases have left the workforce.
 Corresponding to the previous analysis, we use the value of the cumulative hazards at
-duration 25 (age 90), starting from age 65 as a summary measure. In Table~\ref{tab:cumswoldtab} the results of the model is presented.
+duration 25 (age 90), starting from age 65 as a summary measure. 
 
 The general pattern and development of mortality (not shown here) do not
 differ that much from the younger age group, of course representing a much
@@ -745,15 +750,14 @@ resm <- getPHglm2(vb6589[vb6589$sex == "male", ],
 
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "TMR(90|65)", main = "Women 65-89", exclude = 5:6)
+                    ylab = "TMR(90|65)", main = "Women 65-89")##, exclude = 5:6)
 moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE,
                     ylab = "TMR(90|65)", main = "Men 65-89")##, exclude = 5:6)
 par(oldpar)
 ```
 
-See Table~\ref{tab:cumswoldtab}.
 
-```{r cumswoldtab,results='asis'}
+```{r cumswoldtab,results='asis',eval=FALSE}
 fitt <- glm(event ~ offset(log(exposure)) + urban + civst + age + sex * hisclass * period,
             data = vb6589, family = poisson)
 dr <- drop1(fitt, test = "Chisq")
@@ -787,24 +791,8 @@ deaths were disguised in unspecific categories and that the increase is partly
 explained by improvements in how deaths were diagnosed, something that also seems to have been the case in Scotland at this time [@reidetal15].
 
 ```{r causes41}
-cvb <- vb0
-cvb$event <- cvb$heart ## Can this be done better?
-cvb <- cvb[!(cvb$period %in% c("1851-1875", "1876-1900")), ]
-cvb$period <- factor(cvb$period)
-
-# load("data/vb.rda")
-# ##vb <- cal.window(vb, c(1961, 2001))
-# ##x <- substr(vb$ULORSAK, 1, 2)
-# vb$event <- vb$event & vb$heart
-# vb$exposure <- with(vb, exit - enter)
-# vb$cohort <- factor(vb$cohort)
-# vb$period <- factor(vb$period)
-cvbTab <- aggregate(cvb[, c("event", "exposure")],
-                    cvb[, c("sex", "age", "period", "cohort",
-                           "urban", "civst", "hisclass")],
-                    FUN = sum)
- cvbTab$hisclass <- factor(cvbTab$hisclass)
- cvbTab$age <- factor(cvbTab$age)
+cvbTab <- rbind(skume[, names(foli)], foli)
+cvbTab$event <- cvbTab$heart
 ```
 
 ```{r 41colorc}
@@ -871,14 +859,14 @@ resm <- getPHglm2(cvb4064[cvb4064$sex == "male", ],
 ```{r 41cumsw, fig.cap = cap12, fig.scap = scap12, fig.height = 8}
 source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
-woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE, exclude = 3:4,
+woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE, ##exclude = 3:4,
                     ylab = "TMR(65|40)",  main = "Women 40-64")
 moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE, ##exclude = 1:2,
                     ylab = "TMR(65|40)", main = "Men 40-64")
 par(oldpar)
 ```
 
-```{r 41cumswtab,results='asis'}
+```{r 41cumswtab,results='asis',eval = FALSE}
 fitt <- glm(event ~ offset(log(exposure)) + urban + civst + age + sex * hisclass +
                 sex * period + hisclass * period,
             data = cvb4064, family = poisson)
@@ -887,7 +875,7 @@ knitr::kable(dr, caption = "Anova, cardiovascular deaths, 40-64.")
 #print(xtable(dr,label = "tab:41cumswtab", caption = "Anova, cardiovascular deaths, 40-64."), type = "html")
 ```
 
-See Table \@ref(tab:41cumswtab).
+
 
 Figure \@ref(fig:41cumsw) shows mortality levels during different periods
 from 1901 on-wards. Women from the highest social class had consistently
@@ -954,13 +942,13 @@ during the most recent periods.
 ##source("R/plotED.R")
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "H(90|65)",  main = "Women 65-89", exclude = 3:4)
+                    ylab = "H(90|65)",  main = "Women 65-89")##, exclude = 3:4)
 moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE,
                     ylab = "H(90|65)", main = "Men 65-89")
 par(oldpar)
 ```
 
-```{r 41cumswoldtab,results='asis'}
+```{r 41cumswoldtab,results='asis',eval=FALSE}
 fitt <- glm(event ~ offset(log(exposure)) + urban + civst + age + sex * period *hisclass,
                 ##sex * period + hisclass * period,
             data = cvb6589, family = poisson)
@@ -969,7 +957,7 @@ knitr::kable(dr, caption = "Anova, cardiovascular deaths, 65-90.")
 ##xtable(dr,label = "tab:41cumswoldtab", caption = "Anova, cardiovascular deaths, 65-90.")
 ```
 
-See Table \@ref(tab:41cumswoldtab).
+
 
 
 ## Cancer mortality
@@ -989,24 +977,8 @@ periods, 12.5 per cent 1901--1925 and 13.5 per cent for the period
 1926--1950.
 
 ```{r causes12}
-cvb <- vb0
-cvb$event <- cvb$cancer ## Can this be done better?
-cvb <- cvb[!(cvb$period %in% c("1851-1875", "1876-1900")), ]
-cvb$period <- factor(cvb$period)
-
-# load("data/vb.rda")
-# ##vb <- cal.window(vb, c(1961, 2001))
-# ##x <- substr(vb$ULORSAK, 1, 2)
-# vb$event <- vb$event & vb$heart
-# vb$exposure <- with(vb, exit - enter)
-# vb$cohort <- factor(vb$cohort)
-# vb$period <- factor(vb$period)
-cvbTab <- aggregate(cvb[, c("event", "exposure")],
-                    cvb[, c("sex", "age", "period", "cohort",
-                           "urban", "civst", "hisclass")],
-                    FUN = sum)
- cvbTab$hisclass <- factor(cvbTab$hisclass)
- cvbTab$age <- factor(cvbTab$age)
+cvbTab <- rbind(skume[, names(foli)], foli)
+cvbTab$event <- cvbTab$cancer
 ```
 
 ```{r 12colorc}
@@ -1067,7 +1039,7 @@ resm <- getPHglm2(cvb4064[cvb4064$sex == "male", ],
 ```{r 12cumsw, fig.cap = cap12, fig.scap = scap12, fig.height = 8}
 source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
-woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE, exclude = 3:4,
+woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE, ##exclude = 3:4,
                     ylab = "TMR(65|40)",  main = "Women 40-64")
 moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE, ##exclude = 1:2,
                     ylab = "TMR(65|40)", main = "Men 40-64")
@@ -1075,7 +1047,7 @@ par(oldpar)
 ```
 
 
-```{r 12cumswtab,results='asis'}
+```{r 12cumswtab,results='asis',eval=FALSE}
 fitt <- glm(event ~ offset(log(exposure)) + urban + civst + age + sex *hisclass +
                 sex * period + hisclass * period,
             data = cvb4064, family = poisson)
@@ -1084,7 +1056,6 @@ knitr::kable(dr, caption = "Anova, cancer deaths, 40-64.")
 ##xtable(dr,label = "tab:12cumswtab", caption = "Anova, cancer deaths, 40-64.")
 ```
 
-For the results of the model, see Table \@ref(tab:12cumswtab).
 
 Figure \@ref(fig:12cumsw) shows relative mortality levels according to
 Hisclass during the different studied periods for the age group
@@ -1135,13 +1106,13 @@ the last decades of higher mortality among working class men.
 ##source("R/plotED.R")
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "TMR(90|65)",  main = "Women 65-89", exclude = 3:4)
+                    ylab = "TMR(90|65)",  main = "Women 65-89")##, exclude = 3:4)
 moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE,
                     ylab = "TMR(90|65)", main = "Men 65-89")
 par(oldpar)
 ```
 
-```{r 12cumswoldtab,results='asis'}
+```{r 12cumswoldtab,results='asis',eval=FALSE}
 fitt <- glm(event ~ offset(log(exposure)) + urban + civst + age + sex +
                 sex * period + hisclass * period,
             data = cvb6589, family = poisson)
