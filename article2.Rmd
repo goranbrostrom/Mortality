@@ -468,7 +468,7 @@ It contains no less than `r as.integer(round(n.exp + pn.exp))` person years and
  `r n.d + pn.d` deaths.
 This makes it very inconvenient to use the nowadays so popular semi-parametric
 technique known as
-\emph{Cox regression} [@cox72, @gb02]. Instead we use a parametric model
+\emph{Cox regression} [@cox72]. Instead we use a parametric model
 that allows for reduction of the data
 to \emph{sufficient statistics} [@fisher22]. The idea is to keep all
 relevant covariates \emph{categorical}, and then create a table with all
