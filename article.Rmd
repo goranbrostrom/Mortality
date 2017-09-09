@@ -15,7 +15,6 @@ output:
   bookdown::word_document2:
     toc: yes
     toc_depth: 2
-    toc_float: yes
 bibliography: mybib.bib
 documentclass: article
 citation-package: natbib
@@ -53,6 +52,7 @@ vb0Tab <- aggregate(vb0[, c("event", "exposure")],
                           "urban", "civst", "hisclass")],
                    FUN = sum)
 vb0Tab$age <- factor(vb0Tab$age)
+rm(vb0)
 ```
 
 # Introduction
