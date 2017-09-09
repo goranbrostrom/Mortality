@@ -45,7 +45,7 @@ vb0Tab <- rbind(skel, skume[, names(skel)], foli[, names(skel)])
 
 # Introduction
 
-A major theme in demographic and epidemiological studies, is the seemingly persistent effect of social class on mortality. In the present study, we challenge this notion by taking a very long-term perspective on the development of social inequalities in mortality in the adult and elderly population with a special focus on the relative differences. The arguments for our statements is based on an investigation of the Skellefteå and Umeå regions in the north of Sweden for the period 1801--2013 for Skellefteå and 1901--2013 for Umeå. The main issue is then analysed according to gender and age-group (working age vs retired) and major causes of death (cardiovascular diseases and cancers). Furthermore we put this in the context of how the inequality in mortality is associated with the development of economic inequality in society. The results are discussed in relation to our understanding of the mortality transition and the social determinants of health and mortality, as well as their implications on some of the most influential hypotheses and concepts in health research.
+A major theme in demographic and epidemiological studies is the seemingly persistent effect of social class on mortality. In the present study, we challenge this notion by taking a very long-term perspective on the development of social inequalities in mortality in the adult and elderly population with a special focus on the relative differences. The arguments for our statements is based on an investigation of the Skellefteå and Umeå regions in the north of Sweden for the period 1801--2013 for Skellefteå and 1901--2013 for Umeå. The main issue is then analysed according to gender and age-group (working age vs retired) and major causes of death (cardiovascular diseases and cancers). Furthermore we put this in the context of how the inequality in mortality is associated with the development of economic inequality in society. The results are discussed in relation to our understanding of the mortality transition and the social determinants of health and mortality, as well as their implications on some of the most influential hypotheses and concepts in health research.
 
 On the basis of the results we present, we argue that high social class is not necessarily always favourable for survival. Mortality risks in different contexts must be understood in the intersection between class and gender. We suggest that health-related behaviour was important not only in present-day societies, but were decisive also in earlier phases of the mortality transition. The results implicate that the association between social class and health is more complex than is assumed in many of the dominant theories in demography and epidemiology.
 
@@ -436,7 +436,7 @@ It contains no less than `r as.integer(round(n.exp + pn.exp))` person years and
  `r n.d + pn.d` deaths.
 This makes it very inconvenient to use the nowadays so popular semi-parametric
 technique known as
-\emph{Cox regression} [@cox72, @gb02]. Instead we use a parametric model
+\emph{Cox regression} [@cox72]. Instead we use a parametric model
 that allows for reduction of the data
 to \emph{sufficient statistics} [@fisher22]. The idea is to keep all
 relevant covariates \emph{categorical}, and then create a table with all
