@@ -22,6 +22,7 @@ bibliography: mybib.bib
 documentclass: article
 citation-package: natbib
 biblio-style: apalike
+fontsize: 12pt
 ---
 
 ```{r setup, include=FALSE}
@@ -46,7 +47,7 @@ vb0Tab <- rbind(skel, skume[, names(skel)], foli[, names(skel)])
 
 # Introduction
 
-A major theme in demographic and epidemiological studies, is the seemingly persistent effect of social class on mortality. In the present study, we challenge this notion by taking a very long-term perspective on the development of social inequalities in mortality in the adult and elderly population with a special focus on the relative differences. The arguments for our statements is based on an investigation of the Skellefteå and Umeå regions in the north of Sweden for the period 1801--2013 for Skellefteå and 1901--2013 for Umeå. The main issue is then analysed according to gender and age-group (working age vs retired) and major causes of death (cardiovascular diseases and cancers). Furthermore we put this in the context of how the inequality in mortality is associated with the development of economic inequality in society. The results are discussed in relation to our understanding of the mortality transition and the social determinants of health and mortality, as well as their implications on some of the most influential hypotheses and concepts in health research.
+A major theme in demographic and epidemiological studies is the seemingly persistent effect of social class on mortality. In the present study, we challenge this notion by taking a very long-term perspective on the development of social inequalities in mortality in the adult and elderly population with a special focus on the relative differences. The arguments for our statements is based on an investigation of the Skellefteå and Umeå regions in the north of Sweden for the period 1801--2013 for Skellefteå and 1901--2013 for Umeå. The main issue is then analysed according to gender and age-group (working age vs retired) and major causes of death (cardiovascular diseases and cancers). Furthermore we put this in the context of how the inequality in mortality is associated with the development of economic inequality in society. The results are discussed in relation to our understanding of the mortality transition and the social determinants of health and mortality, as well as their implications on some of the most influential hypotheses and concepts in health research.
 
 On the basis of the results we present, we argue that high social class is not necessarily always favourable for survival. Mortality risks in different contexts must be understood in the intersection between class and gender. We suggest that health-related behaviour was important not only in present-day societies, but were decisive also in earlier phases of the mortality transition. The results implicate that the association between social class and health is more complex than is assumed in many of the dominant theories in demography and epidemiology.
 
@@ -105,7 +106,7 @@ American countries in its basic features [@rowa14].
 # The Skellefteå and Umeå regions
 
 
-```{r mapp,fig.cap = "The Skellefteå and Umeå regions in Sweden.", out.width="3in"}
+```{r mapp,fig.cap = "The Skellefteå and Umeå regions in Sweden.", out.width="3in", out.height = "4.1in", fig.align="center"}
 knitr::include_graphics("myfigs/sweden.png")
 ```
 The Skellefteå and Umeå regions (Figure \@ref(fig:mapp)) are part of the
@@ -182,12 +183,12 @@ background or previous social class.
 plot(c(1801, 1801, 1951, 1951, 1801), c(40, 90, 90, 40, 40),
      type = "l", xlim = c(1800, 2014), lwd = 2, col = "red",
      xlab = "Year", ylab = "Age", axes = FALSE, ylim = c(0, 90))
-axis(1, at = c(1801, 1851, 1901, 1951, 1961, 1981, 2014), las = 2)
+axis(1, at = c(1801, 1851, 1901, 1951, 1976, 1991, 2014), las = 2)
 axis(2, las = 2, at = c(0, 40, 65, 90))
 axis(4, las = 2, at = c(0, 40, 65, 90))
 box()
 abline(h = 0)
-lines(c(1961, 1961, 2014, 2014, 1961), c(40, 90, 90, 40, 40),
+lines(c(1976, 1976, 2014, 2014, 1976), c(40, 90, 90, 40, 40),
       col = "blue", lwd = 2)
 #
 pn.exp <- round(sum(skel$exposure) + sum(skume$exposure))
@@ -201,10 +202,10 @@ text(1874.5, 50, paste(pn.d, "deaths"))
 n.exp <- round(sum(foli$exposure))
 n.d <-  as.integer(sum(foli$event))
 
-text(1985, 70, "Linnaeus", cex = 2, col = "blue")
+text(1995, 70, "Linnaeus", cex = 1.5, col = "blue")
 ##text(1984, 60, paste(n.rec, "records"))
-text(1985.2, 55, paste(n.exp, "p-years"))
-text(1985.2, 50, paste(n.d, "deaths"))
+text(1995.2, 55, paste(n.exp, "p-years"), cex = 0.8)
+text(1995.2, 50, paste(n.d, "deaths"))
 ```
 
 In the data-set analysed here, all individuals 40 years and older ever
@@ -437,7 +438,7 @@ It contains no less than `r as.integer(round(n.exp + pn.exp))` person years and
  `r n.d + pn.d` deaths.
 This makes it very inconvenient to use the nowadays so popular semi-parametric
 technique known as
-\emph{Cox regression} [@cox72, @gb02]. Instead we use a parametric model
+\emph{Cox regression} [@cox72]. Instead we use a parametric model
 that allows for reduction of the data
 to \emph{sufficient statistics} [@fisher22]. The idea is to keep all
 relevant covariates \emph{categorical}, and then create a table with all
@@ -505,7 +506,7 @@ interaction term between **age** and social class (**hisclass**). Then, the main
 results are presented graphically.  The comments on the results are based on
 the figures and focuses on the central variable in our study--- social class (**hisclass**). 
 
-# The effect of social class, 1801--1950, 1961--2013
+# The effect of social class, 1801--1950, 1976--2013
 
 ## All causes of death
 
@@ -1136,7 +1137,7 @@ In the present-day high-income world including Sweden, smoking and drinking cont
 
 Overweight, obesity and physical inactivity were probably more common in higher social classes. @vano89 find a higher total as well as cardiovascular mortality among self-employed men and non-manual male workers, something they suggest can be explained the higher tobacco consumption among men in these groups. The social pattern among women was however reversed, something that is in line with the present study. There is no solid information on smoking in different social classes before the 1960, but there are international studies indicating higher prevalence and consumption of tobacco in higher classes during the early phases of the tobacco epidemic, illustrated for example by the fact that smoking initially was more prevalent among physicians. There was also an association between higher incomes and consumption [@loco94]. 
 
-The same lack of statistical evidence characterizes knowledge about alcohol consumption in different social classes before 1960s, but with some exceptions. Access to alcohol was much easier for the wealthy during the period of strong alcohol restriction 1915-1955 and the purchase of alcoholic beverages was substantially higher among those with highest incomes. There was also an over-representation of alcohol-related deaths in higher social classes in the 1960 [@noro98]. @noro98 suggest that during the last decades of the 20th century, there has been an equalization and even reversal of alcohol consumption between social strata, with higher levels among manual labourers but also with a more skewed consumption distribution, indicating more high-consumers in this category. A similar reversal has been observed in England and Wales during the 20th century when it comes to cirrhosis mortality, maybe reflecting a change in consumption patterns. Mortality from this disease was substantially higher in the managerial and professional classes in 1921, being inconsistent in 1961 and reversed in 1991 with highest mortality in the lowest class [@cropr10]. If these indications of changes in health-related behaviour are significant enough to explain the present findings can be discussed. We believe that they certainly are at least an important part of the story.   
+The same lack of statistical evidence characterizes knowledge about alcohol consumption in different social classes before 1960s, but with some exceptions. Access to alcohol was much easier for the wealthy during the period of strong alcohol restriction 1915-1955 and the purchase of alcoholic beverages was substantially higher among those with highest incomes. There was also an over-representation of alcohol-related deaths in higher social classes in the 1960 [@noro98]. @noro98 suggest that during the last decades of the 20th century, there has been an equalization and even reversal of alcohol consumption between social strata, with higher levels among manual labourers but also with a more skewed consumption distribution, indicating more high-consumers in this category. A similar reversal has been observed in England and Wales during the 20th century when it comes to cirrhosis mortality, maybe reflecting a change in consumption patterns. Mortality from this disease was substantially higher in the managerial and professional classes in 1921, being reversed in 1991 with highest mortality in the lowest class [@cropr10]. If these indications of changes in health-related behaviour are significant enough to explain the present findings can be discussed. We believe that they certainly are at least an important part of the story.   
 
 
 
