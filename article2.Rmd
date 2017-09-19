@@ -1,29 +1,27 @@
 ---
-title: Life course and long-term perspectives of social inequality in 
-       mortality among elderly and adults:  Northern Sweden                                     1801–2013 
-
-author: Sören Edvinsson and Göran
-  Broström
+title: Life course and long-term perspectives of social inequality in mortality among
+  elderly and adults in Northern Sweden      1801–2013
+author: "S&ouml;ren Edvinsson and G&ouml;ran Brostr&ouml;m"
 date: '`r Sys.Date()`'
 output:
+  bookdown::pdf_document2:
+    number_sections: yes
+    toc: yes
+    toc_depth: 2
   bookdown::html_document2:
     number_sections: yes
     toc: yes
     toc_depth: 2
     toc_float: yes
-  bookdown::pdf_document2:
-    number_sections: yes
-    toc: yes
-    toc_depth: 2
   bookdown::word_document2:
     toc: yes
     toc_depth: 2
     toc_float: yes
 bibliography: mybib.bib
 documentclass: article
+fontsize: 12pt
 citation-package: natbib
 biblio-style: apalike
-fontsize: 12pt
 ---
 
 ```{r setup, include=FALSE}
