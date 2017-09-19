@@ -8,6 +8,8 @@ output:
     number_sections: yes
     toc: yes
     toc_depth: 2
+    keep_tex: true
+    citation_package: natbib
   bookdown::html_document2:
     number_sections: yes
     toc: yes
@@ -20,7 +22,7 @@ output:
 bibliography: mybib.bib
 documentclass: article
 fontsize: 12pt
-citation-package: natbib
+citation_package: natbib
 biblio-style: apalike
 ---
 
@@ -1061,9 +1063,17 @@ knitr::kable(dr, caption = "Anova, cancer deaths, 65-90.")
 ##xtable(dr,label = "tab:12cumswoldtab", caption = "Anova, cancer deaths, 65-90.")
 ```
 
+# A cohort approach, all causes of death
+
+```{r cohortapproach}
+cohs <- levels(vb0Tab$cohort)
+fit <- glm(event ~ offset(log(exposure)) + hisclass, data = vb0Tab[vb0Tab$cohort == cohs[1], ],
+           family = poisson)
+summary(fit)
+```
 
 
-\section{Discussion}
+# Discussion
 
 
 The authors of this paper have scrutinised different aspects of the social
@@ -1116,7 +1126,8 @@ The same lack of statistical evidence characterizes knowledge about alcohol cons
 
 
 
-\section{Conclusion}
+# Conclusion
+
 In this article we set our task to analyse social differences in mortality from a long-term perspective. Until recently it has not been possible to investigate the really long-term development on mortality differences among adult and elderly populations. Still, the prevailing idea in many parts of the scholarly society is that strong socio-economic differences in health and mortality have always existed and were possibly even stronger in historical societies due to the large class differences. The present study is unique in its time perspective by investigating the development from the 19th century until the present. The results probably surprise most readers, and partly surprised us as well. The consistent advantage of belonging to the elite have not always existed and the modern pattern of social divide in health appeared much later than expected in the regions we have studied. Apparently high social class is not always beneficial for survival. 
 
 There were however large differences in the pattern between men and women as well as between different age groups. Class as well as gender must be considered. The social pattern of female mortality are in line with the expected, but a social gradient in male adult mortality is a recent phenomenon. Furthermore, inequality in mortality appears clearer for the working—age population, while the differences are smaller among the elderly. Concerning specific causes of death, the analysis shows that cardiovascular diseases contributes to a large proportion of all deaths during the 20th century, and we are not surprised that it has a fairly similar pattern as for all-cause mortality. Cancer is often considered less connected to social class, and we find mixed results in our analyses.
