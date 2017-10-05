@@ -1,0 +1,465 @@
+\documentclass[t]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{natbib}
+
+%\usepackage[figuresonly]{endfloat}
+
+%\bibliographystyle{apalike}
+
+\usepackage{color}
+
+\newcommand{\emp}[1]{\textcolor{blue}{#1}}
+
+\usetheme{Singapore}% best choice.
+  \setbeamercovered{transparent}%
+
+\newcommand{\R}{{\bf R}}
+\newcommand{\code}[1]{{\tt #1}}
+
+\title{Increasing the mortality gap? Social inequality in mortality among 
+elderly and adults in Northern  Sweden 1851--2013\footnote{Session "Health, 
+morbidity, and mortality" at the Nordic Demographic Symposium 14--16 June 2017, 
+Turku, Finland}
+}
+
+\date{\today}
+
+\author{Sören Edvinsson and Göran Broström \\
+Centre for Ageing and Demographic Research \\
+Umeå University, Umeå, Sweden}
+
+\begin{document}
+
+\maketitle
+
+<<setup, include = FALSE>>=
+library(knitr)
+opts_chunk$set(engine='R',dev='pdf',fig.path='figs/ume-',tidy=FALSE,fig.height=5.5,fig.width=8,strip.white=TRUE,cache=TRUE,echo=FALSE,message=FALSE,comment=NA,show.signif.stars = FALSE)##$
+@
+
+<<environ>>=
+library(knitr)
+library(eha)
+library(xtable)
+library(skum)
+@
+
+<<readalldata>>=
+source("R/get.file.R")
+skel <- get.file("skel")
+##
+skume <- get.file("skume")
+##
+foli <- get.file("foli")
+skel$urban <- FALSE
+vb0Tab <- rbind(skel, skume[, names(skel)], foli[, names(skel)])
+vb0Tab$age <- factor(vb0Tab$age)
+@
+
+
+\begin{frame}{Aims}
+
+To investigate the association between social class and mortality among adults and elderly from the 19th century to the present and how it is connected to socio-economic inequality in society.
+This is analysed according to 
+\begin{itemize}
+\item gender
+\item age group (working age vs retired)
+\item *cause of death (cardiovascular, cancer)
+\item *education 1990--2013)
+\item *income 1986-2005)
+
+% \item Has \emp{inequality in mortality} between \emp{social classes}
+%   increased in the adult and elderly
+%   population?
+
+%%\item Is the mortality transition initiated by a certain social class?
+
+% \item Are there any \emp{gender differences} in the effect of social position?
+% 
+% \item Is social position \emp{equally important} among the \emp{retired} population as
+%   for those in \emp{working age}?
+% \item Is there a difference between classes in mortality from
+%   \emp{cardiovascular} diseases and \emp{cancers} respectively?
+% \item Are there large differences in survival depending on level of
+%   \emp{education} and \emp{income} categories?
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Main results}
+
+\begin{itemize}
+\item A consistent mortality difference according to social class appears surprisingly late in our regions and has no clear connection to the development of income inequality.
+\item However, there is a strong gender difference in the development of social inequality.
+\item We argue that health-related behavior is an important aspect in historical as well as present-day mortality, and that such behaviours are based on strong gender and class expectations.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Economic inequality (figure from Roine and Waldenström 2008)}
+
+\includegraphics[height=8cm]{myfigs/Top_incomes.jpg}
+
+\end{frame}
+
+% \begin{frame}{Outline}
+% 
+% \begin{center}
+% \begin{enumerate}
+% 
+% \item \emp{Data} management
+% \item \emp{Modeling} considerations
+% \item \emp{Analysis}
+% \item \emp{Results}
+% \item \emp{Implications} of the results
+% \end{enumerate}
+% 
+% \end{center}
+% 
+% \end{frame}
+
+\begin{frame}{Two regions in Västerbotten}
+
+\begin{columns}
+
+\begin{column}{0.5\textwidth}
+
+\includegraphics[height=7cm]{myfigs/sweden.pdf}
+
+\end{column}
+
+\begin{column}{0.5\textwidth}
+
+
+Remote area in northern Sweden, dominated by agriculture until well into the 20th century.
+
+
+Skellefteå:
+\begin{itemize}
+
+\item Small town with rural hinterland, industrialization of the region during the 20th century.
+
+\end{itemize}
+
+Umeå:
+
+\begin{itemize}
+
+\item Center for administration, education, and military. University from 1965
+
+\end{itemize}
+
+% Rural areas:
+% 
+% \begin{itemize}
+% 
+% \item Very similar: Small farms dominating.
+% 
+% \end{itemize}
+
+\end{column}
+\end{columns}
+%\includegraphics[height=7cm]{myfigs/sweden.pdf}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Data sources}
+
+\begin{itemize}
+\item \emp{Swedish church book} records (1851--1950).
+  \begin{itemize}
+\item digitized by the \emp{Demographic Data Base} at Umeå University,
+\begin{itemize}
+  % \item \emp{\sc Popum} and
+   \item \emp{\sc Poplink}
+\end{itemize}
+\item  \url{http://www.cedar.umu.se/}
+\end{itemize}
+\item The \emp{Linnaeus} data base (1960--2013)
+  \begin{itemize}
+\item Census data 1960, 1965, \ldots, 1990
+\item Population registers ({\sc Lisa}, 1986--2013)
+  \begin{itemize}
+    \item \emp{Income}
+    \item \emp{Education}
+  \end{itemize}
+ \item Death information from \emp{National Board of Health and Welfare}
+   \begin{itemize}
+\item Death dates from 1 January 1961 to 31 December 2013.
+  \item \emp{Causes of death} ({\sc Ulorsak}, ``main cause of death'')
+   \end{itemize}
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{The sampling frame}
+{Two separate datasets}
+
+<<lexis2>>=
+plot(c(1801, 1801, 1951, 1951, 1801), c(40, 90, 90, 40, 40),
+     type = "l", xlim = c(1800, 2014), lwd = 2, col = "red",
+     xlab = "Year", ylab = "Age", axes = FALSE, ylim = c(0, 90))
+axis(1, at = c(1801, 1851, 1901, 1951, 1976, 1991, 2014), las = 2)
+axis(2, las = 2, at = c(0, 40, 65, 90))
+axis(4, las = 2, at = c(0, 40, 65, 90))
+box()
+abline(h = 0)
+lines(c(1976, 1976, 2014, 2014, 1976), c(40, 90, 90, 40, 40),
+      col = "blue", lwd = 2)
+#
+pn.exp <- round(sum(skel$exposure) + sum(skume$exposure))
+pn.d <-  as.integer(sum(skel$event) + sum(skume$event))
+#
+text(1875, 70, "PopLink", cex = 2, col = "red")
+##text(1899, 60, paste(pn.rec, "records"))
+text(1875, 55, paste(pn.exp, "p-years"))
+text(1874.5, 50, paste(pn.d, "deaths"))
+#
+n.exp <- round(sum(foli$exposure))
+n.d <-  as.integer(sum(foli$event))
+
+text(1995, 70, "Linnaeus", cex = 1.5, col = "blue")
+##text(1984, 60, paste(n.rec, "records"))
+text(1995.2, 55, paste(n.exp, "p-years"), cex = 0.8)
+text(1995.2, 50, paste(n.d, "deaths"))
+@
+\end{frame}
+
+
+\begin{frame}{Variables}
+
+\begin{description}
+
+\item[Sex]
+\item[Marital status]
+\item[Birth date] By quarter (15 Feb, May, Aug, Nov)
+\item[Death date] By day (\emp{Socialstyrelsen}, \emp{Poplink})
+\item[*Death cause] from \emp{Socialstyrelsen} and \emp{Poplink}. Adapted to ICD10
+\item[Parish] Urban/Rural
+\item[Social class] Elite, middle, worker. Household definition 1851--1950. Individual definition 1960--2013
+\item[*Income] 1986--2005, grouped by quartiles.
+\item[*Education] 1990--2013, three categories.
+\item[Period]  1851--1875, \ldots,  2008--2013 (10 periods). No results presented for women 1961-70, 1971-80 due to missing information on class.
+\item[Age group] Separate analyses for working active (40-65) vs retired (65-89) population
+%\item[cohort] 1761--1771, \ldots, 1971--1974 (22 birth cohorts).
+
+\end{description}
+
+\end{frame}
+
+
+\begin{frame}{\sc Social class}
+
+\begin{enumerate}
+\item \emp{\tt elite}, HISCLASS 1 and 2. Higher managers and professionals.
+\item \emp{\tt middle}, HISCLASS 3, 4, 5, 6, and 8. Lower managers, lower white collar, and farmers.
+%%\item \emp{\tt lowWhiteC}, HISCLASS 4, 5 and 6. Lower white collar.
+\item \emp{\tt worker}, HISCLASS 7, 9, 10, 11 and 12. Workers of different skills including farm workers.
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{No proportional hazards (wrt class)!}
+
+\begin{itemize}
+\item Fit each social class \emp{separately}, for each time period.
+\item Use the \emp{cumulative hazard} at 65 (or 90) for comparison.
+\end{itemize}
+
+So, we fit separate PH models for each combination of
+
+\begin{itemize}
+  \item \emp{\tt sex}
+  \item \emp{\tt period}: 1851--75, 1876--1900, 1901--10, etc.
+  \item \emp{\tt class}
+  \item \emp{\tt age group}: 40--64, 65--89.
+  \item \emp{\tt cause of death}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Women and men, age 40--64}
+
+%  \begin{center}
+%\includegraphics[height = 7.5cm]{figure/cumsw-1}
+%  \end{center}
+
+<<hazcalw>>=
+source("R/getPHglm2.R")
+##nper <- 4
+vb4064 <- vb0Tab[as.numeric(as.character(vb0Tab$age)) < 64.5, ]
+vb4064$age <- factor(vb4064$age)
+labb <- levels(vb0Tab$period)
+nper <- length(labb)
+resw <- getPHglm2(vb4064[vb4064$sex == "female", ],
+            nper, labb)
+resm <- getPHglm2(vb4064[vb4064$sex == "male", ],
+            nper, labb)
+@
+
+
+<<cumsw>>=
+source("R/plotED.glm.R")
+scol <- c("blue", "darkgreen", "red", "black")
+oldpar <- par(mfrow = c(2, 1), cex = 0.7, lwd = 1.5)
+woutp <- plotED.glm(resw, col = scol, logScale = FALSE, ylab = "TMR(65|40)",
+                main = "Women 40-64", exclude = 5:6)
+moutp <- plotED.glm(resm, col = scol, logScale = FALSE, ylab = "TMR(65|40)",
+                main = "Men 40-64")##, exclude = 5:6)
+par(oldpar)
+@
+
+\end{frame}
+
+\begin{frame}{Relative differences, ages 40--64 and 65--89}
+
+  %\begin{center}
+\includegraphics[height=7.5cm,width=5.4cm]{figs/art2-cumswstand-1}\includegraphics[height=7.5cm,width=5.4cm]{figs/art2-cumswold-1}
+   %\end{center}
+\end{frame}
+
+
+% \begin{frame}[fragile]{Education 1990--2013}
+% 
+% <<educ>>=
+% 
+% educ <- lisaold[!(lisaold$period %in% c("1986-1987", "1988-1989")), ]
+% educ$period <- factor(educ$period)
+% educ <- educ[!is.na(educ$educ), ]
+% levels(educ$educ) <- c("low", "low", "middle", "middle", "middle", "high", "high")
+% educ$educ <- relevel(educ$educ, ref = "middle")
+% educ$civst <- relevel(educ$civst, ref = "married")
+% fitm <- coxph(Surv(enter, exit, event) ~ strata(educ) + civst + urban,
+%              data = educ[educ$sex == "male", ])
+% fitf <- coxph(Surv(enter, exit, event) ~ strata(educ) + civst + urban,
+%              data = educ[educ$sex == "female", ])
+% cols <- c("darkgreen", "red", "black")
+% @
+% 
+% <<ploteduc>>=
+% oldpar <- par(mfrow = c(1, 2))
+% 
+% plot(survfit(fitm, start.time = 40), mark.time = FALSE, main = "Men",
+%      col = cols, lwd = 1.5, axes = FALSE, xlab = "Age", ylab = "Surviving fraction")
+% axis(1)
+% axis(2, at = c(0, 0.5, 1.0), las = 1)
+% abline(h = 0.5, lty = 3)
+% box()
+% legend("bottomleft", legend = levels(educ$educ), col = cols, lty = 1, lwd = 1.5)
+% 
+% plot(survfit(fitf, start.time = 40), mark.time = FALSE, main = "Women",
+%      col = cols, lwd = 1.5, axes = FALSE, xlab = "Age", ylab = "Surviving fraction")
+% axis(1)
+% axis(2, at = c(0, 0.5, 1.0), las = 1)
+% abline(h = 0.5, lty = 3)
+% box()
+% legend("bottomleft", legend = levels(educ$educ), col = cols, lty = 1, lwd = 1.5)
+% 
+% par(oldpar)
+% @
+% 
+% \end{frame}
+
+% \begin{frame}{Income 1986--2005}
+% 
+% <<femeduc>>=
+% income <- lisaold[!is.na(lisaold$income), ]
+% income$period <- factor(income$period)
+% ##income <- income[!is.na(income$income), ]
+% ##levels(income$income) <- c("low", "low", "middle", "middle", "middle", "high", "high")
+% income$income <- relevel(income$income, ref = "low")
+% income$civst <- relevel(income$civst, ref = "married")
+% fitm <- coxph(Surv(enter, exit, event) ~ strata(income) + civst + urban,
+%              data = income[income$sex == "male", ])
+% fitf <- coxph(Surv(enter, exit, event) ~ strata(income) + civst + urban,
+%              data = income[income$sex == "female", ])
+% cols <- c("darkgreen", "red", "blue", "black")
+% 
+% @
+% 
+% <<plotincome>>=
+% oldpar <- par(mfrow = c(1, 2))
+% 
+% plot(survfit(fitm, start.time = 40), mark.time = FALSE, main = "Men",
+%      col = cols, lwd = 1.5, axes = FALSE, xlab = "Age", ylab = "Surviving fraction")
+% axis(1)
+% axis(2, at = c(0, 0.5, 1.0), las = 1)
+% abline(h = 0.5, lty = 3)
+% box()
+% legend("bottomleft", legend = levels(income$income), col = cols, lty = 1, lwd = 1.5)
+% 
+% plot(survfit(fitf, start.time = 40), mark.time = FALSE, main = "Women",
+%      col = cols, lwd = 1.5, axes = FALSE, xlab = "Age", ylab = "Surviving fraction")
+% axis(1)
+% axis(2, at = c(0, 0.5, 1.0), las = 1)
+% abline(h = 0.5, lty = 3)
+% box()
+% legend("bottomleft", legend = levels(income$income), col = cols, lty = 1, lwd = 1.5)
+% 
+% par(oldpar)
+% @
+% 
+% \end{frame}
+
+
+%%% Stop here!
+
+\begin{frame}{Summarizing the results}
+
+%\scriptsize
+
+\begin{itemize}
+\item \emp{Improved} survival characterised all social classes.
+\item \emp{Late} appearance of the “modern” pattern of social differences in mortality among men
+\item Distinct \emp{gender} differences in the development.
+\item The \emp{upper} class(es) gradually take over as the \emp{most healthy} group.
+% \item No \emp{qualitative} but partly \emp{quantitative} differences between those in working age compared to the retired population.
+% \item \emp{Educational} and \emp{income} differences during the last decades conform to what we found for class differences.
+\item In the long run, no clear connection in the development of income inequality and social differences in mortality.
+\item This suggests an important role of gender and class related expectations on health behaviour
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}{Some implications}
+
+%\scriptsize
+
+\begin{itemize}
+\item The \emp{development} of social health inequalities and the role of \emp{health-related behavior} in different phases of the transition (Antonovsky and Omran).
+\item Inequality as a \emp{contextual} health risk (Wilkinson/Pickett).
+\item \emp{Status syndrome} (Marmot)
+\item The role of \emp{living standard} for mortality decline (McKeown).
+\item \emp{Gender} and mortality (Watkins, Mckinnon, Janssens).
+\item Social conditions as \emp{fundamental causes of death} (Link/Phelan).
+
+\end{itemize}
+
+
+\end{frame}
+
+%\begin{frame}{Conclusion}
+
+%\scriptsize
+
+% \begin{itemize}
+% \item \emp{Improved} survival characterised all {\sc Hisclass}es.
+% \item There are \emp{gender differences} in the social pattern
+% \item No difference in the social pattern in the two studied age groups.
+% \item The \emp{upper} class(es) gradually take over as the \emp{most healthy} group.
+% \item \emp{Educational} and \emp{income} income differences during the last decades conform with what we found for class differences.
+% \end{itemize}
+
+
+%\end{frame}
+
+
+\end{document}
