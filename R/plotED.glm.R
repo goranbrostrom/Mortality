@@ -4,7 +4,7 @@ plotED.glm <- function(res,
                        relative = FALSE,
                        ylab = "",
                        main = "",
-                       exclude = 100){
+                       exclude = numeric(0)){
     
     ## 'res' is a list of matrices of cumulative hazards from a piecewise-contant fit
     ## We want the last column of each matrix.
@@ -13,6 +13,8 @@ plotED.glm <- function(res,
 
     ## Assuming 'm == 4', we try:
     ##leg = c("elite", "lowMan", "lowWhiteC", "worker")
+    chs <- !(1:length(res) %in% exclude)
+    res <- res[chs]
     leg <- rownames(res[[1]])
     nper <- length(res)
     k <- NCOL(res[[1]])
@@ -20,7 +22,7 @@ plotED.glm <- function(res,
     labb <- names(res)
 
     out <- 1:nper
-    out <- out[!(out %in% exclude)]
+    ##out <- out[!(out %in% exclude)]
     outp <- matrix(0, ncol = nper, nrow = m)
 
     for (i in 1:nper){
@@ -48,10 +50,12 @@ plotED.glm <- function(res,
     xv <- (as.numeric(substr(names(res), 1, 4)) +
         as.numeric(substr(names(res), 6, 9))) / 2
 
-    plot(xv[out], outp[1, -exclude], type = "b", lty = 1, col = col[1], pch = 1,
+    ##xv <- xv[-exclude]
+    ran <- max(xv) - min(xv)
+    plot(xv[out], outp[1, ], type = "b", lty = 1, col = col[1], pch = 1,
          ylim = c(fr, to), main = main,
          axes = FALSE, ylab = ylab, cex.axis = 0.4, xlab = "", 
-         xlim = c(min(xv), max(xv) + 33))
+         xlim = c(min(xv), max(xv) + 33 * ran / 200))
     axis(1, at = xv, lab = labb, las = 2)
     axis(2, las = 2)
     box()

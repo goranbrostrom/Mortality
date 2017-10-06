@@ -749,7 +749,7 @@ cvbTab$event <- cvbTab$heart
 
 ```{r 41colorc}
 ## Colors for plotting strata:
-scol <- c("blue", rep("darkgreen", 2), "red")
+##scol <- c("blue", rep("darkgreen", 2), "red")
 ## Common for all groups:
 
 labb <- levels(cvbTab$period)
