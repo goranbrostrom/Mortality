@@ -4,6 +4,7 @@ plotED.glm <- function(res,
                        relative = FALSE,
                        ylab = "",
                        main = "",
+                       prob = TRUE,
                        exclude = numeric(0)){
     
     ## 'res' is a list of matrices of cumulative hazards from a piecewise-contant fit
@@ -29,9 +30,11 @@ plotED.glm <- function(res,
         outp[, i] <- res[[i]][, k]         
     }
     
-    if (logScale){
+    if (!logScale){
+        ## logScale <--> cum. Hazard
+        ## !logScale <--> P(die )
         ##outp <- log(outp)
-        outp <- log(1 - exp(-outp))
+        outp <- 1 - exp(-outp)
         ##outp <- log(outp / (1 - outp))
     }
     if (relative){
@@ -42,7 +45,7 @@ plotED.glm <- function(res,
         ##to <- max(outp[, out], na.rm = TRUE)
         ##fr <- min(outp[, out], na.rm = TRUE)
         fr <- 0
-        to <- 0.6
+        to <- max(outp)
         #cat("to = ", to, ", fr = ", fr, "\n")
     }else{    
         to <- max(outp)
