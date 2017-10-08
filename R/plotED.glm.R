@@ -4,6 +4,7 @@ plotED.glm <- function(res,
                        relative = FALSE,
                        ylab = "",
                        main = "",
+                       ylim = c(0, 1),
                        prob = TRUE,
                        exclude = numeric(0)){
     
@@ -56,7 +57,7 @@ plotED.glm <- function(res,
     ##xv <- xv[-exclude]
     ran <- max(xv) - min(xv)
     plot(xv[out], outp[1, ], type = "b", lty = 1, col = col[1], pch = 1,
-         ylim = c(fr, to), main = main,
+         ylim = ylim, main = main,
          axes = FALSE, ylab = ylab, cex.axis = 0.4, xlab = "", 
          xlim = c(min(xv), max(xv) + 33 * ran / 200))
     axis(1, at = xv, lab = labb, las = 2)

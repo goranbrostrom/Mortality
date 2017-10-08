@@ -43,6 +43,7 @@ skume <- get.file("skume")
 foli <- get.file("foli")
 skel$urban <- FALSE
 vb0Tab <- rbind(skel, skume[, names(skel)], foli[, names(skel)])
+vb0Tab$civst <- relevel(vb0Tab$civst, ref = "married")
 ```
 
 # Introduction
@@ -521,22 +522,22 @@ scap1w <-  "Cumulative hazards, ages 40--64, women."
 cap1m <-  "Cumulative hazards for social class by time period, ages 40--64, men."
 scap1m <-  "Cumulative hazards, ages 40--64, men."
 ##
-cap0 <- "Total hazard of dying before age 65 for a 40 year old person by social class and decade, women (top) and men (bottom)."
-scap0 <- "Total hazard by social class, ages 40--64."
-cap12 <- "Total hazard of dying before age 65 for a 40 year old person standardised by social class and decade, women (top) and men (bottom)."
-scap12 <- "Total hazard standardised by social class, ages 40--64."
-cap12log <- "Total hazard of dying before age 65 for a 40 year old person by social class and decade, women (top) and men (bottom). The last decades."
-scap12log <- "Total hazard by social class, ages 40--64, last years."
+cap0 <- "Probability of dying before age 65 for a 40 year old person by social class and decade, women (top) and men (bottom)."
+scap0 <- "Probability by social class, ages 40--64."
+cap12 <- "Probability of dying before age 65 for a 40 year old person standardised by social class and decade, women (top) and men (bottom)."
+scap12 <- "Probability standardised by social class, ages 40--64."
+cap12log <- "Probability of dying before age 65 for a 40 year old person by social class and decade, women (top) and men (bottom). The last decades."
+scap12log <- "Probability by social class, ages 40--64, last years."
 
 cap2w <-  "Cumulative hazards for social class by time period, ages 65--89, women."
 scap2w <-  "Cumulative hazards, ages 65--89, women."
 cap2m <-  "Cumulative hazards for social class by time period, ages 65--89, men."
 scap2m <-  "Cumulative hazards, ages 65--89, men."
 ##
-cap22 <- "Total hazard of dying before age 90 for a 65 year old person by social class and decade, women (top) and men (bottom). Standardised."
-scap22 <- "Total hazard by social class, ages 65--89."
-cap22log <- "Total hazard of dying before age 90 for a 65 year old person by HISCLASS and decade, women (top) and men (bottom). The last decades."
-scap22log <- "Total hazard by social class, ages 65--89, last years."
+cap22 <- "Probability of dying before age 90 for a 65 year old person by social class and decade, women (top) and men (bottom). Standardised."
+scap22 <- "Probability by social class, ages 65--89."
+cap22log <- "Probability of dying before age 90 for a 65 year old person by HISCLASS and decade, women (top) and men (bottom). The last decades."
+scap22log <- "Probability by social class, ages 65--89, last years."
 
 ##
 vb4064 <- vb0Tab[as.numeric(as.character(vb0Tab$age)) < 64.5, ]
@@ -558,10 +559,10 @@ resm <- getPHglm2(vb4064[vb4064$sex == "male", ],
 ```{r cumsw, fig.cap = cap0, fig.scap = scap0, fig.height = 8}
 source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
-woutp <- plotED.glm(resw, col = scol, logScale = FALSE, ylab = "TMR(65|40)",
-                main = "Women 40-64")##, exclude = 5:6)
-moutp <- plotED.glm(resm, col = scol, logScale = FALSE, ylab = "TMR(65|40)",
-                main = "Men 40-64")##, exclude = 5:6)
+woutp <- plotED.glm(resw, col = scol, logScale = FALSE, ylab = "P(dead at 65 | alive at 40)",
+                main = "Women 40-64", ylim = c(0, 0.6))##, exclude = 5:6)
+moutp <- plotED.glm(resm, col = scol, logScale = FALSE, ylab = "P(dead at 65 | alive at 40)",
+                main = "Men 40-64", ylim = c(0, 0.6))##, exclude = 5:6)
 par(oldpar)
 ```
 
@@ -597,9 +598,9 @@ relative mortality levels for the different classes since they are the main focu
 ```{r cumswstand, fig.cap = cap12, fig.scap = scap12, fig.height = 8}
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "TMR(65|40)", main = "Women 40-64")##, exclude = 5:6)
+                    ylab = "P(dead at 65 | alive at 40)", ylim = c(0.1, 0.55), main = "Women 40-64")##, exclude = 5:6)
 moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "TMR(65|40)", main = "Men 40-64")##, exclude = 5:6)
+                    ylab = "P(dead at 65 | alive at 40)", ylim = c(0.1, 0.55), main = "Men 40-64")##, exclude = 5:6)
 par(oldpar)
 ```
 
@@ -702,9 +703,9 @@ resm <- getPHglm2(vb6589[vb6589$sex == "male", ],
 
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "TMR(90|65)", main = "Women 65-89")##, exclude = 5:6)
+                    ylab = "P(dead at 90 | alive at 65)", ylim = c(0.1, 0.55), main = "Women 65-89")##, exclude = 5:6)
 moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "TMR(90|65)", main = "Men 65-89")##, exclude = 5:6)
+                    ylab = "P(dead at 90 | alive at 65)", ylim = c(0.1, 0.55), main = "Men 65-89")##, exclude = 5:6)
 par(oldpar)
 ```
 
