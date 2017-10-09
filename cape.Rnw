@@ -545,5 +545,69 @@ Thank you for your attention
 
 %\end{frame}
 
+\begin{frame}{The sampling frame}
+
+<<lexis2>>=
+@
+
+\end{frame}
+
+\begin{frame}{Exposure by social class, women}
+
+\begin{center}
+\includegraphics[height = 5cm]{figs/art2-hiscskumw-1}
+
+\small From the top: Elite, middle, workers, missing.
+\end{center}
+\end{frame}
+
+\begin{frame}{Exposure by social class, men}
+
+\begin{center}
+\includegraphics[height = 5cm]{figs/art2-hiscskumm-1}
+
+\small From the top: Elite, middle, workers, missing.
+\end{center}
+\end{frame}
+
+\begin{frame}{Exposure by marital status}
+
+\begin{center}
+\includegraphics[height = 5cm]{figs/art2-civstskum-1.pdf}
+
+\small From the top: Never married, married, previously married.
+\end{center}
+
+\end{frame}
+
+\begin{frame}[fragile]{Cohort mortality, men 40--65}
+
+<<cohortapproach>>=
+vv <- vb0Tab[vb0Tab$cohort %in% seq(1751, 1951, by = 10) &
+               vb0Tab$age %in% seq(40, 60, by = 5), ]
+vv$age <- factor(vv$age)
+vv$cohort <- factor(vv$cohort)
+cohs <- levels(vv$cohort)
+vv$age <- factor(vv$age)
+n <- length(cohs)
+coe <- matrix(0, nrow = 4, ncol = n)
+for (i in 1:n){
+   fit <- glm(event ~ offset(log(exposure)) + hisclass + age + urban + civst, 
+              data = vv[vv$cohort == cohs[i] & vv$sex == "male", ],
+              family = poisson)
+   x <- coefficients(fit)[1:4]
+   x[2:4] <- x[1] + x[2:4]
+   coe[, i] <-  exp(x) / sum(exp(x))
+}
+x <- as.numeric(as.character(cohs))
+par(lwd = 2)
+plot(x[-n], coe[1, -n], type = "b", col = scol[1], ylim = c(0, 0.7), xlab = "Birth cohort", ylab = "Standardized rel. risks")
+lines(x[-n], coe[2, -n], type = "b", col = scol[2], pch = 2, lty = 2)
+lines(x[-n], coe[3, -n], type = "b", col = scol[3], pch = 3, lty = 3)
+lines(x[-n], coe[4, -n], type = "b", col = scol[4], pch = 4, lty = 4)
+legend("topleft", legend = c("elite", "middle", "worker", "NA"), pch = 1:4, col = scol, lty = 1:4)
+@
+
+\end{frame}
 
 \end{document}
