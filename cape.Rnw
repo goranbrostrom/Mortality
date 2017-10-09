@@ -67,8 +67,8 @@ This is analysed according to
 \item gender
 \item age group (working age vs retired)
 \item *cause of death (cardiovascular, cancer)
-\item *education 1990--2013)
-\item *income 1986-2005)
+%\item *education 1990--2013)
+%\item *income 1986-2005)
 
 % \item Has \emp{inequality in mortality} between \emp{social classes}
 %   increased in the adult and elderly
@@ -93,6 +93,7 @@ This is analysed according to
 
 \begin{itemize}
 \item A consistent mortality difference according to social class appears surprisingly late in our regions and has no clear connection to the development of income inequality.
+\item The association with social class is stronger in the working-age population compared with the elderly, retired population.
 \item However, there is a strong gender difference in the development of social inequality.
 \item We argue that health-related behavior is an important aspect in historical as well as present-day mortality, and that such behaviours are based on strong gender and class expectations.
 \end{itemize}
@@ -180,17 +181,17 @@ Umeå:
 \end{itemize}
 \item  \url{http://www.cedar.umu.se/}
 \end{itemize}
-\item The \emp{Linnaeus} data base (1960--2013)
+\item The \emp{Linnaeus} data base (1976--2013)
   \begin{itemize}
 \item Census data 1960, 1965, \ldots, 1990
 \item Population registers ({\sc Lisa}, 1986--2013)
-  \begin{itemize}
-    \item \emp{Income}
-    \item \emp{Education}
-  \end{itemize}
+%  \begin{itemize}
+%    \item \emp{Income}
+%    \item \emp{Education}
+%  \end{itemize}
  \item Death information from \emp{National Board of Health and Welfare}
    \begin{itemize}
-\item Death dates from 1 January 1961 to 31 December 2013.
+\item Death dates from 1 January 1976 to 31 December 2013.
   \item \emp{Causes of death} ({\sc Ulorsak}, ``main cause of death'')
    \end{itemize}
 \end{itemize}
@@ -242,10 +243,10 @@ text(1995.2, 50, paste(n.d, "deaths"))
 \item[Death date] By day (\emp{Socialstyrelsen}, \emp{Poplink})
 \item[*Death cause] from \emp{Socialstyrelsen} and \emp{Poplink}. Adapted to ICD10
 \item[Parish] Urban/Rural
-\item[Social class] Elite, middle, worker. Household definition 1851--1950. Individual definition 1960--2013
-\item[*Income] 1986--2005, grouped by quartiles.
-\item[*Education] 1990--2013, three categories.
-\item[Period]  1851--1875, \ldots,  2008--2013 (10 periods). No results presented for women 1961-70, 1971-80 due to missing information on class.
+\item[Social class] Elite, middle, worker. Household definition 1851--1950. Individual definition 1976--2013
+%\item[*Income] 1986--2005, grouped by quartiles.
+%\item[*Education] 1990--2013, three categories.
+\item[Period]  1851--1875, \ldots,  2008--2013 (13 periods). 
 \item[Age group] Separate analyses for working active (40-65) vs retired (65-89) population
 %\item[cohort] 1761--1771, \ldots, 1971--1974 (22 birth cohorts).
 
@@ -495,7 +496,7 @@ par(oldpar)
 \item \emp{Late} appearance of the “modern” pattern of social differences in mortality among men
 \item Distinct \emp{gender} differences in the development.
 \item The \emp{upper} class(es) gradually take over as the \emp{most healthy} group.
-% \item No \emp{qualitative} but partly \emp{quantitative} differences between those in working age compared to the retired population.
+\item No \emp{qualitative} but partly \emp{quantitative} differences between those in working age compared to the retired population, indications of \emp{status convergence}.
 % \item \emp{Educational} and \emp{income} differences during the last decades conform to what we found for class differences.
 \item In the long run, no clear connection in the development of income inequality and social differences in mortality.
 \item This suggests an important role of gender and class related expectations on health behaviour
@@ -520,6 +521,14 @@ par(oldpar)
 
 
 \end{frame}
+
+\begin{frame}
+
+Thank you for your attention
+
+
+\end{frame}
+
 
 %\begin{frame}{Conclusion}
 
