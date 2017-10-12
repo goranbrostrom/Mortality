@@ -610,4 +610,33 @@ legend("topleft", legend = c("elite", "middle", "worker", "NA"), pch = 1:4, col 
 
 \end{frame}
 
+\begin{frame}{Crude statistics}
+
+<<crude>>=
+dat <- with(vb0Tab, aggregate(list(event = event, exposure = exposure), 
+                              by = list(period = period, sex = sex), 
+                              FUN = sum))
+males <- dat[dat$sex == "male", c("period", "event", "exposure")]
+females <- dat[dat$sex == "female", c("period", "event", "exposure")]
+oldpar <- par(mfrow = c(1, 2))
+x <- c(1812.5, 1837.5, 1862.5, 1888.5, 1912.5, 1937.5, 1987.5, 1982.5, 1987.5, 
+       1992.5, 1997.5, 2004.5, 2010.5)
+plot(x, males$event, type = "b", col = "blue", main = "Number of deaths by period",
+     ylim = c(0, 7500), ylab = "No. of deaths", xlab = "Time period", lty = 1, axes = FALSE)
+axis(1, at = c(1801, 1826, 1851, 1876, 1901, 1926, 1951, 1976, 2014), las = 2)
+axis(2, las = 1)
+box()
+lines(x, females$event, type = "b", col = "red", lty = 2)
+legend("bottomright", legend = c("Males", "Females"), lty = c(1, 2), col = c("blue", "red"))
+plot(x, males$event / males$exposure * 1000, type = "b", col = "blue", 
+     main = "Crude death rates, ages 40-89", ylim = c(0, 30), xlim = c(1800, 2014),
+     xlab = "Time period", ylab = "Deaths per 1000", axes = FALSE)
+axis(1, at = c(1801, 1826, 1851, 1876, 1901, 1926, 1951, 1976, 2014), las = 2)
+axis(2, las = 1)
+box()
+lines(x, females$event / females$exposure * 1000, type = "b", col = "red")
+legend("bottomright", legend = c("Males", "Females"), lty = c(1, 2), col = c("blue", "red"))
+@
+
+\end{frame}
 \end{document}
