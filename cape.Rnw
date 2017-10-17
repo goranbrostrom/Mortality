@@ -318,69 +318,8 @@ par(oldpar)
 
 \end{frame}
 
-\begin{frame}{Probabilities of dying, ages 40--64, 1976--2013}
 
-<<cumswlate>>=
-source("R/plotED.glm.R")
-oldpar <- par(mfrow = c(2, 1), cex = 0.7, lwd = 1.5)
-woutp <- plotED.glm(resw, col = scol, logScale = FALSE, ylab = "P(dead at 65 | alive at 40)",
-                main = "Women", exclude = 1:6, ylim = c(0, 0.3))
-moutp <- plotED.glm(resm, col = scol, logScale = FALSE, ylab = "P(dead at 65 | alive at 40)",
-                main = "Men", exclude = 1:6, ylim = c(0, 0.3))
-par(oldpar)
-@
-
-\end{frame}
-
-
-\begin{frame}{Probabilities of dying, ages 65--89, 1801-2013}
-
-%  \begin{center}
-%\includegraphics[height = 7.5cm]{figure/cumsw-1}
-%  \end{center}
-
-<<hazcalw2>>=
-source("R/getPHglm2.R")
-##nper <- 4
-vb6589 <- vb0Tab[as.numeric(as.character(vb0Tab$age)) > 64.5, ]
-vb6589$age <- factor(vb6589$age)
-labb <- levels(vb0Tab$period)
-nper <- length(labb)
-resw <- getPHglm2(vb6589[vb6589$sex == "female", ],
-            nper, labb)
-resm <- getPHglm2(vb6589[vb6589$sex == "male", ],
-            nper, labb)
-@
-
-
-<<cumsw2>>=
-source("R/plotED.glm.R")
-scol <- c("blue", "darkgreen", "darkgreen", "red")
-oldpar <- par(mfrow = c(2, 1), cex = 0.7, lwd = 1.5)
-woutp <- plotED.glm(resw, col = scol, logScale = FALSE, ylab = "P(dead at 90 | alive at 65)",
-                main = "Women", ylim = c(0.4, 1.0))## exclude = 5:6
-moutp <- plotED.glm(resm, col = scol, logScale = FALSE, ylab = "P(dead at 90 | alive at 65)",
-                main = "Men", ylim = c(0.4, 1.0))##, exclude = 5:6)
-par(oldpar)
-@
-
-\end{frame}
-
-\begin{frame}{Probabilities of dying, ages 65--89, 1976--2013}
-
-<<cumswlate2>>=
-source("R/plotED.glm.R")
-oldpar <- par(mfrow = c(2, 1), cex = 0.7, lwd = 1.5)
-woutp <- plotED.glm(resw, col = scol, logScale = FALSE, ylab = "P(dead at 90 | alive at 65)",
-                main = "Women", exclude = 1:6, ylim = c(0.4, 1.0))
-moutp <- plotED.glm(resm, col = scol, logScale = FALSE, ylab = "P(dead at 90 | alive at 65)",
-                main = "Men", exclude = 1:6, ylim = c(0.4, 1.0))
-par(oldpar)
-@
-
-\end{frame}
-
-\begin{frame}{Relative differences, ages 40--64 and 65--89}
+\begin{frame}{Relative differences in probabilities of dying, ages 40--64 and 65--89}
 
   %\begin{center}
 \includegraphics[height=7.5cm,width=5.4cm]{figs/art2-cumswstand-1}\includegraphics[height=7.5cm,width=5.4cm]{figs/art2-cumswold-1}
@@ -496,7 +435,7 @@ par(oldpar)
 \item \emp{Late} appearance of the “modern” pattern of social differences in mortality among men
 \item Distinct \emp{gender} differences in the development.
 \item The \emp{upper} class(es) gradually take over as the \emp{most healthy} group.
-\item No \emp{qualitative} but partly \emp{quantitative} differences between those in working age compared to the retired population, indications of \emp{status convergence}.
+\item \emp{Small} differences between those in working age compared to the retired population, indications of \emp{status convergence}.
 % \item \emp{Educational} and \emp{income} differences during the last decades conform to what we found for class differences.
 \item In the long run, no clear connection in the development of income inequality and social differences in mortality.
 \item This suggests an important role of gender and class related expectations on health behaviour
@@ -549,6 +488,69 @@ Thank you for your attention!
 
 
 %\end{frame}
+
+\begin{frame}{Probabilities of dying, ages 40--64, 1976--2013}
+
+<<cumswlate>>=
+source("R/plotED.glm.R")
+oldpar <- par(mfrow = c(2, 1), cex = 0.7, lwd = 1.5)
+woutp <- plotED.glm(resw, col = scol, logScale = FALSE, ylab = "P(dead at 65 | alive at 40)",
+                main = "Women", exclude = 1:6, ylim = c(0, 0.3))
+moutp <- plotED.glm(resm, col = scol, logScale = FALSE, ylab = "P(dead at 65 | alive at 40)",
+                main = "Men", exclude = 1:6, ylim = c(0, 0.3))
+par(oldpar)
+@
+
+\end{frame}
+
+
+\begin{frame}{Probabilities of dying, ages 65--89, 1801-2013}
+
+%  \begin{center}
+%\includegraphics[height = 7.5cm]{figure/cumsw-1}
+%  \end{center}
+
+<<hazcalw2>>=
+source("R/getPHglm2.R")
+##nper <- 4
+vb6589 <- vb0Tab[as.numeric(as.character(vb0Tab$age)) > 64.5, ]
+vb6589$age <- factor(vb6589$age)
+labb <- levels(vb0Tab$period)
+nper <- length(labb)
+resw <- getPHglm2(vb6589[vb6589$sex == "female", ],
+            nper, labb)
+resm <- getPHglm2(vb6589[vb6589$sex == "male", ],
+            nper, labb)
+@
+
+
+<<cumsw2>>=
+source("R/plotED.glm.R")
+scol <- c("blue", "darkgreen", "darkgreen", "red")
+oldpar <- par(mfrow = c(2, 1), cex = 0.7, lwd = 1.5)
+woutp <- plotED.glm(resw, col = scol, logScale = FALSE, ylab = "P(dead at 90 | alive at 65)",
+                main = "Women", ylim = c(0.4, 1.0))## exclude = 5:6
+moutp <- plotED.glm(resm, col = scol, logScale = FALSE, ylab = "P(dead at 90 | alive at 65)",
+                main = "Men", ylim = c(0.4, 1.0))##, exclude = 5:6)
+par(oldpar)
+@
+
+\end{frame}
+
+\begin{frame}{Probabilities of dying, ages 65--89, 1976--2013}
+
+<<cumswlate2>>=
+source("R/plotED.glm.R")
+oldpar <- par(mfrow = c(2, 1), cex = 0.7, lwd = 1.5)
+woutp <- plotED.glm(resw, col = scol, logScale = FALSE, ylab = "P(dead at 90 | alive at 65)",
+                main = "Women", exclude = 1:6, ylim = c(0.4, 1.0))
+moutp <- plotED.glm(resm, col = scol, logScale = FALSE, ylab = "P(dead at 90 | alive at 65)",
+                main = "Men", exclude = 1:6, ylim = c(0.4, 1.0))
+par(oldpar)
+@
+
+\end{frame}
+
 
 \begin{frame}{The sampling frame}
 
