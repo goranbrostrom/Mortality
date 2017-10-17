@@ -285,7 +285,7 @@ So, we fit separate PH models for each combination of
 \end{frame}
 
 
-\begin{frame}{Married, rural areas, ages 40--64}
+\begin{frame}{Probabilities of dying, ages 40--64, 1801-2013}
 
 %  \begin{center}
 %\includegraphics[height = 7.5cm]{figure/cumsw-1}
@@ -318,7 +318,7 @@ par(oldpar)
 
 \end{frame}
 
-\begin{frame}{Married, rural areas, ages 40--64, 1976--2013}
+\begin{frame}{Probabilities of dying, ages 40--64, 1976--2013}
 
 <<cumswlate>>=
 source("R/plotED.glm.R")
@@ -333,7 +333,7 @@ par(oldpar)
 \end{frame}
 
 
-\begin{frame}{Married, rural areas, ages 65--89}
+\begin{frame}{Probabilities of dying, ages 65--89, 1801-2013}
 
 %  \begin{center}
 %\includegraphics[height = 7.5cm]{figure/cumsw-1}
@@ -366,7 +366,7 @@ par(oldpar)
 
 \end{frame}
 
-\begin{frame}{Married, rural areas, ages 65--89, 1976--2013}
+\begin{frame}{Probabilities of dying, ages 65--89, 1976--2013}
 
 <<cumswlate2>>=
 source("R/plotED.glm.R")
@@ -524,8 +524,13 @@ par(oldpar)
 
 \begin{frame}
 
-Thank you for your attention
+\begin{center}
 
+\Large
+
+Thank you for your attention!
+
+\end{center}
 
 \end{frame}
 
