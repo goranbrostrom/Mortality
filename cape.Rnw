@@ -26,7 +26,7 @@ elderly and adults in Northern  Sweden 1801--2013\footnote{Session "Social inequ
 \date{\today}
 
 \author{Sören Edvinsson and Göran Broström \\
-Centre for Ageing and Demographic Research \\
+Centre for Demographic and Ageing Research \\
 Umeå University, Umeå, Sweden}
 
 \begin{document}
