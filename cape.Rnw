@@ -94,13 +94,13 @@ This is analysed according to
 \begin{itemize}
 \item Development over \emp{time}.
   \begin{itemize}
-\item Explicit or implicit assumption of an \emp{eternal} social gradient in history in many theories (Omran, Link and Phelan, Marmot, McKeown), some implying even larger in history.
+\item Explicit or implicit assumption of an \emp{eternal} social gradient (Omran, Link and Phelan, Marmot, McKeown), some implying even larger differences in history.
 \item Antonovsky – divergence followed by convergence
 \end{itemize}
 \item Development over the \emp{life course}
   \begin{itemize}
 \item Convergence, divergence or maintenance.
-\item Antonovsky – large differences in adulthood, convergence in old age
+\item Antonovsky – \emp{Convergence} from adulthood to old age
 \end{itemize}
 \end{itemize}
 
@@ -152,7 +152,7 @@ This is analysed according to
 \begin{column}{0.5\textwidth}
 
 
-Remote area in northern Sweden, dominated by agriculture until well into the 20th century.
+Remote areas in northern Sweden, dominated by agriculture until well into the 20th century.
 
 
 Skellefteå:
@@ -254,16 +254,16 @@ text(1995.2, 50, paste(n.d, "deaths"))
 
 \begin{description}
 
-\item[Sex]
-\item[Marital status]
+\item[Sex] Male/female
+\item[Marital status] Unmarried/married/previously married
 \item[Birth date] By quarter (15 Feb, May, Aug, Nov)
 \item[Death date] By day (\emp{Socialstyrelsen}, \emp{Poplink})
 \item[*Death cause] from \emp{Socialstyrelsen} and \emp{Poplink}. Adapted to ICD10
 \item[Parish] Urban/Rural
-\item[Social class] Elite, middle, worker. Household definition 1851--1950. Individual definition 1976--2013
+\item[Social class] Elite, middle, worker. Household definition 1801--1950. Individual definition 1976--2013
 %\item[*Income] 1986--2005, grouped by quartiles.
 %\item[*Education] 1990--2013, three categories.
-\item[Period]  1851--1875, \ldots,  2008--2013 (13 periods). 
+\item[Period]  1801--1825, \ldots,  2008--2013 (13 periods). 
 \item[Age group] Separate analyses for working active (40-65) vs retired (65-89) population
 %\item[cohort] 1761--1771, \ldots, 1971--1974 (22 birth cohorts).
 
@@ -294,7 +294,7 @@ So, we fit separate PH models for each combination of
 
 \begin{itemize}
   \item \emp{\tt sex}
-  \item \emp{\tt period}: 1851--75, 1876--1900, 1901--10, etc.
+  \item \emp{\tt period}: 1801--25, 1826--1850, ... 1976--1980, etc.
   \item \emp{\tt class}
   \item \emp{\tt age group}: 40--64, 65--89.
   \item \emp{\tt cause of death}
@@ -451,10 +451,10 @@ par(oldpar)
 \item \emp{Improved} survival characterised all social classes.
 \item \emp{Late} appearance of the “modern” pattern of social differences in mortality among men
 \item Distinct \emp{gender} differences in the development.
-\item \emp{Large} differences between those in working age compared to the retired population, indications of \emp{status convergence}.
+\item \emp{Large} differences between those in working age and the retired population, indications of \emp{status convergence}.
 % \item \emp{Educational} and \emp{income} differences during the last decades conform to what we found for class differences.
-\item In the long run, no clear connection in the development of income inequality and social differences in mortality.
-\item This suggests an important role of gender and class related expectations on health behaviour
+\item No clear connection in the development of income inequality and social differences in mortality.
+\item The results suggest an important role of gender and class related expectations on health behaviour
 \end{itemize}
 
 
@@ -465,7 +465,7 @@ par(oldpar)
 %\scriptsize
 
 \begin{itemize}
-\item The \emp{development} of social health inequalities and the role of \emp{health-related behavior} in different phases of the transition (Antonovsky and Omran).
+\item The role of \emp{health-related behavior} in different phases of the transition (Antonovsky and Omran).
 \item Inequality as a \emp{contextual} health risk (Wilkinson/Pickett).
 \item \emp{Status syndrome} (Marmot)
 \item The role of \emp{living standard} for mortality decline (McKeown).
