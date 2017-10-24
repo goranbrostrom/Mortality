@@ -1,0 +1,72 @@
+---
+title: "apc.Rnw"
+author: "Göran Broström"
+date: "October 24, 2017"
+output: html_document
+---
+
+## Read data
+
+```{r setup2, include=FALSE}
+library(knitr)
+opts_chunk$set(engine='R',fig.path='figs/art3-',tidy=FALSE,fig.height=3.5,fig.width=8,strip.white=TRUE,cache=FALSE,echo=FALSE,message=FALSE,comment=NA,show.signif.stars = FALSE)##$
+library(knitr)
+library(eha)
+library(xtable)
+library(skum)
+```
+
+```{r readalldata}
+source("R/get.file.R")
+skel <- get.file("skel")
+##
+skume <- get.file("skume")
+##
+foli <- get.file("foli")
+skel$urban <- FALSE
+vb0Tab <- rbind(skel, skume[, names(skel)], foli[, names(skel)])
+vb0Tab$civst <- relevel(vb0Tab$civst, ref = "married")
+```
+
+## Age-period-cohort data
+
+```{r datai}
+library(Epi)
+dat <- vb0Tab[vb0Tab$sex == "male", c("age", "period", "cohort", "event", "exposure")]
+dat$age <- as.numeric(dat$age)
+dat$A <- dat$age + 2.5
+dat$Per <- as.numeric(dat$period)
+dat$P <- 25 * dat$Per + 1787.5
+dat$P[dat$period == "1976-1980"] <- 1977.5
+dat$P[dat$period == "1981-1985"] <- 1982.5
+dat$P[dat$period == "1986-1990"] <- 1987.5
+dat$P[dat$period == "1991-1995"] <- 1992.5
+dat$P[dat$period == "1996-2001"] <- 1999
+dat$P[dat$period == "2002-2007"] <- 2005
+dat$P[dat$period == "2008-2013"] <- 2011
+dat$D <-dat$event
+dat$Y <- dat$exposure
+summary(dat)
+```
+
+## APC model fit
+
+```{r}
+ex.H <- apc.fit(dat, npar = 7, model = "ns", dr.extr = "Holford",  parm = "ACP", scale = 100)
+ex.W <- apc.fit(dat, npar = 7, model = "ns", dr.extr = "weighted", parm = "ACP", scale = 100)
+ex.S <- apc.fit(dat, npar = 7, model = "ns", parm = "AC-P", scale = 100)
+## Show the estimated drifts
+ex.H[["Drift"]]
+ex.W[["Drift"]]
+ex.S[["Drift"]]
+```
+
+Then we plot the results
+
+```{r}
+# Plot the effects
+fp <- apc.plot( ex.H )
+apc.lines( ex.W, frame.par=fp, col="red" )
+apc.lines( ex.S, frame.par=fp, col="blue" )
+```
+
