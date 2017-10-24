@@ -94,13 +94,14 @@ This is analysed according to
 \begin{itemize}
 \item Development over \emp{time}.
   \begin{itemize}
-\item Explicit or implicit assumption of an \epm{eternal} social gradient in history in many theories (Omran, Link and Phelan, Marmot, McKeown), some implying even larger in history.
+\item Explicit or implicit assumption of an \emp{eternal} social gradient in history in many theories (Omran, Link and Phelan, Marmot, McKeown), some implying even larger in history.
 \item Antonovsky – divergence followed by convergence
 \end{itemize}
-\item Development over the \emp/life course}
+\item Development over the \emp{life course}
   \begin{itemize}
 \item Convergence, divergence or maintenance.
 \item Antonovsky – large differences in adulthood, convergence in old age
+\end{itemize}
 \end{itemize}
 
 \end{frame}
@@ -482,8 +483,10 @@ par(oldpar)
 
 \Huge
 
-Thank you for your attention!
+\vspace{1\baselineskip}
+\textcolor{red}{\fbox{Thank you for your attention!}}
 
+\includegraphics[height=5cm]{myfigs/Top_incomes}
 \end{center}
 
 \end{frame}
