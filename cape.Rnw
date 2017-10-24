@@ -89,6 +89,22 @@ This is analysed according to
 
 \end{frame}
 
+\begin{frame}[fragile]{Two time perspectives}
+
+\begin{itemize}
+\item Development over \emp{time}.
+  \begin{itemize}
+\item Explicit or implicit assumption of an \epm{eternal} social gradient in history in many theories (Omran, Link and Phelan, Marmot, McKeown), some implying even larger in history.
+\item Antonovsky – divergence followed by convergence
+\end{itemize}
+\item Development over the \emp/life course}
+  \begin{itemize}
+\item Convergence, divergence or maintenance.
+\item Antonovsky – large differences in adulthood, convergence in old age
+\end{itemize}
+
+\end{frame}
+
 \begin{frame}{Main results}
 
 \begin{itemize}
@@ -172,7 +188,7 @@ Umeå:
 \begin{frame}[fragile]{Data sources}
 
 \begin{itemize}
-\item \emp{Swedish church book} records (1851--1950).
+\item \emp{Swedish church book} records (1801--1950).
   \begin{itemize}
 \item digitized by the \emp{Demographic Data Base} at Umeå University,
 \begin{itemize}
@@ -434,8 +450,7 @@ par(oldpar)
 \item \emp{Improved} survival characterised all social classes.
 \item \emp{Late} appearance of the “modern” pattern of social differences in mortality among men
 \item Distinct \emp{gender} differences in the development.
-\item The \emp{upper} class(es) gradually take over as the \emp{most healthy} group.
-\item \emp{Small} differences between those in working age compared to the retired population, indications of \emp{status convergence}.
+\item \emp{Large} differences between those in working age compared to the retired population, indications of \emp{status convergence}.
 % \item \emp{Educational} and \emp{income} differences during the last decades conform to what we found for class differences.
 \item In the long run, no clear connection in the development of income inequality and social differences in mortality.
 \item This suggests an important role of gender and class related expectations on health behaviour
@@ -465,7 +480,7 @@ par(oldpar)
 
 \begin{center}
 
-\Large
+\Huge
 
 Thank you for your attention!
 
