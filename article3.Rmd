@@ -1,5 +1,5 @@
 ---
-title: Is high social class always beneficial for survival? A study of adults and elderly in Northern Sweden 1851--2013
+title: Is high social class always beneficial for survival? A study of Northern Sweden 1801--2013
 author: "Sören Edvinsson and Göran Broström"
 date: '`r Sys.Date()`'
 output:
