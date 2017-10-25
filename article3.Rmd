@@ -49,31 +49,21 @@ vb0Tab$civst <- relevel(vb0Tab$civst, ref = "married")
 
 A major theme in demographic and epidemiological studies is the seemingly persistent effect of social class on mortality. In the present study, we challenge common notions of this by taking a long-term perspective on the development of social inequalities in mortality in the adult and elderly population with a special focus on the relative differences. The arguments for our statements are based on an investigation of the Skellefteå and Umeå regions in the north of Sweden for the periods 1801--2013 for Skellefteå and 1901--2013 for Umeå. The main issue is analysed according to gender and age-group (working age vs retired), testing if the same patterns prevails in old age---the retired population---versus the population in working age. We analyse both total and mortality and mortality from the major causes of death (cardiovascular diseases and cancers). Furthermore we put this in the context of how the inequality in mortality is associated with the development of economic inequality in society. The results are discussed in relation to our understanding of the mortality transition and the social determinants of health and mortality, as well as their implications on some of the most influential hypotheses and concepts in health research.
 
-On the basis of the results we present, we argue that high social class is not necessarily always favourable for survival. Mortality risks in different contexts must be understood in the intersection between class and gender. We suggest that health-related behaviour was important not only in present-day societies, but was decisive also in earlier phases of the mortality transition. The results implicate that the association between social class and health is more complex than is assumed in many of the dominant theories in demography and epidemiology.
+On the basis of the results, we argue that high social class is not necessarily always favourable for survival. Mortality risks in different contexts must be understood in the intersection between class and gender. We suggest that health-related behaviour was important not only in present-day societies, but was decisive also in earlier phases of the mortality transition. The results implicate that the association between social class and health is more complex than is assumed in many of the dominant theories in demography and epidemiology.
 
 ## Social class and mortality
 
 One of the central aspects of survival is social class and access to economic
-and other resources. Even in present-day welfare societies, social position is a
+and other resources. In present-day welfare societies, social position is a
 strong determinant when it comes to health and mortality and the impact even
-seems to be increasing [@kuetal04; @macketal16; @frlu07; @broba12; @strand10]. It has been suggested that
+seems to be increasing [@kuetal04; @macketal16; @frlu07; @broba12; @strand10]. @liph95 suggest that
 "... social conditions have been, are and will continue to be irreducible
 determinants of health outcomes and therefore deserves their appellation as
-'fundamental causes' of disease and death" [@liph95]. The persistence of social inequality in mortality to the disadvantage of the lower classes is one of the main assumptions in this theory [@liph98]. For a long time, the general view has been that socio-economic health and mortality inequalities were large in historical societies, probably larger than in modern societies. This is a
-reasonable assumption since these societies were in most cases characterised by
-very large socioeconomic differences. Knowing that access to
-resources provides advantages in all aspects of life, the health advantage of higher
+'fundamental causes' of disease and death". The persistence of social inequality in mortality to the disadvantage of the lower classes is one of the main assumptions in their theory [@liph98]. The reigning view has been that socio-economic health and mortality inequalities were large in historical societies, probably larger than in modern societies. This is a
+reasonable assumption since these societies were often characterised by
+enourmous socioeconomic differences. Knowing that access to different kinds of resources
+provide advantages in all aspects of life, the health advantage of higher
 classes ought to be obvious. 
-
-@ant67 suggests that social inequality in mortality has passed through different historical phases. According to him, differences were comparatively small during the
-pre-transitional phase. This period was characterised by space being a strong determinant for the spread of disease. Differences then increased during the transitional phase when mortality
-declined and wealthy groups used their economic and human resources to gain better health. Finally,
-mortality differences decreased again resulting in marginal levels of inequality in modern low-mortality societies when instead
-health-related behaviour became the decisive determinant for health and survival.
-@omran82 comes to a similar conclusion in his theory of the epidemiologic transition. He states in the third proposition of the theory that even if the class differentials in mortality were
-maintained during the transition, the decline set in earlier and was faster
-among privileged groups.  
-
 
 Recent studies, investigating social inequality in health and mortality
 with micro-data, have however questioned the generality of the assumed
@@ -130,24 +120,17 @@ for the earlier period but with the addition of two more parishes. The
 majority of the 19th century population lived in rural villages and
 hamlets, getting its livelihood from agricultural production. During the
 20th century, industrialisation took place. This also led to a population increase both in the town
-and in the rural parts, resulting in a much more diversified economy.
+and in the rural parts, resulting in a more diversified economy.
 
 Mortality was fairly low in comparison with other parts of the country and
 the fertility transition was late [@coa86]. The Skellefteå population
-size as defined in our data sets (all ages) was 6142 on January 1, 1801, 17355 on January 1, 1851, 43212 on January 1, 1901, 62136 on December 31, 1950 and 76723 at the end of the
-20th century.
+size as defined in our data sets (all ages) was 6142 on January 1, 1801, 43212 on January 1, 1901, and 76723 at the end of the 20th century.
 
 The Umeå region in the dataset consists of Umeå urban and rural parish 1901--1950, and from 1976 onwards of Umeå municipality when another three
 parishes are included. This region has a somewhat different character from
 that of Skellefteå. Umeå town had a small population but was substantially
-larger than Skellefteå town during almost the whole studied period. It was
-the administrative centre in the county of Västerbotten. Schools and
-military regiments were placed here and the economy was more diversified
-compared to Skellefteå. Agriculture dominated the rural part, but there
-were also some foundries as well as industries for example in forestry and
-small-scale production. The population size as defined in our data sets (all ages) was
-19138 on January 1, 1901, 33393 on December 31, 1950 and 103970 when
-the 20th century ended.
+larger than Skellefteå town during almost the whole studied period and was
+the administrative, educational and military centre in the county of Västerbotten. During the later part of the 20th century, the establishment of a university in Umeå led to a rapid population increase. Agriculture dominated the rural part, but there were also some foundries as well as forestry industries. Consequently the economy was more diversified compared to Skellefteå.The population size as defined in our data sets (all ages) was 19138 on January 1, 1901 and 103970 when the 20th century ended.
 
 
 
@@ -156,17 +139,14 @@ the 20th century ended.
 The recent extension in time of data at the Demographic Data Base (DDB),
 Umeå University (http://www.cedar.umu.se) by including the period between 1900 and
 1950 makes it possible to investigate the long-term development of social
-inequality in mortality in a part of Sweden. The data for the present study come from two large
-population databases at the DDB, whom provide us with micro-data for the Skellefteå and Umeå regions in nortehrn Sweden. Our dataset constitutes a large population with substantial social diversity that can be followed for a uniquely long time. The early period until 1950 is covered by the database Poplink, the digitisation of historical parish registers for
-the two regions [@wee16]. Poplink is based on linked
-parish records, allowing us to reconstruct life biographies on people as
-long as they remained in the region. The records are linked within but not
+inequality in mortality in this part of Sweden. The data for the present study come from two large
+population databases at the DDB, whom provide us with micro-data for the Skellefteå and Umeå regions in northern Sweden. Our dataset constitutes a large population with substantial social diversity that can be followed for a uniquely long time. The period 1801--1950 is covered by the database Poplink [@wee16]. Poplink is based on linked parish records, allowing us to reconstruct life biographies on people as long as they remained in the region. The records are linked within but not
 between the regions. Data from Poplink are accessed for the period 1801--1950.
 
 The other large data set is extracted from the Linnaeus database
 [@malm10], which is based on different linked national population
 registers from 1960 to 2013 and is used within the ageing program at CEDAR, Umeå
-University. The study period from 1976 to 2000 is constructed from
+University. Due to data issues, we choose to use Linnaeus data from 1976. The study period from 1976 to 2000 is constructed from
 censuses every fifth year 1975--1990, with additional information on deaths
 from National Board of Health and Welfare (we have left out the period 1960--1975 due to more missing data in some variables, for example social class, and additional work required for defining the exact geographical areas for analysis). For the period 2002--2013 we use
 the information from the yearly population registers from Statistics Sweden
@@ -174,7 +154,7 @@ the information from the yearly population registers from Statistics Sweden
 Welfare.
 
 Individuals are anonymised and the two databases are not
-linked, thus they are treated separately. This prevent us from following individuals between the two databases throughout their lives. It also makes it impossible to add information on individuals in the Linnaeus database from what we potentially could extract from Poplink, for example family
+linked, thus they are treated as separate units. This prevents us from following individuals between the two databases throughout their lives. It also makes it impossible to add information on individuals in the Linnaeus database from what we potentially could extract from Poplink, for example family
 background or previous social class.
 
 
@@ -220,7 +200,7 @@ Figure \@ref(fig:lexis2).
 
 Differences in available information in the two datasets as well as within
 the Linnaeus data makes it necessary to apply different approaches when it
-comes to identification of presence periods. The Poplink data provides us with exact dates or at least year of start and exit of the presence of all individuals in our data, allowing us
+comes to identification of presence periods. The Poplink data provides us with exact dates or at least year of start and exit of presence, allowing us
 to have full and continuous control of the \emph{de jure} population. This is
 however not the case with the Linnaeus database. For the period 1976--2001
 we use presence in the censuses 1975--1990 and information on deaths from the National
@@ -247,23 +227,18 @@ in the studied regions.
 
 
 Mortality differences are analysed according to social class, based on a modified form 
-of the classification scheme Hisclass [@lema11]. The only
-type of socio-economic information available both in the Linnaeus and the Poplink databases
-is occupations. Thus, analysing according to social class is apart from
-being a scientific choice, also a practical one. Using occupational data is
-the only and obvious alternative for making a longitudinal study of
-socio-economic mortality differences with consistent classification
-schemes. Social position is treated as a time-dependent variable during working age but defined from the last occupation for the elderly and retired population, that is, from age 65 until death or last observation.
+of the classification scheme Hisclass [@lema11]. The only and obvious alternative for making a longitudinal study of socio-economic mortality differences with consistent classification
+schemes in the two databases, is occupations. Thus, analysing according to social class is apart from
+being a scientific choice, also a practical one. Social position is treated as a time-dependent variable during working age but defined from the last occupation for the elderly and retired population, that is, from age 65 until death or last observation.
 
 The availability of information on occupations varies over time and between
-sources. Occupations in the version of Poplink we are using are coded according to the original DDB coding system that then has been adapted to Hisclass. For the
-Linnaeus data, HISCO is recoded into Hisclass. The censuses include occupational codes based on the system used in Sweden at that time, NYK (Nordisk
+sources. Occupations in Poplink are coded according to the original DDB coding system that then has been adapted to Hisclass. For the Linnaeus data, HISCO is recoded into Hisclass. The censuses include occupational codes based on the system used in Sweden at that time, NYK (Nordisk
 Yrkesklassificering). We consider the observed social class in a census to be valid for the full period until the next census, corresponding to our definition of presence periods. For the period 1991--2000 the social class in the census 1990 is considered to be kept until 2001. 
 
 
 The use of different data sets forces us to apply different approaches
 towards defining the social position. Poplink usually only provides occupation for the head of household, thus underestimating female working-force participation as well as that of
-adult children residing with their parents [@vik10]. For the Poplink period (until 1950), we have chosen to categorise wives according to position of the head of household, usually
+adult children residing with their parents [@vik10]. For the Poplink period, we have chosen to categorise wives according to position of the head of household, usually
 the husband/father, assuming that the family shares the same socio-economic
 position. 
 
@@ -274,14 +249,13 @@ labour force participation developed as the norm in Sweden during this
 period. The occupation of the husband as signifier of social class became,
 if not obsolete, at least less relevant. All included persons are signified
 by their individual occupation for this period. Still, the results for the
-different periods are not completely comparable. Notice however that we can expect a strong social homogamy within the married couple, indicating that the results would not differ in any decisive way by using occupations on individual level instead of on household level for defining social class from the Linneaus data [@bjork92]. 
+different periods are not completely comparable. Notice however that there was a strong social homogamy within married couples at this time, indicating that the results would not differ in any decisive way by using occupations on individual level instead of on household level for defining social class from the Linneaus data [@bjork92]. 
 
 Hisclass, the classification system used as a basis for our categorisation, is a "...
 HISCO-based historical international social class scheme" [@lema11; @lema02]. 
 The different classes in Hisclass represent distinct
 categories, based on whether the work is manual or non–manual, skill level,
-supervision and sector. Implicitly it reflects large differences in what is
-in the forefront of other categorisations, as for example access to
+supervision and sector. Implicitly it reflects large differences in access to
 economic and other resources, status, social power et cetera. Longitudinal analyses of social classes for such a long period covered in this study involves several problems, related to changes in occupational structure and the meaning and contents of occupations and social positions. We have chosen to work with a broad definition of classes, merging the original 12 classes in Hisclass into the following three and an additional fourth category of unknown class:
 
 \begin{enumerate}
@@ -330,19 +304,18 @@ see Figure \@ref(fig:hiscskumw). Corresponding to what we found for men, the
 proportion without social position is very low until the middle of the 20th
 century, reflecting the way womens' social position is defined. The frequency of missing social class is however quite high during particularly the first two periods with data from the Linnaeus database---from 1976. Since female social class for this period is defined
 according to own occupation, the consequence of many women being outside
-the workforce is that the proportion missing becomes very high. For the later periods,
+the workforce is that the proportion missing increases. For the later periods,
 the results are fairly complete.
 
 ## Marital status
 
-Marital status is treated as a time-dependent variable in the data
+Marital status, see Figure \@ref(fig:civstskum), is treated as a time-dependent variable in the data
 file. The statuses used are unmarried, married and dissolved marriages
 (without distinguishing between widowed and divorces). If no explicit
 status is given in the sources and partner is missing, the status has been
 set to unmarried. Notice that it has not been possible to identify cohabitation.
 
-Regarding the distribution of marital status over time, see
-Figure \@ref(fig:civstskum). 
+
 
 ```{r civstskum, fig.cap = "Exposure by marital status (from the top: never married, married and previously married) and time period", fig.height = 4.5}
 xx <- with(skel, tapply(exposure, list(period = period, civst = civst), sum))
