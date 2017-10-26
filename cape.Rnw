@@ -486,7 +486,7 @@ par(oldpar)
 \vspace{1\baselineskip}
 \textcolor{red}{\fbox{Thank you for your attention!}}
 
-\includegraphics[height=5cm]{myfigs/Top_incomes}
+\includegraphics[height=5cm]{myfigs/skord05.jpg}
 \end{center}
 
 \end{frame}
