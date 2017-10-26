@@ -487,11 +487,11 @@ scap1w <-  "Cumulative hazards, ages 40--64, women."
 cap1m <-  "Cumulative hazards for social class by time period, ages 40--64, men."
 scap1m <-  "Cumulative hazards, ages 40--64, men."
 ##
-cap0 <- "Probability of dying before age 65 for a 40 year old person by social class and decade, women (top) and men (bottom)."
+cap0 <- "Probability of dying before age 65 for a 40 year old person by social class and period, women (top) and men (bottom)."
 scap0 <- "Probability by social class, ages 40--64."
-cap12 <- "Probability of dying before age 65 for a 40 year old person standardised by social class and decade, women (top) and men (bottom)."
+cap12 <- "Probability of dying before age 65 for a 40 year old person standardised by social class and period, women (top) and men (bottom)."
 scap12 <- "Probability standardised by social class, ages 40--64."
-cap12log <- "Probability of dying before age 65 for a 40 year old person by social class and decade, women (top) and men (bottom). The last decades."
+cap12log <- "Probability of dying before age 65 for a 40 year old person by social class and period, women (top) and men (bottom). The last decades."
 scap12log <- "Probability by social class, ages 40--64, last years."
 
 cap2w <-  "Cumulative hazards for social class by time period, ages 65--89, women."
@@ -499,9 +499,9 @@ scap2w <-  "Cumulative hazards, ages 65--89, women."
 cap2m <-  "Cumulative hazards for social class by time period, ages 65--89, men."
 scap2m <-  "Cumulative hazards, ages 65--89, men."
 ##
-cap22 <- "Probability of dying before age 90 for a 65 year old person by social class and decade, women (top) and men (bottom). Standardised."
+cap22 <- "Probability of dying before age 90 for a 65 year old person by social class and period, women (top) and men (bottom). Standardised."
 scap22 <- "Probability by social class, ages 65--89."
-cap22log <- "Probability of dying before age 90 for a 65 year old person by HISCLASS and decade, women (top) and men (bottom). The last decades."
+cap22log <- "Probability of dying before age 90 for a 65 year old person by HISCLASS and period, women (top) and men (bottom). The last decades."
 scap22log <- "Probability by social class, ages 65--89, last years."
 
 ##
@@ -728,9 +728,9 @@ scap1w <-  "Cumulative hazards, ages 40--64, women, cardiovascular death."
 cap1m <-  "Cumulative hazards for social class by time period, ages 40--64, men, cardiovascular death."
 scap1m <-  "Cumulative hazards, ages 40--64, men, cardiovascular death."
 ##
-cap12 <- "Total hazard of dying before age 65 for a 40 year old person standardised by social class and decade, women (top) and men (bottom), cardiovascular death."
+cap12 <- "Total hazard of dying before age 65 for a 40 year old person standardised by social class and period, women (top) and men (bottom), cardiovascular death."
 scap12 <- "Total hazard by social class, ages 40--64, cardiovascular death."
-cap12log <- "Total hazard of dying before age 65 for a 40 year old person by social class and decade, women (top) and men (bottom). The last decades, cardiovascular death."
+cap12log <- "Total hazard of dying before age 65 for a 40 year old person by social class and period, women (top) and men (bottom). The last decades, cardiovascular death."
 scap12log <- "Total hazard by social class, ages 40--64, last years, cardiovascular death."
 
 cap2w <-  "Cumulative hazards for social class by time period, ages 65--89, women, cardiovascular death."
@@ -738,9 +738,9 @@ scap2w <-  "Cumulative hazards, ages 65--89, women, cardiovascular death."
 cap2m <-  "Cumulative hazards for social class by time period, ages 65--89, men, cardiovascular death."
 scap2m <-  "Cumulative hazards, ages 65--89, men, cardiovascular death."
 ##
-cap22 <- "Total hazard of dying before age 90 for a 65 year old person standardised by social class and decade, women (top) and men (bottom), cardiovascular death."
+cap22 <- "Total hazard of dying before age 90 for a 65 year old person standardised by social class and period, women (top) and men (bottom), cardiovascular death."
 scap22 <- "Total hazard standardised by social class, ages 65--89, cardiovascular death."
-cap22log <- "Total hazard of dying before age 90 for a 65 year old person by social class and decade, women (top) and men (bottom). The last decades, cardiovascular death."
+cap22log <- "Total hazard of dying before age 90 for a 65 year old person by social class and period, women (top) and men (bottom). The last decades, cardiovascular death."
 scap22log <- "Total hazard by social class, ages 65--89, last years, cardiovascular death."
 
 ##
@@ -900,9 +900,9 @@ scap1w <-  "Cumulative hazards, ages 40--64, women, cancer death."
 cap1m <-  "Cumulative hazards for social class by time period, ages 40--64, men, cancer death."
 scap1m <-  "Cumulative hazards, ages 40--64, men, cancer death."
 ##
-cap12 <- "Total hazard of dying before age 65 for a 40 year old person standardised by social class and decade, women (top) and men (bottom), cancer death."
+cap12 <- "Total hazard of dying before age 65 for a 40 year old person standardised by social class and period, women (top) and men (bottom), cancer death."
 scap12 <- "Total hazard by social class, ages 40--64, cancer death."
-cap12log <- "Total hazard of dying before age 65 for a 40 year old person by social class and decade, women (top) and men (bottom). The last decades, cancer death."
+cap12log <- "Total hazard of dying before age 65 for a 40 year old person by social class and period, women (top) and men (bottom). The last decades, cancer death."
 scap12log <- "Total hazard by social class, ages 40--64, last years, cancer death."
 
 cap2w <-  "Cumulative hazards for social class by time period, ages 65--89, women, cancer death."
@@ -910,9 +910,9 @@ scap2w <-  "Cumulative hazards, ages 65--89, women, cancer death."
 cap2m <-  "Cumulative hazards for social class by time period, ages 65--89, men, cancer death."
 scap2m <-  "Cumulative hazards, ages 65--89, men, cancer death."
 ##
-cap22 <- "Total hazard of dying before age 90 for a 65 year old person standardised by social class and decade, women (top) and men (bottom), cancer death."
+cap22 <- "Total hazard of dying before age 90 for a 65 year old person standardised by social class and period, women (top) and men (bottom), cancer death."
 scap22 <- "Total hazard standardised by social class, ages 65--89, cancer death."
-cap22log <- "Total hazard of dying before age 90 for a 65 year old person by social class and decade, women (top) and men (bottom). The last decades, cancer death."
+cap22log <- "Total hazard of dying before age 90 for a 65 year old person by social class and period, women (top) and men (bottom). The last decades, cancer death."
 scap22log <- "Total hazard by social class, ages 65--89, last years, cancer death."
 
 ##
