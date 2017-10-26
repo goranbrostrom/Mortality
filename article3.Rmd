@@ -1,8 +1,12 @@
 ---
-title: Is high social class always beneficial for survival? A study of Northern Sweden 1801--2013
+title: Is high social class always beneficial for survival? A study of Northern Sweden
+  1801--2013
 author: "Sören Edvinsson and Göran Broström"
 date: '`r Sys.Date()`'
 output:
+  bookdown::word_document2:
+    toc: yes
+    toc_depth: 2
   bookdown::pdf_document2:
     citation_package: natbib
     keep_tex: yes
@@ -14,9 +18,6 @@ output:
     toc: yes
     toc_depth: 2
     toc_float: yes
-  bookdown::word_document2:
-    toc: yes
-    toc_depth: 2
 bibliography: mybib.bib
 documentclass: article
 fontsize: 12pt
