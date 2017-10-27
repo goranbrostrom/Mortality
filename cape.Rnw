@@ -293,6 +293,38 @@ text(1995.2, 50, paste(n.d, "deaths"))
 
 \end{frame}
 
+\begin{frame}{Social class and relative exposure}
+
+\scriptsize
+\begin{columns}[t]
+\begin{column}{.48\textwidth}
+\begin{center}
+Social classes
+
+\begin{description}
+\item[\bf \textcolor{black}{elite}] {\sc Hisclass} 1 and 2. \emph{Higher managers and professionals.}
+\item[\empg{\bf middle}] {\sc Hisclass} \empg{3, 4, 5, 6, and 8}. \emph{Lower managers, lower white collar, and farmers.}
+%%\item \emp{\tt lowWhiteC}, HISCLASS 4, 5 and 6. Lower white collar.
+\item[\emp{\bf worker}] {\sc Hisclass} \emp{7, 9, 10, 11 and 12}. \emph{Workers of different skills including farm workers.}
+\item[\empr{\bf NA}] {\sc Hisclass} is \empr{missing}.
+\end{description}
+
+\end{center}
+\end{column}
+\begin{column}[t]{.48\textwidth}
+
+\includegraphics[height = 3cm]{figs/art2-hiscskumw-1}
+\hspace{2cm} Exposure, women
+
+\includegraphics[height = 3cm]{figs/art2-hiscskumm-1}
+Exposure, men
+\end{column}
+
+
+\end{columns}
+
+\end{frame}
+
 %\begin{frame}{\sc Social class}
 
 %\begin{enumerate}
