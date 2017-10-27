@@ -13,6 +13,10 @@
 
 \newcommand{\emp}[1]{\textcolor{blue}{#1}}
 
+\newcommand{\empg}[1]{\textcolor{green}{#1}}
+
+\newcommand{\empr}[1]{\textcolor{red}{#1}}
+
 \usetheme{Singapore}% best choice.
   \setbeamercovered{transparent}%
 
@@ -271,17 +275,34 @@ text(1995.2, 50, paste(n.d, "deaths"))
 
 \end{frame}
 
+\begin{frame}{Social class and relative exposure}
 
-\begin{frame}{\sc Social class}
-
-\begin{enumerate}
-\item \emp{\tt elite}, HISCLASS 1 and 2. Higher managers and professionals.
-\item \emp{\tt middle}, HISCLASS 3, 4, 5, 6, and 8. Lower managers, lower white collar, and farmers.
+\begin{center}
+\small {Women \hspace{4cm} Men}
+\includegraphics[height = 3cm]{figs/art2-hiscskumw-1}
+\includegraphics[height = 3cm]{figs/art2-hiscskumm-1}
+\end{center}
+\footnotesize
+\begin{description}
+\item[\bf \textcolor{black}{elite}] {\sc Hisclass} 1 and 2. \emph{Higher managers and professionals.}
+\item[\empg{\bf middle}] {\sc Hisclass} \empg{3, 4, 5, 6, and 8}. \emph{Lower managers, lower white collar, and farmers.}
 %%\item \emp{\tt lowWhiteC}, HISCLASS 4, 5 and 6. Lower white collar.
-\item \emp{\tt worker}, HISCLASS 7, 9, 10, 11 and 12. Workers of different skills including farm workers.
-\end{enumerate}
+\item[\emp{\bf worker}] {\sc Hisclass} \emp{7, 9, 10, 11 and 12}. \emph{Workers of different skills including farm workers.}
+\item[\empr{\bf NA}] {\sc Hisclass} is \empr{missing}.
+\end{description}
 
 \end{frame}
+
+%\begin{frame}{\sc Social class}
+
+%\begin{enumerate}
+%\item \emp{\tt elite}, HISCLASS 1 and 2. Higher managers and professionals.
+%\item \emp{\tt middle}, HISCLASS 3, 4, 5, 6, and 8. Lower managers, lower white collar, and farmers.
+%%\item \emp{\tt lowWhiteC}, HISCLASS 4, 5 and 6. Lower white collar.
+%\item \emp{\tt worker}, HISCLASS 7, 9, 10, 11 and 12. Workers of different skills including farm workers.
+%\end{enumerate}
+
+%\end{frame}
 
 \begin{frame}{No proportional hazards (wrt class)!}
 
@@ -591,9 +612,14 @@ par(oldpar)
 \begin{center}
 \includegraphics[height = 5cm]{figs/art2-hiscskumm-1}
 
-\small From the top: Elite, middle, workers, missing.
 \end{center}
+
+
 \end{frame}
+
+%% Combined slide:
+
+
 
 \begin{frame}{Exposure by marital status}
 
