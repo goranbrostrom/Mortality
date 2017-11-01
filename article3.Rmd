@@ -205,17 +205,18 @@ comes to identification of presence periods. The Poplink data provides us with e
 to have full and continuous control of the \emph{de jure} population. This is
 however not the case with the Linnaeus database. For the period 1976--2001
 we use presence in the censuses 1975--1990 and information on deaths from the National
-Board of Health and Welfare to identify the observation periods in our
-analyses. There is however no full information on what happened in-between
-the censuses, for example the exact date of exit for persons having moved
-between two censuses. We have solved this by considering everyone as
-resident in our regions during the complete five-year period between
-censuses if the person is missing in the later census (the last period covering eleven years). This marginally overestimates presence, but should not bias the results when it
-comes to socioeconomic differences. We furthermore miss those that both
-moved in and moved out or vice versa between censuses. Exit dates are exact
-if they refer to death. In these cases we consider them as constantly
-present from the last census to the death data even if the death took place
-in another part of Sweden.
+Board of Health and Welfare. The population in the Skellefteå and Umeå regions are those residing there according to the censuses. Each census constitute the baseline for which persons are followed up during the five years until the next census (1975 census have a follow-up from 1 January 1976 until the end of 1980). The expection is the census 1990 where the follow-up is until 2001. Thus, the deaths do not necessarily take place in our region for the Linnaeus analyses, although this is usually the case. 
+
+##There is however no full information on what happened in-between
+##the censuses, for example the exact date of exit for persons having moved
+##between two censuses. We have solved this by considering everyone as
+##resident in our regions during the complete five-year period between
+##censuses if the person is missing in the later census (the last period covering eleven years). ##This marginally overestimates presence, but should not bias the results when it
+##comes to socioeconomic differences. We furthermore miss those that both
+##moved in and moved out or vice versa between censuses. Exit dates are exact
+##if they refer to death. In these cases we consider them as constantly
+##present from the last census to the death data even if the death took place
+##in another part of Sweden.
 
 For the last period, 2002--2013, we use the yearly population registers
 (LISA data), together with information on deaths from National Board of
