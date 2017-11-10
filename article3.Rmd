@@ -4,9 +4,6 @@ title: Is high social class always beneficial for survival? A study of Northern 
 author: "Sören Edvinsson and Göran Broström"
 date: '`r Sys.Date()`'
 output:
-  bookdown::word_document2:
-    toc: yes
-    toc_depth: 2
   bookdown::pdf_document2:
     citation_package: natbib
     keep_tex: yes
@@ -18,6 +15,9 @@ output:
     toc: yes
     toc_depth: 2
     toc_float: yes
+  bookdown::word_document2:
+    toc: yes
+    toc_depth: 2
 bibliography: mybib.bib
 documentclass: article
 fontsize: 12pt
@@ -638,12 +638,10 @@ xtable(dr,label = "tab:cumswoldtab", caption = "Anova, all causes of death, 65-8
 # Discussion
 
 
-The authors of this paper have scrutinised different aspects of the social
+Previous studies have scrutinised different aspects of the social
 pattern of mortality in historical northern Sweden for some time, focusing
-on different regions, age groups and time periods [@edv92; @edv04; @edli11; @edbr12]. When it comes to infant and child mortality during pre- and early-transitional time, the expected socio-economic
-differences were often but not always confirmed [@edv92; @edv04],
-something that has been found in other Swedish studies as well 
-[@bredro02; @bube01; @mol17]. 
+on different regions, age groups and time periods [@edv92; @edv04; @edli11; @edbr12]. When it comes to infant and child mortality during pre- and early-transitional time, the expected socio-economicdifferences were often but not always confirmed [@edv92; @edv04],
+something that has been found in other Swedish studies as well [@bredro02; @bube01; @mol17]. 
 
 Studies based on microdata on the adult and elderly population in
 history have been rare, mainly due to lack of adequate data. The results
@@ -653,18 +651,16 @@ Swedish data, have found surprisingly small or even reversed socio-economic
 differences during the 19th and early 20th century, sharply contrasting from the situation in present-day society. The expected social gradient in survival, meaning that people
 from higher social classes always had an advantage, was in many cases,
 particularly among adult men, not found despite the well-documented
-socio-economic differences in society, for example in the Sundsvall region [@edli11; @edbr12]. The results presented here show that the consistent advantage for higher social classes do not appear until surprisingly late in the investigated regions. The basic pattern is the same in the working-age and the retired population, but the differences are smaller in old age in accordance with the status levelling hypothesis.
+socio-economic differences in society, for example in the Sundsvall region [@edli11; @edbr12]. This raises the question when the modern social gradient appeared, if this was something that developed in the early parts of the 20th century. The results presented here show that the consistent advantage for higher social classes do not appear until surprisingly late in the investigated regions. The basic pattern is the same in the working-age and the retired population, but the differences are smaller in old age in accordance with the status levelling hypothesis.
 
-The results showing a small or even reversed socio-economic gradient in the past and its late development are in accordance with other studies [@bevp11], for example by @bedr11 in a different setting, a couple of Scanian parishes in southern Sweden, although with somewhat different social categories. They find the first indications of an emerging social gradient to be a fairly recent phenomenon, in their case as late as in the 1950s. Similar results have also been found in Estonia [@jaadla17]. A study of mortality and social class in Sweden 1960--1968 found that self-employed men and non-manual male workers in fact had higher mortality than manual workers in total and cardiovascular mortality [@vano89]. These findings are however contrary towards what usually is assumed and what other studies have shown. Those studies usually referred to when discussing the historical large social inequalities in health are mainly based on data from England and Wales [@ant67; @wowi95; @pamuk85]. We know less about how general these results are, but apparently the Swedish context differed from the English and Welsh.
+The results showing a small or even reversed socio-economic gradient in the past and its late development are in accordance with other studies [@bevp11], for example by @bedr11 in a different setting, a couple of Scanian parishes in southern Sweden, although with somewhat different social categories. They find the first indications of an emerging social gradient to be a fairly recent phenomenon, in their case as late as in the 1950s. Similar results have also been found in Estonia [@jaadla17]. A study of mortality and social class in Sweden 1960--1968 found that self-employed men and non-manual male workers in fact had higher mortality than manual workers in total and cardiovascular mortality [@vano89]. A recent study based on census data 1880--1910 linked to death registers of Eriksson and Dribe on the social pattern of mortality shows that the unexpected pattern found in the present study is not unique, it seems to have characterised all parts of the country. These findings are however contrary towards what usually is assumed and what other studies have shown. Those studies usually referred to when discussing the historical large social inequalities in health are mainly based on data from England and Wales [@ant67; @wowi95; @pamuk85]. We know less about how general these results are, but apparently the Swedish context differed from the English and Welsh.
 
 
-The surprising results make it reasonable to consider the validity and possible weaknesses in the study. Some of the limitations have been addressed in the presentation of the variables: the fact that social class was defined according to household until 1950 but individually defined from 1976 (affecting the social class of women), different definitions of presence during the same two periods and some differences in parishes included at different periods. These differences are however not of the magnitude that the main conclusions are affected. Most women end up in the same category as their husbands and the migrations between census dates or census date and death were not frequent. 
+The surprising results make it reasonable to consider the validity and possible weaknesses in the study. Some of the limitations have been addressed in the presentation of the variables: the fact that social class was defined according to household until 1950 but individually defined from 1976 (affecting the social class of women), different definitions of presence during the same two periods and some differences in parishes included at different periods. These differences are however not of the magnitude that the main conclusions are affected. Most women end up in the same category as their husbands and using a time-dependent definition or a definition based on baseline with a short follow-up can only marginally change the results, especially since most people in our age groups remained in the same region during follow-up. 
 
-One obstacle concerns the quality of available information. Occupational titles in historical sources are not always distinct enough to define the correct class. Studies covering long periods face the problem that occupations and classes change character---they do not represent the same thing. We have chosen to work with a few broad groups. Nevertheless, these ambiguities and possible misclassifications should not radically change the basic patterns observed. The social classes identified during the different periods represent distinct groups when it comes to resources, capacities and power. 
+One obstacle concerns the quality of available information. Occupational titles in historical sources are not always distinct enough to define the correct class. Studies covering long periods face the problem that occupations and classes change character---they do not represent the same thing. We have chosen to work with a few broad groups. Nevertheless, these ambiguities and possible misclassifications cannot radically change the basic patterns observed. The social classes identified during the different periods represent distinct groups when it comes to resources, capacities and power. 
 
-We have analysed social inequality in health from the
-perspective of social classes. However, there are
-alternative ways to analyse social inequality, representing other dimensions, and we cannot exclude that such analyses give other results or modify the conclusions suggested here. In many modern studies categorisations based on income, wealth or education are common for studies of inequality. It would be interesting to compare the results from this study with alternative measures, but reliable data on income and education are unfortunately rarely available in historical population databases stretching back as far as in this article.
+We have analysed social inequality in health from the perspective of social classes. However, there are alternative ways to analyse social inequality, representing other dimensions, and we cannot exclude that such analyses give other results or modify the conclusions suggested here. In many modern studies categorisations based on income, wealth or education are common for studies of inequality. It would be interesting to compare the results from this study with alternative measures, but reliable data on income and education are unfortunately rarely available in historical population databases stretching back as far as in this article. In the future it will however be possible to utilize a database on the 1930 census which can be linked to the regions studied here. That census include information on income and wealth as well as educational level.
 
 
 An intriguing aspect of this study is the lack of association between level of economic inequality and social differences in mortality. Even though our study do not directly address the hypothesis raised by @wipi09, our results are of relevance for this question as well. The early 20th century, in Sweden as well as in other countries, was characterised by enormous economic differences, still this did in our regions not lead to any consistent advantage for the highest social class. After the Second World War, economic differences diminished, and was at its lowest in Sweden at about 1980, i.e. at a time when the expected pattern of a social hierarchy in survival appeared. The period thereafter is characterized by increasing economic differences, coinciding with increasing health differences as well. The long-term relation between economic inequality and health is still a puzzle requiring further studies.
