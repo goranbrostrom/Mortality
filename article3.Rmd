@@ -205,20 +205,9 @@ however not the case with the Linnaeus database. For the period 1976--2001
 we use presence in the censuses 1975--1990 and information on deaths from the National
 Board of Health and Welfare. The population in the Skellefteå and Umeå regions are those residing there according to the censuses. Each census constitute the baseline for which persons are followed up during the five years until the next census (1975 census have a follow-up from 1 January 1976 until the end of 1980). The expection is the census 1990 where the follow-up is until 2001. Thus, the deaths do not necessarily take place in our region for the Linnaeus analyses, although this is usually the case. 
 
-##There is however no full information on what happened in-between
-##the censuses, for example the exact date of exit for persons having moved
-##between two censuses. We have solved this by considering everyone as
-##resident in our regions during the complete five-year period between
-##censuses if the person is missing in the later census (the last period covering eleven years). ##This marginally overestimates presence, but should not bias the results when it
-##comes to socioeconomic differences. We furthermore miss those that both
-##moved in and moved out or vice versa between censuses. Exit dates are exact
-##if they refer to death. In these cases we consider them as constantly
-##present from the last census to the death data even if the death took place
-##in another part of Sweden.
-
 For the last period, 2002--2013, we use the yearly population registers
 (LISA data), together with information on deaths from National Board of
-Health and Welfare. This data allows for full control of the presence periods
+Health and Welfare. This allows for full control of the presence periods
 in the studied regions.
 
 
@@ -229,7 +218,7 @@ in the studied regions.
 Mortality differences are analysed according to social class, based on a modified form 
 of the classification scheme Hisclass [@lema11]. The only and obvious alternative for making a longitudinal study of socio-economic mortality differences with consistent classification
 schemes in the two databases, is occupations. Thus, analysing according to social class is apart from
-being a scientific choice, also a practical one. Social position is treated as a time-dependent variable during working age but defined from the last occupation for the elderly and retired population, that is, from age 65 until death or last observation.
+being a scientific choice, also a practical one. Social position is treated as a time-dependent variable during working age but defined from the last occupation in working age for the elderly and retired population, i.e. from age 65 until death or last observation.
 
 The availability of information on occupations varies over time and between
 sources. Occupations in Poplink are coded according to the original DDB coding system that then has been adapted to Hisclass. For the Linnaeus data, HISCO is recoded into Hisclass. The censuses include occupational codes based on the system used in Sweden at that time, NYK (Nordisk
@@ -326,33 +315,6 @@ yy <- round(prop.table(xxx, 1) * 100, 1)
 barplot(t(yy)[3:1, ], col = c("red", "blue", "green"), las = 2, ylab = "Per cent")
 ```
 
-## Cause of death
-
-In the present study, we analyse mortality in the two most common disease
-groups in the ages we are investigating; cardiovascular diseases and
-cancers. National compulsory reporting of cause of death was introduced in
-1911, but our analysis of the two disease groups starts from 1901 since cause of death was fairly frequently reported even before 1911. Classification systems have however changed. Sweden did not join ICD
-until 1952, but the historical causes of death in the Poplink database have
-been coded according to an adapted form of the ICD10 system. In the present study, we identify the codes relevant for cardiovascular diseases and cancers in
-the ICD 8, 9 and 10.
-
-The distribution of causes of death is shown in
-Figure \@ref(fig:causeskum). Notice the high proportion of other causes in
-the first two periods. This category includes cases with unknown or
-unspecific causes which has implications for the cause-specific analyses
-(see later discussion). The total dominance of our two disease groups is
-apparent.
-
-```{r causeskum, fig.cap = "Causes of death by time period (top: cancer, middle: cardiovascular, bottom: other).", fig.height = 4.5}
-##vb01 <- vb0[vb0$event == 1, ]
-cancer <- c(tapply(skume$cancer, skume$period, sum), tapply(foli$cancer, foli$period, sum))
-heart <- c(tapply(skume$heart, skume$period, sum), tapply(foli$heart, foli$period, sum))
-death <- c(tapply(skume$event, skume$period, sum), tapply(foli$event, foli$period, sum))
-other <- death - cancer - heart
-ttt <- rbind(cancer, heart, other)
-ttt <- prop.table(ttt, 2) * 100
-barplot(ttt[3:1, ], col = 3:1, las = 2, ylab = "Per cent")
-```
 
 ## Urban vs rural residence
 
@@ -360,8 +322,7 @@ In 19th and early 20th century Sweden (as in other countries), mortality
 was much higher in urban environments [@hani94; @edv92]. The unsanitary and overcrowded
 living conditions as well as the risks for importing infections made the
 health risks higher in towns and cities. In the present paper, the variable **urban** controls
-for this aspect by distinguishing between urban and rural residence for the periods after 1900, based
-on parish or place of residence.
+for this aspect by distinguishing between urban and rural residence for the periods after 1900, based on parish or place of residence.
 
 ## Periods for analysis
 
@@ -383,7 +344,7 @@ crisis. During the last decades income inequality has increased considerably.
 
 The proportional hazards model in a survival analysis context is used,
 allowing for adjustment for marital status and rural/urban environment.
-The central explanatory variable, social class (Hisclass), does not follow the
+The central explanatory variable, social class, does not follow the
 proportionality property, therefore the analyses are stratified with respect to the
 variable, and the main results are presented graphically.
 
@@ -454,9 +415,16 @@ interaction term between **age** and social class. Then, the main
 results are presented graphically.  The comments on the results are based on
 the figures and focuses on the central variable in our study, social class. 
 
-# The effect of social class, 1801--1950, 1976--2013
+The models are fitted separately for sex and each period, from  1801 to
+2013. We stratify on social class and include the covariates **urban** (TRUE or FALSE) and
+**civst** (marital status). The cumulative
+hazards at the end of the age period (65 if 40--64, 90 if 65--89), conditional on survival 
+to the start of the age period, are the
+main target in our analysis. These numbers are used in the process of
+graphically illustrating the development over time.
 
-## All causes of death
+# The effect of social class on all--cause mortality, 1801--1950, 1976--2013
+
 
 ```{r colorc}
 ## Colors for plotting strata:
@@ -470,13 +438,7 @@ nper <- length(labb)
 ```
 
 
-The models are fitted separately for sex and each period, from  1801 to
-2013. We stratify on social class and include the covariates **urban** (TRUE or FALSE) and
-**civst** (marital status). The cumulative
-hazards at the end of the age period (65 if 40--64, 90 if 65--89), conditional on survival 
-to the start of the age period, are the
-main target in our analysis. These numbers are used in the process of
-graphically illustrating the development over time.
+
 
 ### Ages 40--64
 
@@ -532,7 +494,7 @@ par(oldpar)
 ```
 
 From Table \@ref(tab:cumswtab) it is obvious that the statistical significance is strong.
-The most interesting feature is the three-way interaction with **sex**, **period**, and social class.
+The most interesting feature is the three-way interaction with **sex**, **period**, and social class. This indicates that fundamental changes has taken place in the relation between the variables during our study period.
 
 ```{r cumswtab,cap="Table",results="asis"}
 fitt <- glm(event ~ offset(log(exposure)) + urban + civst + age + sex * hisclass * period,
@@ -577,12 +539,8 @@ a different character during the last periods.
 
 The most striking result of the analysis is the different patterns for men
 and women. The social pattern of mortality among women is quite much in
-accordance with previous analyses from the present research group on other
-regions in northern Sweden and for other periods [@edli11; @edbr12]. The
-highest social class usually have comparatively low mortality (except for the first period when however the statistical power was weak), while
-working class women have high, but almost constantly about the same level as the middle category. There is however no substantial change in the relative risks between classes. Only the group with unknown social class is distinguished by much higher mortality from the 1980s
-onwards. This can however have to do with how we have defined social
-position for women before and after 1950. After 1975 it is based
+accordance with previous analyses on other regions in northern Sweden and for other periods [@edli11; @edbr12]. The highest social class usually have comparatively low mortality (except for the first period when however the statistical power was weak), while
+working class women have high, but almost constantly about the same level as the middle category. There is however no substantial change in the relative risks between classes except for the periods 1976 onwards when a divide between workers and the middle category appears. A consisten social gradient has developed. The group with unknown social class is distinguished by much higher mortality from the 1976 onwards. This can however have to do with how we have defined social position for women before and after 1950. After 1975 it is based
 on their own occupation. Being without occupation probably include women that
 are more frail when it comes to health or are vulnerable due to social characteristics.
 
@@ -596,22 +554,21 @@ level as the middle class. The fact that we define social class as a time-depend
 
 The relative positions change radically towards
 the end of the 20th century. From the 1980s, there is a clear advantage when
-it comes to survival for teh elite. The relative
-differences are however more compressed than for the periods until 1950. The
+it comes to survival for the elite. The relative
+differences are however more compressed compared to the periods until 1950. The
 expected social gradient in mortality has developed. This is also what we
 usually find in analyses of social health inequalities in present-day
-Sweden as well as in most other countries. In the regions we are studying,
+Sweden as well as in most other countries, results that has formed the basis for many of the contemporary epidemiologic and demographic theories. In the regions we are studying,
 this is however a quite recent phenomenon. Corresponding to what we find
 for women, those without known occupation have much higher mortality than
 the others from the late 1970s onwards. The assumption made for women of
-unknown social class is probably even more relevant for men. They probably
+unknown social class is probably even more relevant for men. These men probably
 represent groups in society that are particularly vulnerable.
 
 A further observation can be made from Figure \@ref(fig:cumsw). The gender
 difference in death hazards is extremely large for the elite group from
 1851--1950, men having about three times higher risks than women in the
 same class (basically living in the same households). In the other classes, the difference was much smaller. It was men in high position that experienced the largest risks.
-
 
 
 
@@ -635,25 +592,21 @@ expected, lower than among men. We find a clear decline in mortality, but
 the fastest decline did not set in definitely until some time after the
 Second World War, that is, later than for the age
 group 40--64 years. This corresponds to the Swedish development where we
-find a turning point at this time with better survival among elderly.
+find a turning point at this time with better survival among elderly, first for women and a couple of decades later for men.
 
 Concerning the social pattern, the pattern is less clear compared to what
-we find for the younger age group in line with the status levelling hypothesis (see Figure \@ref(fig:cumswold)). For
-women the results are mixed. We do not find the
+we find for the younger age group in line with the status levelling hypothesis (see Figure \@ref(fig:cumswold)). For women the results are mixed. We do not find the
 same clear advantage for elite women during the period before 1950, but neither
 do we find any large disadvantage for working class elderly women at that
-time. In some periods, the social differences were small, particularly between the worker and the middle group, and the elite even had substantially higher mortality during the early 20th century. The
-social differences continued to be small until the last decades of the
+time. In most periods, the social differences were small, particularly between the worker and the middle group, and the elite even had somewhat higher mortality during the early 20th century. The social differences continued to be small until the last decades of the
 20th century. Only during the two last periods (after the year 2000) is it
 possible to establish the expected social gradient in mortality.
 
 For men we find indications of the same intriguing change among elderly as
-for the adult male population 40--64 years. Mortality was in fact
-substantially higher among elite men but their disadvantage was mainly 
-apparent during the 19th century. Differences are fairly small during the
-first half of the 20th century. Not until the second half of the 20th
-century is the survival much better for the highest social class while
-workers in the age of retirement had high mortality in comparison. The difference between the worker and middle group have in most periods been small.
+for the adult male population 40--64 years, but at a much lower level. Mortality was somewhat higher among elite men during the 19th century, a pattern that prevailed until the middle of the
+the 20th century. Not until the second half of the 20th
+century is the survival better for the highest social class while
+workers in the age of retirement had a little higher mortality. The difference between the worker and middle group have in most periods been small.
 
 
 ```{r cumswold, fig.cap = cap22, fig.scap = scap22, fig.height = 8}
@@ -680,338 +633,6 @@ dr <- drop1(fitt, test = "Chisq")
 xtable(dr,label = "tab:cumswoldtab", caption = "Anova, all causes of death, 65-89.")
 ```
 
-
-## Cardiovascular mortality
-
-In this and the following section, the focus is on analyses of mortality from the two
-dominant groups of death causes in the adult and elderly population, using the same models and presentations as for total mortality. We restrict the analyses to the period 1901 onwards. Many studies have shown that socio-economic conditions are strongly associated with mortality in cardiovascular diseases. Belonging to working class, having less education and low income
-increases mortality risks. We would therefore expect to find a clear
-social pattern in the present analysis.
-
-A general observation is that the results on causes of death and
-its development are less clear, partly because the number of
-cases are fewer but also that the quality and coverage of reported death
-causes differ in time. Thus, many deaths during the early 20th got quite vague diagnoses reported in the death registers. There was still a substantial part
-of all deaths where cause was diagnosed as unknown or dying from old age,
-despite the fact that reporting causes of death had become mandatory. For
-the period 1901--1925 to 1926--1950, the proportion of deaths from
-cardiovascular diseases increased from 25 to 43 per cent for the age group
-40 and above, thus indicating an increase of these diseases. However, at
-the same time unknown cause and death in old age decreased from 28 percent
-to 18 per cent. It is reasonable to suspect that many cardiovascular
-deaths were disguised in unspecific categories and that the increase is partly
-explained by improvements in how deaths were diagnosed, something that also seems to have been the case in Scotland at this time [@reidetal15].
-
-```{r causes41}
-cvbTab <- rbind(skume[, names(foli)], foli)
-cvbTab$event <- cvbTab$heart
-```
-
-```{r 41colorc}
-## Colors for plotting strata:
-##scol <- c("blue", rep("darkgreen", 2), "red")
-## Common for all groups:
-
-labb <- levels(cvbTab$period)
-nper <- length(labb)
-##source("R/getPHglm.R")
-## End 'common'
-```
-
-
-### Ages 40--64
-
-
-```{r 41getske4060}
-cap1w <-  "Cumulative hazards for social class by time period, ages 40--64, women, cardiovascular death."
-scap1w <-  "Cumulative hazards, ages 40--64, women, cardiovascular death."
-cap1m <-  "Cumulative hazards for social class by time period, ages 40--64, men, cardiovascular death."
-scap1m <-  "Cumulative hazards, ages 40--64, men, cardiovascular death."
-##
-cap12 <- "Total hazard of dying before age 65 for a 40 year old person standardised by social class and period, women (top) and men (bottom), cardiovascular death."
-scap12 <- "Total hazard by social class, ages 40--64, cardiovascular death."
-cap12log <- "Total hazard of dying before age 65 for a 40 year old person by social class and period, women (top) and men (bottom). The last decades, cardiovascular death."
-scap12log <- "Total hazard by social class, ages 40--64, last years, cardiovascular death."
-
-cap2w <-  "Cumulative hazards for social class by time period, ages 65--89, women, cardiovascular death."
-scap2w <-  "Cumulative hazards, ages 65--89, women, cardiovascular death."
-cap2m <-  "Cumulative hazards for social class by time period, ages 65--89, men, cardiovascular death."
-scap2m <-  "Cumulative hazards, ages 65--89, men, cardiovascular death."
-##
-cap22 <- "Total hazard of dying before age 90 for a 65 year old person standardised by social class and period, women (top) and men (bottom), cardiovascular death."
-scap22 <- "Total hazard standardised by social class, ages 65--89, cardiovascular death."
-cap22log <- "Total hazard of dying before age 90 for a 65 year old person by social class and period, women (top) and men (bottom). The last decades, cardiovascular death."
-scap22log <- "Total hazard by social class, ages 65--89, last years, cardiovascular death."
-
-##
-cvb4064 <- cvbTab[as.numeric(as.character(cvbTab$age)) < 64.5, ]
-cvb4064$age <- factor(cvb4064$age)
-```
-
-
-
-```{r 41hazcalw}
-source("R/getPHglm2.R")
-resw <- getPHglm2(cvb4064[cvb4064$sex == "female", ],
-            nper, labb)
-resm <- getPHglm2(cvb4064[cvb4064$sex == "male", ],
-            nper, labb)
-```
-
-
-```{r 41cumsw, fig.cap = cap12, fig.scap = scap12, fig.height = 8}
-source("R/plotED.glm.R")
-oldpar <- par(mfrow = c(2, 1))
-woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE, ##exclude = 3:4,
-                    ylab = "TMR(65|40)",  main = "Women 40-64")
-moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE, ##exclude = 1:2,
-                    ylab = "TMR(65|40)", main = "Men 40-64")
-par(oldpar)
-```
-
-```{r 41cumswtab,results='asis',eval = FALSE}
-fitt <- glm(event ~ offset(log(exposure)) + urban + civst + age + sex * hisclass +
-                sex * period + hisclass * period,
-            data = cvb4064, family = poisson)
-dr <- drop1(fitt, test = "Chisq")
-knitr::kable(dr, caption = "Anova, cardiovascular deaths, 40-64.")
-#print(xtable(dr,label = "tab:41cumswtab", caption = "Anova, cardiovascular deaths, 40-64."), type = "html")
-```
-
-
-
-Figure \@ref(fig:41cumsw) shows mortality levels during different periods
-from 1901 onwards. Women from the highest social class had consistently
-lower mortality from cardiovascular diseases compared to the others. We
-also observe increasing social differences from the first half of the
-century to the last decades. A new pattern has developed from 1981
-onwards. Now working class women have substantially higher cardiovascular
-mortality compared to others. We can however not exclude that this is an
-artefact of different diagnostics for deaths in different groups. Working
-class women may have had less precise diagnoses in the early 20th century.
-
-For men, we find a different pattern, however being basically consistent with what we observed concerning all-cause mortality. The elite group had much higher cardiovascular mortality up until the middle of the 20th century, but instead have the lowest mortality from
-1980 onwards. Working class men had a fairly low cardiovascular mortality,
-but in the same way as among women, the levels were fairly similar to the
-one of the middle category consisting of white collar, lower managers and farmers. In the last decades and similarly as for women, working class men have the highest
-mortality from this cause of death group. A social
-hierarchy in cardiovascular mortality developed both for men
-and women.
-
-
-
-### Ages 65--89
-
-
-```{r 41getske6089}
-cvb6589 <- cvbTab[as.numeric(as.character(cvbTab$age)) >= 64.5, ]
-cvb6589$age <- factor(cvb6589$age) # NOTE:: Now change to '6589'!
-```
-
-Here we focus on cardiovascular mortality among those that
-mostly have left the workforce, the age group 65--89 years. Much of the decline in mortality among elderly from the middle of the 20th century can be explained by lower death rates in this disease group.
-
-```{r 41hazcalwold}
-resw <- getPHglm2(cvb6589[cvb6589$sex == "female", ],
-              nper, labb)
-resm <- getPHglm2(cvb6589[cvb6589$sex == "male", ],
-                nper, labb)
-```
-
-
-
-Concerning the social pattern, we find somewhat different results for elderly women compared to the women in working-active age. Cardiovascular mortality among elderly
-women does not present a consistent class pattern. Female cardiovascular
-mortality was somewhat higher among the elite and the middle group than
-among working class women until the last decades. Elderly from a working
-class background were not disadvantaged for most of the 20th century. The
-social class pattern has changed somewhat during the last periods becoming more
-in line with what to expect. The differences are however rather small.
-
-
-Even if results for elderly men point in different directions for some
-periods, the general trend resembles that of working-active men. The
-highest class had high cardiovascular mortality during the first half of
-the 20th century, while the expected social pattern developed and became apparent only
-during the most recent periods.
-
-
-```{r 41cumswold, fig.cap = cap22, fig.scap = scap22, fig.height = 8}
-##source("R/plotED.R")
-oldpar <- par(mfrow = c(2, 1))
-woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "H(90|65)",  main = "Women 65-89")##, exclude = 3:4)
-moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "H(90|65)", main = "Men 65-89")
-par(oldpar)
-```
-
-```{r 41cumswoldtab,results='asis',eval=FALSE}
-fitt <- glm(event ~ offset(log(exposure)) + urban + civst + age + sex * period *hisclass,
-                ##sex * period + hisclass * period,
-            data = cvb6589, family = poisson)
-dr <- drop1(fitt, test = "Chisq")
-knitr::kable(dr, caption = "Anova, cardiovascular deaths, 65-90.")
-##xtable(dr,label = "tab:41cumswoldtab", caption = "Anova, cardiovascular deaths, 65-90.")
-```
-
-
-
-
-## Cancer mortality
-
-While we assume clear social differences in cardiovascular diseases, this
-is not necessarily an obvious assumption when it comes to
-cancer. Different forms of cancers have different origin and
-different pathways to disease and death. The social pattern of higher
-mortality in classes with less power and accordingly less life chances are
-considered to be less clear when it comes to cancers. In our analyses,
-there is a risk that cancer mortality is underestimated during the first
-half of the 20th century, illustrated by the already mentioned large
-proportion of unknown or vague causes at that time. We believe however that
-cancers were better diagnosed than cardiovascular deaths. This is supported
-by the stability in proportion of cancer deaths between the two first
-periods, 12.5 per cent 1901--1925 and 13.5 per cent for the period
-1926--1950.
-
-```{r causes12}
-cvbTab <- rbind(skume[, names(foli)], foli)
-cvbTab$event <- cvbTab$cancer
-```
-
-```{r 12colorc}
-## Colours for plotting strata:
-scol <- c("blue", rep("darkgreen", 2), "red")
-## Common for all groups:
-
-labb <- levels(cvbTab$period)
-nper <- length(labb)
-source("R/getPHglm.R")
-## End 'common'
-```
-
-
-### Ages 40--64
-
-
-```{r 12getske4060}
-cap1w <-  "Cumulative hazards for social class by time period, ages 40--64, women, cancer death."
-scap1w <-  "Cumulative hazards, ages 40--64, women, cancer death."
-cap1m <-  "Cumulative hazards for social class by time period, ages 40--64, men, cancer death."
-scap1m <-  "Cumulative hazards, ages 40--64, men, cancer death."
-##
-cap12 <- "Total hazard of dying before age 65 for a 40 year old person standardised by social class and period, women (top) and men (bottom), cancer death."
-scap12 <- "Total hazard by social class, ages 40--64, cancer death."
-cap12log <- "Total hazard of dying before age 65 for a 40 year old person by social class and period, women (top) and men (bottom). The last decades, cancer death."
-scap12log <- "Total hazard by social class, ages 40--64, last years, cancer death."
-
-cap2w <-  "Cumulative hazards for social class by time period, ages 65--89, women, cancer death."
-scap2w <-  "Cumulative hazards, ages 65--89, women, cancer death."
-cap2m <-  "Cumulative hazards for social class by time period, ages 65--89, men, cancer death."
-scap2m <-  "Cumulative hazards, ages 65--89, men, cancer death."
-##
-cap22 <- "Total hazard of dying before age 90 for a 65 year old person standardised by social class and period, women (top) and men (bottom), cancer death."
-scap22 <- "Total hazard standardised by social class, ages 65--89, cancer death."
-cap22log <- "Total hazard of dying before age 90 for a 65 year old person by social class and period, women (top) and men (bottom). The last decades, cancer death."
-scap22log <- "Total hazard by social class, ages 65--89, last years, cancer death."
-
-##
-cvb4064 <- cvbTab[as.numeric(as.character(cvbTab$age)) < 64.5, ]
-cvb4064$age <- factor(cvb4064$age)
-```
-
-
-```{r 12hazcalw}
-source("R/getPHglm2.R")
-resw <- getPHglm2(cvb4064[cvb4064$sex == "female", ],
-            nper, labb)
-resm <- getPHglm2(cvb4064[cvb4064$sex == "male", ],
-            nper, labb)
-```
-
-
-```{r 12cumsw, fig.cap = cap12, fig.scap = scap12, fig.height = 8}
-source("R/plotED.glm.R")
-oldpar <- par(mfrow = c(2, 1))
-woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE, ##exclude = 3:4,
-                    ylab = "TMR(65|40)",  main = "Women 40-64")
-moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE, ##exclude = 1:2,
-                    ylab = "TMR(65|40)", main = "Men 40-64")
-par(oldpar)
-```
-
-
-```{r 12cumswtab,results='asis',eval=FALSE}
-fitt <- glm(event ~ offset(log(exposure)) + urban + civst + age + sex *hisclass +
-                sex * period + hisclass * period,
-            data = cvb4064, family = poisson)
-dr <- drop1(fitt, test = "Chisq")
-knitr::kable(dr, caption = "Anova, cancer deaths, 40-64.")
-##xtable(dr,label = "tab:12cumswtab", caption = "Anova, cancer deaths, 40-64.")
-```
-
-
-Figure \@ref(fig:12cumsw) shows relative mortality levels according to
-social class during the different studied periods for the age group
-40--64. Cancer mortality among elite women was lower than that of the
-other classes during the complete studied period, while working class women
-had the highest levels during almost all periods. Consequently, we find a
-more consistent advantage of higher class in cancers compared to
-cardiovascular diseases for women, consistent with the idea of a social hierarchy in health. What is less expected, is that we find a stronger association between social class and survival in cancer than in cardiovascular diseases. We do however not find the same pattern
-for men. It is difficult to identify any general trends and features of 20th century
-male cancer mortality when it comes to social differences.
-
-
-
-### Ages 65--89
-
-
-```{r 12getske6089}
-cvb6589 <- cvbTab[as.numeric(as.character(cvbTab$age)) >= 64.5, ]
-cvb6589$age <- factor(cvb6589$age) # NOTE:: Now change to '6589'!
-```
-
-
-```{r 12hazcalwold}
-resw <- getPHglm2(cvb6589[cvb6589$sex == "female", ],
-              nper, labb)
-resm <- getPHglm2(cvb6589[cvb6589$sex == "male", ],
-                nper, labb)
-```
-
-
-
-In our analyses of class patterns in mortality, we finally turn to cancer
-mortality among the elderly. The relation between different classes and cancer mortality fluctuates
-considerably both for women and men in this age group. For some periods it
-has to do with quite few events to analyse. Women of the highest class have
-favourable mortality levels during several periods, consistent with the advantages
-we found for women in the younger age group, but on the other hand had high
-levels at other times. The social differences are however quite small
-during the most recent periods.
-
-For men we find a similar lack of social pattern in cancer mortality as we
-found for men in working-active ages. There is however a tendency during
-the last decades of higher mortality among working class men.
-
-```{r 12cumswold, fig.cap = cap22, fig.scap = scap22, fig.height = 8}
-##source("R/plotED.R")
-oldpar <- par(mfrow = c(2, 1))
-woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "TMR(90|65)",  main = "Women 65-89")##, exclude = 3:4)
-moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "TMR(90|65)", main = "Men 65-89")
-par(oldpar)
-```
-
-```{r 12cumswoldtab,results='asis',eval=FALSE}
-fitt <- glm(event ~ offset(log(exposure)) + urban + civst + age + sex +
-                sex * period + hisclass * period,
-            data = cvb6589, family = poisson)
-dr <- drop1(fitt, test = "Chisq")
-knitr::kable(dr, caption = "Anova, cancer deaths, 65-90.")
-##xtable(dr,label = "tab:12cumswoldtab", caption = "Anova, cancer deaths, 65-90.")
-```
 
 
 # Discussion
