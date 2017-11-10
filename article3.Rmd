@@ -48,9 +48,9 @@ vb0Tab$civst <- relevel(vb0Tab$civst, ref = "married")
 
 # Introduction
 
-A major theme in demographic and epidemiological studies is the seemingly persistent effect of social class on mortality. In the present study, we challenge common notions of this by taking a long-term perspective on the development of social inequalities in mortality in the adult and elderly population with a special focus on the relative differences. The arguments for our statements are based on an investigation of the Skellefteå and Umeå regions in the north of Sweden for the periods 1801--2013 for Skellefteå and 1901--2013 for Umeå. The main issue is analysed according to gender and age-group (working age vs retired), testing if the same patterns prevails in old age---the retired population---versus the population in working age. We analyse both total and mortality and mortality from the major causes of death (cardiovascular diseases and cancers). Furthermore we put this in the context of how the inequality in mortality is associated with the development of economic inequality in society. The results are discussed in relation to our understanding of the mortality transition and the social determinants of health and mortality, as well as their implications on some of the most influential hypotheses and concepts in health research.
+A major theme in demographic and epidemiological studies is the seemingly persistent effect of social class on mortality. In the present study, we challenge common notions of this by taking a long-term perspective on the development of social inequalities in mortality in the adult and elderly population with a special focus on the relative differences. The arguments for our statements are based on an investigation of the Skellefteå and Umeå regions in the north of Sweden for the periods 1801--2013 for Skellefteå and 1901--2013 for Umeå. The main issue is analysed according to gender and age-group (working age vs retired), testing if the same patterns prevails in old age---the retired population---versus the population in working age.  Furthermore we put this in the context of how the inequality in mortality is associated with the development of economic inequality in society. The results are discussed in relation to our understanding of the mortality transition and the social determinants of health and mortality, as well as their implications on some of the most influential hypotheses and concepts in health research.
 
-On the basis of the results, we argue that high social class is not necessarily always favourable for survival. Mortality risks in different contexts must be understood in the intersection between class and gender. We suggest that health-related behaviour was important not only in present-day societies, but was decisive also in earlier phases of the mortality transition. The results implicate that the association between social class and health is more complex than is assumed in many of the dominant theories in demography and epidemiology.
+On the basis of the results, we argue that high social class is not necessarily always favourable for survival. Social conditions and social position have impact, but not always in the expected direction. In our case this is apparent for men during a large part of the studied period. Only at a surprisingly late time appears a male mortality class reversal. Mortality risks in different contexts must be understood in the intersection between class and gender. We suggest that health-related behaviour was important not only in present-day societies, but was decisive also in earlier phases of the mortality transition. The results implicate that the association between social class and health is more complex than is assumed in many of the dominant theories in demography and epidemiology.
 
 ## Social class and mortality
 
@@ -60,7 +60,7 @@ strong determinant when it comes to health and mortality and the impact even
 seems to be increasing [@kuetal04; @macketal16; @frlu07; @broba12; @strand10]. @liph95 suggest that
 "... social conditions have been, are and will continue to be irreducible
 determinants of health outcomes and therefore deserves their appellation as
-'fundamental causes' of disease and death". The persistence of social inequality in mortality to the disadvantage of the lower classes is one of the main assumptions in their theory [@liph98]. The reigning view has been that socio-economic health and mortality inequalities were large in historical societies, probably larger than in modern societies. This is a
+'fundamental causes' of disease and death". The persistence of social inequality in mortality to the disadvantage of the lower classes is one of the main assumptions in their theory [@liph98]. The reigning view is that socio-economic health and mortality inequalities were large in historical societies, probably larger than in modern societies. This is a
 reasonable assumption since these societies were often characterised by
 enormous socioeconomic differences. Knowing that access to different kinds of resources
 provide advantages in all aspects of life, the health advantage of higher
@@ -74,7 +74,7 @@ studies from different geographical and historical settings in order to
 better understand the role of socio-economic conditions for health and survival over time. 
 
 
-What about life course aspects of the impact of social position for health and mortality ? Either differences converge in old age (status levelling), the differences are constant (status maintenance), or they diverge (cumulative advantage) (on this issue, see [@hof08]). Diminishing
+Social conditions affect health and mortality differently during the life course. There are different hypotheses about the impact in adulthood and old age respectively. Either differences converge in old age (status levelling), the differences are constant (status maintenance), or they diverge (cumulative advantage) [@hof08]. Diminishing
 differences may be a consequence of the circumstance that biological factors becomes increasingly important during the ageing process and in old age, leaving less impact for social factors. The status maintenance hypothesis basically assume 
 continuity in the determinants for social health inequalities from adulthood to old age.
 The cumulative (dis)advantage hypothesis [@dan03], imply that advantages and disadvantages tend to persist and ackumulate during life in a negative spiral rewarding some while disfavouring others. This leads to larger differences in old age. 
@@ -84,8 +84,7 @@ Another aspect of the development of social inequality in mortality,
 concerns its relation to economic inequality. @wipi09 argue that
 income inequality has an independent effect on mortality, separate from the
 direct effect of actual access to economic resources. They argue
-that unequal societies (basically countries) perform less well when it comes to health (as well as other social conditions) than equal ones in the present-day economically developed world. This has initiated a vital scholarly debate and the topic has been extensively studied [@suka04; @wado00]. During the last decades, the association between trends of inequalities in mortality and income respectively is weak or non-existant according to @hoetal16. What the association looked like in previous periods is unknown. This is of particular interest since the levels of economic
-inequality were very different from those of the recent decades. Even if not a necessary implication, it is reasonable to assume that poorer groups were those most disadvantaged of large inequalities. 
+that unequal societies (basically countries) perform less well when it comes to health (as well as other social conditions) than equal ones in the present-day economically developed world. This has initiated a vital scholarly debate and the topic has been extensively studied [@suka04; @wado00]. During the last decades, the association between trends of inequalities in mortality and income respectively is weak or non-existant according to @hoetal16. How the association looked like in previous periods is unknown. This is of particular interest since the levels of economic inequality differed fundamentally from those of the recent decades. Even if not a necessary implication, it is reasonable to assume that poorer groups were those most disadvantaged of large inequalities. 
 
 When it comes to Sweden both income and wealth distributions were strongly skewed from the 1870's to the early 20th century. Starting during the inter-war period, income and
 wealth inequality continuously diminished to reach a low point at around
@@ -101,13 +100,12 @@ American countries in its basic features [@rowa14].
 ```{r mapp,fig.cap = "The Skellefteå and Umeå regions in Sweden.", out.width="3in", out.height = "4.1in", fig.align="center"}
 knitr::include_graphics("myfigs/sweden.png")
 ```
-The Skellefteå and Umeå regions (Figure \@ref(fig:mapp)) are part of the
+Sweden developed during the studied period from a poor agricultural society with low urbanization to a rich welfare state. If Sweden is remote from a European continental perspective, the regions studied here are remote from the central parts of the country. The Skellefteå and Umeå regions (Figure \@ref(fig:mapp)) are part of the
 county of Västerbotten in the north of Sweden along the coast of Gulf
 of Bothnia. This was a remote part of the country where communication with
 the rest of Sweden was difficult until the late 19th century. The economy
 was dominated by agriculture, making it vulnerable to harvest failures, and
-several severe famines occurred in the regions during the 1800s, for example after the harvest failure in 1867 [@segb14]. During the long winters, sea communication was hindered due to the Gulf of Bothnia being frozen. The first ships during the year came to this area in May or even as
-late as June in some cases [@fah56]. Towards the end of the 19th
+several severe famines occurred in the regions during the 1800s, for example after the harvest failure in 1867 [@segb14]. During the long winters, sea communication was hindered due to the Gulf of Bothnia being frozen. The first ships during the year came to this area in May or even as late as June in some cases [@fah56]. Towards the end of the 19th
 century, the Swedish railway system reached this part of Sweden. Thereby
 contacts with the rest of Sweden were facilitated, improving the economy and making it possible to mitigate the effects of harvest failures. During the 19th century, our regions became
 increasingly integrated in the same epidemiological pattern as the rest of
@@ -141,15 +139,15 @@ The recent extension in time of data at the Demographic Data Base (DDB),
 Umeå University (http://www.cedar.umu.se) by including the period between 1900 and
 1950 makes it possible to investigate the long-term development of social
 inequality in mortality in this part of Sweden. The data for the present study come from two large
-population databases at the DDB, whom provide us with micro-data for the Skellefteå and Umeå regions in northern Sweden. Our dataset constitutes a large population with substantial social diversity that can be followed for a uniquely long time. The period 1801--1950 is covered by the database Poplink [@wee16]. Poplink is based on linked parish records, allowing us to reconstruct life biographies on people as long as they remained in the region. The records are linked within but not
+population databases at the DDB, which provide us with micro-data for the Skellefteå and Umeå regions in northern Sweden. Our dataset constitutes a large population with substantial social diversity that can be followed for a uniquely long time. The period 1801--1950 is covered by the database Poplink [@wee16]. Poplink is based on linked parish records, allowing us to reconstruct life biographies on people as long as they remained in the region. The records are linked within but not
 between the regions. Data from Poplink are accessed for the period 1801--1950.
 
 The other large data set is extracted from the Linnaeus database
 [@malm10], which is based on different linked national population
 registers from 1960 to 2013 and is used within the ageing program at CEDAR, Umeå
-University. Due to data issues, we choose to use Linnaeus data from 1976. The study period from 1976 to 2000 is constructed from
+University. Due to data issues (much missing data in some variables, for example social class, and additional work required for defining the exact geographical areas for analysis). The study period from 1976 to 2000 is constructed from
 censuses every fifth year 1975--1990, with additional information on deaths
-from National Board of Health and Welfare (we have left out the period 1960--1975 due to more missing data in some variables, for example social class, and additional work required for defining the exact geographical areas for analysis). For the period 2002--2013 we use
+from National Board of Health and Welfare . For the period 2002--2013 we use
 the information from the yearly population registers from Statistics Sweden
 (LISA) together with information on mortality from National Board of Health and
 Welfare.
