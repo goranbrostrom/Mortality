@@ -4,10 +4,7 @@ title: Is high social class always beneficial for survival? A study of Northern 
 author: "Sören Edvinsson and Göran Broström"
 date: '`r Sys.Date()`'
 output:
-  bookdown::pdf_document2:
-    citation_package: natbib
-    keep_tex: yes
-    number_sections: yes
+  bookdown::word_document2:
     toc: yes
     toc_depth: 2
   bookdown::html_document2:
@@ -15,7 +12,10 @@ output:
     toc: yes
     toc_depth: 2
     toc_float: yes
-  bookdown::word_document2:
+  bookdown::pdf_document2:
+    citation_package: natbib
+    keep_tex: yes
+    number_sections: yes
     toc: yes
     toc_depth: 2
 bibliography: mybib.bib
@@ -48,9 +48,11 @@ vb0Tab$civst <- relevel(vb0Tab$civst, ref = "married")
 
 # Introduction
 
-A major theme in demographic and epidemiological studies is the seemingly persistent effect of social class on mortality. In the present study, we challenge common notions of this by taking a long-term perspective on the development of social inequalities in mortality in the adult and elderly population with a special focus on the relative differences. The arguments for our statements are based on an investigation of the Skellefteå and Umeå regions in northern Sweden for the periods 1801--2013 for Skellefteå and 1901--2013 for Umeå. The main issue is analysed according to gender and age group (working age vs retired), testing whether the same patterns prevails in old age---the retired population---versus the population in working age.  Furthermore we place this in the context of how the inequality in mortality is associated with the development of economic inequality in society. The results are discussed in relation to our understanding of the mortality transition and the social determinants of health and mortality, as well as their implications on some of the most influential hypotheses and concepts in health research.
 
-Basen on the results, we argue that high social class is not necessarily always favourable for survival. Social conditions and social position have impact, but not always in the expected direction. In our case this is apparent for men during a large part of the studied period. Only at a surprisingly late time appears a male mortality class reversal. Mortality risks in different contexts must be understood in the intersection between class and gender. We suggest that health-related behaviour was important not only in present-day societies, but was decisive also in earlier phases of the mortality transition. The results implicate that the association between social class and health is more complex than is assumed in many of the dominant theories in demography and epidemiology.
+A major theme in demographic and epidemiological studies is the seemingly persistent effect of social class on mortality. In the present study, we challenge common notions of this by taking a long-term perspective on the development of social inequalities in mortality in the adult and elderly population with a special focus on the relative differences. The arguments for our statements are based on an investigation of the Skellefteå and Umeå regions in the north of Sweden for the periods 1801--2013 for Skellefteå and 1901--2013 for Umeå. The main issue is analysed according to gender and age-group (working age vs retired), testing if the same patterns prevail in old age---the retired population---as in working age.  Furthermore we put this in the context of how the inequality in mortality is associated with the development of economic inequality in society. The results are discussed in relation to our understanding of the mortality transition and the social determinants of health and mortality, as well as their implications on some of the most influential hypotheses and concepts in health research.
+
+On the basis of the results, we argue that high social class is not necessarily always favourable for survival. Social conditions and social position have impact, but not always in the expected direction. In our case this is apparent for men during a large part of the studied period. Only at a surprisingly late time appears a male mortality class reversal. Mortality risks in different contexts must be understood in the intersection between class and gender. We suggest that health-related behaviour is important not only in present-day societies, but was decisive also in earlier phases of the mortality transition. The results implicate that the association between social class and health is more complex than is assumed in many of the dominant theories in demography and epidemiology.
+
 
 ## Social class and mortality
 
@@ -423,7 +425,7 @@ to the start of the age period, are the
 main target in our analysis. These numbers are used in the process of
 graphically illustrating the development over time.
 
-# The effect of social class on all--cause mortality, 1801--1950, 1976--2013
+# The effect of social class on mortality, 1801--1950, 1976--2013
 
 
 ```{r colorc}
@@ -440,7 +442,7 @@ nper <- length(labb)
 
 
 
-### Ages 40--64
+## Ages 40--64
 
 
 ```{r getske4060}
@@ -494,14 +496,14 @@ par(oldpar)
 ```
 
 From Table \@ref(tab:cumswtab) it is obvious that the statistical significance is strong.
-The most interesting feature is the three-way interaction with **sex**, **period**, and social class. This indicates that fundamental changes has taken place in the relation between the variables during our study period.
+The most interesting feature is the three-way interaction with **sex**, **period**, and **social class**. This indicates that fundamental changes has taken place in the relation between the variables during our study period.
 
 ```{r cumswtab,cap="Table",results="asis"}
 fitt <- glm(event ~ offset(log(exposure)) + urban + civst + age + sex * hisclass * period,
             data = vb4064, family = poisson)
 dr <- drop1(fitt, test = "Chisq")
 ##knitr::kable(dr)
-print(xtable(dr,label = "tab:cumswtab", caption = "Anova, all causes of death, ages 40--65."), 
+print(xtable(dr,label = "tab:cumswtab", caption = "Mortality: Anova, ages 40--64."), 
       type = "latex", comment = FALSE)
 ```
 
@@ -572,7 +574,7 @@ same class (basically living in the same households). In the other classes, the 
 
 
 
-### Ages 65--89
+## Ages 65--89
 
 
 ```{r getske6089}
@@ -583,7 +585,16 @@ vb6589$age <- factor(vb6589$age) # NOTE:: Change to '6589'!
 
 We now turn to the elderly, those that in most cases have left the workforce.
 Corresponding to the previous analysis, we use the value of the cumulative hazards at
-duration 25 (age 90), starting from age 65 as a summary measure. 
+duration 25 (age 90), starting from age 65 as a summary measure. From Table \@ref(tab:cumswtabold) it is obvious that the statistical significance still is strong.
+
+```{r cumswtabold,cap="Table",results="asis"}
+fittold <- glm(event ~ offset(log(exposure)) + urban + civst + age + sex * hisclass * period,
+            data = vb6589, family = poisson)
+drold <- drop1(fittold, test = "Chisq")
+##knitr::kable(dr)
+print(xtable(drold,label = "tab:cumswtabold", caption = "Mortality: Anova, ages 65--89."), 
+      type = "latex", comment = FALSE)
+```
 
 The general pattern and development of mortality (not shown here) do not
 differ that much from the younger age group, of course representing a much
