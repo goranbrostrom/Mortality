@@ -6,10 +6,10 @@ date: '`r Sys.Date()`'
 output:
   bookdown::pdf_document2:
     citation_package: natbib
-    keep_tex: yes
     number_sections: yes
     toc: yes
     toc_depth: 2
+    keep_tex: true
   bookdown::html_document2:
     number_sections: yes
     toc: yes
@@ -23,6 +23,8 @@ documentclass: article
 fontsize: 12pt
 citation_package: natbib
 biblio-style: apalike
+header-includes:
+  - \usepackage{endfloat}
 ---
 
 ```{r setup, include=FALSE}
@@ -95,7 +97,7 @@ American countries in its basic features [@rowa14].
 # The Skellefteå and Umeå regions
 
 
-```{r mapp,fig.cap = "The Skellefteå and Umeå regions in Sweden.", out.width="3in", out.height = "4.1in", fig.align="center"}
+```{r mapp,fig.cap = "The Skelleftea and Umea regions in Sweden.", out.width="3in", out.height = "4.1in", fig.align="center"}
 knitr::include_graphics("myfigs/sweden.png")
 ```
 During the studied period, Sweden developed from a poor agricultural society with low urbanization to a rich welfare state. If Sweden is remote from a European continental perspective, the regions studied here are remote from the central parts of the country. The Skellefteå and Umeå regions (Figure \@ref(fig:mapp)) are part of the
