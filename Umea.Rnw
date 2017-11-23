@@ -69,16 +69,16 @@ vb0Tab$age <- factor(vb0Tab$age)
 @
 
 
-\begin{frame}{Aims}
+\begin{frame}[fragile]{Aims}
 
 To investigate the association between social class and mortality among adults and elderly from the 19th century to the present and how it is connected to socio-economic inequality in society.
 This is analysed according to 
 \begin{itemize}
 \item gender
 \item age group (working age vs retired)
-\item *cause of death (cardiovascular, cancer)
-\item *education 1990--2013
-\item *income 1986-2005
+\item cause of death (cardiovascular, cancer)
+\item education 1990--2013
+\item income 1986--2005
 
 % \item Has \emp{inequality in mortality} between \emp{social classes}
 %   increased in the adult and elderly
