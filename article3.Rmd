@@ -1,5 +1,5 @@
 ---
-title: Is high social class always beneficial for survival? Northern Sweden 1801--2013
+title: "Is high social class always beneficial for survival? Northern Sweden 1801--2013"
 author: "Sören Edvinsson and Göran Broström"
 date: '`r Sys.Date()`'
 output:
@@ -33,7 +33,7 @@ The results show that high social class is not always favourable for survival. M
 
 ```{r setup, include=FALSE}
 library(knitr)
-opts_chunk$set(engine='R',fig.path='figs/art3-',tidy=FALSE,fig.height=6.5,fig.width=8,strip.white=TRUE,cache=FALSE,echo=FALSE,message=FALSE,comment=NA,show.signif.stars = FALSE)##$
+opts_chunk$set(engine='R',fig.path='figs/art3-',tidy=FALSE,fig.height=8.5,fig.width=8,strip.white=TRUE,cache=FALSE,echo=FALSE,message=FALSE,comment=NA,show.signif.stars = FALSE)##$
 library(knitr)
 library(eha)
 library(xtable)
@@ -102,7 +102,7 @@ American countries in its basic features [@rowa14].
 
 
 ```{r mapp,fig.cap = "The Skelleftea and Umea regions in Sweden.", out.width="3in", fig.height = 16.1, fig.align="center"}
-knitr::include_graphics("myfigs/sweden.png")
+knitr::include_graphics("myfigs/sweden.pdf")
 ```
 During the studied period, Sweden developed from a poor agricultural society with low urbanization to a rich welfare state. If Sweden is remote from a European continental perspective, the regions studied here are remote from the central parts of the country. The Skellefteå and Umeå regions (Figure \@ref(fig:mapp)) are part of the
 county of Västerbotten in northern of Sweden along the coast of the Gulf
@@ -436,9 +436,9 @@ cap1m <-  "Cumulative hazards for social class by time period, ages 40--64, men.
 scap1m <-  "Cumulative hazards, ages 40--64, men."
 ##
 cap0 <- "Probability of dying before age 65 for a 40-year-old by social class and period, women (top) and men (bottom)."
-scap0 <- "Probability by social class, ages 40--64."
-cap12 <- "Probability of dying before age 65 for a 40-year-old standardized by social class and period, women (top) and men (bottom)."
-scap12 <- "Probability standardized by social class, ages 40--64."
+scap0 <- "Probability of dying before age 65 for a 40-year old by social class."
+cap12 <- "Relative probability of dying before age 65 for a 40-year-old by social class and period, women (top) and men (bottom)."
+scap12 <- "Relative probability of dying before age 65 for a 40-year-old by social class."
 cap12log <- "Probability of dying before age 65 for a 40-year-old by social class and period, women (top) and men (bottom). The last decades."
 scap12log <- "Probability by social class, ages 40--64, last years."
 
@@ -448,7 +448,7 @@ cap2m <-  "Cumulative hazards for social class by time period, ages 65--89, men.
 scap2m <-  "Cumulative hazards, ages 65--89, men."
 ##
 cap22 <- "Probability of dying before age 90 for a 65-year-old by social class and period, women (top) and men (bottom). Standardised."
-scap22 <- "Probability by social class, ages 65--89."
+scap22 <- "Relative probability of dying before age 90 for a 65-year-old by social class."
 cap22log <- "Probability of dying before age 90 for a 65-year-old by social class and period, women (top) and men (bottom). The last decades."
 scap22log <- "Probability by social class, ages 65--89, last years."
 
@@ -469,7 +469,7 @@ resm <- getPHglm2(vb4064[vb4064$sex == "male", ],
 ```
 
 
-```{r cumsw, fig.cap = cap0, fig.scap = scap0, fig.height = 8}
+```{r cumsw, fig.cap = cap0, fig.scap = scap0, fig.height = 8, out.height = "14cm"}
 source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, ylab = "P(dead at 65 | alive at 40)",
@@ -507,7 +507,7 @@ illustrate the relative risks in Figure \@ref(fig:cumswstand). In the rest of
 the paper, we only present these
 relative mortality levels for the different classes since they are the main focus in this study.
 
-```{r cumswstand, fig.cap = cap12, fig.scap = scap12, fig.height = 8}
+```{r cumswstand, fig.cap = cap12, fig.scap = scap12, fig.height = 8, out.height = "14cm"}
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE,
                     ylab = "P(dead at 65 | alive at 40)", ylim = c(0.1, 0.55), main = "Women 40-64")##, exclude = 5:6)
@@ -597,7 +597,7 @@ century that the survival is better for the highest social class while
 workers of retirement age have slightly higher mortality. The difference between the worker and middle group has been small in most periods.
 
 
-```{r cumswold, fig.cap = cap22, fig.scap = scap22, fig.height = 8}
+```{r cumswold, fig.cap = cap22, fig.scap = scap22, fig.height = 8, out.height = "14cm"}
 ##source("R/plotED.R")
 resw <- getPHglm2(vb6589[vb6589$sex == "female", ],
             nper, labb)
