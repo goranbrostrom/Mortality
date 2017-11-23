@@ -1,13 +1,12 @@
 ---
-title: Is high social class always beneficial for survival? A study of Northern Sweden
-  1801--2013
+title: Is high social class always beneficial for survival? Northern Sweden 1801--2013
 author: "Sören Edvinsson and Göran Broström"
 date: '`r Sys.Date()`'
 output:
   bookdown::pdf_document2:
     citation_package: natbib
     number_sections: yes
-    toc: yes
+    toc: no
     toc_depth: 2
     keep_tex: true
   bookdown::html_document2:
@@ -18,18 +17,23 @@ output:
   bookdown::word_document2:
     toc: yes
     toc_depth: 2
+titlepage: yes
 bibliography: mybib.bib
 documentclass: article
+classoption: titlepage
 fontsize: 12pt
 citation_package: natbib
 biblio-style: apalike
 header-includes:
   - \usepackage{endfloat}
+  - \usepackage[utf8]{inputenc}
+abstract: "Focusing on two regions in northern Sweden 1801--2013, we challenge common notions of the assumed advantage in survival of belonging to a high social class. The issue is analysed according to gender and age group (adults and elderly) and in relation to the development of economic inequality.
+The results show that high social class is not always favourable for survival. Men in the elite category had higher mortality compared to others during a large part of the studied period; a male mortality class reversal appears at a surprisingly late date, while the social gradient among women conforms to the expected pattern. We suggest that health-related behaviour is decisive not only in later but earlier phases of the mortality transition as well. The results implicate that the association between social class and health is more complex than is assumed in many of the dominant theories in demography and epidemiology."
 ---
 
 ```{r setup, include=FALSE}
 library(knitr)
-opts_chunk$set(engine='R',fig.path='figs/art3-',tidy=FALSE,fig.height=3.5,fig.width=8,strip.white=TRUE,cache=FALSE,echo=FALSE,message=FALSE,comment=NA,show.signif.stars = FALSE)##$
+opts_chunk$set(engine='R',fig.path='figs/art3-',tidy=FALSE,fig.height=6.5,fig.width=8,strip.white=TRUE,cache=FALSE,echo=FALSE,message=FALSE,comment=NA,show.signif.stars = FALSE)##$
 library(knitr)
 library(eha)
 library(xtable)
@@ -97,7 +101,7 @@ American countries in its basic features [@rowa14].
 # The Skellefteå and Umeå regions
 
 
-```{r mapp,fig.cap = "The Skelleftea and Umea regions in Sweden.", out.width="3in", out.height = "4.1in", fig.align="center"}
+```{r mapp,fig.cap = "The Skelleftea and Umea regions in Sweden.", out.width="3in", fig.height = 16.1, fig.align="center"}
 knitr::include_graphics("myfigs/sweden.png")
 ```
 During the studied period, Sweden developed from a poor agricultural society with low urbanization to a rich welfare state. If Sweden is remote from a European continental perspective, the regions studied here are remote from the central parts of the country. The Skellefteå and Umeå regions (Figure \@ref(fig:mapp)) are part of the
@@ -257,7 +261,7 @@ establishment of Umeå University explains much of this increase. What is
 not apparent in Figure \@ref(fig:hiscskumm) is the transfer within the middle
 group from a majority of farmers during the 19th century to lower white-collar from the middle of the 20th century. Furthermore we observe a rather high percentage of missing social class in the early 19th century. For men the proportion is somewhat higher in the age group 65 and above, those who were retired, but still low enough to be used in our analyses (results not shown). If we disregard the very first period, however, there were very few with occupation missing until 1950. 
 
-```{r hiscskumm, fig.cap = "Exposure by social class, men (from the top: elite, middle, workers, missing) and time period.", fig.height = 4.5}
+```{r hiscskumm, fig.cap = "Exposure by social class (from the top: elite, middle, workers, missing) and time period, men.", fig.scap="Exposure by social class and time period, men.", out.height = '15cm'}
 xx <- with(skel[skel$sex == "male", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 xy <- with(skume[skume$sex == "male", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 xz <- with(foli[foli$sex == "male", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
@@ -266,7 +270,7 @@ yy <- round(prop.table(xxx, 1) * 100, 1)
 barplot(t(yy)[4:1, ], col = c("red", "blue", "green", "black"), las = 2, ylab = "Per cent")
 ```
 
-```{r hiscskumw, fig.cap = "Exposure by social class, women (from the top: elite, middle, workers, missing) and time period.", fig.height = 4.5}
+```{r hiscskumw, fig.cap = "Exposure by social class (from the top: elite, middle, workers, missing) and time period, women.", out.height = '15cm', fig.scap="Exposure by social class and time period, women."}
 xx <- with(skel[skel$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 xy <- with(skume[skume$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 xz <- with(foli[foli$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
@@ -295,7 +299,7 @@ set to unmarried. Note that it has not been possible to identify cohabitation.
 
 
 
-```{r civstskum, fig.cap = "Exposure by marital status (from the top: never married, married and previously married) and time period", fig.height = 4.5}
+```{r civstskum, fig.cap = "Exposure by marital status (from the top: never married, married and previously married) and time period", fig.scap='Exosure by marital status and time period.',out.height = '24.5cm'}
 xx <- with(skel, tapply(exposure, list(period = period, civst = civst), sum))
 xy <- with(skume, tapply(exposure, list(period = period, civst = civst), sum))
 xz <- with(foli, tapply(exposure, list(period = period, civst = civst), sum))
