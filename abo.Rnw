@@ -37,7 +37,7 @@ Umeå University, Umeå, Sweden}
 
 <<setup, include = FALSE>>=
 library(knitr)
-opts_chunk$set(engine='R',dev='pdf',fig.path='figs/ume-',tidy=FALSE,fig.height=5.5,fig.width=8,strip.white=TRUE,cache=TRUE,echo=FALSE,message=FALSE,comment=NA,show.signif.stars = FALSE)##$
+opts_chunk$set(engine='R',dev='pdf',fig.path='figs/ume-',tidy=FALSE,fig.height=5.5,fig.width=8,strip.white=TRUE,cache=FALSE,echo=FALSE,message=FALSE,comment=NA,show.signif.stars = FALSE)##$
 @
 
 <<environ>>=
