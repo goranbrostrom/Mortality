@@ -1,7 +1,7 @@
 ---
 title: "Is high social class always beneficial for survival? Northern Sweden 1801--2013"
-author: "Sören Edvinsson and Göran Broström"
-date: '`r Sys.Date()`'
+author: Sören Edvinsson\footnote{Corresponding author} and Göran Broström
+date: 'Centre for Demographic and Ageing Research \newline Umeå University, SE-90187 Umeå, Sweden'
 output:
   bookdown::pdf_document2:
     citation_package: natbib
@@ -168,16 +168,16 @@ pn.d <-  as.integer(sum(skel$event) + sum(skume$event))
 #
 text(1875, 70, "PopLink", cex = 2, col = "red")
 ##text(1899, 60, paste(pn.rec, "records"))
-text(1875, 55, paste(pn.exp, "p-years"))
-text(1874.5, 50, paste(pn.d, "deaths"))
+text(1875, 55, paste(round(pn.exp / 1000000, 1), "million p-years"))
+text(1874.5, 50, paste(round(pn.d / 1000, 1), "thousand deaths"))
 #
 n.exp <- round(sum(foli$exposure))
 n.d <-  as.integer(sum(foli$event))
 
 text(1995, 70, "Linnaeus", cex = 1.5, col = "blue")
 ##text(1984, 60, paste(n.rec, "records"))
-text(1995.2, 55, paste(n.exp, "p-years"), cex = 0.8)
-text(1995.2, 50, paste(n.d, "deaths"))
+text(1995.2, 55, paste(round(n.exp / 1000000, 1), "million p-years"), cex = 0.8)
+text(1995.2, 50, paste(round(n.d / 1000, 1), "thousand deaths"), cex = 0.7)
 ```
 
 In the data set analysed here, all individuals aged 40 years and older ever
