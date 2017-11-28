@@ -30,6 +30,7 @@
 \author{Göran Broström and Sören Edvinsson}
 
 \begin{document}
+\SweaveOpts{concordance=TRUE}
 
 \maketitle
 
@@ -173,7 +174,7 @@ text(1985, 50, "42879 deaths")
 <<picklexus,fig.width=6,fig.height = 5.9>>=
 
 load("data/vb.rda")
-vbd <- vb[vb$event == 1 & vb$dataset != "poplink", c("birthdate", "exit", "sex")]
+vbd <- vb[vb$event == 1, c("birthdate", "exit", "sex")]
 x <- vbd$birthdate + vbd$exit
 y <- vbd$exit
 ##par(mfrow = c(1, 2))
@@ -223,7 +224,7 @@ Total  &156\,676 & 42\,879
 <<picklexus2,fig.width=6,fig.height = 5.9>>=
 
 load("data/vb.rda")
-vbd <- vb[vb$event == 1 & vb$dataset != "poplink", c("birthdate", "exit", "sex")]
+vbd <- vb[vb$event == 1, c("birthdate", "exit", "sex")]
 x <- vbd$birthdate + vbd$exit
 y <- vbd$exit
 ##par(mfrow = c(1, 2))

@@ -54,7 +54,7 @@ Umeå University, SE-90187 Umeå, Sweden}
 
 <<setup, include = FALSE>>=
 library(knitr)
-opts_chunk$set(engine='R',dev='pdf',fig.path='figs/slide-',tidy=FALSE,fig.height=3.5,fig.width=8,strip.white=TRUE,cache=FALSE,echo=FALSE,message=FALSE,comment=NA,show.signif.stars = FALSE,fig.pos='ht')##$
+opts_chunk$set(engine='R',dev='pdf',fig.path='figs/slide-',tidy=FALSE,fig.height=3.5,fig.width=8,strip.white=TRUE,cache=TRUE,echo=FALSE,message=FALSE,comment=NA,show.signif.stars = FALSE,fig.pos='ht')##$
 library(knitr)
 library(eha)
 library(xtable)
@@ -94,6 +94,7 @@ vb0Tab$age <- factor(vb0Tab$age)
 @
 
 \begin{document}
+\SweaveOpts{concordance=TRUE}
 
 \maketitle
 

@@ -29,6 +29,7 @@
 Centre for Ageing and Demographic Research, Umeå University}
 
 \begin{document}
+\SweaveOpts{concordance=TRUE}
 
 \maketitle
 
@@ -210,7 +211,7 @@ Umeå:
 
 \end{frame}
 
-\begin{frame}{The sampling frame}
+\begin{frame}[fragile]{The sampling frame}
 
 <<lexis2>>=
 plot(c(1851, 1851, 1951, 1951, 1851), c(40, 90, 90, 40, 40),
@@ -296,7 +297,7 @@ So, we fit separate PH models for each combination of
 \end{frame}
 
 
-\begin{frame}{Women and men, age 40--64}
+\begin{frame}[fragile]{Women and men, age 40--64}
 
 %  \begin{center}
 %\includegraphics[height = 7.5cm]{figure/cumsw-1}
@@ -329,10 +330,10 @@ par(oldpar)
 
 \end{frame}
 
-\begin{frame}{Relative differences, ages 40--64 and 65--89}
+\begin{frame}[fragile]{Relative differences, ages 40--64 and 65--89}
 
   %\begin{center}
-\includegraphics[height=7.5cm,width=5.4cm]{figs/slide-cumswstand-1}\includegraphics[height=7.5cm,width=5.4cm]{figs/slide-cumswold-1}
+\includegraphics[height=7.5cm,width=5.4cm]{figs/art2-cumswstand-1}\includegraphics[height=7.5cm,width=5.4cm]{figs/slide-cumswold-1}
    %\end{center}
 \end{frame}
 
@@ -378,7 +379,7 @@ par(oldpar)
 
 \end{frame}
 
-\begin{frame}{Income 1986--2005}
+\begin{frame}[fragile]{Income 1986--2005}
 
 <<femeduc>>=
 income <- lisaold[!is.na(lisaold$income), ]
