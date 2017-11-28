@@ -50,6 +50,9 @@ foli <- get.file("foli")
 skel$urban <- FALSE
 vb0Tab <- rbind(skel, skume[, names(skel)], foli[, names(skel)])
 vb0Tab$civst <- relevel(vb0Tab$civst, ref = "married")
+vb0Tab <- aggregate(vb0Tab[, c("event", "exposure")],
+                    vb0Tab[, c("sex", "age", "period", "cohort", "civst", "hisclass", "urban")],
+                    FUN = sum)
 ```
 
 # Introduction
@@ -435,8 +438,11 @@ scap1w <-  "Cumulative hazards, ages 40--64, women."
 cap1m <-  "Cumulative hazards for social class by time period, ages 40--64, men."
 scap1m <-  "Cumulative hazards, ages 40--64, men."
 ##
+
 cap0 <- "Probability of dying before age 65 for a 40-year-old by social class and period, women (top) and men (bottom)."
 scap0 <- "Probability of dying before age 65 for a 40-year old by social class."
+cap1 <- "Probability of dying before age 90 for a 65-year-old by social class and period, women (top) and men (bottom)."
+scap1 <- "Probability of dying before age 90 for a 65-year old by social class."
 cap12 <- "Relative probability of dying before age 65 for a 40-year-old by social class and period, women (top) and men (bottom)."
 scap12 <- "Relative probability of dying before age 65 for a 40-year-old by social class."
 cap12log <- "Probability of dying before age 65 for a 40-year-old by social class and period, women (top) and men (bottom). The last decades."
@@ -460,11 +466,12 @@ vb4064$age <- factor(vb4064$age)
 
 ```{r hazcalw}
 source("R/getPHglm2.R")
+source("R/getPHglm.R")
 ##nper <- 4
 nper <- length(labb)
-resw <- getPHglm2(vb4064[vb4064$sex == "female", ],
+resw <- getPHglm(vb4064[vb4064$sex == "female", ],
             nper, labb)
-resm <- getPHglm2(vb4064[vb4064$sex == "male", ],
+resm <- getPHglm(vb4064[vb4064$sex == "male", ],
             nper, labb)
 ```
 
@@ -510,9 +517,9 @@ relative mortality levels for the different classes since they are the main focu
 ```{r cumswstand, fig.cap = cap12, fig.scap = scap12, fig.height = 8, out.height = "14cm"}
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "P(dead at 65 | alive at 40)", ylim = c(0.1, 0.55), main = "Women 40-64")##, exclude = 5:6)
+                    ylab = "P(dead at 65 | alive at 40)", ylim = c(0.0, 0.6), main = "Women 40-64")##, exclude = 5:6)
 moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "P(dead at 65 | alive at 40)", ylim = c(0.1, 0.55), main = "Men 40-64")##, exclude = 5:6)
+                    ylab = "P(dead at 65 | alive at 40)", ylim = c(0.0, 0.6), main = "Men 40-64")##, exclude = 5:6)
 par(oldpar)
 ```
 
@@ -573,6 +580,7 @@ print(xtable(drold,label = "tab:cumswtabold", caption = "Mortality: Anova, ages 
       type = "latex", comment = FALSE)
 ```
 
+
 The general pattern and development of mortality (not shown here) do not
 differ much from the younger age group, of course representing a much
 higher mortality level earlier in history. Mortality among women, as
@@ -597,18 +605,31 @@ century that the survival is better for the highest social class while
 workers of retirement age have slightly higher mortality. The difference between the worker and middle group has been small in most periods.
 
 
-```{r cumswold, fig.cap = cap22, fig.scap = scap22, fig.height = 8, out.height = "14cm"}
+```{r cumswold, fig.cap = cap1, fig.scap = scap1, fig.height = 8, out.height = "14cm"}
 ##source("R/plotED.R")
-resw <- getPHglm2(vb6589[vb6589$sex == "female", ],
+source("R/getPHglm.R")
+resw <- getPHglm(vb6589[vb6589$sex == "female", ],
             nper, labb)
-resm <- getPHglm2(vb6589[vb6589$sex == "male", ],
+resm <- getPHglm(vb6589[vb6589$sex == "male", ],
             nper, labb)
 
 oldpar <- par(mfrow = c(2, 1))
-woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "P(dead at 90 | alive at 65)", ylim = c(0.1, 0.55), main = "Women 65-89")##, exclude = 5:6)
+woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = FALSE,
+                    ylab = "P(dead at 90 | alive at 65)", ylim = c(0.4, 1.0), main = "Women 65-89")##, exclude = 5:6)
+moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = FALSE,
+                    ylab = "P(dead at 90 | alive at 65)", ylim = c(0.4, 1.0), main = "Men 65-89")##, exclude = 5:6)
+par(oldpar)
+```
+
+```{r cumsw2, fig.cap = cap22, fig.scap = scap22, fig.height = 8, out.height = "14cm"}
+source("R/plotED.glm.R")
+oldpar <- par(mfrow = c(2, 1))
+woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE, 
+                    ylab = "P(dead at 90 | alive at 65)",
+                main = "Women 65-89", ylim = c(0, 0.6))##, exclude = 5:6)
 moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "P(dead at 90 | alive at 65)", ylim = c(0.1, 0.55), main = "Men 65-89")##, exclude = 5:6)
+                    ylab = "P(dead at 90 | alive at 65)",
+                main = "Men 65-89", ylim = c(0, 0.6))##, exclude = 5:6)
 par(oldpar)
 ```
 
@@ -622,9 +643,7 @@ xtable(dr,label = "tab:cumswoldtab", caption = "Anova, all causes of death, 65-8
 ```
 
 
-
 # Discussion
-
 
 Previous studies have scrutinized different aspects of the social
 pattern of mortality in historical northern Sweden for some time, focusing

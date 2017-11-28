@@ -1,6 +1,6 @@
 ---
-title: Life course and long-term perspectives of social inequality in mortality among
-  elderly and adults in Northern Sweden      1801–2013
+title: "Life course and long-term perspectives of social inequality in mortality among
+  elderly and adults in Northern Sweden 1801–2013"
 author: "S&ouml;ren Edvinsson and G&ouml;ran Brostr&ouml;m"
 date: '`r Sys.Date()`'
 output:
