@@ -292,7 +292,7 @@ century, reflecting the way women's social position is defined. However, the fre
 according to own occupation, the consequence of many women being outside
 the workforce is that the proportion of missing increases. For the later periods,
 the results are fairly complete.
-
+np
 ## Marital status
 
 Marital status (see Figure \@ref(fig:civstskum)), is treated as a time-dependent variable in the data
@@ -418,7 +418,7 @@ graphically illustrating the development over time.
 
 ```{r colorc}
 ## Colors for plotting strata:
-scol <- c("blue", rep("darkgreen", 2), "red")
+scol <- c("blue", "darkgreen", "black", "red")
 ## Common for all groups:
 
 labb <- levels(vb0Tab$period)
@@ -467,30 +467,40 @@ vb4064$age <- factor(vb4064$age)
 
 ```{r hazcalw}
 source("R/preg.R")
+source("R/getPHglm2.R")
 ##nper <- 4
 nper <- length(labb)
-resw <- matrix(0, nrow = 4, ncol = nper)
-resm <- matrix(0, nrow = 4, ncol = nper)
+reswh <- matrix(0, nrow = 4, ncol = nper)
+resmh <- matrix(0, nrow = 4, ncol = nper)
 for (i in 1:nper){
-  resw[, i] <- preg("+ civst", data = vb4064[vb4064$sex == "female" &
+  reswh[, i] <- preg("+ civst + urban", data = vb4064[vb4064$sex == "female" &
                                                vb4064$period == labb[i], ])
-    resm[, i] <- preg("+ civst", data = vb4064[vb4064$sex == "male" &
-                                               vb4064$period == labb[i], ])
+    resmh[, i] <- preg("+ civst + urban", data = vb4064[vb4064$sex == "male" &
+                                               vb4064$period == labb[i], ], debug = FALSE)
 }
-##resw <- getPHglm(vb4064[vb4064$sex == "female", ],
-##            nper, labb)
-##resm <- getPHglm(vb4064[vb4064$sex == "male", ],
-##            nper, labb)
+resw <- getPHglm2(vb4064[vb4064$sex == "female", ],
+            nper, labb)
+resm <- getPHglm2(vb4064[vb4064$sex == "male", ],
+            nper, labb)
 ```
 
 
 ```{r cumsw, fig.cap = cap0, fig.scap = scap0, fig.height = 8, out.height = "14cm"}
 source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
-woutp <- plotED.glm(resw, col = scol, logScale = FALSE, ylab = "P(dead at 65 | alive at 40)",
-                main = "Women 40-64", ylim = c(0, 0.6))##, exclude = 5:6)
-moutp <- plotED.glm(resm, col = scol, logScale = FALSE, ylab = "P(dead at 65 | alive at 40)",
-                main = "Men 40-64", ylim = c(0, 0.6))##, exclude = 5:6)
+##woutp <- plotED.glm(resw, col = scol, logScale = FALSE, ylab = "P(dead at 65 | alive at 40)",
+  ##              main = "Women 40-64", ylim = c(0, 0.6))##, exclude = 5:6)
+##moutp <- plotED.glm(resm, col = scol, logScale = FALSE, ylab = "P(dead at 65 | alive at 40)",
+  ##              main = "Men 40-64", ylim = c(0, 0.6))##, exclude = 5:6)
+xx <- c(1812.5, 1837.5, 1862.5, 1887.5, 1912.5, 1937.5, 1977.5, 1982.5, 1987.5, 1992.5, 1998.5, 2004.5, 2010.5)
+plot(xx, reswh[1, ], col = scol[1], type = "b", pch = 1, lty = 3, ylim = c(0.0, 4), main = "Women 40-64")
+for(i in 2:4){
+   lines(xx, reswh[i, ], col = scol[i], type = "b", lty = (i == 2) + (i != 2) * 3, pch = i)
+}
+plot(xx, resmh[1, ], col = scol[1], type = "b", pch = 1, lty = 3, ylim = c(0.0, 4), main = "Men 40-64")
+for(i in 2:4){
+   lines(xx, resmh[i, ], col = scol[i], type = "b", lty = (i == 2) + (i != 2) * 3, pch = i)
+}
 par(oldpar)
 ```
 
@@ -524,10 +534,10 @@ relative mortality levels for the different classes since they are the main focu
 
 ```{r cumswstand, fig.cap = cap12, fig.scap = scap12, fig.height = 8, out.height = "14cm"}
 oldpar <- par(mfrow = c(2, 1))
-woutp <- plotED.glm(resw, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "P(dead at 65 | alive at 40)", ylim = c(0.0, 0.6), main = "Women 40-64")##, exclude = 5:6)
-moutp <- plotED.glm(resm, col = scol, logScale = FALSE, relative = TRUE,
-                    ylab = "P(dead at 65 | alive at 40)", ylim = c(0.0, 0.6), main = "Men 40-64")##, exclude = 5:6)
+woutp <- plotED.glm(resw, col = scol, logScale = TRUE, relative = TRUE,
+                    ylab = "H(65|40)", ylim = c(0.0, 0.6), main = "Women 40-64")##, exclude = 5:6)
+moutp <- plotED.glm(resm, col = scol, logScale = TRUE, relative = TRUE,
+                    ylab = "H(65|40)", ylim = c(0.0, 0.6), main = "Men 40-64")##, exclude = 5:6)
 par(oldpar)
 ```
 

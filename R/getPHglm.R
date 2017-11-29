@@ -1,4 +1,4 @@
-getRR <- function(dat, nper, labb, from = 40){
+getPHglm <- function(dat, nper, labb, from = 40){
     ## dat$age must be a factor ...
     ## Note: return value is relative risks from a "Cox regression"
     ##
