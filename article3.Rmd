@@ -187,9 +187,9 @@ In the data set analysed here, all individuals aged 40 years and older ever
 having resided in either of the regions are included. The data file
 contains the variables social class, gender, urban/rural
 residence, birth date, death date, first and last date of observation and
-type of entrance/exit. The total number of person years is `r as.integer(pn.exp)` leading to
-`r pn.d` deaths in Poplink and `r as.integer(n.exp)` person years leading 
-to `r n.d` deaths in the Linnaeus database: see 
+type of entrance/exit. The total number of person years is `r round(pn.exp / 1000000, 2)` millions leading to
+`r round(pn.d /1000, 2)` thousand deaths in Poplink and `r round(n.exp / 1000000, 2)` million person years leading 
+to `r round(n.d / 1000, 2)` thousand deaths in the Linnaeus database: see 
 Figure \@ref(fig:lexis2).
 
 ## Presence periods
@@ -602,7 +602,7 @@ Concerning the social pattern, the pattern is less clear compared to what
 we find for the younger age group in line with the status-levelling hypothesis (see Figure \@ref(fig:cumsw2)). For women the results are mixed. We do not find the
 same clear advantage for elite women during the period before 1950, but neither
 do we find any large disadvantage for working-class elderly women at that
-time. In most periods the social differences were small, particularly between the workers and the middle group, and the elite even had somewhat higher mortality during the early 20th century. The social differences continued to be small until the last decades of the
+time. In most periods the social differences were small, particularly between the workers and the middle group, and the elite women even had somewhat higher mortality during some periods until the 190--1925 period. The social differences continued to be small until the last decades of the
 20th century. It is only during the two last periods (after the year 2000) that it is
 possible to establish the expected social gradient in mortality.
 
