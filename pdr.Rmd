@@ -26,8 +26,6 @@ biblio-style: apalike
 header-includes:
   - \usepackage[nolists]{endfloat}
   - \usepackage[utf8]{inputenc}
-abstract: "Focusing on two regions in northern Sweden 1801--2013, we challenge common notions of the assumed advantage in survival of belonging to a high social class. The issue is analysed according to gender and age group (adults and elderly) and in relation to the development of economic inequality.
-The results show that high social class is not always favourable for survival. Men in the elite category had higher mortality compared to others during a large part of the studied period; a male mortality class reversal appears at a surprisingly late date, while the social gradient among women conforms to the expected pattern. We suggest that health-related behaviour is decisive not only in later but earlier phases of the mortality transition as well. The results implicate that the association between social class and health is more complex than is assumed in many of the dominant theories in demography and epidemiology."
 ---
 
 ```{r setup, include=FALSE}
@@ -712,19 +710,6 @@ An important question is whether our results can be generalized to other histori
 It is difficult to explain the observed differences, and we can only offer tentative hypotheses. We have discussed the possible role of behavioural influences on mortality in different historical contexts, suggesting that such aspects are not only important in the modern epidemiological regime but might have been decisive in earlier phases of the epidemiologic transition as well. The results indicate that we should consider the role of gender and class expectations of behaviour. Unfortunately, the evidence for behavioural differences in history is usually circumstantial and anecdotal, at least when it comes to social class. Studies of these aspects and their role in health and mortality in different times and places require further development. A possible way to proceed is to analyse the development of causes of death, and how they are distributed in different social classes. In particular, we should focus on causes that indicate risk behaviours. 
 
 
-
-# Acknowledgements
-
-This work was undertaken within the research programme *Ageing and
-Living Conditions* at the Centre for Demographic and Ageing Research
-(CEDAR) at Umeå University, financed by the Swedish Research Council (grant
-No 349-2008-6592) and the project *Old age, health and inequality:
-Mortality from a life course perspective in Sweden 1986--2009*, financed by
-the Swedish Research Council (grant No 421-2012-892). We thank the
-Demographic Data Base, Umeå University, for giving us access to data and
-Jonas Helgertz at the Department of Economic History, Lund University, for
-providing us with scripts for creating Hisclass from Swedish census
-data.
 
 
 # References
