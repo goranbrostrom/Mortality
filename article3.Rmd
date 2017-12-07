@@ -58,7 +58,7 @@ vb0Tab <- aggregate(vb0Tab[, c("event", "exposure")],
 # Introduction
 
 
-A major theme in demographic and epidemiological studies is the seemingly persistent effect of social class on mortality. In the present study, we challenge common notions of this by taking a long-term perspective on the development of social inequalities in mortality in the adult and elderly population with a special focus on the relative differences. The arguments for our statements are based on an investigation of the Skellefteå and Umeå regions in northern Sweden for the periods 1801--2013 for Skellefteå and 1901--2013 for Umeå. The main issue is analysed according to gender and age group (working age vs retired), testing whether the same patterns prevail in old age---the retired population---as in working age.  Furthermore we place this in the context of how the inequality in mortality is associated with the development of economic inequality in society. The results are discussed in relation to our understanding of the mortality transition and the social determinants of health and mortality, as well as their implications on some of the most influential hypotheses and concepts in health research.
+A major theme in demographic and epidemiological studies is the seemingly persistent effect of social class on mortality. In the present study, we challenge common notions of this by taking a long-term perspective on the development of social class inequalities in mortality in the adult and elderly population with a special focus on the relative differences. The arguments for our statements are based on an investigation of the Skellefteå and Umeå regions in northern Sweden for the periods 1801--2013 for Skellefteå and 1901--2013 for Umeå. The main issue is analysed according to gender and age group (working age vs retired), testing whether the same patterns prevail in old age---the retired population---as in working age.  Furthermore we place this in the context of how the inequality in mortality is associated with the development of economic inequality in society. The results are discussed in relation to the mortality transition and the social determinants of health and mortality, as well as their implications on some of the most influential hypotheses and concepts in health research.
 
 Based on the results, we argue that high social class is not necessarily always favourable for survival. Social conditions and social position certainly have impact, but not always in the expected direction. In our case this is apparent for men during a large part of the studied period; only at a surprisingly late date there appear a male mortality class reversal, changing the relation to a substantial advantage of being in a higher social position. Mortality risks in different contexts must be understood in the intersection between class and gender. We suggest that health-related behaviour is not only important in present-day societies, but was also decisive in earlier phases of the mortality transition. The results implicate that the association between social class and health is more complex than is assumed in many of the dominant theories in demography and epidemiology.
 
@@ -66,26 +66,24 @@ Based on the results, we argue that high social class is not necessarily always 
 ## Social class and mortality
 
 One of the central aspects of survival is social class and access to economic
-and other resources. In present-day welfare societies, social position is a
+and other resources. In present-day welfare societies, social position, either according to social class, education or income, is a
 strong determinant when it comes to health and mortality and its impact even
 seems to be increasing [@kuetal04; @macketal16; @frlu07; @broba12; @strand10]. @liph02 suggest that
 "... social conditions have been, are and will continue to be irreducible
 determinants of health outcomes and therefore deserve their appellation of
 'fundamental causes' of disease and death". The persistence of social inequality in mortality to the disadvantage of the lower classes is one of the main assumptions in their theory [@liph95; @liph98]. The reigning view is that socio-economic health and mortality inequalities were large in historical societies, probably larger than in modern societies. This is a
 reasonable assumption since these societies were often characterized by
-enormous socioeconomic differences. Knowing that access to different kinds of resources
-provides advantages in all aspects of life, the health advantage of higher
-classes ought to be obvious. 
+enormous class differences. Knowing that access to different kinds of resources, such as economic, social and cultural capital, provides advantages in all aspects of life, the health advantage of higher classes ought to be obvious. 
 
 However, recent studies investigating social inequality in health and mortality
 with micro-data have questioned the generality of the assumed
 pattern [@bevp11]. Solid empirical evidence about the process is lacking however and studies
 focusing on the issue are still few. There is a need for additional reliable
 studies from different geographical and historical settings in order to 
-better understand the role of socio-economic conditions in health and survival over time. 
+better understand the role of class and socio-economic conditions in health and survival over time. 
 
 
-Social conditions affect health and mortality differently during the life course. There are different hypotheses about the impact in adulthood and old age respectively. The differences either converge in old age (status levelling), are constant (status maintenance), or diverge (cumulative advantage) [@hof08]. Diminishing differences may be a consequence of the circumstance that biological factors become increasingly important during the ageing process and in old age, leaving less impact for social factors. The status maintenance hypothesis basically assumes 
+Social position affects health and mortality differently during the life course. There are different hypotheses about the impact in adulthood and old age respectively. The differences either converge in old age (status levelling), are constant (status maintenance), or diverge (cumulative advantage) [@hof08]. Diminishing differences may be a consequence of the circumstance that biological factors become increasingly important during the ageing process and in old age, leaving less impact for social factors. The status maintenance hypothesis basically assumes 
 continuity in the determinants of social health inequalities from adulthood to old age.
 The cumulative (dis)advantage hypothesis [@dan03], implies that advantages and disadvantages tend to persist and accumulate during life in a negative spiral rewarding some while disfavouring others. This leads to larger differences in old age. 
 
@@ -107,8 +105,7 @@ American countries in its basic features [@rowa14].
 ```{r mapp,fig.cap = "The Skelleftea and Umea regions in Sweden.", out.width="3in", fig.height = 16.1, fig.align="center"}
 knitr::include_graphics("myfigs/sweden.pdf")
 ```
-During the studied period, Sweden developed from a poor agricultural society with low urbanization to a rich welfare state. If Sweden is remote from a European continental perspective, the regions studied here are remote from the central parts of the country. The Skellefteå and Umeå regions (Figure \@ref(fig:mapp)) are part of the
-county of Västerbotten in northern of Sweden along the coast of the Gulf
+During the studied period, Sweden developed from a poor agricultural society with low urbanization to a rich welfare state. If Sweden is remote from a European continental perspective, the regions studied here are remote from the central parts of the country. The Skellefteå and Umeå regions (Figure \@ref(fig:mapp)) are part of the county of Västerbotten in northern of Sweden along the coast of the Gulf
 of Bothnia. This is a remote part of the country where communication with
 the rest of Sweden was difficult until the late 19th century. The economy
 was dominated by agriculture, making it vulnerable to harvest failures; several severe famines occurred in the regions during the 1800s, for example after the harvest failure of 1867 [@segb14]. During the long winters, sea communication was hindered due to the Gulf of Bothnia being frozen. The first ships of the year came to this area in May or even as late as June in some cases [@fah56]. Towards the end of the 19th century, the Swedish railway system reached this part of Sweden, facilitating contact with the rest of Sweden and, improving the economy and making it possible to mitigate the effects of harvest failures. During the 19th century, our regions became increasingly integrated in the same epidemiological pattern as the rest of Sweden.
@@ -137,7 +134,7 @@ Umeå University (http://www.cedar.umu.se) by including the period 1900 to
 1950 makes it possible to investigate the long-term development of social
 inequality in mortality in this part of Sweden. The data for the present study come from two large
 population databases at the DDB, which provide us with micro-data for the Skellefteå and Umeå regions in northern Sweden. Our data set constitutes a large population with substantial social diversity that can be followed for a uniquely long time. The period 1801--1950 is covered by the database Poplink [@wee16]. Poplink is based on linked parish records, allowing us to reconstruct life biographies on people as long as they remained in the region. The records are linked within, but not
-between, the regions. Data from Poplink are accessed for the period 1801--1950.
+between, the regions. 
 
 The other large data set is extracted from the Linnaeus database
 [@malm10], which is based on different linked national population
@@ -218,31 +215,25 @@ schemes in the two databases is occupations. Thus, analysing according to social
 being a scientific choice, is also a practical one. Social position is treated as a time-dependent variable during working age but defined from the last occupation in working age for the elderly and retired population; i.e. from age 65 until death or last observation.
 
 The availability of information on occupations varies over time and between
-sources. In Poplink, occupations are coded according to the original DDB coding system that has then been adapted to Hisclass. For the Linnaeus data, HISCO is recoded into Hisclass. The censuses include occupational codes based on the system used in Sweden at the time, NYK (Nordisk
-Yrkesklassificering). We consider the observed social class in a census to be valid for the full period until the next census, corresponding to our definition of presence periods. For the period 1991--2000 the social class in the 1990 census is considered to be maintained until 2001. 
+sources. In Poplink, occupations are coded according to the original DDB coding system that has then been adapted to Hisclass. For the Linnaeus data, the occupations are available in the coding scheme HISCO [@lema02] who then are recoded into Hisclass. We consider the observed social class in a census to be valid for the full period until the next census, corresponding to our definition of presence periods. For the period 1991--2000 the social class in the 1990 census is considered to be maintained until 2001. 
 
 
-The use of different data sets forces us to apply different approaches
-to defining the social position. Poplink usually only provides the occupation of the head of household, thus underestimating female labour force participation as well as that of
-adult children residing with their parents [@vik10]. For the Poplink period, we have chosen to categorize wives according to the position of the head of household, usually
+The two different data sets represent different ways of reporting occupations. Poplink usually only provides the occupation of the head of household, thus underestimating female labour force participation as well as that of adult children residing with their parents [@vik10]. For the Poplink period, we have chosen to categorize wives according to the position of the head of household, usually
 the husband/father, assuming that the family shares the same socio-economic
-position. 
+position.This is a reasonable approach for this period. 
 
-Female labour is much better covered in the Linnaeus database. A
-complication, however, is that it is  difficult to define households in the
-same way as in Poplink. Extramarital cohabitation became common and female
+Female labour is much better covered in the Linnaeus database, and it is difficult to define households in the same way as in Poplink. Extramarital cohabitation became common and female
 labour force participation developed as the norm, in Sweden during this
 period. The husband's occupation, as signifier of social class became,
 if not obsolete, at least less relevant. All included persons are signified
-by their individual occupation for this period. Still, the results for the
-different periods are not completely comparable. Noti, however, that there was strong social homogamy within married couples at this time, indicating that the results would not differ in any decisive way with the use of occupations on individual level instead of household level for defining social class based on the Linneaus data [@bjork92]. 
+by their individual occupation for this period. Although the results for the different periods are not completely comparable, the difference in approach reflects an actual change in how social class is structured. Notice, however, that there was strong social homogamy within married couples at this time, indicating that the results would not differ in any decisive way with the use of occupations on individual level instead of household level for defining social class based on the Linneaus data [@bjork92]. 
 
 Hisclass, the classification system used as a basis for our categorization, is a "...
 HISCO-based historical international social class scheme" [@lema11; @lema02]. 
 The different classes in Hisclass represent distinct
 categories, based on whether the work is manual or non–manual, skill level,
 supervision, and sector. Implicitly it reflects large differences in access to
-economic and other resources, status, social power, etc. Longitudinal analyses of social classes for such a long period covered in this study present several problems, related to changes in occupational structure and the meaning and content of occupations and social positions. We have chosen to work with a broad definition of classes, merging the original 12 classes in Hisclass into the following three and an additional fourth category of unknown class:
+economic resources, status, social power, etc.  We have chosen to work with a broad definition of classes, merging the original 12 social classes in Hisclass into three, representing different levels of control and access to resources vital for life chances, and an additional fourth category of unknown class:
 
 \begin{enumerate}
 \item {\tt elite}, Hisclass 1 and 2. Higher managers and higher professionals.
@@ -254,13 +245,12 @@ farm workers.
 
 
 
-
 Figures \@ref(fig:hiscskumm) and \@ref(fig:hiscskumw) show the distribution
 (per cent) of exposure time according to class for men and women,
 respectively. The category of workers is fairly stable over time. The
 highest class has increased substantially, albeit from a very low level
 in the 19th century. The increase in academics in connection to the
-establishment of Umeå University explains much of this increase. What is
+establishment of Umeå University explains much of this increase in later time. What is
 not apparent in Figure \@ref(fig:hiscskumm) is the transfer within the middle
 group from a majority of farmers during the 19th century to lower white-collar from the middle of the 20th century. Furthermore we observe a rather high percentage of missing social class in the early 19th century. For men the proportion is somewhat higher in the age group 65 and above, those who were retired, but still low enough to be used in our analyses (results not shown). If we disregard the very first period, however, there were very few with occupation missing until 1950. 
 
@@ -650,7 +640,6 @@ dr <- drop1(fitt, test = "Chisq")
 xtable(dr,label = "tab:cumswoldtab", caption = "ANOVA, all causes of death, 65-89.")
 ```
 
-
 # Discussion
 
 Previous studies have scrutinized different aspects of the social
@@ -661,12 +650,7 @@ something that has been found in other Swedish studies as well [@bredro02; @bube
 Studies based on micro-data on adult and elderly populations in
 history have been rare, mainly due to lack of adequate data. The results
 from such studies show other patterns than that for infant and child
-mortality. While some report substantial differences, many -- particularly those based on
-Swedish data -- have found surprisingly small or even reversed socio-economic
-differences during the 19th and early 20th centuries, sharply contrasting from the situation in present-day society. The expected social gradient in survival -- meaning that people
-from higher social classes always had an advantage -- was in many cases,
-particularly among adult men, not found despite the well-documented
-socio-economic differences in society, for example in the Sundsvall region [@edli11; @edbr12]. This raises the question of when the modern social gradient appeared, if this was something that developed in the early parts of the 20th century. The results presented here show that the consistent advantage for higher social classes does not appear until surprisingly late in the investigated regions. Instead, the elite category experienced the highest death risks. The basic pattern is primarily observed in the working-age population, while the differences are smaller or even non-existent in old age in accordance with the status-levelling hypothesis.
+mortality. While some report substantial differences, others have found surprisingly small or even reversed class differences, for example in the 19th century Sundsvall region [@edli11; @edbr12]. This raises the question of when the modern social gradient appeared, if this was something that developed in the early parts of the 20th century. The results presented here show that the consistent advantage for higher social classes does not appear until surprisingly late in the investigated regions. Instead, the elite category experienced the highest death risks. The basic pattern is primarily observed in the working-age population, while the differences are smaller or even non-existent in old age in accordance with the status-levelling hypothesis.
 
 The results showing a small or even reversed socio-economic gradient in the past and its late development are in accordance with other studies [@bevp11], for example @bedr11 in a different setting, a couple of Scanian parishes in southern Sweden, albeit with somewhat different social categories. They find the first indications of an emerging social gradient to be a fairly recent phenomenon, in their case as late as the 1950s. Compared to previous studies, the present one shows a much clearer survival disadvantage of the elite, and not only the lack of social gradient. There are in fact some studies indicating a similar pattern. A study of mortality and social class in Sweden during the period 1960--1968 found that self-employed men and non-manual male workers in fact had higher mortality than manual workers in total as well as in cardiovascular mortality [@vano89]. A recent study by @erdr17 on the social pattern of mortality, based on 1880--1910 census data linked to death registers, shows that the unexpected pattern found in the present study in not unique, but rather seems to have characterised all parts of the country. These findings are contrary to what is usually assumed and what other studies have shown. The studies usually referred to when discussing the historically large social inequalities in health are mainly based on data from England and Wales [@ant67; @wowi95; @pamuk85]. We know less about how general these results are, but apparently the Swedish context differed from the English and Welsh ones.
 
@@ -710,7 +694,7 @@ However, there were large differences in the pattern between men and women as we
 
 An important question is whether our results can be generalized to other historical contexts. We have studied environments in northern Sweden with no large metropolitan areas. Perhaps Sweden or this part of Sweden is a special case. The involvement of government at both the national and local levels may have been stronger, thus mitigating socio-economic disadvantages, but this is doubtful concerning the 19th century. The level of income inequality was certainly lower in our regions than in other parts of the country but it was still substantially higher in 1930 than towards the end of the 20th century. Compared with many other countries, the level of mortality has been fairly low. The question of generalizability is relevant, which can hopefully be addressed in other studies, preferably with a comparative approach.
 
-It is difficult to explain the observed differences, and we can only offer tentative hypotheses. We have discussed the possible role of behavioural influences on mortality in different historical contexts, suggesting that such aspects are not only important in the modern epidemiological regime but might have been decisive in earlier phases of the epidemiologic transition as well. The results indicate that we should consider the role of gender and class expectations of behaviour. Unfortunately, the evidence for behavioural differences in history is usually circumstantial and anecdotal, at least when it comes to social class. Studies of these aspects and their role in health and mortality in different times and places require further development. A possible way to proceed is to analyse the development of causes of death, and how they are distributed in different social classes. In particular, we should focus on causes that indicate risk behaviours. 
+It is difficult to explain the observed differences, and we can only offer tentative hypotheses. We have discussed the possible role of behavioural influences on mortality in different historical contexts, suggesting that such aspects are not only important in the modern epidemiological regime but might have been decisive in earlier phases of the epidemiologic transition as well. The results indicate that we should consider the role of gender and class expectations of behaviour. Studies of these aspects and their role in health and mortality in different times and places require further development. A possible way to proceed is to analyse the development of causes of death, and how they are distributed in different social classes. In particular, we should focus on causes that indicate risk behaviours. 
 
 
 
