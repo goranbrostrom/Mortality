@@ -3,17 +3,17 @@ title: "Is high social class always beneficial for survival? Northern Sweden 180
 author: Sören Edvinsson\footnote{Corresponding author; Phone number +46907866040, email soren.edvinsson\@umu.se} and Göran Broström
 date: 'Centre for Demographic and Ageing Research \newline Umeå University, SE-90187 Umeå, Sweden'
 output:
+  bookdown::html_document2:
+    number_sections: yes
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
   bookdown::pdf_document2:
     citation_package: natbib
     number_sections: yes
     toc: no
     toc_depth: 2
     keep_tex: true
-  bookdown::html_document2:
-    number_sections: yes
-    toc: yes
-    toc_depth: 2
-    toc_float: yes
   bookdown::word_document2:
     toc: yes
     toc_depth: 2
@@ -27,8 +27,7 @@ biblio-style: apalike
 header-includes:
   - \usepackage{endfloat}
   - \usepackage[utf8]{inputenc}
-abstract: "Focusing on two regions in northern Sweden 1801--2013, we challenge common notions of the assumed advantage in survival of belonging to a high social class. The issue is analysed according to gender and age group (adults and elderly) and in relation to the development of economic inequality.
-The results show that high social class is not always favourable for survival. Men in the elite category had higher mortality compared to others during a large part of the studied period; a male mortality class reversal appears at a surprisingly late date, while the social gradient among women conforms to the expected pattern. We suggest that health-related behaviour is decisive not only in later but earlier phases of the mortality transition as well. The results implicate that the association between social class and health is more complex than is assumed in many of the dominant theories in demography and epidemiology."
+abstract: "Focusing on two regions in northern Sweden 1801--2013, we challenge common notions of the assumed advantage in survival of belonging to a high social class. The issue is analysed according to gender and age group (adults and elderly) and in relation to the development of economic inequality. The results show that high social class is not always favourable for survival. Men in the elite category had higher mortality compared to others during a large part of the studied period; a male mortality class reversal appears at a surprisingly late date, while the social gradient among women conforms to the expected pattern. We suggest that health-related behaviour is decisive not only in later but earlier phases of the mortality transition as well. The results implicate that the association between social class and health is more complex than is assumed in many of the dominant theories in demography and epidemiology."
 ---
 
 ```{r setup, include=FALSE}
@@ -38,6 +37,7 @@ library(knitr)
 library(eha)
 library(xtable)
 library(skum)
+options(show.signif.stars = FALSE)
 ```
 
 ```{r readalldata}
@@ -101,9 +101,10 @@ American countries in its basic features [@rowa14].
 
 # The Skellefteå and Umeå regions
 
+(ref:cities) The Skellefteå and Umeå regions in Sweden.
 
-```{r mapp,fig.cap = "The Skelleftea and Umea regions in Sweden.", out.width="3in", fig.height = 16.1, fig.align="center"}
-knitr::include_graphics("myfigs/sweden.pdf")
+```{r mapp,fig.cap = "(ref:cities)", fig.height=6,fig.align='center', out.height='50%'}
+knitr::include_graphics("myfigs/sweden.png")
 ```
 During the studied period, Sweden developed from a poor agricultural society with low urbanization to a rich welfare state. If Sweden is remote from a European continental perspective, the regions studied here are remote from the central parts of the country. The Skellefteå and Umeå regions (Figure \@ref(fig:mapp)) are part of the county of Västerbotten in northern of Sweden along the coast of the Gulf
 of Bothnia. This is a remote part of the country where communication with
@@ -254,7 +255,7 @@ establishment of Umeå University explains much of this increase in later time. 
 not apparent in Figure \@ref(fig:hiscskumm) is the transfer within the middle
 group from a majority of farmers during the 19th century to lower white-collar from the middle of the 20th century. Furthermore we observe a rather high percentage of missing social class in the early 19th century. For men the proportion is somewhat higher in the age group 65 and above, those who were retired, but still low enough to be used in our analyses (results not shown). If we disregard the very first period, however, there were very few with occupation missing until 1950. 
 
-```{r hiscskumm, fig.cap = "Exposure by social class (from the top: elite, middle, workers, missing) and time period, men.", fig.scap="Exposure by social class and time period, men.", out.height = '15cm'}
+```{r hiscskumm, fig.cap = "Exposure by social class (from the top: elite, middle, workers, missing) and time period, men.", fig.scap="Exposure by social class and time period, men.", out.height = '50%', fig.height=4}
 xx <- with(skel[skel$sex == "male", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 xy <- with(skume[skume$sex == "male", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 xz <- with(foli[foli$sex == "male", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
@@ -263,7 +264,7 @@ yy <- round(prop.table(xxx, 1) * 100, 1)
 barplot(t(yy)[4:1, ], col = c("red", "blue", "green", "black"), las = 2, ylab = "Per cent")
 ```
 
-```{r hiscskumw, fig.cap = "Exposure by social class (from the top: elite, middle, workers, missing) and time period, women.", out.height = '15cm', fig.scap="Exposure by social class and time period, women."}
+```{r hiscskumw, fig.cap = "Exposure by social class (from the top: elite, middle, workers, missing) and time period, women.", out.height = '50%', fig.scap="Exposure by social class and time period, women.",fig.height=4}
 xx <- with(skel[skel$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 xy <- with(skume[skume$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 xz <- with(foli[foli$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
@@ -292,7 +293,7 @@ set to unmarried. Note that it has not been possible to identify cohabitation.
 
 
 
-```{r civstskum, fig.cap = "Exposure by marital status (from the top: never married, married and previously married) and time period", fig.scap='Exosure by marital status and time period.',out.height = '24.5cm'}
+```{r civstskum, fig.cap = "Exposure by marital status (from the top: never married, married and previously married) and time period", fig.scap='Exposure by marital status and time period.',out.height = '50%',fig.height=4}
 xx <- with(skel, tapply(exposure, list(period = period, civst = civst), sum))
 xy <- with(skume, tapply(exposure, list(period = period, civst = civst), sum))
 xz <- with(foli, tapply(exposure, list(period = period, civst = civst), sum))
@@ -358,8 +359,8 @@ where
 
 \begin{equation*}
 \begin{split}
-\mathbf{x} &= (x_1, \ldots, x_n) \text{\ is a vector of covariates,} \\
-\boldsymbol{\beta} &= (\beta_1, \ldots, \beta_n) \text{\ is the corresponding vector of regression
+\mathbf{x} &= (x_1, \ldots, x_n) \text{ is a vector of covariates,} \\
+\boldsymbol{\beta} &= (\beta_1, \ldots, \beta_n) \text{ is the corresponding vector of regression
 parameters.} \\
 \end{split}
 \end{equation*}
@@ -369,13 +370,13 @@ and
 \end{equation*}
 
 Since all components of $\mathbf{x}$ are categorical covariates, the
-estimation of \@ref(eq:prop) can be performed in two ways; based on the
+estimation of the model can be performed in two ways; based on the
 original data set and a survival analysis routine handling a piecewise
 constant hazard;  or based on the reduced data set (table) and
 \emph{Poisson regression}. The second way is faster than the first by a
 size factor of at least 100, often much more, and
 the point is that the two ways give exactly the same results. This is
-because the table is a \emph{sufficient statistic} for \@ref(eq:prop) and
+because the table is a \emph{sufficient statistic} for the model and
 the original data set.
 
 
@@ -402,7 +403,7 @@ to the start of the age period, are the
 main target in our analysis. These numbers are used in the process of
 graphically illustrating the development over time.
 
-# The effect of social class on mortality, 1801--1950, 1976--2013
+# The effect of social class on mortality
 
 
 ```{r colorc}
@@ -476,10 +477,10 @@ moutp <- plotED.glm(resm, col = scol, logScale = TRUE, ylab = "H(65|40)",
 par(oldpar)
 ```
 
-Looking at Table \@ref(tab:cumswtab) it is obvious that the statistical significance is strong.
-The most interesting feature is the three-way interaction with **sex**, **period**, and **social class**. This indicates that fundamental changes have taken place in the relationship between the variables during our study period.
+Looking at the table below, it is obvious that the statistical significance is strong.
 
-```{r cumswtab,cap="Table",results="asis"}
+
+```{r cumswtab,cap="Table"}
 vb4064$social_class <- vb4064$hisclass
 vb4064$marital_status <- vb4064$civst
 vb4064$urban_or_rural <- vb4064$urban
@@ -487,10 +488,13 @@ vb4064$age_group <- vb4064$age
 fitt <- glm(event ~ offset(log(exposure)) + urban_or_rural + marital_status + age_group + sex * social_class * period,
             data = vb4064, family = poisson)
 dr <- drop1(fitt, test = "Chisq")
+dr
 ##knitr::kable(dr)
-print(xtable(dr,label = "tab:cumswtab", caption = "Mortality: ANOVA, ages 40--64."), 
-      type = "latex", comment = FALSE)
+##print(xtable(dr,label = "tab:cumswtab", caption = "Mortality: ANOVA, ages 40--64."), 
+  ##    type = "latex", comment = FALSE)
 ```
+
+The most interesting feature is the three-way interaction with **sex**, **period**, and **social class**. This indicates that fundamental changes have taken place in the relationship between the variables during our study period.
 
 Figure \@ref(fig:cumsw) shows the summed hazards of dying in the age interval
 40--64 during the different periods. Obviously, but not surprisingly, mortality
@@ -563,9 +567,9 @@ vb6589$age <- factor(vb6589$age) # NOTE:: Change to '6589'!
 
 We now turn to the elderly, those who in most cases have left the workforce.
 Corresponding to the previous analysis, we use the value of the cumulative hazards at
-duration 25 (age 90), starting from age 65 as a summary measure. Looking at Table \@ref(tab:cumswtabold) it is obvious that the statistical significance is still strong.
+duration 25 (age 90), starting from age 65 as a summary measure. Looking at the table below, it is obvious that the statistical significance is still strong.
 
-```{r cumswtabold,cap="Table",results="asis"}
+```{r cumswtabold,cap="Table"}
 vb6589$marital_status <- vb6589$civst
 vb6589$social_class <- vb6589$hisclass
 vb6589$urban_or_rural <- vb6589$urban
@@ -574,8 +578,9 @@ fittold <- glm(event ~ offset(log(exposure)) + urban_or_rural + marital_status +
             data = vb6589, family = poisson)
 drold <- drop1(fittold, test = "Chisq")
 ##knitr::kable(dr)
-print(xtable(drold,label = "tab:cumswtabold", caption = "Mortality: ANOVA, ages 65--89."), 
-      type = "latex", comment = FALSE)
+drold
+##print(xtable(drold,label = "tab:cumswtabold", caption = "Mortality: ANOVA, ages 65--89."), 
+  ##    type = "latex", comment = FALSE)
 ```
 
 
@@ -664,7 +669,7 @@ We have analysed social inequality in health from the perspective of social clas
 
 An intriguing aspect of this study is the lack of association between level of economic inequality and social differences in mortality. Even though our study does not directly address the hypothesis posed by @wipi09 and thus cannot falsify it, our results are relevant for this question as well. In the early 20th century, like other countries, Sweden was characterised by enormous economic differences; still, in our regions this did not lead to any consistent advantage for the highest social class. After the Second World War, economic differences began diminishing, and were at their lowest in Sweden around 1980; i.e. at a time when the expected pattern of a social hierarchy in survival appeared. The period thereafter is characterized by increasing economic differences, coinciding with increasing health differences as well. We do not have access to the exact development of income inequality in our regions, but the available information based on the 1930 census and the data from 1970 onwards indicate that inequality has been lower than in most other parts of Sweden but that it has followed the general development of first diminishing and later increasing inequality. The long-term relationship between economic inequality and health is still a puzzle requiring further studies.
 
-We believe our results have implications on several issues concerning our understanding of the demographic and epidemiologic development. One of the central theories has been presented by @mck76, who argues that improved nutrition has been the main determinant of the increase in life expectancy in recent centuries. This ought to imply that people with less adequate resources are the most vulnerable in the earlier phases of the mortality transition. The results presented here prove that the most wealthy and privileged groups were not able to avoid the most common health risks in historical societies. This should make us cautious of accepting nutritional improvements as the most important explanation for the mortality transition. While the McKeown thesis has been refuted by several scholars [@szreter88, @Colgrove02], it has played and is still playing a central role within epidemiology and social medicine.   
+We believe our results have implications on several issues concerning our understanding of the demographic and epidemiologic development. One of the central theories has been presented by @mck76, who argues that improved nutrition has been the main determinant of the increase in life expectancy in recent centuries. This ought to imply that people with less adequate resources are the most vulnerable in the earlier phases of the mortality transition. The results presented here prove that the most wealthy and privileged groups were not able to avoid the most common health risks in historical societies. This should make us cautious of accepting nutritional improvements as the most important explanation for the mortality transition. While the McKeown thesis has been refuted by several scholars [@szreter88, @colgrove02], it has played and is still playing a central role within epidemiology and social medicine.   
 
 Our study seems thus to be in conflict with many of the dominating theories in present-day health research. In an overview of explanations of the persistence of health inequalities (primarily focusing on high-income countries with extensive welfare arrangements), @mack12 identifies a couple of theories, emphasizing different mechanisms and circumstances such as psycho-social pathways, material conditions, cultural capital, etc. However, most of these explanations are based on the assumption that higher social classes are always advantaged when it comes to health and mortality and that the different mechanisms all contribute to the advantage of higher social position. 
 
