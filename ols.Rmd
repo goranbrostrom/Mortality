@@ -1,0 +1,178 @@
+---
+title: "Sampling deaths and OLS"
+author: "Göran Broström"
+date: "January 19, 2018"
+output: html_document
+---
+
+
+## Introduction
+
+We check the effect of assuming normally distributed remaining life after age 60.
+
+```{r setup, include=FALSE}
+library(knitr)
+opts_chunk$set(engine='R',fig.path='figs/ols-',tidy=FALSE,fig.height=4,fig.width=8,strip.white=TRUE,cache=FALSE,echo=FALSE,message=FALSE,comment=NA,show.signif.stars = FALSE)##$
+library(knitr)
+library(eha)
+library(xtable)
+library(skum)
+options(show.signif.stars = FALSE)
+```
+
+## Data
+
+Data come from Skellefteå and Umeå. The selection is all persons born between January 1, 1841 and December 31, 1850 and present in 
+the data at age 60.
+They are followed from age 60 to death or right censoring (at most until December 31, 1950). 
+
+
+```{r readalldata}
+source("R/get.file.R")
+skume <- get.file("skume")
+## Not needed(?):
+##vb0Tab <- skume
+##vb0Tab$civst <- relevel(vb0Tab$civst, ref = "married")
+##vb0Tab <- aggregate(vb0Tab[, c("event", "exposure")],
+##                    vb0Tab[, c("sex", "age", "period", "cohort", "civst", "hisclass", "urban")],
+##                    FUN = sum)
+## End: Not needed(?)
+ols <- obs[, c("id", "sex", "birthdate", "region", "civst", "hisclass", "sluttyp", "enter", "exit")]
+ols$event <- ols$sluttyp == 2
+ols$sluttyp <- NULL
+ols <- ols[ols$birthdate >= 1841 & ols$birthdate < 1851, ]
+ols <- age.window(ols, c(60, 100))
+ids <- ols$id[ols$enter < 60.01]
+ols <- ols[ols$id %in% ids, ]
+indx <- tapply(ols$id, ols$id)
+out <- tapply(ols$exit, ols$id, max)
+ols$out <- out[indx]
+ols <- ols[order(ols$id, -ols$exit, -ols$event),]
+##sum(ols$event)
+ols <- ols[!duplicated(ols$id), ]
+##sum(ols$event)
+ols$exit <- ols$out
+ols$out <- NULL
+summary(ols)
+```
+
+We want to observe time since age 60 (exact!), so we subtract 60 from the ages `enter` and `exit`.
+
+```{r}
+ols$enter <- ols$enter - 60
+ols$exit <- ols$exit - 60
+zero <- ols$enter >= ols$exit
+ols$enter[zero] <- ols$exit[zero] - 0.001 # Fix zero-length intervals (no big deal)
+```
+
+In the following, we are interested in the *sex difference* in expected life after 60 (just as an illustration). The categorical variable `region` is included as an example of a confounder.
+
+## Standard survival analyses
+
+### Ordinary *Cox regression*
+
+We first try to get a picture of what really is happening in mortality relative to `sex` and `region` (the figure is truncated at duration 30, i.e., age 90).
+
+```{r standards}
+fit <- coxph(Surv(enter, exit, event) ~ strata(region, sex), data = ols)
+plot(survfit(fit), fun = "cumhaz", col = 1:4, lty = 1:4, xlab = "Years after 60.", ylab = "Cumulative hazards", xlim = c(0, 30))
+legend("topleft", legend = levels(strata(ols$region, ols$sex)), col = 1:4, lty = 1:4)
+abline(h = 0)
+```
+
+It seems as if males have the same mortality experience in Umeå and Skellefteå, while women from Umeå are better off than those from Skellefteå. Of course, women are much better off than men, reardless of region. So, there is a tendency of *interaction* between the effects on mortality of `sex` and `region`.
+
+
+### AFT regression
+
+Then an *accelerated failure time (AFT)* model ("linear regression on the log scale, with censoring").
+
+```{r afts}
+fit <- aftreg(Surv(enter, exit, event) ~ sex + region, data = ols, dist = "lognormal", param = "lifeExp")
+meanlog <- fit$coefficients["log(scale)"]
+sdlog <- 1 / exp(fit$coefficients["log(shape)"])
+fit$baselineMean <- exp(meanlog + sdlog^2 / 2)
+summary(fit)
+```
+
+The lognormal baseline plot looks like this:
+
+```{r plotlns}
+plot(fit, fn = "haz", xlab = "Years after 60.")
+```
+
+Not very convincing: The mortality is *decreasing* after age 70 (forced by the lognormal assumption)!
+
+We try the *Gompertz* distribution instead:
+
+```{r aftgomps}
+fit.g <- aftreg(Surv(enter, exit, event) ~ sex + region, data = ols, dist = "gompertz", param = "lifeExp")
+
+summary(fit.g)
+```
+
+The Gompertz baseline plot looks like this:
+
+```{r plotgomps}
+plot(fit.g, fn = "haz", xlab = "Years after 60.")
+```
+
+## Sampling deaths
+
+We repeat the analyses with the data subset consisting of all those who were observerd to die in the parishes.
+
+```{r smallols}
+ids <- ols$id[ols$event == 1]
+sols <- ols[ols$id %in% ids, ]
+```
+
+### Ordinary *Cox regression*
+
+```{r standard}
+fit <- coxreg(Surv(enter, exit, event) ~ sex + region, data = sols)
+summary(fit)
+```
+
+### AFT regression
+
+Then an *accelerated failure time (AFT)* model ("linear regression on the log scale, with censoring").
+
+```{r aft}
+fit <- aftreg(Surv(enter, exit, event) ~ sex + region, data = sols, dist = "lognormal", param = "lifeExp")
+meanlog <- fit$coefficients["log(scale)"]
+sdlog <- 1 / exp(fit$coefficients["log(shape)"])
+fit$baselineMean <- exp(meanlog + sdlog^2 / 2)
+summary(fit)
+```
+
+The lognormal baseline plot looks like this:
+
+```{r plotln}
+plot(fit, fn = "haz", xlab = "Years after 60.")
+```
+
+Not very convincing: The mortality is *decreasing* after age 70 (forced by the lognormal assumption)!
+
+We try the *Gompertz* distribution instead:
+
+```{r aftgomp}
+fit.g <- aftreg(Surv(enter, exit, event) ~ sex + region, data = sols, dist = "gompertz", param = "lifeExp")
+
+summary(fit.g)
+```
+
+The Gompertz baseline plot looks like this:
+
+```{r plotgomp}
+plot(fit.g, fn = "haz", xlab = "Years after 60.")
+```
+
+## OLS regression
+
+Finally, let us perform ordinary OLS regression.
+
+```{r ordOLS}
+ools <- sols[sols$event == 1, ]
+summary(fit <- lm(exit ~ sex + region, data = ools)) 
+```
+
