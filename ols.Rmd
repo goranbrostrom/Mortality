@@ -2,11 +2,23 @@
 title: "Sampling deaths and OLS"
 author: "Göran Broström"
 date: "January 19, 2018"
-output: html_document
+output:
+  bookdown::html_document2:
+    number_sections: yes
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
+  bookdown::pdf_document2:
+    citation_package: natbib
+    number_sections: yes
+    toc: no
+    toc_depth: 2
+    keep_tex: true
+
 ---
 
 
-## Introduction
+# Introduction
 
 We check the effect of assuming normally distributed remaining life after age 60.
 
@@ -20,7 +32,7 @@ library(skum)
 options(show.signif.stars = FALSE)
 ```
 
-## Data
+# Data
 
 Data come from Skellefteå and Umeå. The selection is all persons born between January 1, 1841 and December 31, 1850 and present in 
 the data at age 60.
@@ -28,8 +40,8 @@ They are followed from age 60 to death or right censoring (at most until Decembe
 
 
 ```{r readalldata}
-source("R/get.file.R")
-skume <- get.file("skume")
+##source("R/get.file.R")
+##skume <- get.file("skume")
 ## Not needed(?):
 ##vb0Tab <- skume
 ##vb0Tab$civst <- relevel(vb0Tab$civst, ref = "married")
@@ -37,7 +49,7 @@ skume <- get.file("skume")
 ##                    vb0Tab[, c("sex", "age", "period", "cohort", "civst", "hisclass", "urban")],
 ##                    FUN = sum)
 ## End: Not needed(?)
-ols <- obs[, c("id", "sex", "birthdate", "region", "civst", "hisclass", "sluttyp", "enter", "exit")]
+ols <- obs[, c("id", "sex", "birthdate", "region", "civst", "sluttyp", "enter", "exit")]
 ols$event <- ols$sluttyp == 2
 ols$sluttyp <- NULL
 ols <- ols[ols$birthdate >= 1841 & ols$birthdate < 1851, ]
@@ -65,11 +77,11 @@ zero <- ols$enter >= ols$exit
 ols$enter[zero] <- ols$exit[zero] - 0.001 # Fix zero-length intervals (no big deal)
 ```
 
-In the following, we are interested in the *sex difference* in expected life after 60 (just as an illustration). The categorical variable `region` is included as an example of a confounder.
+In the following, we are interested in the *sex difference* in expected remaining life after 60 (*e60*) (just as an illustration). The categorical variable `region` is included as an example of a confounder.
 
-## Standard survival analyses
+# Standard survival analyses
 
-### Ordinary *Cox regression*
+## Ordinary *Cox regression*
 
 We first try to get a picture of what really is happening in mortality relative to `sex` and `region` (the figure is truncated at duration 30, i.e., age 90).
 
@@ -82,8 +94,26 @@ abline(h = 0)
 
 It seems as if males have the same mortality experience in Umeå and Skellefteå, while women from Umeå are better off than those from Skellefteå. Of course, women are much better off than men, reardless of region. So, there is a tendency of *interaction* between the effects on mortality of `sex` and `region`.
 
+We cannot easily calculate *e60* from this figure (or table above), but the estimated median remaining life at 60 (*m60*) is easy to illustrate graphically. For that porpose we need to plot the estimated *survival functions*.
+```{r }
+plot(survfit(fit), col = 1:4, lty = 1:4, xlab = "Years after 60.", 
+     ylab = "Remaining fraction", xlim = c(0, 30), axes = FALSE)
+axis(1, at = c(0, 9, 13, 20, 30))
+axis(2, at = c(0, 0.5, 1), las = 1)
+box()
+legend("bottomleft", legend = levels(strata(ols$region, ols$sex)), col = 1:4, lty = 1:4)
+abline(h = 0)
+abline(h = 0.5, lty = 2)
+```
 
-### AFT regression
+We can also make an exact calculation, which results in
+
+```{r exactki}
+x <- survfit(fit)
+x
+```
+
+## AFT regression
 
 Then an *accelerated failure time (AFT)* model ("linear regression on the log scale, with censoring").
 
@@ -94,6 +124,8 @@ sdlog <- 1 / exp(fit$coefficients["log(shape)"])
 fit$baselineMean <- exp(meanlog + sdlog^2 / 2)
 summary(fit)
 ```
+
+The *e60* for men in Skellefteå is 9.69, and for Skellefteå women it is $1.329 \times 9.69 = 12.88$, a difference of 3.19 years.
 
 The lognormal baseline plot looks like this:
 
@@ -111,13 +143,17 @@ fit.g <- aftreg(Surv(enter, exit, event) ~ sex + region, data = ols, dist = "gom
 summary(fit.g)
 ```
 
+The *e60* for men in Skellefteå is now 11.2, and for Skellefteå women it is $1.075 \times 11.2 = 12.04$, a difference of only 0.84 years.
+
 The Gompertz baseline plot looks like this:
 
 ```{r plotgomps}
 plot(fit.g, fn = "haz", xlab = "Years after 60.")
 ```
 
-## Sampling deaths
+A lot more reasonable.
+
+# Sampling deaths
 
 We repeat the analyses with the data subset consisting of all those who were observerd to die in the parishes.
 
@@ -126,14 +162,14 @@ ids <- ols$id[ols$event == 1]
 sols <- ols[ols$id %in% ids, ]
 ```
 
-### Ordinary *Cox regression*
+## Ordinary *Cox regression*
 
 ```{r standard}
-fit <- coxreg(Surv(enter, exit, event) ~ sex + region, data = sols)
-summary(fit)
+fit <- coxph(Surv(enter, exit, event) ~ sex + region, data = sols)
+survfit(fit)
 ```
 
-### AFT regression
+## AFT regression
 
 Then an *accelerated failure time (AFT)* model ("linear regression on the log scale, with censoring").
 
@@ -167,7 +203,7 @@ The Gompertz baseline plot looks like this:
 plot(fit.g, fn = "haz", xlab = "Years after 60.")
 ```
 
-## OLS regression
+# OLS regression
 
 Finally, let us perform ordinary OLS regression.
 
