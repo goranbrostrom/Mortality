@@ -20,7 +20,7 @@ output:
 
 # Introduction
 
-We check the effect of assuming normally distributed remaining life after age 60.
+We check the effect of studying mortality of the dead and whether it is reasonable to assume normally distributed remaining life after age 60.
 
 ```{r setup, include=FALSE}
 library(knitr)
@@ -79,9 +79,78 @@ ols$enter[zero] <- ols$exit[zero] - 0.001 # Fix zero-length intervals (no big de
 
 In the following, we are interested in the *sex difference* in expected remaining life after 60 (*e60*) (just as an illustration). The categorical variable `region` is included as an example of a confounder.
 
-# Standard survival analyses
+# Survival analysis with OLS
+
+## Full data
+
+*OLS* means assuming *normally distributed* remaining life after 60, and we can use standard linear regression. In the case of right censoring, we need to fall back on maximum likelihood for the estimation. The function *survreg* in the **R** package **survival** facilitates this.
+
+```{r survrcens}
+fit <- survreg(Surv(exit, event) ~ sex + region, data = ols, dist = "gaussian")
+x <- summary(fit)
+x
+```
+
+So the *e60* for men from Skellefteå is `r round(x$coef[1], 2)` and for women it is `r round(x$coef[2], 2)` more years.
+
+# Sampling deaths
+
+We repeat the analyses with the data subset consisting of all those who were observerd to die in the parishes.
+
+```{r smallols}
+ids <- ols$id[ols$event == 1]
+sols <- ols[ols$id %in% ids, ]
+```
 
 ## Ordinary *Cox regression*
+
+```{r standard}
+fit <- coxph(Surv(enter, exit, event) ~ sex + region, data = sols)
+survfit(fit)
+```
+
+## AFT regression
+
+Then an *accelerated failure time (AFT)* model ("linear regression on the log scale, with censoring").
+
+```{r aft}
+fit <- aftreg(Surv(enter, exit, event) ~ sex + region, data = sols, dist = "lognormal", param = "lifeExp")
+meanlog <- fit$coefficients["log(scale)"]
+sdlog <- 1 / exp(fit$coefficients["log(shape)"])
+fit$baselineMean <- exp(meanlog + sdlog^2 / 2)
+summary(fit)
+```
+
+The lognormal baseline plot looks like this:
+
+```{r plotln}
+plot(fit, fn = "haz", xlab = "Years after 60.")
+```
+
+Not very convincing: The mortality is *decreasing* after age 70 (forced by the lognormal assumption)!
+
+We try the *Gompertz* distribution instead:
+
+```{r aftgomp}
+fit.g <- aftreg(Surv(enter, exit, event) ~ sex + region, data = sols, dist = "gompertz", param = "lifeExp")
+
+summary(fit.g)
+```
+
+The Gompertz baseline plot looks like this:
+
+```{r plotgomp}
+plot(fit.g, fn = "haz", xlab = "Years after 60.")
+```
+
+# OLS regression
+
+Finally, let us perform ordinary OLS regression.
+
+```{r ordOLS}
+ools <- sols[sols$event == 1, ]
+summary(fit <- lm(exit ~ sex + region, data = ools)) 
+```
 
 We first try to get a picture of what really is happening in mortality relative to `sex` and `region` (the figure is truncated at duration 30, i.e., age 90).
 
@@ -152,63 +221,3 @@ plot(fit.g, fn = "haz", xlab = "Years after 60.")
 ```
 
 A lot more reasonable.
-
-# Sampling deaths
-
-We repeat the analyses with the data subset consisting of all those who were observerd to die in the parishes.
-
-```{r smallols}
-ids <- ols$id[ols$event == 1]
-sols <- ols[ols$id %in% ids, ]
-```
-
-## Ordinary *Cox regression*
-
-```{r standard}
-fit <- coxph(Surv(enter, exit, event) ~ sex + region, data = sols)
-survfit(fit)
-```
-
-## AFT regression
-
-Then an *accelerated failure time (AFT)* model ("linear regression on the log scale, with censoring").
-
-```{r aft}
-fit <- aftreg(Surv(enter, exit, event) ~ sex + region, data = sols, dist = "lognormal", param = "lifeExp")
-meanlog <- fit$coefficients["log(scale)"]
-sdlog <- 1 / exp(fit$coefficients["log(shape)"])
-fit$baselineMean <- exp(meanlog + sdlog^2 / 2)
-summary(fit)
-```
-
-The lognormal baseline plot looks like this:
-
-```{r plotln}
-plot(fit, fn = "haz", xlab = "Years after 60.")
-```
-
-Not very convincing: The mortality is *decreasing* after age 70 (forced by the lognormal assumption)!
-
-We try the *Gompertz* distribution instead:
-
-```{r aftgomp}
-fit.g <- aftreg(Surv(enter, exit, event) ~ sex + region, data = sols, dist = "gompertz", param = "lifeExp")
-
-summary(fit.g)
-```
-
-The Gompertz baseline plot looks like this:
-
-```{r plotgomp}
-plot(fit.g, fn = "haz", xlab = "Years after 60.")
-```
-
-# OLS regression
-
-Finally, let us perform ordinary OLS regression.
-
-```{r ordOLS}
-ools <- sols[sols$event == 1, ]
-summary(fit <- lm(exit ~ sex + region, data = ools)) 
-```
-
