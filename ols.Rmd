@@ -1,7 +1,7 @@
 ---
-title: "Sampling deaths and OLS"
+title: "On mortality of the dead and OLS"
 author: "Göran Broström"
-date: "January 19, 2018"
+date: '`r Sys.Date()`'
 output:
   bookdown::html_document2:
     number_sections: yes
@@ -14,13 +14,13 @@ output:
     toc: no
     toc_depth: 2
     keep_tex: true
-
+bibliography: mybib.bib
 ---
 
 
 # Introduction
 
-We check the effect of studying mortality of the dead and whether it is reasonable to assume normally distributed remaining life after age 60.
+We ask if studying mortality by sampling the dead is a good idea and whether it is reasonable to assume normally distributed remaining life after age 60. We answer *No* and *Maybe*.
 
 ```{r setup, include=FALSE}
 library(knitr)
@@ -36,7 +36,7 @@ options(show.signif.stars = FALSE)
 
 Data come from Skellefteå and Umeå. The selection is all persons born between January 1, 1841 and December 31, 1850 and present in 
 the data at age 60.
-They are followed from age 60 to death or right censoring (at most until December 31, 1950). 
+They are followed from age 60 to death or right censoring (at most until December 31, 1950). The first six rows of the data frame:
 
 
 ```{r readalldata}
@@ -65,7 +65,7 @@ ols <- ols[!duplicated(ols$id), ]
 ##sum(ols$event)
 ols$exit <- ols$out
 ols$out <- NULL
-summary(ols)
+head(ols)
 ```
 
 We want to observe time since age 60 (exact!), so we subtract 60 from the ages `enter` and `exit`.
@@ -80,11 +80,13 @@ ols$enter[zero] <- ols$exit[zero] - 0.001 # Fix zero-length intervals (no big de
 
 In the following, we are interested in the *sex difference* in expected remaining life after 60 (*e60*) (just as an illustration). The categorical variable `region` is included as an example of a confounder.
 
-# Survival analysis with OLS
+# OLS regression
+
+OLS regression in survival analysis is a special case of the AFT regression model, see the next section.
 
 ## Full data
 
-*OLS* means assuming *normally distributed* remaining life after 60, and we can use standard linear regression. In the case of right censoring, we need to fall back on maximum likelihood for the estimation. The function *survreg* in the **R** package **survival** facilitates this.
+*OLS* means assuming *normally distributed* remaining life after 60, and we can use standard linear regression, given that we are willing to assume an *accelerated failure time (AFT)* model for our data. In the case of right censoring, we need to fall back on maximum likelihood for the estimation. The function *survreg* in the **R** [@cran] package **survival** facilitates this.
 
 ```{r survrcens}
 fit <- survreg(Surv(exit, event) ~ sex + region, data = ols, dist = "gaussian")
@@ -92,7 +94,7 @@ x <- summary(fit)
 x
 ```
 
-So the *e60* for men from Skellefteå is `r round(x$coef[1], 2)` years and for women it is `r round(x$coef[2], 2)` more years.
+So the *e60* for men from Skellefteå is `r round(x$coef[1], 2)` years and for women it is `r round(x$coef[2], 2)` more years. The difference is statistically significant.
 
 ## Sampling the dead
 
@@ -109,11 +111,12 @@ x2 <- summary(fit2)
 x2
 ```
 
-So the *e60* for men from Skellefteå is now `r round(x2$coef[1], 2)` years and for women it is `r round(x2$coef[2], 2)` more years.
+So the *e60* for men from Skellefteå is now only `r round(x2$coef[1], 2)` years and for women it is `r round(x2$coef[2], 2)` more years. The difference is statistically significant, 
+and larger than in the case with full data.
 
 ## Conclusion
 
-Sampling of deaths leads to overestimation of mortality (underestimation of *e60*): This is a trivial (well-known) consequence. More seriously, it distorts the balance between categories (`sex`, `region`) in unpredictable ways.
+Sampling of deaths leads to overestimation of mortality (underestimation of *e60*): This is a trivial (well-known) consequence. More seriously, it distorts the balance between the effects of categories (`sex`, `region`) on mortality in unpredictable ways.
 
 
 # AFT regression
@@ -121,7 +124,7 @@ Sampling of deaths leads to overestimation of mortality (underestimation of *e60
 The OLS model is an example of what is called  an *accelerated failure time (AFT)* model in survival analysis, a competitor to the *proportional hazards (PH)* model. 
 A common assumption about old age mortality is that a *Gompertz* distribution fits well.
 
-So we go back to the full data situation and fit a Gompertz AFT model. The *survreg* function does not include the Gompertz distribution, but the *aftreg* function in the package **eha** does.
+So we go back to the full data situation and fit a Gompertz AFT model. The *survreg* function does not include the Gompertz distribution, but the *aftreg* function in the package **eha** [@eha] does.
 
 ```{r aft, echo = FALSE}
 fit.g <- aftreg(Surv(exit, event) ~ sex + region, data = ols, dist = "gompertz", param = "lifeExp")
@@ -130,32 +133,77 @@ em <- fit.g$baselineMean
 ef <- fit.g$baselineMean * exp(fit.g$coef[1])
 ```
 So the *e60* for Skellefteå men is `r round(em, 2)` years, and for the women we get 
-`r round(ef, 2)` years, a diff of `r round(ef - em, 2)` years, that is, *men* are better off.
+`r round(ef, 2)` years, a difference of `r round(ef - em, 2)` years, that is, *men* are better off. This difference is *not* statistically significant.
 
-Compare with the result of the OLS regression: 
+## Is the assumption of normally distributed residual life reasonable?
 
-```{r plotln}
-plot(fit.g, fn = "haz", xlab = "Years after 60.")
+Yes, as long as condition on survival past the mode of the survival distribution, according to @kann96. So what is the mode in the life distribution in our data?
+
+```{r mode, echo = FALSE, cache = TRUE}
+oj <- obs
+oj$event <- oj$sluttyp == 2
+oj <- age.window(oj, c(0, 100))
+as <- oj$enter >= oj$exit
+oj$enter[as] <- oj$exit[as] - 0.0001
+ff <- phreg(Surv(enter, exit, event) ~ 1, data = oj, dist = "pch", cuts = 1:99)
+par(las = 1)
+plot(ff, fn = "den", xlab = "Age", main = "", col = "blue")
 ```
 
+Well, it is closer to 80 than to 60, so the normal distribution assumption may be in doubt. We can compare the baseline (men in Skellefteå) distributions from 
+the OLS fit and nonparametric estimation.
 
-```{r standards}
-fit <- coxph(Surv(enter, exit, event) ~ strata(region, sex), data = ols)
-plot(survfit(fit), fun = "cumhaz", col = 1:4, lty = 1:4, xlab = "Years after 60.", ylab = "Cumulative hazards", xlim = c(0, 30))
-legend("topleft", legend = levels(strata(ols$region, ols$sex)), col = 1:4, lty = 1:4)
+
+```{r plotln}
+fit.cox <- coxreg(Surv(exit, event) ~ 1, data = ols[ols$sex == "male" & ols$region == "ske", ])
+par(las = 1)
+plot(fit.cox, fn = "cum", xlab = "Years after 60.", main = "Baseline Cumulative hazards  functions", ylim = c(0, 5))
+x <- seq(0, 37, length = 1000)
+y <- -log(pnorm(x, mean = 16.474, sd = 8.96, lower.tail = FALSE))
+lines(x, y, col = "red")
+legend("topleft", legend = c("Nonparametric", "OLS regression"), lty = c(1, 1), col = c("black", "red"))
 abline(h = 0)
 ```
 
-It seems as if males have the same mortality experience in Umeå and Skellefteå, while women from Umeå are better off than those from Skellefteå. Of course, women are much better off than men, reardless of region. So, there is a tendency of *interaction* between the effects on mortality of `sex` and `region`.
+Looks quite ok, even though the OLS curve heavily overestimates the ages above 90. No simple parametric model will catch the heavy slow-down of the mortality increase in the high ages.  
 
-We cannot easily calculate *e60* from this figure (or table above), but the estimated median remaining life at 60 (*m60*) is easy to illustrate graphically. For that porpose we need to plot the estimated *survival functions*.
+# PH regression
+
+Maybe the PH model fits better than the AFT? Compare max log likelihoods.
+
+```{r phbetter}
+fit.ph <- phreg(Surv(exit, event) ~ sex + region, data = ols, dist = "gompertz")
+fit.ph
+```
+
+No, the difference is very small: `r round(fit.ph$loglik[2] - fit.g$loglik[2], 3)` in favor of the PH model. Not much to argue about.
+
+# A look at data
+
+These are the mortality patterns for the four groups we are contemplating. Worth noting is that male mortality above age 90 is so low (compared to women).
+
+```{r standards}
+fit <- coxph(Surv(enter, exit, event) ~ strata(region, sex), data = ols)
+par(las = 1)
+plot(survfit(fit), fun = "cumhaz", col = 1:4, lty = 1:4, xlab = "Years after 60.", ylab = "Cum. hazards", axes = FALSE)
+axis(1, at = c(0, 9, 13, 20, 30, 40))
+axis(2, at = c(0, log(2), 3, 5), labels = c("0", "log(2)", "3", "5"))
+box()
+legend("topleft", legend = levels(strata(ols$region, ols$sex)), col = 1:4, lty = 1:4)
+abline(h = 0)
+abline(h = log(2), lty = 2)
+```
+
+It seems as if males have the same mortality experience in Umeå and Skellefteå, while women from Umeå are better off than those from Skellefteå. Of course, women are much better off than men (before age 90!), reardless of region. So, there is a tendency of *interaction* between the effects on mortality of `sex` and `region`.
+
+We cannot easily calculate *e60* from this figure (or table above), but the estimated *median remaining life at 60 (m60)* is easy to illustrate: It is the years-after-60 at which the horizontal line at $\log(2)$ intersects the curves: 9 years for men and 13 for women. Maybe easier to see in the plot of the estimated *survival functions* below.
 ```{r }
 plot(survfit(fit), col = 1:4, lty = 1:4, xlab = "Years after 60.", 
-     ylab = "Remaining fraction", xlim = c(0, 30), axes = FALSE)
+     ylab = "Remaining fraction", axes = FALSE)
 axis(1, at = c(0, 9, 13, 20, 30))
 axis(2, at = c(0, 0.5, 1), las = 1)
 box()
-legend("bottomleft", legend = levels(strata(ols$region, ols$sex)), col = 1:4, lty = 1:4)
+legend("topright", legend = levels(strata(ols$region, ols$sex)), col = 1:4, lty = 1:4)
 abline(h = 0)
 abline(h = 0.5, lty = 2)
 ```
@@ -167,42 +215,8 @@ x <- survfit(fit)
 x
 ```
 
-## AFT regression
+# Conclusion
 
-Then an *accelerated failure time (AFT)* model ("linear regression on the log scale, with censoring").
+We can live with the assumption of normally distributed residual life after age 60, but we must be aware of the fact that applying OLS implies rather strong distributional assumptions. It is a misconception to believe that least squares methods are "distribution free". Sampling of the dead, on the other hand, is problematic and should be avoided without measures that are specifically designed to take care of that situation (what ever they are).
 
-```{r afts}
-fit <- aftreg(Surv(enter, exit, event) ~ sex + region, data = ols, dist = "lognormal", param = "lifeExp")
-meanlog <- fit$coefficients["log(scale)"]
-sdlog <- 1 / exp(fit$coefficients["log(shape)"])
-fit$baselineMean <- exp(meanlog + sdlog^2 / 2)
-summary(fit)
-```
-
-The *e60* for men in Skellefteå is 9.69, and for Skellefteå women it is $1.329 \times 9.69 = 12.88$, a difference of 3.19 years.
-
-The lognormal baseline plot looks like this:
-
-```{r plotlns}
-plot(fit, fn = "haz", xlab = "Years after 60.")
-```
-
-Not very convincing: The mortality is *decreasing* after age 70 (forced by the lognormal assumption)!
-
-We try the *Gompertz* distribution instead:
-
-```{r aftgomps}
-fit.g <- aftreg(Surv(enter, exit, event) ~ sex + region, data = ols, dist = "gompertz", param = "lifeExp")
-
-summary(fit.g)
-```
-
-The *e60* for men in Skellefteå is now 11.2, and for Skellefteå women it is $1.075 \times 11.2 = 12.04$, a difference of only 0.84 years.
-
-The Gompertz baseline plot looks like this:
-
-```{r plotgomps}
-plot(fit.g, fn = "haz", xlab = "Years after 60.")
-```
-
-A lot more reasonable.
+# References
