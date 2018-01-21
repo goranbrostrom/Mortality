@@ -91,68 +91,47 @@ x <- summary(fit)
 x
 ```
 
-So the *e60* for men from Skellefteå is `r round(x$coef[1], 2)` and for women it is `r round(x$coef[2], 2)` more years.
+So the *e60* for men from Skellefteå is `r round(x$coef[1], 2)` years and for women it is `r round(x$coef[2], 2)` more years.
 
-# Sampling deaths
+## Sampling the dead
 
-We repeat the analyses with the data subset consisting of all those who were observerd to die in the parishes.
+We repeat the analyses with the data subset consisting of all those who were observerd to die in the parishes. This implies that 13 percent censored individuals are thrown away.
 
-```{r smallols}
+```{r smallols, echo = FALSE}
 ids <- ols$id[ols$event == 1]
 sols <- ols[ols$id %in% ids, ]
 ```
 
-## Ordinary *Cox regression*
-
-```{r standard}
-fit <- coxph(Surv(enter, exit, event) ~ sex + region, data = sols)
-survfit(fit)
+```{r survrnocens}
+fit2 <- survreg(Surv(exit, event) ~ sex + region, data = sols, dist = "gaussian")
+x2 <- summary(fit2)
+x2
 ```
 
-## AFT regression
+So the *e60* for men from Skellefteå is now `r round(x2$coef[1], 2)` years and for women it is `r round(x2$coef[2], 2)` more years.
 
-Then an *accelerated failure time (AFT)* model ("linear regression on the log scale, with censoring").
+## Conclusion
 
-```{r aft}
-fit <- aftreg(Surv(enter, exit, event) ~ sex + region, data = sols, dist = "lognormal", param = "lifeExp")
-meanlog <- fit$coefficients["log(scale)"]
-sdlog <- 1 / exp(fit$coefficients["log(shape)"])
-fit$baselineMean <- exp(meanlog + sdlog^2 / 2)
-summary(fit)
-```
+Sampling of deaths leads to overestimation of mortality (underestimation of *e60*): This is a trivial (well-known) consequence. More seriously, it distorts the balance between categories (`sex`, `region`) in unpredictable ways.
 
-The lognormal baseline plot looks like this:
 
-```{r plotln}
-plot(fit, fn = "haz", xlab = "Years after 60.")
-```
+# AFT regression
 
-Not very convincing: The mortality is *decreasing* after age 70 (forced by the lognormal assumption)!
+The OLS model is an example of what is called  an *accelerated failure time (AFT)* model in survival analysis, a competitor to the *proportional hazards (PH)* model. 
+A common assumption about old age mortality is that a *Gompertz* distribution fits well.
 
-We try the *Gompertz* distribution instead:
+So we go back to the full data situation and fit a Gompertz AFT model. The *survreg* function does not include the Gompertz distribution, but the *aftreg* function in the package **eha** does.
 
-```{r aftgomp}
-fit.g <- aftreg(Surv(enter, exit, event) ~ sex + region, data = sols, dist = "gompertz", param = "lifeExp")
-
+```{r aft, echo = FALSE}
+fit.g <- aftreg(Surv(exit, event) ~ sex, data = ols, dist = "gompertz", param = "lifeExp")
 summary(fit.g)
 ```
 
-The Gompertz baseline plot looks like this:
 
-```{r plotgomp}
+```{r plotln}
 plot(fit.g, fn = "haz", xlab = "Years after 60.")
 ```
 
-# OLS regression
-
-Finally, let us perform ordinary OLS regression.
-
-```{r ordOLS}
-ools <- sols[sols$event == 1, ]
-summary(fit <- lm(exit ~ sex + region, data = ools)) 
-```
-
-We first try to get a picture of what really is happening in mortality relative to `sex` and `region` (the figure is truncated at duration 30, i.e., age 90).
 
 ```{r standards}
 fit <- coxph(Surv(enter, exit, event) ~ strata(region, sex), data = ols)
