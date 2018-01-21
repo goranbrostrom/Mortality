@@ -75,6 +75,7 @@ ols$enter <- ols$enter - 60
 ols$exit <- ols$exit - 60
 zero <- ols$enter >= ols$exit
 ols$enter[zero] <- ols$exit[zero] - 0.001 # Fix zero-length intervals (no big deal)
+##ols$event[ols$exit > 30] <- 1
 ```
 
 In the following, we are interested in the *sex difference* in expected remaining life after 60 (*e60*) (just as an illustration). The categorical variable `region` is included as an example of a confounder.
@@ -123,10 +124,15 @@ A common assumption about old age mortality is that a *Gompertz* distribution fi
 So we go back to the full data situation and fit a Gompertz AFT model. The *survreg* function does not include the Gompertz distribution, but the *aftreg* function in the package **eha** does.
 
 ```{r aft, echo = FALSE}
-fit.g <- aftreg(Surv(exit, event) ~ sex, data = ols, dist = "gompertz", param = "lifeExp")
+fit.g <- aftreg(Surv(exit, event) ~ sex + region, data = ols, dist = "gompertz", param = "lifeExp")
 summary(fit.g)
+em <- fit.g$baselineMean
+ef <- fit.g$baselineMean * exp(fit.g$coef[1])
 ```
+So the *e60* for Skellefteå men is `r round(em, 2)` years, and for the women we get 
+`r round(ef, 2)` years, a diff of `r round(ef - em, 2)` years, that is, *men* are better off.
 
+Compare with the result of the OLS regression: 
 
 ```{r plotln}
 plot(fit.g, fn = "haz", xlab = "Years after 60.")
