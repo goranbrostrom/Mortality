@@ -180,9 +180,11 @@ No, the difference is very small: `r round(fit.ph$loglik[2] - fit.g$loglik[2], 3
 
 # A look at data
 
+## Full data
+
 These are the mortality patterns for the four groups we are contemplating. Worth noting is that male mortality above age 90 is so low (compared to women).
 
-```{r standards}
+```{r standards, fig.cap = "Full data."}
 fit <- coxph(Surv(enter, exit, event) ~ strata(region, sex), data = ols)
 par(las = 1)
 plot(survfit(fit), fun = "cumhaz", col = 1:4, lty = 1:4, xlab = "Years after 60.", ylab = "Cum. hazards", axes = FALSE)
@@ -215,6 +217,41 @@ x <- survfit(fit)
 x
 ```
 
+## Mortality of the dead
+
+Median life becomes about two years shorter for the "dead". Furthermore, mortality continue to rise after age 90, in contrast to
+what happens with full data. I suspect many too late censored in the high ages, a problem with the data registration. I will return with 
+a study of mortality after age 90 in a coming post. 
+
+```{r nonstandards, fig.cap = "Sampling of the dead."}
+sfit <- coxph(Surv(enter, exit, event) ~ strata(region, sex), data = sols)
+par(las = 1)
+plot(survfit(sfit), fun = "cumhaz", col = 1:4, lty = 1:4, xlab = "Years after 60.", ylab = "Cum. hazards", axes = FALSE)
+axis(1, at = c(0, 7, 11, 20, 30, 40))
+axis(2, at = c(0, log(2), 3, 5, 7), labels = c("0", "log(2)", "3", "5", "7"))
+box()
+legend("topleft", legend = levels(strata(ols$region, ols$sex)), col = 1:4, lty = 1:4)
+abline(h = 0)
+abline(h = log(2), lty = 2)
+```
+
+```{r }
+plot(survfit(sfit), col = 1:4, lty = 1:4, xlab = "Years after 60, the dead.", 
+     ylab = "Remaining fraction", axes = FALSE)
+axis(1, at = c(0, 7, 11, 20, 30))
+axis(2, at = c(0, 0.5, 1), las = 1)
+box()
+legend("topright", legend = levels(strata(ols$region, ols$sex)), col = 1:4, lty = 1:4)
+abline(h = 0)
+abline(h = 0.5, lty = 2)
+```
+
+We can also here make an exact calculation, which results in
+
+```{r exactkis}
+x <- survfit(sfit)
+x
+```
 # Conclusion
 
 We can live with the assumption of normally distributed residual life after age 60, but we must be aware of the fact that applying OLS implies rather strong distributional assumptions. It is a misconception to believe that least squares methods are "distribution free". Sampling of the dead, on the other hand, is problematic and should be avoided without measures that are specifically designed to take care of that situation (what ever they are).
