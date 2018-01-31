@@ -40,9 +40,9 @@ pgetPHglm2 <- function(dat, nper, labb, from = 40, median = TRUE){
         tmp <- exp(tmp)
         levs <- cbind(rep(0, m), tmp)
         levs[is.na(levs)] <- 0 ## HOPPSAN!!!
-        for (j in 1:m){
-            levs[j, ] <- cumsum(levs[j, ]) * ageInt
-        }
+        ##for (j in 1:m){
+          ##  levs[j, ] <- cumsum(levs[j, ]) * ageInt
+        ##}
         
 
         colnames(levs) <- c(ageName, ageName[k] + ageInt)
@@ -54,7 +54,7 @@ pgetPHglm2 <- function(dat, nper, labb, from = 40, median = TRUE){
     cuts <- as.numeric(colnames(res[[1]]))
     cuts <- cuts[-c(1, length(cuts))]
     medi <- matrix(0, ncol = nper, nrow = 4)
-    cat("cuts = ", cuts, "\n")
+    ##cat("cuts = ", cuts, "\n")
     ##cat("levs = ", levs, "\n")
     for (i in 1:nper){
       mat <- res[[i]]
@@ -70,5 +70,5 @@ pgetPHglm2 <- function(dat, nper, labb, from = 40, median = TRUE){
     ##res
     colnames(medi) <- names(res)
     rownames(medi) <- c("elite", "middle", "worker", "NA")
-    medi + 40
+    list(medi = medi + 40, mat = mat)
 }
