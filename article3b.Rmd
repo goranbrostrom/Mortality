@@ -153,15 +153,15 @@ background or previous social class.
 
 
 ```{r lexis2,fig.cap="The sampling frame.", fig.height = 5}
-plot(c(1801, 1801, 1951, 1951, 1801), c(40, 90, 90, 40, 40),
+plot(c(1801, 1801, 1951, 1951, 1801), c(30, 100, 100, 30, 30),
      type = "l", xlim = c(1800, 2014), lwd = 2, col = "red",
-     xlab = "Year", ylab = "Age", axes = FALSE, ylim = c(0, 90))
+     xlab = "Year", ylab = "Age", axes = FALSE, ylim = c(0, 100))
 axis(1, at = c(1801, 1851, 1901, 1951, 1976, 1991, 2014), las = 2)
-axis(2, las = 2, at = c(0, 40, 65, 90))
-axis(4, las = 2, at = c(0, 40, 65, 90))
+axis(2, las = 2, at = c(0, 30, 65, 100))
+axis(4, las = 2, at = c(0, 30, 65, 100))
 box()
 abline(h = 0)
-lines(c(1976, 1976, 2014, 2014, 1976), c(40, 90, 90, 40, 40),
+lines(c(1976, 1976, 2014, 2014, 1976), c(30, 100, 100, 30, 30),
       col = "blue", lwd = 2)
 #
 pn.exp <- round(sum(skel$exposure) + sum(skume$exposure))
@@ -181,7 +181,7 @@ text(1995.2, 55, paste(round(n.exp / 1000000, 1), "million p-years"), cex = 0.8)
 text(1995.2, 50, paste(round(n.d / 1000, 1), "thousand deaths"), cex = 0.7)
 ```
 
-In the data set analysed here, all individuals aged 40 years and older ever
+In the data set analysed here, all individuals aged 30 years and older ever
 having resided in either of the regions are included. The data file
 contains the variables social class, gender, urban/rural
 residence, birth date, death date, first and last date of observation and
@@ -271,7 +271,7 @@ xy <- with(skume[skume$sex == "female", ], tapply(exposure, list(period = period
 xz <- with(foli[foli$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 xxx <- rbind(xx, xy, xz)
 yy <- round(prop.table(xxx, 1) * 100, 1)
-barplot(t(yy)[5:1, ], col = c("red", "blue", "green", "black"), las = 2, ylab = "Per cent")
+barplot(t(yy)[5:1, ], col = c("red", "darkgreen", "blue", "green", "black"), las = 2, ylab = "Per cent")
 ```
 
 
@@ -354,7 +354,7 @@ hazards regression model:
 
 \begin{equation}\label{eq:prop}
 h(t; \lambda, \boldsymbol{\beta}, \textbf{x}) =
-\lambda(t)e^{\boldsymbol{\beta} \mathbf{x}}, \; \; 40 < t \le 90,
+\lambda(t)e^{\boldsymbol{\beta} \mathbf{x}}, \; \; 30 < t \le 100,
 \end{equation}
 where
 
@@ -367,7 +367,7 @@ parameters.} \\
 \end{equation*}
 and
 \begin{equation*}
-\lambda(t) = \alpha_i,\; 40 + 5(i - 1) < t \le 40 + 5i, \; i = 1, \ldots, 10.
+\lambda(t) = \alpha_i,\; 30 + 5(i - 1) < t \le 30 + 5i, \; i = 1, \ldots, 10.
 \end{equation*}
 
 Since all components of $\mathbf{x}$ are categorical covariates, the
@@ -434,19 +434,19 @@ cap0 <- "Cumulative hazard of dying before age 65 for a 30-year-old by social cl
 scap0 <- "Cumulative hazard of dying before age 65 for a 30-year old by social class."
 cap1 <- "Remaining years of life for a 65-year-old by social class and period, women (top) and men (bottom)."
 scap1 <- "Remaining life for a 65-year old by social class."
-cap12 <- "Relative cumulative hazard of dying before age 65 for a 40-year-old by social class and period, women (top) and men (bottom)."
-scap12 <- "Relative cumulative hazard of dying before age 65 for a 40-year-old by social class."
-cap12log <- "Probability of dying before age 65 for a 40-year-old by social class and period, women (top) and men (bottom). The last decades."
-scap12log <- "Probability by social class, ages 40--64, last years."
+cap12 <- "Relative cumulative hazard of dying before age 65 for a 30-year-old by social class and period, women (top) and men (bottom)."
+scap12 <- "Relative cumulative hazard of dying before age 65 for a 30-year-old by social class."
+cap12log <- "Probability of dying before age 65 for a 30-year-old by social class and period, women (top) and men (bottom). The last decades."
+scap12log <- "Probability by social class, ages 30--64, last years."
 
 cap2w <-  "Cumulative hazards for social class by time period, ages 65--99, women."
 scap2w <-  "Cumulative hazards, ages 65--99, women."
 cap2m <-  "Cumulative hazards for social class by time period, ages 65--99, men."
 scap2m <-  "Cumulative hazards, ages 65--99, men."
 ##
-cap22 <- "Relative cumulative hazard of dying before age 90 for a 65-year-old by social class and period, women (top) and men (bottom)."
-scap22 <- "Relative cumulative hazard of dying before age 90 for a 65-year-old by social class."
-cap22log <- "Probability of dying before age 90 for a 65-year-old by social class and period, women (top) and men (bottom). The last decades."
+cap22 <- "Relative cumulative hazard of dying before age 100 for a 65-year-old by social class and period, women (top) and men (bottom)."
+scap22 <- "Relative cumulative hazard of dying before age 100 for a 65-year-old by social class."
+cap22log <- "Probability of dying before age 100 for a 65-year-old by social class and period, women (top) and men (bottom). The last decades."
 scap22log <- "Probability by social class, ages 65--99, last years."
 
 ##
@@ -470,9 +470,9 @@ resm <- getPHglm2(vb3064[vb3064$sex == "male", ],
 ```{r cumsw, fig.cap = cap0, fig.scap = scap0, fig.height = 8, out.height = "14cm"}
 source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
-woutp <- plotED.glm(resw, col = scol, logScale = TRUE, ylab = "H(65|40)",
+woutp <- plotED.glm(resw, col = scol, logScale = TRUE, ylab = "H(65|30)",
                 main = "Women 30-64", ylim = c(0, 1))##, exclude = 5:6)
-moutp <- plotED.glm(resm, col = scol, logScale = TRUE, ylab = "H(65|40)",
+moutp <- plotED.glm(resm, col = scol, logScale = TRUE, ylab = "H(65|30)",
                 main = "Men 30-64", ylim = c(0, 1))##, exclude = 5:6)
 par(oldpar)
 ```
@@ -490,14 +490,14 @@ fitt <- glm(event ~ offset(log(exposure)) + urban_or_rural + marital_status + ag
 dr <- drop1(fitt, test = "Chisq")
 dr
 ##knitr::kable(dr)
-##print(xtable(dr,label = "tab:cumswtab", caption = "Mortality: ANOVA, ages 40--64."), 
+##print(xtable(dr,label = "tab:cumswtab", caption = "Mortality: ANOVA, ages 30--64."), 
   ##    type = "latex", comment = FALSE)
 ```
 
 The most interesting feature is the three-way interaction with **sex**, **period**, and **social class**. This indicates that fundamental changes have taken place in the relationship between the variables during our study period.
 
 Figure \@ref(fig:cumsw) shows the summed hazards of dying in the age interval
-40--64 during the different periods. Obviously, but not surprisingly, mortality
+30--64 during the different periods. Obviously, but not surprisingly, mortality
 decreases over time for both sexes. Women have consistently better survival
 than men. This is a well-known phenomenon in Swedish
 demographic history [@wil99; @suwi07]. We also observe a
@@ -515,9 +515,9 @@ relative mortality levels for the different classes since they are the main focu
 ```{r cumswstand, fig.cap = cap12, fig.scap = scap12, fig.height = 8, out.height = "14cm"}
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = TRUE, relative = TRUE,
-                    ylab = "H(65|40)", ylim = c(0.0, 0.6), main = "Women 30-64")##, exclude = 5:6)
+                    ylab = "H(65|30)", ylim = c(0.0, 0.6), main = "Women 30-64")##, exclude = 5:6)
 moutp <- plotED.glm(resm, col = scol, logScale = TRUE, relative = TRUE,
-                    ylab = "H(65|40)", ylim = c(0.0, 0.6), main = "Men 30-64")##, exclude = 5:6)
+                    ylab = "H(65|30)", ylim = c(0.0, 0.6), main = "Men 30-64")##, exclude = 5:6)
 par(oldpar)
 ```
 
@@ -572,16 +572,16 @@ raw <- rbind(rawskel, rawskume, rawfoli)
 raw <- age.window(raw, c(65, 100))
 ```
 
-<!--
+
 ```{r getske6099}
 vb6599 <- vb0Tab[as.numeric(as.character(vb0Tab$age)) >= 64.5, ]
 vb6599$age <- factor(vb6599$age) # NOTE:: Change to '6599'!
 ##vb6599$hisclass <- vb6599$hisclass60
 ```
--->
+
 We now turn to the elderly, those who in most cases have left the workforce.
-Corresponding to the previous analysis, we use the value of the cumulative hazards at
-duration 25 (age 90), starting from age 65 as a summary measure. Looking at the table below, it is obvious that the statistical significance is still strong.
+We use the *median remaining life at 65* (reported as median age at death) as the summary measure. Looking at the table below, it is obvious that the statistical significance is still strong.
+
 
 ```{r cumswtabold,cap="Table"}
 vb6599$marital_status <- vb6599$civst
@@ -598,66 +598,82 @@ drold
 ```
 
 
-The general pattern and development of mortality (Figure \@ref(fig:cumswold)) do not
+The general pattern and development of mortality (Figures \@ref(fig:plotrawwom) and \@ref(fig:plotrawm)) do not
 differ much from the younger age group, of course representing a much
 higher mortality level earlier in history. Mortality among women, as
 expected, was lower than among men. We find a clear decline in mortality, but
 the fastest decline did not set in definitely until sometime after the
 Second World War; that is, later than for the age
-group 40--64 years. This corresponds to the Swedish development whereby we
+group 30--64 years. This corresponds to the Swedish development whereby we
 find a turning point at this time with better survival among elderly, first for women and a couple of decades later for men.
 
 Concerning the social pattern, the pattern is less clear compared to what
-we find for the younger age group in line with the status-levelling hypothesis (see Figure \@ref(fig:cumsw2)). For women the results are mixed. We do not find the
+we find for the younger age group in line with the status-levelling hypothesis. For women the results are mixed. We do not find the
 same clear advantage for elite women during the period before 1950, but neither
 do we find any large disadvantage for working-class elderly women at that
-time. In most periods the social differences were small, particularly between the workers and the middle group, and the elite women even had somewhat higher mortality during some periods until the 190--1925 period. The social differences continued to be small until the last decades of the
+time. In most periods the social differences were small, particularly between the workers and the middle group, and the elite women even had somewhat higher mortality during some periods until the 1901--1925 period. The social differences continued to be small until the last decades of the
 20th century. It is only during the two last periods (after the year 2000) that it is
 possible to establish the expected social gradient in mortality.
 
 For men we find indications of the same intriguing change among elderly as
-for the adult male population aged 40--64 years, but at a much lower level. Mortality was somewhat higher among elite men during the 19th century, a pattern that prevailed until the middle of the
+for the adult male population aged 30--64 years, but at a much lower level. Mortality was somewhat higher among elite men during the 19th century, a pattern that prevailed until the middle of the
 the 20th century. It is not until the second half of the 20th
 century that the survival is better for the highest social class while
 workers of retirement age have slightly higher mortality. The difference between the worker and middle group has been small in most periods.
 
-
-```{r cumswold, fig.cap = cap1, fig.scap = scap1, fig.height = 8, out.height = "14cm"}
-##source("R/plotED.R")
-source("R/pgetPHglm2.R")
-resw <- pgetPHglm2(vb6599[vb6599$sex == "female", ],
-            nper, labb)
-resm <- pgetPHglm2(vb6599[vb6599$sex == "male", ],
-            nper, labb)
-
-oldpar <- par(mfrow = c(2, 1))
-woutp <- plotED.glm(resw, col = scol, logScale = TRUE, relative = FALSE,
-                    ylab = "H(90|65)", ylim = c(0.0, 10.0), main = "Women 65-99")##, exclude = 5:6)
-moutp <- plotED.glm(resm, col = scol, logScale = TRUE, relative = FALSE,
-                    ylab = "H(90|65)", ylim = c(0.0, 10.0), main = "Men 65-99")##, exclude = 5:6)
-par(oldpar)
+```{r rawreswomen}
+hc <- levels(raw$hisclass)
+n.hc <- length(hc)
+peri <- levels(raw$period)
+n.peri <- length(peri)
+med <- matrix(0, nrow = n.hc, ncol = n.peri)
+for (i in 1:n.hc){
+    fit <- coxph(Surv(enter, exit, event) ~ civst + urban + strata(period), data = raw[raw$sex == "female" & 
+                                                                              raw$hisclass == hc[i], ])
+    med[i, ] <- summary(survfit(fit, newdata = data.frame(civst = "married", urban = FALSE)))$table[, "median"]
+}
 ```
 
-```{r cumsw2, fig.cap = cap22, fig.scap = scap22, fig.height = 8, out.height = "14cm"}
-source("R/plotED.glm.R")
-oldpar <- par(mfrow = c(2, 1))
-woutp <- plotED.glm(resw, col = scol, logScale = TRUE, relative = TRUE, 
-                    ylab = "H(90|65)",
-                main = "Women 65-99", ylim = c(0, 0.6))##, exclude = 5:6)
-moutp <- plotED.glm(resm, col = scol, logScale = TRUE, relative = TRUE,
-                    ylab = "H(90|65)",
-                main = "Men 65-99", ylim = c(0, 0.6))##, exclude = 5:6)
-par(oldpar)
+```{r plotrawwom, fig.cap="Median age at death for a 65 year old married woman on the countryside by SES and period.", fig.height = 5, out.height = "10cm"}
+x <- c(1812, 1837, 1862, 1887, 1912, 1937, 1975, 1985, 1995, 2004, 2011)
+plot(x, med[1, -7], col = scol[1], type = "b", lty = 1, pch = 1, xlab = "Period", ylab = "Median age at death | 65", ylim = c(70, 90), main = "Women", axes = FALSE)
+axis(1, at = x, labels = peri[-7], las = 2, cex.axis = 0.5)
+axis(2, las = 1)
+box()
+abline(h = c(75, 80, 85), lty = 3)
+for (i in 2:5){
+    lines(x, med[i, -7], col = scol[i], type = "b", lty = i, pch = i)
+}
+legend("bottomright", legend = hc, lty = 1:5, pch = 1:5, col = scol)
+```
+
+```{r rawresmen}
+hc <- levels(raw$hisclass)
+n.hc <- length(hc)
+peri <- levels(raw$period)
+n.peri <- length(peri)
+med <- matrix(0, nrow = n.hc, ncol = n.peri)
+for (i in 1:n.hc){
+    fit <- coxph(Surv(enter, exit, event) ~ civst + urban + strata(period), data = raw[raw$sex == "male" & 
+                                                                              raw$hisclass == hc[i], ])
+    med[i, ] <- summary(survfit(fit, newdata = data.frame(civst = "married", urban = FALSE)))$table[, "median"]
+}
+```
+
+```{r plotrawm, fig.cap="Median age at death for a 65 year old married man on the countryside by SES and period.", fig.height = 5}
+x <- c(1812, 1837, 1862, 1887, 1912, 1937, 1975, 1985, 1995, 2004, 2011)
+plot(x, med[1, -7], col = scol[1], type = "b", lty = 1, pch = 1, xlab = "Period", ylab = "Median age at death | 65", ylim = c(70, 90), main = "Men", axes = FALSE)
+axis(1, at = x, labels = peri[-7], las = 2, cex.axis = 0.5)
+axis(2, las = 1)
+abline(h = c(75, 80, 85), lty = 3)
+box()
+for (i in 2:5){
+    lines(x, med[i, -7], col = scol[i], type = "b", lty = i, pch = i)
+}
+legend("bottomright", legend = hc, lty = 1:5, pch = 1:5, col = scol)
 ```
 
 
-```{r cumswoldtab,results='asis',eval=FALSE}
-fitt <- glm(event ~ offset(log(exposure)) + urban + civst + age + sex * hisclass * period,
-            data = vb6599, family = poisson)
-dr <- drop1(fitt, test = "Chisq")
-##knitr::kable(dr)
-xtable(dr,label = "tab:cumswoldtab", caption = "ANOVA, all causes of death, 65-99.")
-```
 
 # Discussion
 
