@@ -18,7 +18,7 @@ output:
     toc: yes
     toc_depth: 2
 titlepage: yes
-bibliography: mybib
+bibliography: mybib.bib
 documentclass: article
 classoption: titlepage
 fontsize: 12pt
