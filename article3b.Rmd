@@ -3,17 +3,17 @@ title: "Is high social class always beneficial for survival? Northern Sweden 180
 author: Sören Edvinsson\footnote{Corresponding author; Phone number +46907866040, email soren.edvinsson\@umu.se} and Göran Broström
 date: 'Centre for Demographic and Ageing Research \newline Umeå University, SE-90187 Umeå, Sweden'
 output:
+  bookdown::html_document2:
+    number_sections: yes
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
   bookdown::pdf_document2:
     citation_package: natbib
     number_sections: yes
     toc: no
     toc_depth: 2
     keep_tex: true
-  bookdown::html_document2:
-    number_sections: yes
-    toc: yes
-    toc_depth: 2
-    toc_float: yes
   bookdown::word_document2:
     toc: yes
     toc_depth: 2
