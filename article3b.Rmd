@@ -3,22 +3,22 @@ title: "Is high social class always beneficial for survival? Northern Sweden 180
 author: Sören Edvinsson\footnote{Corresponding author; Phone number +46907866040, email soren.edvinsson\@umu.se} and Göran Broström
 date: 'Centre for Demographic and Ageing Research \newline Umeå University, SE-90187 Umeå, Sweden'
 output:
-  bookdown::html_document2:
-    number_sections: yes
-    toc: yes
-    toc_depth: 2
-    toc_float: yes
   bookdown::pdf_document2:
     citation_package: natbib
     number_sections: yes
     toc: no
     toc_depth: 2
     keep_tex: true
+  bookdown::html_document2:
+    number_sections: yes
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
   bookdown::word_document2:
     toc: yes
     toc_depth: 2
 titlepage: yes
-bibliography: mybib.bib
+bibliography: mybib
 documentclass: article
 classoption: titlepage
 fontsize: 12pt
@@ -636,7 +636,7 @@ for (i in 1:n.hc){
 
 ```{r plotrawwom, fig.cap="Median age at death for a 65 year old married woman on the countryside by SES and period.", fig.height = 5, out.height = "10cm"}
 x <- c(1812, 1837, 1862, 1887, 1912, 1937, 1975, 1985, 1995, 2004, 2011)
-plot(x, med[1, -7], col = scol[1], type = "b", lty = 1, pch = 1, xlab = "Period", ylab = "Median age at death | 65", ylim = c(70, 90), main = "Women", axes = FALSE)
+plot(x, med[1, -7], col = scol[1], type = "b", lty = 1, pch = 1, xlab = "Period", ylab = "Age", ylim = c(70, 90), main = "Women", axes = FALSE)
 axis(1, at = x, labels = peri[-7], las = 2, cex.axis = 0.5)
 axis(2, las = 1)
 box()
@@ -662,7 +662,7 @@ for (i in 1:n.hc){
 
 ```{r plotrawm, fig.cap="Median age at death for a 65 year old married man on the countryside by SES and period.", fig.height = 5}
 x <- c(1812, 1837, 1862, 1887, 1912, 1937, 1975, 1985, 1995, 2004, 2011)
-plot(x, med[1, -7], col = scol[1], type = "b", lty = 1, pch = 1, xlab = "Period", ylab = "Median age at death | 65", ylim = c(70, 90), main = "Men", axes = FALSE)
+plot(x, med[1, -7], col = scol[1], type = "b", lty = 1, pch = 1, xlab = "Period", ylab = "Age", ylim = c(70, 90), main = "Men", axes = FALSE)
 axis(1, at = x, labels = peri[-7], las = 2, cex.axis = 0.5)
 axis(2, las = 1)
 abline(h = c(75, 80, 85), lty = 3)
