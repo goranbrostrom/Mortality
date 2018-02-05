@@ -18,12 +18,12 @@ output:
     toc: yes
     toc_depth: 2
 titlepage: yes
-bibliography: mybib
+bibliography: "mybib.bib"
 documentclass: article
 classoption: titlepage
 fontsize: 12pt
 citation_package: natbib
-biblio-style: apalike
+biblio-style: "apalike"
 header-includes:
   - \usepackage[utf8]{inputenc}
 abstract: "Focusing on two regions in northern Sweden 1801--2013, we challenge common notions of the assumed advantage in survival of belonging to a high social class. The issue is analysed according to gender and age group (adults and elderly) and in relation to the development of economic inequality. The results show that high social class is not always favourable for survival. Men in the elite category had higher mortality compared to others during a large part of the studied period; a male mortality class reversal appears at a surprisingly late date, while the social gradient among women conforms to the expected pattern. We suggest that health-related behaviour is decisive not only in later but earlier phases of the mortality transition as well. The results implicate that the association between social class and health is more complex than is assumed in many of the dominant theories in demography and epidemiology."
@@ -233,7 +233,7 @@ HISCO-based historical international social class scheme" [@lema11; @lema02].
 The different classes in Hisclass represent distinct
 categories, based on whether the work is manual or non–manual, skill level,
 supervision, and sector. Implicitly it reflects large differences in access to
-economic resources, status, social power, etc.  We have chosen to work with a broad definition of classes, merging the original 12 social classes in Hisclass into three, representing different levels of control and access to resources vital for life chances, and an additional fourth category of unknown class:
+economic resources, status, social power, etc.  We have chosen to work with a broad definition of classes, merging the original 12 social classes in Hisclass into four, representing different levels of control and access to resources vital for life chances, and an additional fifth category of unknown class:
 
 \begin{enumerate}
 \item {\tt elite}, Hisclass 1 and 2. Higher managers and higher professionals.
@@ -242,6 +242,7 @@ farm hands and lower professionals, clerical and sales personell.
 \item {\tt worker}, Hisclass 7, 9, 10, 11 and 12. Workers including
 farm workers.
 \item {\tt farmer}, Hisclass 8. Farmers. 
+\item {\tt NA}, Not Available, unknown. 
 \end{enumerate}
 
 
@@ -251,9 +252,11 @@ Figures \@ref(fig:hiscskumm) and \@ref(fig:hiscskumw) show the distribution
 respectively. The category of workers is fairly stable over time. The
 highest class has increased substantially, albeit from a very low level
 in the 19th century. The increase in academics in connection to the
-establishment of Umeå University explains much of this increase in later time. What is
-not apparent in Figure \@ref(fig:hiscskumm) is the transfer within the middle
-group from a majority of farmers during the 19th century to lower white-collar from the middle of the 20th century. Furthermore we observe a rather high percentage of missing social class in the early 19th century. For men the proportion is somewhat higher in the age group 65 and above, those who were retired, but still low enough to be used in our analyses (results not shown). If we disregard the very first period, however, there were very few with occupation missing until 1950. 
+establishment of Umeå University explains much of this increase in later time. Furthermore, 
+we observe a rather high percentage of missing social class in the early 19th century. 
+For men the proportion is somewhat higher in the age group 65 and above, those who were retired, 
+but still low enough to be used in our analyses (results not shown). If we disregard the very first period, 
+however, there were very few with occupation missing until 1950. 
 
 ```{r hiscskumm, fig.cap = "Exposure by social class (from the top: elite, middle, workers, farmers, missing) and time period, men.", fig.scap="Exposure by social class and time period, men.", out.height = '50%', fig.height=4}
 xx <- with(skel[skel$sex == "male", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
@@ -476,10 +479,10 @@ moutp <- plotED.glm(resm, col = scol, logScale = TRUE, ylab = "H(65|30)",
 par(oldpar)
 ```
 
-Looking at the table below, it is obvious that the statistical significance is strong.
+Looking at Table \@ref(tab:cumswtab), it is obvious that the statistical significance is strong.
 
 
-```{r cumswtab,cap="Table"}
+```{r cumswtab,message=FALSE}
 vb3064$social_class <- vb3064$hisclass
 vb3064$marital_status <- vb3064$civst
 vb3064$urban_or_rural <- vb3064$urban
@@ -487,8 +490,8 @@ vb3064$age_group <- vb3064$age
 fitt <- glm(event ~ offset(log(exposure)) + urban_or_rural + marital_status + age_group + sex * social_class * period,
             data = vb3064, family = poisson)
 dr <- drop1(fitt, test = "Chisq")
-dr
-##knitr::kable(dr)
+##dr
+knitr::kable(dr, caption = "Single term deletions, ages 30-64.")
 ##print(xtable(dr,label = "tab:cumswtab", caption = "Mortality: ANOVA, ages 30--64."), 
   ##    type = "latex", comment = FALSE)
 ```
@@ -551,7 +554,8 @@ represent groups in society that are particularly vulnerable.
 A further observation can be made from Figure \@ref(fig:cumsw). The gender
 difference in death hazards is extremely large for the elite group from
 1851--1950, men having about three times higher risks than women in the
-same class (basically living in the same households). In the other classes, the difference was much smaller. It was men in high positions who experienced the largest risks.
+same class (basically living in the same households). In the other classes, 
+the difference was much smaller. It was men in high positions who experienced the largest risks.
 
 
 
@@ -579,7 +583,7 @@ vb6599$age <- factor(vb6599$age) # NOTE:: Change to '6599'!
 ```
 
 We now turn to the elderly, those who in most cases have left the workforce.
-We use the *median remaining life at 65* (reported as median age at death) as the summary measure. Looking at the table below, it is obvious that the statistical significance is still strong.
+We use the *median remaining life at 65* (reported as median age at death) as the summary measure. Looking at Table \@ref(tab:cumswtabold), it is obvious that the statistical significance is still strong.
 
 
 ```{r cumswtabold,cap="Table"}
@@ -590,8 +594,8 @@ vb6599$age_group <- vb6599$age
 fittold <- glm(event ~ offset(log(exposure)) + urban_or_rural + marital_status + age_group + sex * social_class * period,
             data = vb6599, family = poisson)
 drold <- drop1(fittold, test = "Chisq")
-##knitr::kable(dr)
-drold
+knitr::kable(dr, caption = "Single term deletions, ages 65-99.")
+##drold
 ##print(xtable(drold,label = "tab:cumswtabold", caption = "Mortality: ANOVA, ages 65--99."), 
   ##    type = "latex", comment = FALSE)
 ```
@@ -633,7 +637,7 @@ for (i in 1:n.hc){
 }
 ```
 
-```{r plotrawwom, fig.cap="Median age at death for a 65 year old married woman on the countryside by SES and period.", fig.height = 5, out.height = "10cm"}
+```{r plotrawwom, fig.cap="Median age at death for a 65 year old married woman on the countryside by SES and period.", fig.height = 4, out.height = "10cm"}
 x <- c(1812, 1837, 1862, 1887, 1912, 1937, 1975, 1985, 1995, 2004, 2011)
 plot(x, med[1, -7], col = scol[1], type = "b", lty = 1, pch = 1, xlab = "Period", ylab = "Age", ylim = c(70, 90), main = "Women", axes = FALSE)
 axis(1, at = x, labels = peri[-7], las = 2, cex.axis = 0.5)
@@ -643,7 +647,7 @@ abline(h = c(75, 80, 85), lty = 3)
 for (i in 2:5){
     lines(x, med[i, -7], col = scol[i], type = "b", lty = i, pch = i)
 }
-legend("bottomright", legend = hc, lty = 1:5, pch = 1:5, col = scol)
+legend("bottomright", legend = hc, lty = 1:5, pch = 1:5, col = scol, cex = 0.6)
 ```
 
 ```{r rawresmen}
@@ -659,7 +663,7 @@ for (i in 1:n.hc){
 }
 ```
 
-```{r plotrawm, fig.cap="Median age at death for a 65 year old married man on the countryside by SES and period.", fig.height = 5}
+```{r plotrawm, fig.cap="Median age at death for a 65 year old married man on the countryside by SES and period.", fig.height = 4}
 x <- c(1812, 1837, 1862, 1887, 1912, 1937, 1975, 1985, 1995, 2004, 2011)
 plot(x, med[1, -7], col = scol[1], type = "b", lty = 1, pch = 1, xlab = "Period", ylab = "Age", ylim = c(70, 90), main = "Men", axes = FALSE)
 axis(1, at = x, labels = peri[-7], las = 2, cex.axis = 0.5)
@@ -669,7 +673,7 @@ box()
 for (i in 2:5){
     lines(x, med[i, -7], col = scol[i], type = "b", lty = i, pch = i)
 }
-legend("bottomright", legend = hc, lty = 1:5, pch = 1:5, col = scol)
+legend("bottomright", legend = hc, lty = 1:5, pch = 1:5, col = scol, cex = 0.6)
 ```
 
 
