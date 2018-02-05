@@ -71,6 +71,6 @@ plotED.glm <- function(res,
     }
     abline(v = xv[out], lty = 3, col = "magenta")
     abline(h = 0)
-    legend("topright", legend = leg, col = col, pch = 1:m, lty = 1:m)
+    legend("topright", legend = leg, col = col, pch = 1:m, lty = 1:m, cex = 0.7)
     invisible(outp)
 }
