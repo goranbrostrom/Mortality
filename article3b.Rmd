@@ -26,6 +26,7 @@ citation_package: natbib
 biblio-style: "apalike"
 header-includes:
   - \usepackage[utf8]{inputenc}
+  - \usepackage{graphicx}
 abstract: "Focusing on two regions in northern Sweden 1801--2013, we challenge common notions of the assumed advantage in survival of belonging to a high social class. The issue is analysed according to gender and age group (adults and elderly) and in relation to the development of economic inequality. The results show that high social class is not always favourable for survival. Men in the elite category had higher mortality compared to others during a large part of the studied period; a male mortality class reversal appears at a surprisingly late date, while the social gradient among women conforms to the expected pattern. We suggest that health-related behaviour is decisive not only in later but earlier phases of the mortality transition as well. The results implicate that the association between social class and health is more complex than is assumed in many of the dominant theories in demography and epidemiology."
 ---
 
@@ -102,7 +103,7 @@ American countries in its basic features [@rowa14].
 
 (ref:cities) The Skellefteå and Umeå regions in Sweden.
 
-```{r mapp,fig.cap = "(ref:cities)", fig.height=6,fig.align='center', out.height='50%'}
+```{r mapp,fig.cap = "(ref:cities)", fig.height=6,fig.align='center', out.height="5in"}
 knitr::include_graphics("myfigs/sweden.png")
 ```
 During the studied period, Sweden developed from a poor agricultural society with low urbanization to a rich welfare state. If Sweden is remote from a European continental perspective, the regions studied here are remote from the central parts of the country. The Skellefteå and Umeå regions (Figure \@ref(fig:mapp)) are part of the county of Västerbotten in northern of Sweden along the coast of the Gulf
@@ -258,7 +259,7 @@ For men the proportion is somewhat higher in the age group 65 and above, those w
 but still low enough to be used in our analyses (results not shown). If we disregard the very first period, 
 however, there were very few with occupation missing until 1950. 
 
-```{r hiscskumm, fig.cap = "Exposure by social class (from the top: elite, middle, workers, farmers, missing) and time period, men.", fig.scap="Exposure by social class and time period, men.", out.height = '50%', fig.height=4}
+```{r hiscskumm, fig.cap = "Exposure by social class (from the top: elite, middle, workers, farmers, missing) and time period, men.", fig.scap="Exposure by social class and time period, men.", out.height = "14cm", fig.height=4}
 xx <- with(skel[skel$sex == "male", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 xy <- with(skume[skume$sex == "male", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 xz <- with(foli[foli$sex == "male", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
@@ -267,7 +268,7 @@ yy <- round(prop.table(xxx, 1) * 100, 1)
 barplot(t(yy)[5:1, ], col = c("red", "darkgreen", "blue", "green", "black"), las = 2, ylab = "Per cent")
 ```
 
-```{r hiscskumw, fig.cap = "Exposure by social class (from the top: elite, middle, workers, missing) and time period, women.", out.height = '50%', fig.scap="Exposure by social class and time period, women.",fig.height=4}
+```{r hiscskumw, fig.cap = "Exposure by social class (from the top: elite, middle, workers, missing) and time period, women.", out.height = "14cm", fig.scap="Exposure by social class and time period, women.",fig.height=4}
 xx <- with(skel[skel$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 xy <- with(skume[skume$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 xz <- with(foli[foli$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
@@ -296,7 +297,7 @@ set to unmarried. Note that it has not been possible to identify cohabitation.
 
 
 
-```{r civstskum, fig.cap = "Exposure by marital status (from the top: never married, married and previously married) and time period", fig.scap='Exposure by marital status and time period.',out.height = '50%',fig.height=4}
+```{r civstskum, fig.cap = "Exposure by marital status (from the top: never married, married and previously married) and time period", fig.scap='Exposure by marital status and time period.',out.height = "14cm",fig.height=4}
 xx <- with(skel, tapply(exposure, list(period = period, civst = civst), sum))
 xy <- with(skume, tapply(exposure, list(period = period, civst = civst), sum))
 xz <- with(foli, tapply(exposure, list(period = period, civst = civst), sum))
