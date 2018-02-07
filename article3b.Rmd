@@ -3,17 +3,17 @@ title: "Is high social class always beneficial for survival? Northern Sweden 180
 author: Sören Edvinsson\footnote{Corresponding author; Phone number +46907866040, email soren.edvinsson\@umu.se} and Göran Broström
 date: 'Centre for Demographic and Ageing Research \newline Umeå University, SE-90187 Umeå, Sweden'
 output:
+  bookdown::html_document2:
+    number_sections: yes
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
   bookdown::pdf_document2:
     citation_package: natbib
     number_sections: yes
     toc: no
     toc_depth: 2
     keep_tex: true
-  bookdown::html_document2:
-    number_sections: yes
-    toc: yes
-    toc_depth: 2
-    toc_float: yes
   bookdown::word_document2:
     toc: yes
     toc_depth: 2
@@ -48,11 +48,16 @@ skume <- get.file("skume")
 ##
 foli <- get.file("foli")
 skel$urban <- FALSE
-vb0Tab <- rbind(skel, skume[, names(skel)], foli[, names(skel)])
+su <- rbind(skel, skume[, names(skel)])
+
+vb0Tab <- rbind(su, foli[, names(su)])
+
 vb0Tab$civst <- relevel(vb0Tab$civst, ref = "married")
 vb0Tab <- aggregate(vb0Tab[, c("event", "exposure")],
                     vb0Tab[, c("sex", "age", "period", "cohort", "civst", "hisclass", "urban")],
                     FUN = sum)
+vb0Tab <- vb0Tab[!(vb0Tab$period %in% c("1961-1970", "1971-1975")), ]
+vb0Tab$period <- factor(vb0Tab$period)
 ```
 
 # Introduction
@@ -569,10 +574,14 @@ rawskel <- rawskel[, c("id", "sex", "birthdate", "enter", "exit", "event", "peri
 ##
 rawskume <- get.file("rawskume")
 rawskume <- rawskume[, c("id", "sex", "birthdate", "enter", "exit", "event", "period", "urban", "civst", "hisclass", "cohort")]
+raw <- rbind(rawskel, rawskume)
+raw$id <- paste("pop", raw$id, sep = "_")
 ##
 rawfoli <- get.file("rawfoli")
 rawfoli <- rawfoli[, c("id", "sex", "birthdate", "enter", "exit", "event", "period", "urban", "civst", "hisclass", "cohort")]
-raw <- rbind(rawskel, rawskume, rawfoli)
+raw <- rbind(raw, rawfoli)
+raw <- raw[!(raw$period %in% c("1961-1970", "1971-1975")), ]
+raw$period <- factor(raw$period)
 raw <- age.window(raw, c(65, 100))
 ```
 
@@ -661,6 +670,11 @@ for (i in 1:n.hc){
     fit <- coxph(Surv(enter, exit, event) ~ civst + urban + strata(period), data = raw[raw$sex == "male" & 
                                                                               raw$hisclass == hc[i], ])
     med[i, ] <- summary(survfit(fit, newdata = data.frame(civst = "married", urban = FALSE)))$table[, "median"]
+}
+for (i in 1:n.hc){
+    fit <- coxph(Surv(enter, exit, event) ~ strata(period), data = raw[raw$sex == "male" & 
+                                                                              raw$hisclass == hc[i], ])
+    med[i, ] <- summary(survfit(fit))$table[, "median"]
 }
 ```
 
