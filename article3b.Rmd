@@ -65,7 +65,7 @@ vb0Tab$period <- factor(vb0Tab$period)
 
 A major theme in demographic and epidemiological studies is the seemingly persistent effect of social class on mortality. In the present study, we challenge common notions of this by taking a long-term perspective on the development of social class inequalities in mortality in the adult and elderly population with a special focus on the relative differences. The arguments for our statements are based on an investigation of the Skellefteå and Umeå regions in northern Sweden for the periods 1801--2013 for Skellefteå and 1901--2013 for Umeå. The main issue is analysed according to gender and age group (working age vs retired), testing whether the same patterns prevail in old age---the retired population---as in working age.  Furthermore we place this in the context of how the inequality in mortality is associated with the development of economic inequality in society. The results are discussed in relation to the mortality transition and the social determinants of health and mortality, as well as their implications on some of the most influential hypotheses and concepts in health research.
 
-Based on the results, we argue that high social class is not necessarily always favourable for survival. Social conditions and social position certainly have impact, but not always in the expected direction. In our case this is apparent for men during a large part of the studied period; only at a surprisingly late date there appear a male mortality class reversal, changing the relation to a substantial advantage of being in a higher social position. Mortality risks in different contexts must be understood in the intersection between class and gender. We suggest that health-related behaviour is not only important in present-day societies, but was also decisive in earlier phases of the mortality transition. The results implicate that the association between social class and health is more complex than is assumed in many of the dominant theories in demography and epidemiology.
+Based on the results, we argue that high social class is not necessarily favourable for survival. Social conditions and social position certainly have impact, but not always in the expected direction. In our case this is apparent for men during a large part of the studied period; only at a surprisingly late date appears a male mortality class reversal, changing the relation to a substantial advantage of being in a higher social position. Mortality risks in different contexts must be understood in the intersection between class and gender. We suggest that health-related behaviour is not only important in present-day societies, but was also decisive in earlier phases of the mortality transition. The results implicate that the association between social class and health is more complex than is assumed in many of the dominant theories in demography and epidemiology.
 
 
 ## Social class and mortality
@@ -73,7 +73,7 @@ Based on the results, we argue that high social class is not necessarily always 
 One of the central aspects of survival is social class and access to economic
 and other resources. In present-day welfare societies, social position, either according to social class, education or income, is a
 strong determinant when it comes to health and mortality and its impact even
-seems to be increasing [@kuetal04; @macketal16; @frlu07; @broba12; @strand10]. @liph02 suggest that
+are increasing [@kuetal04; @macketal16; @frlu07; @broba12; @strand10]. @liph02 suggest that
 "... social conditions have been, are and will continue to be irreducible
 determinants of health outcomes and therefore deserve their appellation of
 'fundamental causes' of disease and death". The persistence of social inequality in mortality to the disadvantage of the lower classes is one of the main assumptions in their theory [@liph95; @liph98]. The reigning view is that socio-economic health and mortality inequalities were large in historical societies, probably larger than in modern societies. This is a
@@ -90,10 +90,10 @@ better understand the role of class and socio-economic conditions in health and 
 
 Social position affects health and mortality differently during the life course. There are different hypotheses about the impact in adulthood and old age respectively. The differences either converge in old age (status levelling), are constant (status maintenance), or diverge (cumulative advantage) [@hof08]. Diminishing differences may be a consequence of the circumstance that biological factors become increasingly important during the ageing process and in old age, leaving less impact for social factors. The status maintenance hypothesis basically assumes 
 continuity in the determinants of social health inequalities from adulthood to old age.
-The cumulative (dis)advantage hypothesis [@dan03], implies that advantages and disadvantages tend to persist and accumulate during life in a negative spiral rewarding some while disfavouring others. This leads to larger differences in old age. 
+The cumulative (dis)advantage hypothesis [@dan03], implies that advantages and disadvantages persist and accumulate during life in a negative spiral rewarding some while disfavouring others. This leads to larger differences in old age. 
 
 
-Another aspect of the development of social inequality in mortality concerns its relation to economic inequality. @wipi09 argue that income inequality has an independent effect on mortality, separate from the direct effect of actual access to economic resources. They argue
+Another aspect of the development of social inequality in mortality concerns its relation to economic inequality. @wipi09 argue that income inequality has an independent effect on mortality, separate from the direct effect of actual access to economic resources. They find
 that unequal societies (basically countries) perform less well when it comes to health (as well as other social conditions) than equal ones in the todays economically developed world. This has initiated a vital scholarly debate and the topic has been extensively studied [@suka04; @wado00]. In recent decades, the respective association between trends of inequalities in mortality and income is weak or non-existent according to @hoetal16. What the association looked like in previous periods is unknown;  this is of particular interest as the levels of economic inequality differed fundamentally from those of recent decades. Even if not a necessary implication, it is reasonable to assume that poorer groups were the most disadvantaged due to large levels of inequality. 
 
 When it comes to Sweden both income and wealth distributions were strongly skewed from the 1870s to the early 20th century. Starting during the inter-war period, income and
@@ -111,8 +111,8 @@ American countries in its basic features [@rowa14].
 ```{r mapp,fig.cap = "(ref:cities)", fig.height=6,fig.align='center', out.height="5in"}
 knitr::include_graphics("myfigs/sweden.png")
 ```
-During the studied period, Sweden developed from a poor agricultural society with low urbanization to a rich welfare state. If Sweden is remote from a European continental perspective, the regions studied here are remote from the central parts of the country. The Skellefteå and Umeå regions (Figure \@ref(fig:mapp)) are part of the county of Västerbotten in northern of Sweden along the coast of the Gulf
-of Bothnia. This is a remote part of the country where communication with
+During the studied period, Sweden developed from a poor agricultural society with low urbanization to a rich welfare state. If Sweden is peripheral from a European continental perspective, the regions studied here are remote from the central parts of the country. The Skellefteå and Umeå regions (Figure \@ref(fig:mapp)) are part of the county of Västerbotten in northern of Sweden along the coast of the Gulf
+of Bothnia, where communication with
 the rest of Sweden was difficult until the late 19th century. The economy
 was dominated by agriculture, making it vulnerable to harvest failures; several severe famines occurred in the regions during the 1800s, for example after the harvest failure of 1867 [@segb14]. During the long winters, sea communication was hindered due to the Gulf of Bothnia being frozen. The first ships of the year came to this area in May or even as late as June in some cases [@fah56]. Towards the end of the 19th century, the Swedish railway system reached this part of Sweden, facilitating contact with the rest of Sweden and, improving the economy and making it possible to mitigate the effects of harvest failures. During the 19th century, our regions became increasingly integrated in the same epidemiological pattern as the rest of Sweden.
 
@@ -127,9 +127,7 @@ Mortality was fairly low compared with other parts of the country and
 the fertility transition was late [@coa86]. The Skellefteå population
 size as defined in our data sets (all ages) was 6,142 on January 1, 1801, 43,212 on January 1, 1901, and 76,723 at the end of the 20th century.
 
-The Umeå region in the dataset consists of Umeå urban and rural parishes 1901--1950, and from 1976 onwards of Umeå municipality, withn another three parishes included. This region has a somewhat different character to that of Skellefteå. Umeå town had a small population but was substantially
-larger than Skellefteå town for almost the whole studied period and was
-the administrative, educational and military centre of the county of Västerbotten. During the latter part of the 20th century, the establishment of a university in Umeå led to a rapid population increase. Agriculture dominated the rural part, but there were also some foundries as well as forestry industries. Consequently the economy was more diversified than that of Skellefteå.The population size as defined in our data sets (all ages) was 19,138 on January 1, 1901 and 103,970 when the 20th century ended.
+The Umeå region in the dataset consists of Umeå urban and rural parishes 1901--1950, and from 1976 onwards of Umeå municipality, withn another three parishes included. This region has a somewhat different character to that of Skellefteå. Umeå town had for a long time a small population, although substantially, and was the administrative, educational and military centre of the county of Västerbotten. During the latter part of the 20th century, the establishment of Umeå University led to a rapid population increase. Agriculture dominated the rural part, but there were also some foundries as well as forestry industries. Consequently the economy was more diversified than that of Skellefteå. The population size as defined in our data sets (all ages) was 19,138 on January 1, 1901 and 103,970 when the 20th century ended.
 
 
 
@@ -144,8 +142,8 @@ between, the regions.
 
 The other large data set is extracted from the Linnaeus database
 [@malm10], which is based on different linked national population
-registers from 1960 to 2013 and is used within the ageing programme at CEDAR, Umeå
-University. Due to data issues (a great deal of missing data in some variables, for example social class, and additional work required to define the exact geographical areas of analysis). The study period from 1976 to 2000 is constructed from
+registers from 1960 to 2013 (censuses, LISA from Statistics Sweden and cause of death registers) and is used within the ageing programme at CEDAR, Umeå
+University. Due to data issues (a great deal of missing data in some variables, for example social class, and additional work required to define the exact geographical areas of analysis) we choose to use Linnaeus data from 1976 onwards. The study period from 1976 to 2000 is constructed from
 censuses every fifth year during the period 1975--1990, with additional information on deaths
 from the National Board of Health and Welfare. For the period 2002--2013 we use
 the information from the yearly population registers from Statistics Sweden
@@ -203,7 +201,7 @@ comes to the identification of presence periods. The Poplink data provide us wit
 to have full and continuous control over the \emph{de jure} population. This is
 not the case with the Linnaeus database, however. For the period 1976--2001
 we use presence in the censuses 1975--1990 and information on deaths from the National
-Board of Health and Welfare. The populations in the Skellefteå and Umeå regions are those residing there according to the censuses. Each census constitute the baseline for which persons are followed up during the five years until the next census (e.g. the 1975 census has a follow-up from 1 January 1976 until the end of 1980). The expection of thisis the 1990 census for which the follow-up is until 2001. Thus, the deaths do not necessarily take place in our region for the Linnaeus analyses, although this is usually the case. 
+Board of Health and Welfare. The populations in the Skellefteå and Umeå regions are those residing there according to the censuses. Each census constitute the baseline for which persons are followed up during the five years until the next census (e.g. the 1975 census has a follow-up from 1 January 1976 until the end of 1980). The exception of this is the 1990 census for which the follow-up is until 2001. Thus, the deaths do not necessarily take place in our region for the Linnaeus analyses, although this is usually the case. 
 
 For the last period, 2002--2013, we use the yearly population registers
 (LISA data) together with information on deaths from the National Board of
@@ -226,13 +224,13 @@ sources. In Poplink, occupations are coded according to the original DDB coding 
 
 The two different data sets represent different ways of reporting occupations. Poplink usually only provides the occupation of the head of household, thus underestimating female labour force participation as well as that of adult children residing with their parents [@vik10]. For the Poplink period, we have chosen to categorize wives according to the position of the head of household, usually
 the husband/father, assuming that the family shares the same socio-economic
-position.This is a reasonable approach for this period. 
+position. We consider this as a reasonable approach for this period. 
 
 Female labour is much better covered in the Linnaeus database, and it is difficult to define households in the same way as in Poplink. Extramarital cohabitation became common and female
 labour force participation developed as the norm, in Sweden during this
 period. The husband's occupation, as signifier of social class became,
 if not obsolete, at least less relevant. All included persons are signified
-by their individual occupation for this period. Although the results for the different periods are not completely comparable, the difference in approach reflects an actual change in how social class is structured. Notice, however, that there was strong social homogamy within married couples at this time, indicating that the results would not differ in any decisive way with the use of occupations on individual level instead of household level for defining social class based on the Linneaus data [@bjork92]. 
+by their individual occupation for this period. Although the results for the different periods are not completely comparable, the difference in approach reflects an actual change in how social class is structured.
 
 Hisclass, the classification system used as a basis for our categorization, is a "...
 HISCO-based historical international social class scheme" [@lema11; @lema02]. 
@@ -255,8 +253,7 @@ farm workers.
 
 Figures \@ref(fig:hiscskumm) and \@ref(fig:hiscskumw) show the distribution
 (per cent) of exposure time according to class for men and women,
-respectively. The category of workers is fairly stable over time. The
-highest class has increased substantially, albeit from a very low level
+respectively. The farmer category was dominant until the middle of the 20th centuries but have become marginal in the latest periods, particularly among women. The category of workers is fairly stable over time. The highest class has increased substantially, albeit from a very low level
 in the 19th century. The increase in academics in connection to the
 establishment of Umeå University explains much of this increase in later time. Furthermore, 
 we observe a rather high percentage of missing social class in the early 19th century. 
