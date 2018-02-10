@@ -433,6 +433,31 @@ conditional on survival to age 30,  and  *remaining expected life at 65* are the
 main targets in our analysis. These numbers are used in the process of
 graphically illustrating the development over time.
 
+## Inverse probability weighting
+
+```{r ipw}
+head(vb0)
+da <- vb0[vb0$sex == "male" & vb0$period == "1876-1900", c("id", "civst", "hisclass", "enter", "exit", "event")]
+gg <- as.numeric(da$hisclass)
+lfit1 <- glm(gg == 1 ~ civst, data = da, family = "binomial")
+p1 <- predict(lfit1, type = "response")
+lfit2 <- glm(gg == 2 ~ civst, data = da, family = "binomial")
+p2 <- predict(lfit2, type = "response")
+lfit3 <- glm(gg == 3 ~ civst, data = da, family = "binomial")
+p3 <- predict(lfit3, type = "response")
+lfit4 <- glm(gg == 4 ~ civst, data = da, family = "binomial")
+p4 <- predict(lfit4, type = "response")
+lfit5 <- glm(gg == 5 ~ civst, data = da, family = "binomial")
+p5 <- predict(lfit5, type = "response")
+tmp <- p1
+tmp[gg==2] <- p2[gg==2]
+tmp[gg==3] <- p3[gg==3]
+tmp[gg==4] <- p4[gg==4]
+tmp[gg==5] <- p5[gg==5]
+wgt <- 1 / tmp
+```
+
+
 # The effect of social class on mortality
 
 
