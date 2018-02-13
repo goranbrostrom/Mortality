@@ -504,7 +504,7 @@ each we calculate the total exposure time. The total distribution by confounders
 
 ```{r exweight}
 exm <- vb0Tab[vb0Tab$period == "1901-1925" & vb0Tab$sex == "male", c("age", "civst", "urban", "exposure", "event", "hisclass")]
-all <- aggregate(exm["exposure"], by = exm[c("civst", "urban")], FUN = sum)
+all <- aggregate(exm["exposure"], by = exm[c("civst", "urban", "age")], FUN = sum)
 all
 ```
 
@@ -512,14 +512,17 @@ and for the elite we have
 
 ```{r forelite}
 elite <- exm[exm$hisclass == "elite", c("age", "civst", "urban", "exposure", "event", "hisclass")]
-el <- aggregate(elite["exposure"], by = elite[, c("civst", "urban")], FUN = sum)
+el <- aggregate(elite["exposure"], by = elite[, c("civst", "urban", "age")], FUN = sum)
 el
 ```
 
-The weights are now 'all$exposure / el$exposure`, that is
+The weights are now 'all["exposure"]" / el["exposure"]`, that is
 
 ```{r wei}
-all$wei <- all$exposure / el$exposure
+wei <-  all$exposure / el$exposure
+all$wei <- wei 
+all$Expos <- all$exposure * wei
+all$Eve <- all$event * wei
 all
 ```
 
@@ -573,9 +576,12 @@ And put together:
 ```{r puttog}
 per1901 <- rbind(elite, middle, worker, farmer, non)
 per1901$age <- factor(per1901$age)
+#fit <- lm(exposure ~ civst * urban * age, data = per1901)
+#pred <- predict(fit, type = "response")
+#per1901$wght2 <- pred / per1901$exposure
 ```
 
-Let us fit with and without weights. Without weights:
+Let us fit with and without weights. Without weights, see Figure \@ref(fig:testfit).
 
 ```{r testfit, fig.cap = "Survival by hisclass, men 1901-1925, non-weighted analysis.", fig.height = 4}
 fit1 <- glm(event ~ offset(log(exposure)) + age, data = per1901[per1901$hisclass == "elite", ], family = poisson)
