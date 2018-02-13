@@ -143,7 +143,7 @@ between, the regions.
 The other large data set is extracted from the Linnaeus database
 [@malm10], which is based on different linked national population
 registers from 1960 to 2013 (censuses, LISA from Statistics Sweden and cause of death registers) and is used within the ageing programme at CEDAR, Umeå
-University. Due to data issues (a great deal of missing data in some variables, for example social class, and additional work required to define the exact geographical areas of analysis) we choose to use Linnaeus data from 1976 onwards. The study period from 1976 to 2000 is constructed from
+University. Due to data issues (a great deal of missing data in some variables, for example social class, and additional work required to define the exact geographical areas of analysis) we we restrict the analysis to the period 1976 onwards. The study period from 1976 to 2000 is constructed from
 censuses every fifth year during the period 1975--1990, with additional information on deaths
 from the National Board of Health and Welfare. For the period 2002--2013 we use
 the information from the yearly population registers from Statistics Sweden
@@ -203,7 +203,7 @@ not the case with the Linnaeus database, however. For the period 1976--2001
 we use presence in the censuses 1975--1990 and information on deaths from the National
 Board of Health and Welfare. The populations in the Skellefteå and Umeå regions are those residing there according to the censuses. Each census constitute the baseline for which persons are followed up during the five years until the next census (e.g. the 1975 census has a follow-up from 1 January 1976 until the end of 1980). The exception of this is the 1990 census for which the follow-up is until 2001. Thus, the deaths do not necessarily take place in our region for the Linnaeus analyses, although this is usually the case. 
 
-For the last period, 2002--2013, we use the yearly population registers
+For the last period, 2002--2013, we use the yearly population registers from Statistics Sweden
 (LISA data) together with information on deaths from the National Board of
 Health and Welfare. This allows for full control over the presence periods
 in the studied regions.
@@ -258,8 +258,7 @@ in the 19th century. The increase in academics in connection to the
 establishment of Umeå University explains much of this increase in later time. Furthermore, 
 we observe a rather high percentage of missing social class in the early 19th century. 
 For men the proportion is somewhat higher in the age group 65 and above, those who were retired, 
-but still low enough to be used in our analyses (results not shown). If we disregard the very first period, 
-however, there were very few with occupation missing until 1950. 
+but still low enough to be used in our analyses (results not shown). If we disregard the very first period, however, there were very few with occupation missing until 1950. 
 
 ```{r hiscskumm, fig.cap = "Exposure by social class (from the top: elite, middle, workers, farmers, missing) and time period, men.", fig.scap="Exposure by social class and time period, men.", out.height = "14cm", fig.height=4}
 xx <- with(skel[skel$sex == "male", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
