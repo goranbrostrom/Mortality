@@ -481,7 +481,6 @@ moutp <- plotED.glm(resm, col = scol, logScale = TRUE, ylab = "H(65|30)",
 par(oldpar)
 ```
 
-Looking at Table \@ref(tab:cumswtab), it is obvious that the statistical significance is strong.
 
 
 ```{r cumswtab,message=FALSE}
@@ -498,6 +497,7 @@ knitr::kable(dr, caption = "Single term deletions, ages 30-64.")
   ##    type = "latex", comment = FALSE)
 ```
 
+Looking at Table \@ref(tab:cumswtab), it is obvious that the statistical significance is strong.
 The most interesting feature is the three-way interaction with **sex**, **period**, and **social class**. This indicates that fundamental changes have taken place in the relationship between the variables during our study period.
 
 Figure \@ref(fig:cumsw) shows the summed hazards of dying in the age interval
@@ -526,24 +526,21 @@ par(oldpar)
 
 The changing economy has some consequences for the analysis, particularly when
 it comes to the agricultural sector. While farming occupations were common
-up until the first half of the 20th century, they have constantly decreased both in numbers as proportionally since then. This means that the middle category has
-a different character in the last periods.
+up until the first half of the 20th century, they have constantly decreased both in numbers as proportionally since then, and represent a very small minority at the enbd, particularly among women. 
 
 The most striking result of the analysis is the different patterns for men
 and women. The social pattern of mortality among women is a great deal in
-accordance with previous analyses on other regions in northern Sweden and for other periods [@edli11; @edbr12]. The highest social class usually has comparatively low mortality (except for the first period when the statistical power was weak), while
-working-class women have high mortality, but almost constantly about the same level as the middle category. However, there is no substantial change in the relative risks between classes except for the periods 1976 onwards when a divide appears between workers and the middle category. A consistent social gradient has developed; the group with unknown social class is distinguished by much higher mortality from the 1976 onwards. This might have to do with how we have defined social position for women before and after 1950. After 1975 it is based on their own occupation; lacking an occupation likely includes women who are more frail when it comes to health or are vulnerable due to social characteristics.
+accordance with previous analyses on other regions in northern Sweden and for other periods [@edli11; @edbr12]. The highest social class usually has comparatively low mortality (except for the first period when the statistical power was weak), while working-class women have high mortality. For women in the farming category, the mortality risks was at about the same levels as those of working-class women until the 1950s, while those in the middle category had somewhat lower mortality.   However, there is no substantial change during the studied period in the relative risk pattern between classes except for the results of the marginal farming category after 1976. Female mortality is characterised by a consistent social gradient. The group with unknown social class is distinguished by much higher mortality from the 1976 onwards. This might have to do with how we have defined social position for women before and after 1950. After 1975 it is based on their own occupation; lacking an occupation likely includes women who are more frail when it comes to health or are vulnerable due to social characteristics.
 
 A completely different pattern appears among men, which is the most surprising finding in
-our analyses. The groups we expect to have the lowest mortality, if
+our analyses. The group we expect to have the lowest mortality, if
 we assume that access to vital resources and belonging to a high social class
-determines survival, instead have by far the highest hazards of dying
+determines survival, instead has by far the highest hazards of dying
 during the 19th century and much of the 20th. Workers, on the
-other hand, have comparatively low mortality until 1950, at the same
-level as the middle category. The fact that we define social class as a time-dependent variable could otherwise lead to reverse causation -- those having bad health losing social position -- but instead, we find better survival among workers compared to the elite. 
+other hand, have comparatively low mortality until 1950, while mortality in the middle category represents an intermediate level. Farmers have similar levels as workers until the middle of the 20th century. The fact that we define social class as a time-dependent variable could otherwise lead to reverse causation -- those having bad health losing social position -- but instead, we find better survival among workers compared to the elite. 
 
 The relative positions change radically towards the end of the 20th century. From the 1980s, there is a clear advantage when it comes to survival for the elite. However, the relative
-differences are more compressed compared to the periods until 1950. A reversal of the class pattern in mortality has taken place, and the expected social gradient in mortality has developed. This is also what we usually find in analyses of social health inequalities in present-day
+differences are more compressed compared to the periods until 1950. A reversal of the class pattern in mortality has taken place, and the expected social gradient in mortality has developed. This latter pattern is also what we usually find in analyses of social health inequalities in present-day
 Sweden as well as in most other countries, results that have formed the basis for many of the contemporary epidemiologic and demographic theories. In the regions we are studying,
 this is a quite recent phenomenon. Corresponding to what we find
 for women, those without a known occupation have much higher mortality than
