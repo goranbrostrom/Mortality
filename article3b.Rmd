@@ -584,7 +584,7 @@ vb6599$age <- factor(vb6599$age) # NOTE:: Change to '6599'!
 ```
 
 We now turn to the elderly, those who in most cases have left the workforce.
-We use the *median remaining life at 65* (reported as median age at death) as the summary measure. Looking at Table \@ref(tab:cumswtabold), it is obvious that the statistical significance is still strong.
+We use the *median remaining life at 65* (reported as median age at death) as the summary measure, here restricted to married people from the countryside. Looking at Table \@ref(tab:cumswtabold), it is obvious that the statistical significance is still strong.
 
 
 ```{r cumswtabold,cap="Table"}
@@ -602,28 +602,24 @@ knitr::kable(dr, caption = "Single term deletions, ages 65-99.")
 ```
 
 
-The general pattern and development of mortality (Figures \@ref(fig:plotrawwom) and \@ref(fig:plotrawm)) do not
-differ much from the younger age group, of course representing a much
+The general pattern and development of mortality (Figures \@ref(fig:plotrawwom) and \@ref(fig:plotrawm)) do not differ much from the younger age group, of course representing a much
 higher mortality level earlier in history. Mortality among women, as
-expected, was lower than among men. We find a clear decline in mortality, but
-the fastest decline did not set in definitely until sometime after the
+expected, was lower than among men. We find a clear increase in survival, but
+the fastest increase did not set in definitely until sometime after the
 Second World War; that is, later than for the age
 group 30--64 years. This corresponds to the Swedish development whereby we
 find a turning point at this time with better survival among elderly, first for women and a couple of decades later for men.
 
 Concerning the social pattern, the pattern is less clear compared to what
-we find for the younger age group in line with the status-levelling hypothesis. For women the results are mixed. We do not find the
-same clear advantage for elite women during the period before 1950, but neither
-do we find any large disadvantage for working-class elderly women at that
-time. In most periods the social differences were small, particularly between the workers and the middle group, and the elite women even had somewhat higher mortality during some periods until the 1901--1925 period. The social differences continued to be small until the last decades of the
-20th century. It is only during the two last periods (after the year 2000) that it is
-possible to establish the expected social gradient in mortality.
+we find for the younger age group in line with the status-levelling hypothesis. For women the results are mixed. We do not find the same clear advantage for elite women during the period before 1950, but neither do we find any large disadvantage for working-class elderly women at that
+time. In most periods the social differences were small, particularly between the workers, farmers and the middle category, and the elite women even had somewhat lower mean age at death during some periods in the 19th century. The social differences continued to be small until the last decades of the
+20th century. It is only from around 1980 that it is possible to establish the expected social gradient in mortality.
 
 For men we find indications of the same intriguing change among elderly as
-for the adult male population aged 30--64 years, but at a much lower level. Mortality was somewhat higher among elite men during the 19th century, a pattern that prevailed until the middle of the
+for the adult male population aged 30--64 years, but at a much lower level and less consistent. Mean age at death was somewhat lower among elite men during the 19th century, a pattern that prevailed until the middle of the
 the 20th century. It is not until the second half of the 20th
 century that the survival is better for the highest social class while
-workers of retirement age have slightly higher mortality. The difference between the worker and middle group has been small in most periods.
+workers of retirement age have slightly lower age at death. The difference between the worker, farmers and the middle group has been small in most periods.
 
 ```{r rawreswomen}
 hc <- levels(raw$hisclass)
@@ -694,7 +690,7 @@ something that has been found in other Swedish studies as well [@bredro02; @bube
 Studies based on micro-data on adult and elderly populations in
 history have been rare, mainly due to lack of adequate data. The results
 from such studies show other patterns than that for infant and child
-mortality. While some report substantial differences, others have found surprisingly small or even reversed class differences, for example in the 19th century Sundsvall region [@edli11; @edbr12]. This raises the question of when the modern social gradient appeared, if this was something that developed in the early parts of the 20th century. The results presented here show that the consistent advantage for higher social classes does not appear until surprisingly late in the investigated regions. Instead, the elite category experienced the highest death risks. The basic pattern is primarily observed in the working-age population, while the differences are smaller or even non-existent in old age in accordance with the status-levelling hypothesis.
+mortality. While some report substantial differences, others have found surprisingly small or even reversed class differences, for example in the 19th century Sundsvall region [@edli11; @edbr12]. This raises the question of when the modern social gradient appeared, if this was something that developed in the early parts of the 20th century [@bevp11]. The results presented here show that the consistent advantage for higher social classes does not appear until surprisingly late in the investigated regions. Instead, the elite category experienced the highest death risks. The basic pattern is primarily observed in the working-age population, while the differences are smaller or even non-existent in old age in accordance with the status-levelling hypothesis.
 
 The results showing a small or even reversed socio-economic gradient in the past and its late development are in accordance with other studies [@bevp11], for example by @bedr11 in a different setting, a couple of Scanian parishes in southern Sweden, albeit with somewhat different social categories. They find the first indications of an emerging social gradient to be a fairly recent phenomenon, in their case as late as the 1950s. Compared to previous studies, the present one shows a much clearer survival disadvantage of the elite, and not only the lack of social gradient. There are in fact some studies indicating a similar pattern. A study of mortality and social class in Sweden during the period 1960--1968 found that self-employed men and non-manual male workers in fact had higher mortality than manual workers in total as well as in cardiovascular mortality [@vano89]. A recent study by @erdr17 on the social pattern of mortality, based on 1880--1910 census data linked to death registers, shows that the unexpected pattern found in the present study in not unique, but rather seems to have characterised all parts of the country. These findings are contrary to what is usually assumed and what other studies have shown. The studies usually referred to when discussing the historically large social inequalities in health are mainly based on data from England and Wales [@ant67; @wowi95; @pamuk85]. We know less about how general these results are, but apparently the Swedish context differed from the English and Welsh ones.
 
