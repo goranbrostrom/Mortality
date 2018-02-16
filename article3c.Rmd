@@ -493,7 +493,7 @@ for (r in 2:nhis){
 legend("bottomleft", legend = levhis, lty = 1:5, col = scol, pch = 1:5)
 ```
 
-### Inverse frequency weighting
+### Inverse exposure weighting
 
 In order to eliminate the disturbing effect on the association between hisclass and mortality by
 the confounders civil status and urban/rural, weights that eliminates the associations between hisclass 
@@ -679,6 +679,64 @@ lines(x, s5, col = scol[5], lty = 5)
 ```
 
 # The effect of social class on mortality
+
+## All ages, survival curves
+
+```{r inipw}
+source("R/ipw.R")
+vb1Tab <- aggregate(vb0Tab[c("event", "exposure")], by = vb0Tab[c("sex", "age", "period", "civst", "hisclass", "urban")], FUN = sum, drop = TRUE)
+##problem <- vb1Tab$exposure <= 0 
+##vb1Tab$exposure[problem] <- 1
+##vb1Tab$exposure[vb1Tab$exposure < 1] <- 1
+##vb1Tab <- vb1Tab[vb1Tab$exposure > 1, ] # Removes extreme cases blowing up weights.
+cu <- ipw(vb1Tab)
+##sex <- "male"
+##period <- "1801-1825"
+##hisclass <- "farmer"
+##first <- cu[cu$sex == sex & cu$period == period & cu$hisclass == hisclass, c("rate", "event", "exposure")]
+##plot(first$rate, type = "b")
+cu$period <- factor(cu$period)
+cu$age <- as.numeric(cu$age)
+pers <- levels(cu$period)
+n.per <- length(pers)
+n <- n.per
+elite <- numeric(n)
+for (i in 1:n){
+    dat <- cu[cu$sex == "male" & cu$hisclass == "elite" & cu$period == pers[i], "rate"]
+    elite[i] <- sum(dat[1:7]) * 5
+}   
+##
+middle <- numeric(n)
+for (i in 1:n){
+    dat <- cu[cu$sex == "male" & cu$hisclass == "middle" & cu$period == pers[i], "rate"]
+    middle[i] <- sum(dat[1:7]) * 5
+}   
+kk <- middle
+##
+worker <- numeric(n)
+for (i in 1:n){
+    dat <- cu[cu$sex == "male" & cu$hisclass == "worker" & cu$period == pers[i], "rate"]
+    worker[i] <- sum(dat[1:7]) * 5
+}   
+##
+farmer<- numeric(n)
+for (i in 1:n){
+    dat <- cu[cu$sex == "male" & cu$hisclass == "farmer" & cu$period == pers[i], "rate"]
+    farmer[i] <- sum(dat[1:7]) * 5
+}   
+##
+no <- numeric(n)
+for (i in 1:n){
+    dat <- cu[cu$sex == "male" & cu$hisclass == "NA" & cu$period == pers[i], "rate"]
+    no[i] <- sum(dat[1:7]) * 5
+}   
+
+plot(c(1812, 1838, 1862, 1888, 1912, 1938, 1978, 1982, 1988, 1995, 2005, 2010), elite / kk, type = "b", col = "black", lty = 1, pch = 1, ylim = c(0, 4))
+lines(c(1812, 1838, 1862, 1888, 1912, 1938, 1978, 1982, 1988, 1995, 2005, 2010), middle / kk, type = "b", col = "green", lty = 2, pch = 2)
+lines(c(1812, 1838, 1862, 1888, 1912, 1938, 1978, 1982, 1988, 1995, 2005, 2010), worker / kk, type = "b", col = "blue", lty = 3, pch = 3)
+lines(c(1812, 1838, 1862, 1888, 1912, 1938, 1978, 1982, 1988, 1995, 2005, 2010), farmer / kk, type = "b", col = "darkgreen", lty = 4, pch = 4)
+lines(c(1812, 1838, 1862, 1888, 1912, 1938, 1978, 1982, 1988, 1995, 2005, 2010), no / kk, type = "b", col = "red", lty = 5, pch = 5)
+```
 
 
 ## Ages 30--64
