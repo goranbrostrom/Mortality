@@ -106,7 +106,7 @@ American countries in its basic features [@rowa14].
 ```{r mapp,fig.cap = "(ref:cities)", fig.height=6,fig.align='center', out.height='50%'}
 knitr::include_graphics("myfigs/sweden.png")
 ```
-During the studied period, Sweden developed from a poor agricultural society with low urbanization to a rich welfare state. If Sweden is remote from a European continental perspective, the regions studied here are remote from the central parts of the country. The Skellefteå and Umeå regions (Figure \@ref(fig:mapp)) are part of the county of Västerbotten in northern of Sweden along the coast of the Gulf of Bothnia. Communication with
+During the studied period, Sweden developed from a poor agricultural society with low urbanization to a rich welfare state. If Sweden is peripheral from a European continental perspective, the regions studied here are remote from the central parts of the country. The Skellefteå and Umeå regions (Figure \@ref(fig:mapp)) are part of the county of Västerbotten in northern of Sweden along the coast of the Gulf of Bothnia. Communication with
 the rest of Sweden was difficult until the late 19th century. The economy
 was dominated by agriculture, making it vulnerable to harvest failures; several severe famines occurred in the regions during the 1800s, for example after the harvest failure of 1867 [@segb14]. During the long winters, sea communication was hindered due to the Gulf of Bothnia being frozen. The first ships of the year came to this area in May or even as late as June in some cases [@fah56]. Towards the end of the 19th century, the Swedish railway system reached this part of Sweden, facilitating contact with the rest of Sweden and, improving the economy and making it possible to mitigate the effects of harvest failures. During the 19th century, our regions became increasingly integrated in the same epidemiological pattern as the rest of Sweden.
 
@@ -123,7 +123,7 @@ size as defined in our data sets (all ages) was 6,142 on January 1, 1801, 43,212
 
 The Umeå region in the dataset consists of Umeå urban and rural parishes 1901--1950, and from 1976 onwards of Umeå municipality, withn another three parishes included. This region has a somewhat different character to that of Skellefteå. Umeå town had a small population, although substantially
 larger than Skellefteå town, for almost the whole studied period and was
-the administrative, educational and military centre of the county of Västerbotten. During the latter part of the 20th century, the establishment of a university in Umeå led to a rapid population increase. Agriculture dominated the rural part, but there were also some foundries as well as forestry industries. Consequently the economy was more diversified than that of Skellefteå.The population size as defined in our data sets (all ages) was 19,138 on January 1, 1901 and 103,970 when the 20th century ended.
+the administrative, educational and military centre of the county of Västerbotten. During the latter part of the 20th century, the establishment of Umeå University led to a rapid population increase. Agriculture dominated the rural part, but there were also some foundries as well as forestry industries. Consequently the economy was more diversified than that of Skellefteå.The population size as defined in our data sets (all ages) was 19,138 on January 1, 1901 and 103,970 when the 20th century ended.
 
 
 
@@ -132,15 +132,15 @@ the administrative, educational and military centre of the county of Västerbott
 The recent extension in time of data at the Demographic Data Base (DDB),
 Umeå University (http://www.cedar.umu.se) by including the period 1900 to
 1950 makes it possible to investigate the long-term development of social
-inequality in mortality in this part of Sweden. The data for the present study come from two large
-population databases at the DDB, which provide us with micro-data for the Skellefteå and Umeå regions in northern Sweden. Our data set constitutes a large population with substantial social diversity that can be followed for a uniquely long time. The period 1801--1950 is covered by the database Poplink [@wee16]. Poplink is based on linked parish records, allowing us to reconstruct life biographies on people as long as they remained in the region. The records are linked within, but not
+inequality in mortality in a part of Sweden. The data for the present study come from two large
+population databases at the DDB, which provide us with micro-data for the Skellefteå and Umeå regions. Our data set constitutes a large population with substantial social diversity that can be followed for a uniquely long time. The period 1801--1950 is covered by the database Poplink [@wee16]. Poplink is based on linked parish records, allowing us to reconstruct life biographies on people as long as they remained in the region. The records are linked within, but not
 between, the regions. 
 
 The other large data set is extracted from the Linnaeus database
 [@malm10], which is based on different linked national population
-registers from 1960 to 2013 and is used within the ageing programme at CEDAR, Umeå
-University. Due to data issues (a great deal of missing data in some variables, for example social class, and additional work required to define the exact geographical areas of analysis). The study period from 1976 to 2000 is constructed from
-censuses every fifth year during the period 1975--1990, with additional information on deaths
+registers from 1960 to 2013 (censuses, LISA and data from National Board of Health and Welfare) and is used within the ageing programme at CEDAR, Umeå
+University. Due to data issues (a great deal of missing data in some variables, for example social class, and additional work required to define the exact geographical areas of analysis), we restrict the analysis to the period 1976 onwards. The study period from 1976 to 2000 is constructed from
+censuses every fifth year 1975--1990, with additional information on deaths
 from the National Board of Health and Welfare. For the period 2002--2013 we use
 the information from the yearly population registers from Statistics Sweden
 (LISA) together with information on mortality from the National Board of Health and
@@ -180,7 +180,7 @@ text(1995.2, 55, paste(round(n.exp / 1000000, 1), "million p-years"), cex = 0.8)
 text(1995.2, 50, paste(round(n.d / 1000, 1), "thousand deaths"), cex = 0.7)
 ```
 
-In the data set analysed here, all individuals aged 40 years and older ever
+In the data set analysed here, all individuals aged 30 years and older ever
 having resided in either of the regions are included. The data file
 contains the variables social class, gender, urban/rural
 residence, birth date, death date, first and last date of observation and
@@ -197,7 +197,7 @@ comes to the identification of presence periods. The Poplink data provide us wit
 to have full and continuous control over the \emph{de jure} population. This is
 not the case with the Linnaeus database, however. For the period 1976--2001
 we use presence in the censuses 1975--1990 and information on deaths from the National
-Board of Health and Welfare. The populations in the Skellefteå and Umeå regions are those residing there according to the censuses. Each census constitute the baseline for which persons are followed up during the five years until the next census (e.g. the 1975 census has a follow-up from 1 January 1976 until the end of 1980). The expection of thisis the 1990 census for which the follow-up is until 2001. Thus, the deaths do not necessarily take place in our region for the Linnaeus analyses, although this is usually the case. 
+Board of Health and Welfare. The populations in the Skellefteå and Umeå regions are those residing there according to the censuses. Each census constitute the baseline for which persons are followed up during the five years until the next census (e.g. the 1975 census has a follow-up from 1 January 1976 until the end of 1980). The exception of this is the 1990 census for which the follow-up is until 2001. Thus, the deaths do not necessarily take place in our region for the Linnaeus analyses, although this is usually the case. 
 
 For the last period, 2002--2013, we use the yearly population registers
 (LISA data) together with information on deaths from the National Board of
@@ -226,14 +226,14 @@ Female labour is much better covered in the Linnaeus database, and it is difficu
 labour force participation developed as the norm, in Sweden during this
 period. The husband's occupation, as signifier of social class became,
 if not obsolete, at least less relevant. All included persons are signified
-by their individual occupation for this period. Although the results for the different periods are not completely comparable, the difference in approach reflects an actual change in how social class is structured. Notice, however, that there was strong social homogamy within married couples at this time, indicating that the results would not differ in any decisive way with the use of occupations on individual level instead of household level for defining social class based on the Linneaus data [@bjork92]. 
+by their individual occupation for this period. Although the results for the different periods are not completely comparable, the difference in approach reflects an actual change in how social class is structured. 
 
 Hisclass, the classification system used as a basis for our categorization, is a "...
 HISCO-based historical international social class scheme" [@lema11; @lema02]. 
 The different classes in Hisclass represent distinct
 categories, based on whether the work is manual or non–manual, skill level,
 supervision, and sector. Implicitly it reflects large differences in access to
-economic resources, status, social power, etc.  We have chosen to work with a broad definition of classes, merging the original 12 social classes in Hisclass into three, representing different levels of control and access to resources vital for life chances, and an additional fourth category of unknown class:
+economic resources, status, social power, etc.  We have chosen to work with a broad definition of classes, merging the original 12 social classes in Hisclass into four, representing different levels of control and access to resources vital for life chances, and an additional fifth category of unknown class:
 
 \begin{enumerate}
 \item {\tt elite}, Hisclass 1 and 2. Higher managers and higher professionals.
@@ -251,7 +251,7 @@ respectively. The category of workers is fairly stable over time. The
 highest class has increased substantially, albeit from a very low level
 in the 19th century. The increase in academics in connection to the
 establishment of Umeå University explains much of this increase in later time. What is
-not apparent in Figure \@ref(fig:hiscskumm) is the transfer within the middle
+apparent in Figure \@ref(fig:hiscskumm) is the transition from a social distribution of  fer within the middle
 group from a majority of farmers during the 19th century to lower white-collar from the middle of the 20th century. Furthermore we observe a rather high percentage of missing social class in the early 19th century. For men the proportion is somewhat higher in the age group 65 and above, those who were retired, but still low enough to be used in our analyses (results not shown). If we disregard the very first period, however, there were very few with occupation missing until 1950. 
 
 ```{r hiscskumm, fig.cap = "Exposure by social class (from the top: elite, middle, workers, missing) and time period, men.", fig.scap="Exposure by social class and time period, men.", out.height = '50%', fig.height=4}
