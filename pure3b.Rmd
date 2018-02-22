@@ -76,6 +76,8 @@ foli$event <- foli$Event
 vb0 <- rbind(su, foli)
 rownames(vb0) <- 1:NROW(vb0)
 
+vb0 <- vb0[vb0$enter <= 40, ]  ## NOTE!!
+
 ##vb0Tab$civst <- relevel(vb0Tab$civst, ref = "married")
 ##vb0Tab <- aggregate(vb0Tab[, c("event", "exposure")],
 ##                    vb0Tab[, c("sex", "age", "period", "cohort", "civst", "hisclass", "urban")],
