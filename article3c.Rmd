@@ -415,7 +415,7 @@ graphically illustrating the development over time.
 A alternative, and preferable, approach is the marginal model, where the disturbace effect of confounders is 
 balanced out through weighting. In our case , `civil status` and `urban/rural` are confounders, that is, they 
 are correlated to both our outcome, mortality, and our explanatory variable, social class. The latter association 
-manifests itself through the facts that the marriage frequency varies social class and certain social classes are 
+manifests itself through the facts that the marriage frequency varies by social class and certain social classes are 
 more common in the rural area than others (we find farmers on the countryside).
 
 ```{r colorc}
@@ -504,7 +504,7 @@ each we calculate the total exposure time. The total distribution by confounders
 
 ```{r exweight}
 exm <- vb0Tab[vb0Tab$period == "1901-1925" & vb0Tab$sex == "male", c("age", "civst", "urban", "exposure", "event", "hisclass")]
-all <- aggregate(exm["exposure"], by = exm[c("civst", "urban", "age")], FUN = sum)
+all <- aggregate(exm[, c("exposure", "event")], by = exm[, c("civst", "urban")], FUN = sum)
 all
 ```
 
@@ -512,7 +512,7 @@ and for the elite we have
 
 ```{r forelite}
 elite <- exm[exm$hisclass == "elite", c("age", "civst", "urban", "exposure", "event", "hisclass")]
-el <- aggregate(elite["exposure"], by = elite[, c("civst", "urban", "age")], FUN = sum)
+el <- aggregate(elite[, c("exposure", "event")], by = elite[, c("civst", "urban")], FUN = sum)
 el
 ```
 
