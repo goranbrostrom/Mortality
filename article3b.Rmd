@@ -46,7 +46,8 @@ skel <- get.file("skel")
 ##
 skume <- get.file("skume")
 ##
-foli <- get.file("foli")
+foli <- get.file("foli2")
+##load("../Data/foli2.rda")
 skel$urban <- FALSE
 su <- rbind(skel, skume[, names(skel)])
 
@@ -568,10 +569,10 @@ rawskume <- rawskume[, c("id", "sex", "birthdate", "enter", "exit", "event", "pe
 raw <- rbind(rawskel, rawskume)
 raw$id <- paste("pop", raw$id, sep = "_")
 ##
-rawfoli <- get.file("rawfoli")
+rawfoli <- get.file("rawfoli2")
 rawfoli <- rawfoli[, c("id", "sex", "birthdate", "enter", "exit", "event", "period", "urban", "civst", "hisclass", "cohort")]
 raw <- rbind(raw, rawfoli)
-raw <- raw[!(raw$period %in% c("1961-1970", "1971-1975")), ]
+##raw <- raw[!(raw$period %in% c("1961-1970", "1971-1975")), ]
 raw$period <- factor(raw$period)
 raw <- age.window(raw, c(65, 100))
 ```
@@ -635,14 +636,14 @@ for (i in 1:n.hc){
 ```
 
 ```{r plotrawwom, fig.cap="Median age at death for a 65 year old married woman on the countryside by SES and period.", fig.height = 4, out.height = "10cm"}
-x <- c(1812, 1837, 1862, 1887, 1912, 1937, 1975, 1985, 1995, 2004, 2011)
-plot(x, med[1, -7], col = scol[1], type = "b", lty = 1, pch = 1, xlab = "Period", ylab = "Age", ylim = c(70, 90), main = "Women", axes = FALSE)
-axis(1, at = x, labels = peri[-7], las = 2, cex.axis = 0.5)
+x <- c(1812, 1837, 1862, 1887, 1912, 1937, 1963, 1969, 1975, 1981, 1987, 1993, 1999, 2006, 2012)
+plot(x, med[1, ], col = scol[1], type = "b", lty = 1, pch = 1, xlab = "Period", ylab = "Age", ylim = c(70, 90), main = "Women", axes = FALSE)
+axis(1, at = x, labels = peri, las = 2, cex.axis = 0.5)
 axis(2, las = 1)
 box()
 abline(h = c(75, 80, 85), lty = 3)
 for (i in 2:5){
-    lines(x, med[i, -7], col = scol[i], type = "b", lty = i, pch = i)
+    lines(x, med[i, ], col = scol[i], type = "b", lty = i, pch = i)
 }
 legend("bottomright", legend = hc, lty = 1:5, pch = 1:5, col = scol, cex = 0.6)
 ```
@@ -666,14 +667,14 @@ for (i in 1:n.hc){
 ```
 
 ```{r plotrawm, fig.cap="Median age at death for a 65 year old married man on the countryside by SES and period.", fig.height = 4}
-x <- c(1812, 1837, 1862, 1887, 1912, 1937, 1975, 1985, 1995, 2004, 2011)
-plot(x, med[1, -7], col = scol[1], type = "b", lty = 1, pch = 1, xlab = "Period", ylab = "Age", ylim = c(70, 90), main = "Men", axes = FALSE)
-axis(1, at = x, labels = peri[-7], las = 2, cex.axis = 0.5)
+##x <- c(1812, 1837, 1862, 1887, 1912, 1937, 1975, 1985, 1995, 2004, 2011)
+plot(x, med[1, ], col = scol[1], type = "b", lty = 1, pch = 1, xlab = "Period", ylab = "Age", ylim = c(70, 90), main = "Men", axes = FALSE)
+axis(1, at = x, labels = peri, las = 2, cex.axis = 0.5)
 axis(2, las = 1)
 abline(h = c(75, 80, 85), lty = 3)
 box()
 for (i in 2:5){
-    lines(x, med[i, -7], col = scol[i], type = "b", lty = i, pch = i)
+    lines(x, med[i, ], col = scol[i], type = "b", lty = i, pch = i)
 }
 legend("bottomright", legend = hc, lty = 1:5, pch = 1:5, col = scol, cex = 0.6)
 ```

@@ -24,23 +24,25 @@ ipw <- function(dat){
         ##for (age in 1:n.ages){
             for (sx in c("male", "female")){
                 ##cat("sex = ", sx, "\n")
-                select <- dat$period == periods[per] & dat$sex == sx
+                select <- (dat$period == periods[per]) & (dat$sex == sx)
                 ct <- dat[select, c("hisclass", "urban", "civst", "exposure", "event", "age")]
                 ct$id <- paste(ct$civst, ct$urban, sep = "_") # A 'stickspår'?
                 all <- aggregate(ct[c("event", "exposure")], by = ct["hisclass"], FUN = sum)
                 indx <- match(ct$hisclass, all$hisclass)
                 totexpo <- all$exposure[indx]
-                wght <- totexpo / ct$exposure
+                ct$wght <- totexpo / ct$exposure
                 ##wght <- 1
-                ct$event <- wght * ct$event
-                ct$exposure <- wght * ct$exposure
-                out <- aggregate(ct[c("event", "exposure")], by = ct[c("hisclass", "age")], FUN = sum)
+                
+                ##ct$event <- wght * ct$event
+                ##ct$exposure <- wght * ct$exposure
+                ##out <- aggregate(ct[c("event", "exposure")], by = ct[c("hisclass", "age")], FUN = sum)
+                out <- ct
                 out$sex <- sx
                 out$period <- periods[per]
                 ##out$age <- ages[age]
-                out$rate <- out$event / out$exposure
+                ##out$rate <- out$event / out$exposure
                 ##return(out)
-                if (per == 1 & age == 1 & sx == "male"){
+                if (per == 1 & sx == "male"){
                     res <- out
                 }else{
                     res <- rbind(res, out)

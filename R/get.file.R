@@ -4,7 +4,7 @@ get.file <- function(name, link = "http://capa.ddb.umu.se/data/"){
       ##  load(filename)
     ##}else{
         con <- url(paste(link, name, ".rda", sep = ""))
-        load(con)
+        name <- load(con)
         close(con)
         ##save(list = name, file = filename)
     ##}
