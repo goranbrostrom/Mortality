@@ -1,0 +1,165 @@
+---
+title: "From Poplink"
+author: "Göran Broström"
+date: "28 February 2018"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+## Introduction
+
+In this version we start at January 1, 1801, and we **do not** split the *poplink* data 
+into two data sets (no causes of death, yet). End at December 31, 1950 
+
+```{r setup}
+knitr::opts_chunk$set(cache=FALSE,echo=TRUE,message=TRUE,warning=TRUE,comment=NA)
+library(xtable)
+library(knitr)
+library(eha)
+library(skum)
+##library(dplyr)
+##library(tidyr)
+##library(stringr)
+```
+
+## PopLink data
+
+The POPLINK data cover 1801--1950. The resulting output consists of two tables,
+**skel** and **skume** (I avoid the natural name **skum** in order to avoid a
+mix-up with the **R** package by that name).
+A covariate **period** is added and used for 
+splitting the data into calendar time periods of length 10 years each.
+
+### Get data
+
+```{r getdata}
+library(skum)
+##load("../../Data/adult.rda")
+##adult <- cal.window(adult, c(1801, 1951))
+adult <- obs
+indx <- match(adult$id, per$id)
+adult$mid <- per$mid[indx]
+adult$fid <- per$fid[indx]
+adult$event <- !is.na(adult$sluttyp) & adult$sluttyp == 2
+```
+
+## Put on hisclass and civil status
+
+```{r hisclass}
+##New Hisclasses:
+ett <- with(adult, !is.na(socBranch) &
+              (hisclass == 1))
+               ## ((socBranch == "official" & socStatus == "high") |
+                 ##    (socBranch == "business" & socStatus == "high")
+                ##))
+
+tva <- with(adult, !is.na(socBranch) &
+              (hisclass %in% c(2, 4)))
+                ##((socBranch == "farming" & socStatus == "high") |
+                ## (socBranch == "business" & socStatus == "low") |
+                ## (socBranch == "official" & socStatus == "low")
+                ##))
+
+tre <- with(adult, !is.na(socBranch) &
+              (hisclass %in% 5:7)) ## Original 'fyra' ---> 'tre'
+              ##  ((socBranch == "farming" & socStatus == "low") |
+                ##     (socBranch == "worker"))
+                ##)
+fyra <- with(adult, !is.na(socBranch) &
+               (hisclass == 3))
+
+hisc <- rep(-1, NROW(adult))
+hisc[ett] <- 1
+hisc[tva] <- 2
+hisc[tre] <- 3
+hisc[fyra] <- 4
+is.na(hisc) <- hisc == -1
+adult$hisclass <- hisc
+```
+
+Continue ...
+
+```{r urbanetc}
+adult$urban <- with(adult, !is.na(ortnmn) & (ortnmn %in% c("UMEÅ", "SKELLEFTEÅ STAD")))
+levels(adult$civst) <- c("unmarried", "married", "prev.married", "prev.married", "prev.married")
+```
+
+## Propagate
+
+```{r propagate}
+##if (file.exists("adult.rda")){
+  ##load("adult.rda")
+if (TRUE){
+source("R/fixCovar2.R")  
+    adult$hisclass40 <- with(adult, fixCovar2(id, hisclass, enter, exit, 40, 20))
+    adult$hisclass65 <- with(adult, fixCovar2(id, hisclass, enter, exit, 65, 45))
+    adult$civst40 <- with(adult, fixCovar2(id, civst, enter, exit, 40, 20))
+    adult$civst65 <- with(adult, fixCovar2(id, civst, enter, exit, 65, 45))
+    adult$urban40 <- with(adult, fixCovar2(id, civst, enter, exit, 40, 20))
+    adult$urban65 <- with(adult, fixCovar2(id, civst, enter, exit, 65, 45))
+}else{
+  adult <- adult[order(adult$id, adult$enter), ]
+  adult <- group_by(adult, id) %>% fill_("hisclass")
+  adult$hisclass[is.na(adult$hisclass)] <- 4
+  adult$hisclass <- factor(adult$hisclass, labels = c("elite", "middle", "worker", "NA"))
+  ##
+  adult <- group_by(adult, id) %>%  fill_("civst")
+  adult$civst[is.na(adult$civst)] <- "unmarried"
+  save(adult, file = "adult.rda")
+}
+```
+
+## The Lexis cut
+
+Our data covers the years 1801--1950 and the ages 40--99.
+
+```{r lexis}
+##adult <- cal.window(adult, c(1801, 1951))
+adult <- age.window(adult, c(40, 100))
+```
+
+## Split and period
+
+```{r splitper}
+source("R/addPer.R")
+##skel <- cal.window(adult, c(1801, 1901))
+##skel <- addPer(skel, cuts = seq(1801, 1901, by = 25))
+skume <- cal.window(adult, c(1801, 1951))
+skume <- addPer(skume, cuts = seq(1801, 1951, by = 25))
+```
+
+
+### Trim skume
+
+```{r skumefilt}
+skume <- skume[, c("id", "region", "birthdate", "sex", "enter", "exit", "event",
+                    "period", "urban", "urban40", "urban65", "civst", "civst40", "civst65", 
+                    "hisclass", "hisclass40", "hisclass65")]
+skume <- skume[order(skume$id, skume$exit), ]
+skume <- rc(skume)
+indx <- tapply(skume$id, skume$id)
+Exit <- with(skume, tapply(exit, id, max))
+Enter <- with(skume, tapply(enter, id, min))
+Event <- with(skume, tapply(event, id, max))
+skume$Enter <- Enter[indx]
+skume$Exit <- Exit[indx]
+skume$Event <- Event[indx]
+skume <- skume[!duplicated(skume$id), ]
+skume$enter <- skume$Enter
+skume$exit <- skume$Exit
+skume$event <- skume$Event
+skume$id <- paste("pop", skume$id, sep = "_")
+skume$Exit <- NULL
+skume$Enter <- NULL
+skume$Event <- NULL
+```
+
+
+## Save
+
+```{r save}
+##save(skel, file = "skel.rda")
+save(skume, file = "skume.rda")
+```
+
