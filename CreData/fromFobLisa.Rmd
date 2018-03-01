@@ -1,0 +1,374 @@
+---
+title: "fromFobLisa, Version 2"
+author: "Göran Broström"
+date: "March 1, 2018"
+output: pdf_document
+fontsize: 11pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = FALSE)
+options(stringsAsFactors = FALSE)
+```
+
+# Introduction
+
+Now *fromFobLisa.Rmd* is updated to include *fob90* and also let the
+follow-up for *fob85* be *five years* and the follow-up for *fob90* be *ten
+years*.
+
+This is an updated version of *showData4.Rmd*, where we used the newly-found
+knowledge that the yearly *lisa* data relates to *December 31* the given
+year, while the *FoB* data relate to the date *November 1* the given
+year. These facts have the following implications for our plan: For *FoB*
+data, we follow individuals from their appearance in a FoB until the next
+FoB five years later, even if they do not appear there. The exception is if
+they die within five years after the first appearance. So, *fob60* induces
+a time interval *from November 1, 1960 to October 31, 1965*, and so on. 
+Since we do not have birth dates but only birth year and quarter,
+we decide to use as birthdate the *midpoint of the birth quarter*. 
+WE work with all ages 0-110, and only as the final step, `age.window` is called.
+
+The following FoBs are treated similarly, until we reach the Fob
+in 1985. Since the first *lisa* date is December 31, 1986, this "fob
+interval" starts at November 1, 1985, and ends at December 31, 1986, that
+is, it is 14 months long. 
+
+# Fixed data
+
+We start with the *inddata* file and treat it as a *fixed-data*
+file (no time-varying info). 
+We find the birth dates (see above), death dates (for those who are observed die), and the "date last seen".
+
+Note that 37 individuals in *inddata* have no information at all, so they are removed.
+
+```{r frominddata}
+load("../../Data/inddata.rda")
+load("../../Data/sex.rda")
+indx <- match(inddata$LINNEID, sex$LINNEID)
+inddata$KON <- sex$KON[indx]
+per <- inddata[!is.na(inddata$KON), ]
+per$birthdate <- per$FODELSEAR + 0.125  +  (per$FODELSEKVARTAL - 1) / 4
+```
+
+Now we put on *death date*, *death cause*, and *KOMMUN of death*, from *socstyr*, on *per*:
+
+```{r styronper}
+load("../../Data/socstyr.rda")
+indx <- match(per$LINNEID, socstyr$LINNEID)
+per$DODSDAT <- socstyr$DODSDAT[indx]
+fixd <- !is.na(per$DODSDAT) & (per$DODSDAT < 1960010)
+per$DODSDAT[fixd] <- per$DODSDAT[fixd] * 100 + 15
+per$deathdate <- as.numeric(skum::tillTid(per$DODSDAT))
+per$dodsKOMMUN <- socstyr$KOMMUN[indx]
+per$dodsALDER <- socstyr$ALDER[indx]
+per$ULORSAK <- socstyr$ULORSAK[indx]
+```
+
+# The FoBs
+
+Through the *FoB*s we have snapshots of the population on *November 1* the years *1960(5)1990*, giving the dates (decimal form).
+
+```{r days}
+ar <- seq(1960, 1990, by = 5)
+days <- as.numeric(skum::tillTid(paste(ar, "1101", sep = "")))
+days
+```
+
+We have to limit the data collection to the *KOMMUN*er that are contained
+in our area, that is
+
+```{r kommuner}
+ourkom <- c(2406, 2414, 2417, 2418, 2480, 2482)
+ourkom <- c(ourkom, 2411, 2412, 2413, 2416, 2415, 2461, 2407, 2402, 2408)
+```
+
+Note that this is per year.
+
+## FoB 1960
+
+Persons in the fob and in our KOMMUNer.
+
+```{r fob60}
+load("../../Data/fob.rda")
+fob60 <- fob[fob$AR == 1960 & 
+                 fob$KOMMUN %in% ourkom &
+                 fob$LINNEID %in% per$LINNEID, ]
+```
+
+They need to be of the right age (born on November 1, 1940 or earlier). We
+get the birthdates from *inddata*.
+
+```{r mat60}
+library(eha)
+indx <- match(fob60$LINNEID, per$LINNEID)
+fob60$birthdate <- per$birthdate[indx]
+lim <- as.numeric(toTime("1940-11-01"))
+fob60 <- fob60[fob60$birthdate < lim, ]
+indx <- match(fob60$LINNEID, per$LINNEID) # NOTE: Necessary!
+fob60$enter <- lim + 20 - fob60$birthdate
+dd <- per$deathdate[indx]
+fob60$event <- !(is.na(dd)) & (dd <= lim + 25) # NOTE: 40 --> 25!
+fob60$exit <- fob60$enter + 5
+fob60$exit[fob60$event] <- dd[fob60$event] - fob60$birthdate[fob60$event]
+head(fob60)
+```
+
+## FoB 1965
+
+Persons in the fob and in our KOMMUNer.
+
+```{r fob65}
+fob65 <- fob[fob$AR == 1965 & 
+                 fob$KOMMUN %in% ourkom &
+                 fob$LINNEID %in% per$LINNEID, ]
+```
+
+They need to be of the right age (born on November 1, 1930 or earlier). We
+get the birthdates from *inddata*.
+
+```{r mat65}
+library(eha)
+indx <- match(fob65$LINNEID, per$LINNEID)
+fob65$birthdate <- per$birthdate[indx]
+lim <- as.numeric(toTime("1945-11-01"))
+fob65 <- fob65[fob65$birthdate < lim, ]
+indx <- match(fob65$LINNEID, per$LINNEID) # NOTE: Necessary!
+fob65$enter <- lim + 20 - fob65$birthdate
+dd <- per$deathdate[indx]
+fob65$event <- !(is.na(dd)) & (dd <= lim + 25) ## NOTE: 40 --> 25!
+fob65$exit <- fob65$enter + 5
+fob65$exit[fob65$event] <- dd[fob65$event] - fob65$birthdate[fob65$event]
+fob65 <- fob65[fob65$exit > fob65$enter, ] # Shouldn't be necessary!
+head(fob65)
+```
+
+It should be noted that three persons present in the 1965 FoB actually died 1964 or earlier.
+
+## FoB 1970
+
+Persons in the fob and in our KOMMUNer.
+
+```{r fob70}
+fob70 <- fob[fob$AR == 1970 & 
+                 fob$KOMMUN %in% ourkom &
+                 fob$LINNEID %in% per$LINNEID, ]
+```
+
+They need to be of the right age (born on November 1, 1935 or earlier). We
+get the birthdates from *inddata*.
+
+```{r mat70}
+library(eha)
+indx <- match(fob70$LINNEID, per$LINNEID)
+fob70$birthdate <- per$birthdate[indx]
+lim <- as.numeric(toTime("1950-11-01"))
+fob70 <- fob70[fob70$birthdate <= lim, ]
+indx <- match(fob70$LINNEID, per$LINNEID) # NOTE: Necessary!
+fob70$enter <- lim + 20 - fob70$birthdate
+dd <- per$deathdate[indx]
+fob70$event <- !(is.na(dd)) & (dd <= lim + 25)
+fob70$exit <- fob70$enter + 5
+fob70$exit[fob70$event] <- dd[fob70$event] - fob70$birthdate[fob70$event]
+fob70 <- fob70[fob70$exit > fob70$enter, ] # Shouldn't be necessary!
+head(fob70)
+cat("lim = ", lim, "\n")
+```
+
+It should be noted that one person present in the 1970 FoB actually died 1964.
+
+## FoB 1975
+
+Persons in the fob and in our KOMMUNer.
+
+```{r fob75}
+fob75 <- fob[fob$AR == 1975 & 
+                 fob$KOMMUN %in% ourkom &
+                 fob$LINNEID %in% per$LINNEID, ]
+```
+
+They need to be of the right age (born on November 1, 1940 or earlier). We
+get the birthdates from *inddata*.
+
+```{r mat75}
+library(eha)
+indx <- match(fob75$LINNEID, per$LINNEID)
+fob75$birthdate <- per$birthdate[indx]
+lim <- as.numeric(toTime("1955-11-01"))
+fob75 <- fob75[fob75$birthdate < lim, ]
+indx <- match(fob75$LINNEID, per$LINNEID) # NOTE: Necessary!
+fob75$enter <- lim + 20 - fob75$birthdate
+dd <- per$deathdate[indx]
+fob75$event <- !(is.na(dd)) & (dd <= lim + 25)
+fob75$exit <- fob75$enter + 5
+fob75$exit[fob75$event] <- dd[fob75$event] - fob75$birthdate[fob75$event]
+fob75 <- fob75[fob75$exit > fob75$enter, ] # Shouldn't be necessary!
+head(fob75)
+##cat("lim = ", lim, "\n")
+```
+
+It should be noted that one person present in the 1975 FoB actually died 1964 (same person as earlier).
+
+## FoB 1980
+
+Persons in the fob and in our KOMMUNer.
+
+```{r fob80}
+fob80 <- fob[fob$AR == 1980 & 
+                 fob$KOMMUN %in% ourkom &
+                 fob$LINNEID %in% per$LINNEID, ]
+```
+
+They need to be of the right age (born on November 1, 1945 or earlier). We
+get the birthdates from *inddata*.
+
+```{r mat80}
+library(eha)
+indx <- match(fob80$LINNEID, per$LINNEID)
+fob80$birthdate <- per$birthdate[indx]
+lim <- as.numeric(toTime("1960-11-01"))
+fob80 <- fob80[fob80$birthdate < lim, ]
+indx <- match(fob80$LINNEID, per$LINNEID) # NOTE: Necessary!
+fob80$enter <- lim + 20 - fob80$birthdate
+dd <- per$deathdate[indx]
+fob80$event <- !(is.na(dd)) & (dd <= lim + 25)
+fob80$exit <- fob80$enter + 5
+fob80$exit[fob80$event] <- dd[fob80$event] - fob80$birthdate[fob80$event]
+fob80 <- fob80[fob80$exit > fob80$enter, ] # Shouldn't be necessary!
+head(fob80)
+##cat("lim = ", lim, "\n")
+```
+
+It should be noted that one person present in the 1980 FoB actually died 1964 (same person as earlier).
+
+## FoB 1985
+
+This is no longer the last FoB we are using: The follow-up time this time
+*is* five years (as before), but five years, from November 1, 1985 to October 31, 1990, when the *lisa* data fills in.
+
+Persons in the fob and in our KOMMUNer.
+
+```{r fob85}
+fob85 <- fob[fob$AR == 1985 & 
+                 fob$KOMMUN %in% ourkom &
+                 fob$LINNEID %in% per$LINNEID, ]
+```
+
+They need to be of the right age (born on November 1, 1950 or earlier). We
+get the birthdates from *inddata*.
+
+```{r mat85}
+library(eha)
+indx <- match(fob85$LINNEID, per$LINNEID)
+fob85$birthdate <- per$birthdate[indx]
+lim <- as.numeric(toTime("1965-11-01"))
+fob85 <- fob85[fob85$birthdate < lim, ]
+indx <- match(fob85$LINNEID, per$LINNEID) # NOTE: Necessary!
+fob85$enter <- lim + 20 - fob85$birthdate
+##fob85$enter <- as.numeric(toTime("1985-11-01")) - fob85$birthdate
+dd <- per$deathdate[indx]
+fob85$event <- !(is.na(dd)) & (dd <= lim + 25)
+##fob85$event <- !(is.na(dd)) & (dd < 1987) 
+fob85$exit <- fob85$enter + 5  ## Not any longer: 1 year and 2 months.
+fob85$exit[fob85$event] <- dd[fob85$event] - fob85$birthdate[fob85$event]
+fob85 <- fob85[fob85$exit > fob85$enter, ] # Shouldn't be necessary!
+head(fob85)
+##cat("lim = ", lim, "\n")
+```
+
+
+It should be noted that one person present in the 1985 FoB actually died 1964 (same person as earlier).
+
+## FoB 1990
+
+This is no longer the last FoB we are using: The follow-up time this time
+*is* ten years (as before), from November 1, 1990 to October 31, 2000, when
+the *lisa* data has been filling in for a long time.
+
+Persons in the fob and in our KOMMUNer.
+
+```{r fob90}
+fob90 <- fob[fob$AR == 1990 & 
+                 fob$KOMMUN %in% ourkom &
+                 fob$LINNEID %in% per$LINNEID, ]
+```
+
+They need to be of the right age (born on November 1, 1960 or earlier). We
+get the birthdates from *inddata*.
+
+```{r mat90}
+library(eha)
+indx <- match(fob90$LINNEID, per$LINNEID)
+fob90$birthdate <- per$birthdate[indx]
+lim <- as.numeric(toTime("1960-11-01"))
+fob90 <- fob90[fob90$birthdate < lim, ]
+indx <- match(fob90$LINNEID, per$LINNEID) # NOTE: Necessary!
+fob90$enter <- lim + 20 - fob90$birthdate
+##fob90$enter <- as.numeric(toTime("1985-11-01")) - fob85$birthdate
+dd <- per$deathdate[indx]
+fob90$event <- !(is.na(dd)) & (dd <= lim + 20)
+##fob90$event <- !(is.na(dd)) & (dd < 1987) 
+fob90$exit <- fob90$enter + 10  ## Not any longer: 1 year and 2 months.
+fob90$exit[fob90$event] <- dd[fob90$event] - fob90$birthdate[fob90$event]
+fob90 <- fob90[fob90$exit > fob90$enter, ] # Shouldn't be necessary!
+head(fob90)
+##cat("lim = ", lim, "\n")
+```
+
+
+It should be noted that one person present in the 1985 FoB actually died 1964 (same person as earlier).
+
+
+This ends the data collection from the FoBs. Remains to put all together.
+
+## Putting the data from all FoBs in one data frame
+
+We put the event histories described by the FoBs (with FoB90!) into one data frame.
+
+```{r fobgrab}
+fobdata <- rbind(fob60, fob65, fob70, fob75, fob80, fob85, fob90)
+fobdata <- fobdata[order(fobdata$LINNEID, fobdata$enter), ]
+##fobdata <- age.window(fobdata, c(40, 110))
+rownames(fobdata) <- 1:NROW(fobdata)
+save(fobdata, file = "fobdata.rda")
+```
+
+# The Lisa data
+
+The *lisa* data is slightly simpler because it is yearly with cutoff dates 12-31/01-01 each new-year. It starts off at 1987-01-01 (lisa1986) and ends at 2013-12-31 (lisa2013). So the time interval a *lisa* covers is *AR + 1*! But note that the *socstyr* data only cover deaths *before January 1, 2014, so *lisa2013* is in effect useless to us.  
+
+```{r lisadat}
+load("../../Data/lisa.rda")
+lisa <- lisa[lisa$KOMMUN %in% ourkom, ]
+indx <- match(lisa$LINNEID, per$LINNEID)
+lisa$birthdate <- per$birthdate[indx]
+```
+
+Those with *missing birthdate* in *lisa* are those born 1975 or later. They can be removed.
+
+```{r removeyoung}
+lisa <- lisa[!is.na(lisa$birthdate), ]
+```
+
+So, in *lisa*, all enter in *AR + 1*, at the exact age of *(AR + 1 - birthdate)*, and exit at the exact age *enter + 1* if they do not die in *the year AR + 1*, otherwise at their death date, or at *deathdate - birthdate*.
+
+```{r fixlisaintervals}
+lisa$enter <- lisa$AR + 1 - lisa$birthdate
+indx <- match(lisa$LINNEID, per$LINNEID) # To be safe ...
+lisa$deathdate <- per$deathdate[indx]
+lisa$event <- !is.na(lisa$deathdate) & lisa$deathdate > lisa$AR + 1 & lisa$deathdate <= lisa$AR + 2
+lisa$exit <- lisa$enter + 1 # First tip.
+lisa$exit[lisa$event] <- with(lisa, deathdate[event] - birthdate[event])
+```
+
+Now some sorting  and cleaning.
+
+```{r cleanandsort}
+##lisadata <- age.window(lisa, c(40, 110))
+lisadata <- lisa[order(lisa$LINNEID, lisa$enter), ]
+lisadata <- cal.window(lisadata, c(1987, 2014)) # 'Remove lisa2013'
+rownames(lisadata) <- 1:NROW(lisadata)
+save(lisadata, file = "lisadata.rda")
+```
+
+Now, read *checkData* (maybe not).
