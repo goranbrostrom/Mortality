@@ -81,6 +81,7 @@ in our area, that is
 ```{r kommuner}
 ourkom <- c(2406, 2414, 2417, 2418, 2480, 2482)
 ourkom <- c(ourkom, 2411, 2412, 2413, 2416, 2415, 2461, 2407, 2402, 2408)
+fob <- fob[fob$KOMMUN %in% ourkom, ]
 ```
 
 Note that this is per year.
@@ -103,12 +104,14 @@ get the birthdates from *inddata*.
 library(eha)
 indx <- match(fob60$LINNEID, per$LINNEID)
 fob60$birthdate <- per$birthdate[indx]
-lim <- as.numeric(toTime("1940-11-01"))
-fob60 <- fob60[fob60$birthdate < lim, ]
+fob60$fobdate <- as.numeric(toTime("1960-11-01"))
+##lim <- as.numeric(toTime("1940-11-01"))
+##fob60 <- fob60[fob60$birthdate < lim, ]
 indx <- match(fob60$LINNEID, per$LINNEID) # NOTE: Necessary!
-fob60$enter <- lim + 20 - fob60$birthdate
+fob60$enter <- fob60$fobdate - fob60$birthdate
 dd <- per$deathdate[indx]
-fob60$event <- !(is.na(dd)) & (dd <= lim + 25) # NOTE: 40 --> 25!
+##fob60$event <- !(is.na(dd)) & (dd <= lim + 25) # NOTE: 40 --> 25!
+fob60$event <- !(is.na(dd)) & (dd <= fob60$fobdate +5)
 fob60$exit <- fob60$enter + 5
 fob60$exit[fob60$event] <- dd[fob60$event] - fob60$birthdate[fob60$event]
 head(fob60)

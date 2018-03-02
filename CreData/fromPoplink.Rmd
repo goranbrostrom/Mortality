@@ -3,8 +3,8 @@ title: "From Poplink"
 author: "Göran Broström"
 date: "28 February 2018"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ## Introduction
