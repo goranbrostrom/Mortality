@@ -1,7 +1,7 @@
 ---
 title: "From Poplink"
 author: "Göran Broström"
-date: "28 February 2018"
+date: "4 March, 2018"
 output:
   html_document: default
   pdf_document: default
@@ -91,7 +91,10 @@ levels(adult$civst) <- c("unmarried", "married", "prev.married", "prev.married",
 ##if (file.exists("adult.rda")){
   ##load("adult.rda")
 if (TRUE){
-source("R/fixCovar2.R")  
+    adult <- adult[order(adult$id, adult$enter), ]
+    adult <- group_by(adult, id) %>% fill_("hisclass")
+    source("R/pus")
+    source("R/fixCovar2.R")  
     adult$hisclass40 <- with(adult, fixCovar2(id, hisclass, enter, exit, 40, 20))
     adult$hisclass40[is.na(adult$hisclass40)] <- 5
     adult$hisclass40 <- factor(adult$hisclass40, labels = c("elite", "middle", "worker", "farmer", "none"))
@@ -106,8 +109,6 @@ source("R/fixCovar2.R")
     adult$urban65 <- with(adult, fixCovar2(id, civst, enter, exit, 65, 45))
     
 }else{
-  adult <- adult[order(adult$id, adult$enter), ]
-  adult <- group_by(adult, id) %>% fill_("hisclass")
   adult$hisclass[is.na(adult$hisclass)] <- 4
   adult$hisclass <- factor(adult$hisclass, labels = c("elite", "middle", "worker", "NA"))
   ##
