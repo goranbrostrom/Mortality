@@ -17,7 +17,7 @@ addPer <- function(dat, name = "period", cuts = seq(1901, 1951), by = 10){
     }
     start[[name]] <- factor(start[[name]], labels = levs)
     start <- start[order(start$id, start$enter), ]
-    start <- rc(start)
+    ##start <- rc(start)
     start
 }
 
