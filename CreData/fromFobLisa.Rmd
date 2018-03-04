@@ -165,15 +165,11 @@ The *lisa* data is slightly simpler because it is yearly with cutoff dates 12-31
 
 ```{r lisadat}
 load("../../Data/lisa.rda")
-lisa <- lisa[lisa$KOMMUN %in% ourkom, ]
+lisa <- lisa[(lisa$KOMMUN %in% ourkom) & (lisa$LINNEID %in% per$LINNEID), ]
 indx <- match(lisa$LINNEID, per$LINNEID)
+
 lisa$birthdate <- per$birthdate[indx]
-```
 
-Those with *missing birthdate* in *lisa* are those born 1975 or later (What??). They can be removed.
-
-```{r removeyoung}
-lisa <- lisa[!is.na(lisa$birthdate), ]
 ```
 
 So, in *lisa*, all enter in *AR + 1*, at the exact age of *(AR + 1 - birthdate)*, and exit at the exact age *enter + 1* if they do not die in *the year AR + 1*, otherwise at their death date, or at *deathdate - birthdate*.
@@ -194,53 +190,11 @@ Now some sorting  and cleaning.
 lisadata <- lisa[order(lisa$LINNEID, lisa$enter), ]
 lisadata <- cal.window(lisadata, c(1987, 2014)) # 'Remove lisa2013'
 rownames(lisadata) <- 1:NROW(lisadata)
-save(lisadata, file = "lisadata2.rda")
+##save(lisadata, file = "lisadata2.rda")
 ```
 
 ## Lisa gets hisclass and the rest
 
-Note, this is just cut from "Mort2/CreateData2/fromFobLisa.Rmd". May need
-some editing ...
-
-```{r gethislisa}
-    load("../../Data/socstyr.rda")
-    indx <- match(fobdata$LINNEID, socstyr$LINNEID)
-    fobdata$ULORSAK <- str_trim(as.character(socstyr$ULORSAK[indx]))
-    source("R/putONssyk.R")
-    ##putONssyk
-    fobb <- putONssyk(fobdata)
-    source("R/ssykTOhisclass.R")
-    ##ssykTOhisclass
-    fobb$hisclass <- ssykTOhisclass(fobb$ssyk)
-    is.na(fobb$hisclass) <- with(fobb, is.na(hisclass) |
-                                       (!is.na(hisclass) & hisclass == -1))
-    source("R/addPer.R")
-    ##fobb <- pushHis(fobb)
-    ##fobb$hisclass <- fobb$nyhisclass
-    ## Instead
-    ##fobb <- group_by(fobb, LINNEID) %>% fill_("hisclass") # Later!
-    fobb$id <- fobb$LINNEID
-    fobb <- addPer(fobb, cuts = c(1961, 1971, 1981, 1991, 2002))
-    load("../../Data/sex.rda")
-
-    indx <- match(fobb$LINNEID, sex$LINNEID)
-    fobb$KON <- sex$KON[indx]
-    fobb$urban <- fobb$FORSAMLING %in% c(248001, 248002, 284004, 284005,
-                                         248011, 248201, 248204)
-    civst <- numeric(NROW(fobb))
-    civst[fobb$CIVIL %in% c(0, 5)] <- 1 # Ogift
-    civst[fobb$CIVIL %in% c(2, 7)] <- 2 # Gift, sambo
-    civst[fobb$CIVIL %in% c(1, 3, 4, 6, 8, 9)] <- 3 # skild, änka
-    fobb$civst <- factor(civst,
-                         labels = c("unmarried", "married", "prev.married"))
-    fobb$sex <- fobb$KON
-    levels(fobb$sex) <- c("male", "female")
-    fobb <- fobb[, c("id", "AR", "birthdate", "sex", "enter", "exit", "event",
-                     "period", "urban", "civst", "hisclass", "ULORSAK")]
-   fobb$dataset <- as.character(fobb$AR)
-```
-
-## Lisa
 
 ```{r lisadata}
     ##load("../../../Data/lisadata.rda")
@@ -284,7 +238,7 @@ some editing ...
     ## Now:
     ##liss <- group_by(lisadata, LINNEID) %>% fill_("hisclass") # Later!!
     liss$id <- liss$LINNEID
-    lisaold$id <- lisaold$LINNEID
+    ##lisaold$id <- lisaold$LINNEID
 
     ## lisaold <- addPer(lisaold, name = "period", cuts = seq(1986, 2014, by = 2)) ## Later! 
     ## liss <- addPer(liss, name = "period", cuts = seq(2002, 2014, by = 6)) # Later!!
@@ -297,19 +251,34 @@ some editing ...
     ##lisaold <- lisaold[with(lisaold, !is.na(civst)), ]
     liss$civst <- factor(liss$civst,
                          labels = c("unmarried", "married", "prev.married"))
-    lisaold$civst <- factor(lisaold$civst,
-                         labels = c("unmarried", "married", "prev.married"))
+    ##lisaold$civst <- factor(lisaold$civst,
+      ##                   labels = c("unmarried", "married", "prev.married"))
     liss$urban <- liss$FORSAMLING %in% c(248001, 248002, 284004,
                                          284005, 248011, 248201, 248204)
-    lisaold$urban <- lisaold$FORSAMLING %in% c(248001, 248002, 284004,
-                                         284005, 248011, 248201, 248204)
+    ##lisaold$urban <- lisaold$FORSAMLING %in% c(248001, 248002, 284004,
+      ##                                   284005, 248011, 248201, 248204)
     liss$id <- liss$LINNEID
     liss <- liss[, c("id", "AR", "birthdate", "sex", "enter", "exit", "event",
                      "urban", "civst", "hisclass", "ULORSAK")]
-    liss$dataset <- paste("lisa", as.character(liss$AR), sep = "")
+    ##liss$dataset <- paste("lisa", as.character(liss$AR), sep = "")
     save(liss, file = "liss2.rda")
-    save(lisaold, file = "lisaold.rda")
+    ##save(lisaold, file = "lisaold.rda")
 ```
 
 
-Now, read *checkData* (maybe not).
+# Combine Fob and Lisa
+
+
+```{r combfoblisa}
+source("R/fixCovar2.R")
+foli <- rbind(fobb, liss)
+foli <- foli[order(foli$id, foli$enter), ]
+source("R/pushForward.R")
+foli$hisclass <- unlist(tapply(foli$hisclass, foli$id, pushForward))
+foli$hisclass[is.na(foli$hisclass)] <- 5
+foli$hisclass <- factor(foli$hisclass, labels = c("elite", "middle", "worker", "farmer", "none"))
+foli$hisclass40 <- fixCovar2(foli$id, foli$hisclass, foli$enter, foli$exit, age = 40, lookBack = 20)
+foli$hisclass65 <- fixCovar2(foli$id, foli$hisclass, foli$enter, foli$exit, age = 65, lookBack = 45)
+save(foli, file = "foli.rda")
+```
+
