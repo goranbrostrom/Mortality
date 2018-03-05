@@ -1,4 +1,4 @@
-addPer <- function(dat, name = "period", cuts = seq(1901, 1951), by = 10){
+addPer <- function(dat, name = "period", cuts = seq(1801, 1951, by = 25)){
     n <- length(cuts)
     start <- cal.window(dat, c(cuts[1], cuts[2]))
     start[[name]] <- 1
