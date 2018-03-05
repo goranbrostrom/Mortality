@@ -32,31 +32,50 @@ abstract: "Focusing on two regions in northern Sweden 1801--2013, we challenge c
 
 ```{r setup, include=FALSE}
 library(knitr)
-opts_chunk$set(engine='R',fig.path='figs/art3-',tidy=FALSE,fig.height=8.5,fig.width=8,strip.white=TRUE,cache=FALSE,echo=FALSE,message=FALSE,comment=NA,show.signif.stars = FALSE)##$
+opts_chunk$set(engine='R',fig.path='figs/art3d-',tidy=FALSE,fig.height=8.5,fig.width=8,strip.white=TRUE,cache=FALSE,echo=FALSE,message=FALSE,comment=NA,show.signif.stars = FALSE)##$
 library(knitr)
 library(eha)
 library(xtable)
 library(skum)
+source("R/oneSpell.R")
 options(show.signif.stars = FALSE)
 ```
 
 ```{r readalldata}
-source("R/get.file.R")
-skel <- get.file("rawskel")
-skel$region <- "ske"
-skel$urban <- FALSE
-vars <- c("id", "birthdate", "sex", "period", "urban", "civst", "hisclass", "enter", "exit", "event")
-skel <- skel[, vars]
+load("data/skume.rda")
+skume <- skume[order(skume$id, skume$enter), ]
+skume$id <- paste("pop", skume$id, sep = "_")
 ##
-skume <- get.file("rawskume")
-skume <- skume[, vars]
+skume1 <- age.window(skume, c(40, 65))
+skume1 <- oneSpell(skume1)
 ##
-vb <- rbind(skel, skume)
-vb <- vb[order(vb$id, vb$exit), ]
-vb$id <- paste("vb", vb$id, sep = "_")
+skume2 <- age.window(skume, c(65, 100))
+skume2 <- oneSpell(skume2)
+##################################################
+load("data/foli.rda")
+foli <- foli[order(foli$id, foli$enter), ]
+foli$AR <- foli$ULORSAK <- NULL
 ##
-foli <- get.file("rawfoli")
-foli <- foli[, vars]
+foli1 <- age.window(foli, c(40, 65))
+foli1 <- oneSpell(foli1)
+##
+foli2 <- age.window(foli, c(65, 100))
+foli2 <- oneSpell(foli2)
+##################################################
+source("CreData/R/addPer.R")
+skume1 <- addPer(skume1, cuts = seq(1801, 1951, by = 25))
+skume2 <- addPer(skume2, cuts = seq(1801, 1951, by = 25))
+##
+foli1 <- addPer(foli1, cuts = c(1976, 1986, 1996, 2005, 2014))
+foli2 <- addPer(foli2, cuts = c(1976, 1986, 1996, 2005, 2014))
+##################################################
+vb1 <- rbind(skume1, foli1)
+vb1$period <- factor(vb1$period)
+##
+vb2 <- rbind(skume2, foli2)
+vb2$period <- factor(vb2$period)
+vb <- rbind(vb1, vb2)
+vb$exposure <- vb$exit - vb$enter # For statistics and figures purposes
 ```
 
 # Introduction
@@ -158,7 +177,7 @@ background or previous social class.
 plot(c(1801, 1801, 1951, 1951, 1801), c(30, 100, 100, 30, 30),
      type = "l", xlim = c(1800, 2014), lwd = 2, col = "red",
      xlab = "Year", ylab = "Age", axes = FALSE, ylim = c(0, 100))
-axis(1, at = c(1801, 1851, 1901, 1951, 1976, 1991, 2014), las = 2)
+axis(1, at = c(1801, 1851, 1901, 1951, 1976, 1986, 1996, 2005, 2014), las = 2)
 axis(2, las = 2, at = c(0, 30, 65, 100))
 axis(4, las = 2, at = c(0, 30, 65, 100))
 box()
@@ -166,16 +185,16 @@ abline(h = 0)
 lines(c(1976, 1976, 2014, 2014, 1976), c(30, 100, 100, 30, 30),
       col = "blue", lwd = 2)
 #
-pn.exp <- round(sum(skel$exposure) + sum(skume$exposure))
-pn.d <-  as.integer(sum(skel$event) + sum(skume$event))
+pn.exp <- round(sum(skume1$exit - skume1$enter) + sum(skume2$exit - skume2$enter))
+pn.d <-  as.integer(sum(skume1$event) + sum(skume2$event))
 #
 text(1875, 70, "PopLink", cex = 2, col = "red")
 ##text(1899, 60, paste(pn.rec, "records"))
 text(1875, 55, paste(round(pn.exp / 1000000, 1), "million p-years"))
 text(1874.5, 50, paste(round(pn.d / 1000, 1), "thousand deaths"))
 #
-n.exp <- round(sum(foli$exposure))
-n.d <-  as.integer(sum(foli$event))
+n.exp <- round(sum(foli1$exit - foli1$enter) + sum(foli2$exit -foli2$enter))
+n.d <-  as.integer(sum(foli1$event) + sum(foli2$event))
 
 text(1995, 70, "Linnaeus", cex = 1.5, col = "blue")
 ##text(1984, 60, paste(n.rec, "records"))
@@ -260,21 +279,21 @@ For men the proportion is somewhat higher in the age group 65 and above, those w
 but still low enough to be used in our analyses (results not shown). If we disregard the very first period, 
 however, there were very few with occupation missing until 1950. 
 
-```{r hiscskumm, fig.cap = "Exposure by social class (from the top: elite, middle, workers, farmers, missing) and time period, men.", fig.scap="Exposure by social class and time period, men.", out.height = "14cm", fig.height=4}
-xx <- with(skel[skel$sex == "male", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
-xy <- with(skume[skume$sex == "male", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
-xz <- with(foli[foli$sex == "male", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
-xxx <- rbind(xx, xy, xz)
-yy <- round(prop.table(xxx, 1) * 100, 1)
+```{r hiscskumm, fig.cap = "Exposure by social class (from the top: elite, middle, workers, farmers, none) and time period, men.", fig.scap="Exposure by social class and time period, men.", out.height = "14cm", fig.height=4}
+xx <- with(vb[vb$sex == "male", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
+##xy <- with(skume[skume$sex == "male", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
+##xz <- with(foli[foli$sex == "male", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
+##xxx <- rbind(xx, xy, xz)
+yy <- round(prop.table(xx, 1) * 100, 1)
 barplot(t(yy)[5:1, ], col = c("red", "darkgreen", "blue", "green", "black"), las = 2, ylab = "Per cent")
 ```
 
 ```{r hiscskumw, fig.cap = "Exposure by social class (from the top: elite, middle, workers, missing) and time period, women.", out.height = "14cm", fig.scap="Exposure by social class and time period, women.",fig.height=4}
-xx <- with(skel[skel$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
-xy <- with(skume[skume$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
-xz <- with(foli[foli$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
-xxx <- rbind(xx, xy, xz)
-yy <- round(prop.table(xxx, 1) * 100, 1)
+xx <- with(vb[vb$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
+##xy <- with(skume[skume$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
+##xz <- with(foli[foli$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
+##xxx <- rbind(xx, xy, xz)
+yy <- round(prop.table(xx, 1) * 100, 1)
 barplot(t(yy)[5:1, ], col = c("red", "darkgreen", "blue", "green", "black"), las = 2, ylab = "Per cent")
 ```
 
@@ -299,11 +318,11 @@ set to unmarried. Note that it has not been possible to identify cohabitation.
 
 
 ```{r civstskum, fig.cap = "Exposure by marital status (from the top: never married, married and previously married) and time period", fig.scap='Exposure by marital status and time period.',out.height = "14cm",fig.height=4}
-xx <- with(skel, tapply(exposure, list(period = period, civst = civst), sum))
-xy <- with(skume, tapply(exposure, list(period = period, civst = civst), sum))
-xz <- with(foli, tapply(exposure, list(period = period, civst = civst), sum))
-xxx <- rbind(xx, xy, xz)
-yy <- round(prop.table(xxx, 1) * 100, 1)
+xx <- with(vb, tapply(exposure, list(period = period, civst = civst), sum))
+##xy <- with(skume, tapply(exposure, list(period = period, civst = civst), sum))
+##xz <- with(foli, tapply(exposure, list(period = period, civst = civst), sum))
+##xxx <- rbind(xx, xy, xz)
+yy <- round(prop.table(xx, 1) * 100, 1)
 barplot(t(yy)[3:1, ], col = c("red", "blue", "green"), las = 2, ylab = "Per cent")
 ```
 
@@ -422,7 +441,7 @@ more common in the rural area than others (we find farmers on the countryside).
 scol <- c("black", "green", "blue", "darkgreen", "red")
 ## Common for all groups:
 
-labb <- levels(vb0Tab$period)
+labb <- levels(vb$period)
 nper <- length(labb)
 #source("R/getPHglm.R")
 ## End 'common'
@@ -433,7 +452,7 @@ nper <- length(labb)
 In order to simplify the illustration, we look at `civil status` in two groups, `ever married` and `unmarried`, in Figure \@ref(fig:assesciv).
 
 ```{r assesciv, fig.cap = "Fraction ever married by hisclass and period.", fig.height = 4}
-orr <- aggregate(x = vb0Tab$exposure, by = vb0Tab[, c("period", "civst", "hisclass")], FUN = sum)
+orr <- aggregate(x = vb$exposure, by = vb[, c("period", "civst", "hisclass")], FUN = sum)
 
 levper <- levels(orr$period)
 nper <- length(levper)
@@ -448,7 +467,7 @@ for (per in 1:nper){
     }
 }
 out <- 100 * out
-xli <-  c(1812, 1837, 1862, 1887, 1912, 1932, 1978, 1982, 1988, 1995, 2005, 2011)
+xli <-  c(1812, 1837, 1862, 1887, 1912, 1932, 1981, 1991, 2000, 2009)
 plot(xli, out[1, ], type = "b", xlab = "", ylab = "Fraction ever married", 
      axes = FALSE, col = scol[1], lty = 1, pch = 1, ylim = c(0,100))
 axis(1, at = xli, labels = levper, las = 2, cex = 0.7)
@@ -464,7 +483,7 @@ legend("bottomright", legend = levhis, lty = 1:5, col = scol, pch = 1:5)
 ### Association between urban/rural and social class over time
 
 ```{r assesurb, fig.cap = "Fraction urban by hisclass and period.", fig.height = 4}
-orr <- aggregate(x = vb0Tab$exposure, by = vb0Tab[, c("period", "urban", "hisclass")], FUN = sum)
+orr <- aggregate(x = vb$exposure, by = vb[, c("period", "urban", "hisclass")], FUN = sum)
 
 levper <- levels(orr$period)
 nper <- length(levper)
@@ -479,7 +498,7 @@ for (per in 1:nper){
     }
 }
 out <- 100 * out
-xli <-  c(1812, 1837, 1862, 1887, 1912, 1932, 1978, 1982, 1988, 1995, 2005, 2011)
+xli <-  c(1812, 1837, 1862, 1887, 1912, 1932, 1981, 1991, 2000, 2009)
 plot(xli, out[1, ], type = "b", xlab = "", ylab = "Fraction urban", 
      axes = FALSE, col = scol[1], lty = 1, pch = 1, ylim = c(0,100))
 axis(1, at = xli, labels = levper, las = 2, cex = 0.7)
@@ -492,190 +511,72 @@ for (r in 2:nhis){
 legend("bottomleft", legend = levhis, lty = 1:5, col = scol, pch = 1:5)
 ```
 
-### Inverse exposure weighting
+### Inverse probability weighting
 
 In order to eliminate the disturbing effect on the association between hisclass and mortality by
 the confounders civil status and urban/rural, weights that eliminates the associations between hisclass 
 and the confounders are introduced. This is done period by period. 
 
-As an illustration, take the period `1901-1925` with males. There are six combinations of civil status and urban/rural, and for 
+As an illustration, take the period `2005-2013` with males, 65--99 years of age. There are six combinations of civil status and urban/rural, and for 
 each we calculate the total exposure time. The total distribution by confounders is
 
-```{r exweight}
-exm <- vb0Tab[vb0Tab$period == "1901-1925" & vb0Tab$sex == "male", c("age", "civst", "urban", "exposure", "event", "hisclass")]
-all <- aggregate(exm[, c("exposure", "event")], by = exm[, c("civst", "urban")], FUN = sum)
-all
-```
-
-and for the elite we have
-
-```{r forelite}
-elite <- exm[exm$hisclass == "elite", c("age", "civst", "urban", "exposure", "event", "hisclass")]
-el <- aggregate(elite[, c("exposure", "event")], by = elite[, c("civst", "urban")], FUN = sum)
-el
-```
-
-The weights are now 'all["exposure"]" / el["exposure"]`, that is
-
-```{r wei}
-wei <-  all$exposure / el$exposure
-all$wei <- wei 
-all$Expos <- all$exposure * wei
-all$Eve <- all$event * wei
-all
-```
-
-Put these weights on the data frame `elite`:
-
-```{r putonel}
-all$id <- paste(all$civst, all$urban, sep = "_")
-elite$id <- paste(elite$civst, elite$urban, sep = "_")
-indx <- match(elite$id, all$id)
-elite$wght <- all$wei[indx]
-```
-
-Now repeat this for the other four hisclasses:
-
-```{r therest}
-middle <- exm[exm$hisclass == "middle", c("age", "civst", "urban", "exposure", "event", "hisclass")]
-el <- aggregate(middle["exposure"], by = middle[, c("civst", "urban")], FUN = sum)
-all$wei <- all$exposure / el$exposure
-middle$id <- paste(middle$civst, middle$urban, sep = "_")
-indx <- match(middle$id, all$id)
-middle$wght <- all$wei[indx]
-el
+```{r exweight, echo = TRUE}
+vb2_2005_men <- vb2[vb2$sex == "male" & vb2$period == "2005-2013", ]
+fit1 <- glm(I(hisclass == "elite") ~ urban * civst, data = vb2_2005_men, family = binomial)
+fit2 <- glm(I(hisclass == "middle") ~ urban * civst, data = vb2_2005_men, family = binomial)
+fit3 <- glm(I(hisclass == "worker") ~ urban * civst, data = vb2_2005_men, family = binomial)
+fit4 <- glm(I(hisclass == "farmer") ~ urban * civst, data = vb2_2005_men, family = binomial)
+fit5 <- glm(I(hisclass == "none") ~ urban * civst, data = vb2_2005_men, family = binomial)
+wght <- numeric(NROW(vb2_2005_men))
 ##
-worker <- exm[exm$hisclass == "worker", c("age", "civst", "urban", "exposure", "event", "hisclass")]
-el <- aggregate(worker["exposure"], by = worker[, c("civst", "urban")], FUN = sum)
-all$wei <- all$exposure / el$exposure
-worker$id <- paste(worker$civst, worker$urban, sep = "_")
-indx <- match(worker$id, all$id)
-worker$wght <- all$wei[indx]
-el
+gg <- vb2_2005_men$hisclass == "elite"
+wght[gg] <- 1 / predict(fit1, type = "response")[gg]
 ##
-farmer <- exm[exm$hisclass == "farmer", c("age", "civst", "urban", "exposure", "event", "hisclass")]
-el <- aggregate(farmer["exposure"], by = farmer[, c("civst", "urban")], FUN = sum)
-all$wei <- all$exposure / el$exposure
-farmer$id <- paste(farmer$civst, farmer$urban, sep = "_")
-indx <- match(farmer$id, all$id)
-farmer$wght <- all$wei[indx]
-el
+gg <- vb2_2005_men$hisclass == "middle"
+wght[gg] <- 1 / predict(fit1, type = "response")[gg]
 ##
-non <- exm[exm$hisclass == "NA", c("age", "civst", "urban", "exposure", "event", "hisclass")]
-el <- aggregate(non["exposure"], by = non[, c("civst", "urban")], FUN = sum)
-all$wei <- all$exposure / el$exposure
-non$id <- paste(non$civst, non$urban, sep = "_")
-indx <- match(non$id, all$id)
-non$wght <- all$wei[indx]
-el
+gg <- vb2_2005_men$hisclass == "worker"
+wght[gg] <- 1 / predict(fit1, type = "response")[gg]
+##
+gg <- vb2_2005_men$hisclass == "farmer"
+wght[gg] <- 1 / predict(fit1, type = "response")[gg]
+##
+gg <- vb2_2005_men$hisclass == "none"
+wght[gg] <- 1 / predict(fit1, type = "response")[gg]
+##
+vb2_2005_men$wght <- wght
 ```
 
-And put together:
 
-```{r puttog}
-per1901 <- rbind(elite, middle, worker, farmer, non)
-per1901$age <- factor(per1901$age)
-#fit <- lm(exposure ~ civst * urban * age, data = per1901)
-#pred <- predict(fit, type = "response")
-#per1901$wght2 <- pred / per1901$exposure
-```
-
-Let us fit with and without weights. Without weights, see Figure \@ref(fig:testfit).
+Let us fit with and without weights, see Figure \@ref(fig:testfit).
 
 ```{r testfit, fig.cap = "Survival by hisclass, men 1901-1925, non-weighted analysis.", fig.height = 4}
-fit1 <- glm(event ~ offset(log(exposure)) + age, data = per1901[per1901$hisclass == "elite", ], family = poisson)
-co1 <- fit1$coefficients
-co1[2:length(co1)] <- co1[2:length(co1)] + co1[1]
-co1 <- exp(co1)
-##
-fit2 <- glm(event ~ offset(log(exposure)) + age, data = per1901[per1901$hisclass == "middle", ], family = "poisson")
-co2 <- fit2$coefficients
-co2[2:length(co2)] <- co2[2:length(co2)] + co2[1]
-co2 <- exp(co2)
-##
-fit3 <- glm(event ~ offset(log(exposure)) + age, data = per1901[per1901$hisclass == "worker", ], family = "poisson")
-co3 <- fit3$coefficients
-co3[2:length(co3)] <- co3[2:length(co3)] + co3[1]
-co3 <- exp(co3)
-##
-fit4 <- glm(event ~ offset(log(exposure)) + age, data = per1901[per1901$hisclass == "farmer", ], family = "poisson")
-co4 <- fit4$coefficients
-co4[2:length(co4)] <- co4[2:length(co4)] + co4[1]
-co4 <- exp(co4)
-##
-fit5 <- glm(event ~ offset(log(exposure)) + age, data = per1901[per1901$hisclass == "NA", ], family = "poisson")
-co5 <- fit5$coefficients
-co5[2:length(co5)] <- co5[2:length(co5)] + co5[1]
-co5 <- exp(co5)
-###
-cuts <- seq(5, 55, by = 5)
-x <- seq(0, 60, length = 1000)
-s1 <- ppch(x, cuts = cuts, levels = co1[1:12], lower.tail = FALSE)
-plot(x, s1, type = "l", col = scol[1], axes = FALSE, xlab = "age", ylab = "Surviving fraction after 30.")
-axis(1, at = seq(0, 60, by = 10), labels = seq(30, 90, by = 10))
-box()
-axis(2, las = 1)
+fit <- coxph(Surv(enter, exit, event) ~ strata(hisclass), data = vb2_2005_men)
+fitw <- coxph(Surv(enter, exit, event) ~ strata(hisclass), weights = wght, data = vb2_2005_men)
+oldpar <- par(mfrow = c(1, 2))
+plot(survfit(fit), mark.time = FALSE, col = scol, lty = 1:5, xlim = c(65, 100), xlab = "Age", ylab = "Survival", main = "Unweighted")
 abline(h = 0)
-abline(v = 0)
-s2 <- ppch(x, cuts = cuts, levels = co2[1:12], lower.tail = FALSE)
-lines(x, s2, col = scol[2], lty = 2)
-s3 <- ppch(x, cuts = cuts, levels = co3[1:12], lower.tail = FALSE)
-lines(x, s3, col = scol[3], lty = 3)
-s4 <- ppch(x, cuts = cuts, levels = co4[1:12], lower.tail = FALSE)
-lines(x, s4, col = scol[4], lty = 4)
-s5 <- ppch(x, cuts = cuts, levels = co5[1:12], lower.tail = FALSE)
-lines(x, s5, col = scol[5], lty = 5)
+abline(h = 0.5, lty = 3)
+med <- summary(survfit(fit))$table[, "median"]
+lines(c(med["none"], med["none"]), c(0, 0.5), col = "red", lty = 3)
+lines(c(med["elite"], med["elite"]), c(0, 0.5), col = "black", lty = 3)
+plot(survfit(fitw), mark.time = FALSE, col = scol, lty = 1:5, xlim = c(65, 100), xlab = "Age", ylab = "Survival", main = "Weighted")
+abline(h = 0)
+abline(h = 0.5, lty = 3)
+medw <- summary(survfit(fitw))$table[, "median"]
+lines(c(medw["none"], medw["none"]), c(0, 0.5), col = "red", lty = 3)
+lines(c(medw["elite"], medw["elite"]), c(0, 0.5), col = "black", lty = 3)
+medi <- cbind(med, medw)
+colnames(medi) <- c("Unweighted", "weighted")
 ##
 ```
 
-With weights, see Figure \@ref(fig:testfit2):
+The estimated medians are
 
-
-```{r testfit2, fig.cap = "Survival by hisclass, men 1901-1925, weighted analysis.", fig.height = 4}
-fit1 <- glm(event ~ offset(log(exposure)) + age, data = per1901[per1901$hisclass == "elite", ], family = poisson, weights = wght)
-co1 <- fit1$coefficients
-co1[2:length(co1)] <- co1[2:length(co1)] + co1[1]
-co1 <- exp(co1)
-##
-fit2 <- glm(event ~ offset(log(exposure)) + age, data = per1901[per1901$hisclass == "middle", ], family = "poisson", weights = wght)
-co2 <- fit2$coefficients
-co2[2:length(co2)] <- co2[2:length(co2)] + co2[1]
-co2 <- exp(co2)
-##
-fit3 <- glm(event ~ offset(log(exposure)) + age, data = per1901[per1901$hisclass == "worker", ], family = "poisson", weights = wght)
-co3 <- fit3$coefficients
-co3[2:length(co3)] <- co3[2:length(co3)] + co3[1]
-co3 <- exp(co3)
-##
-fit4 <- glm(event ~ offset(log(exposure)) + age, data = per1901[per1901$hisclass == "farmer", ], family = "poisson", weights = wght)
-co4 <- fit4$coefficients
-co4[2:length(co4)] <- co4[2:length(co4)] + co4[1]
-co4 <- exp(co4)
-##
-fit5 <- glm(event ~ offset(log(exposure)) + age, data = per1901[per1901$hisclass == "NA", ], family = "poisson", weights = wght)
-co5 <- fit5$coefficients
-co5[2:length(co5)] <- co5[2:length(co5)] + co5[1]
-co5 <- exp(co5)
-###
-cuts <- seq(5, 55, by = 5)
-x <- seq(0, 60, length = 1000)
-s1 <- ppch(x, cuts = cuts, levels = co1[1:12], lower.tail = FALSE)
-plot(x, s1, type = "l", col = scol[1], axes = FALSE, xlab = "Age", ylab = "Surviving fraction after 30")
-axis(1, at = seq(0, 60, by = 10), labels = seq(30, 90, by = 10))
-axis(2, las = 1)
-box()
-abline(h = 0)
-abline(v = 0)
-s2 <- ppch(x, cuts = cuts, levels = co2[1:12], lower.tail = FALSE)
-lines(x, s2, col = scol[2], lty = 2)
-s3 <- ppch(x, cuts = cuts, levels = co3[1:12], lower.tail = FALSE)
-lines(x, s3, col = scol[3], lty = 3)
-s4 <- ppch(x, cuts = cuts, levels = co4[1:12], lower.tail = FALSE)
-lines(x, s4, col = scol[4], lty = 4)
-s5 <- ppch(x, cuts = cuts, levels = co5[1:12], lower.tail = FALSE)
-lines(x, s5, col = scol[5], lty = 5)
-##
+```{r estmed}
+knitr::kable(round(medi, 1))
 ```
+
 
 # The effect of social class on mortality
 
