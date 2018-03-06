@@ -53,6 +53,7 @@ skume2 <- age.window(skume, c(65, 100))
 skume2 <- oneSpell(skume2)
 ##################################################
 load("data/foli.rda")
+foli$civst[is.na(foli$civst)] <- "unmarried"
 foli <- foli[order(foli$id, foli$enter), ]
 foli$AR <- foli$ULORSAK <- NULL
 ##
@@ -517,10 +518,9 @@ In order to eliminate the disturbing effect on the association between hisclass 
 the confounders civil status and urban/rural, weights that eliminates the associations between hisclass 
 and the confounders are introduced. This is done period by period. 
 
-As an illustration, take the period `2005-2013` with males, 65--99 years of age. There are six combinations of civil status and urban/rural, and for 
-each we calculate the total exposure time. The total distribution by confounders is
+As an illustration, take the period `2005-2013` with males, 65--99 years of age. 
 
-```{r exweight, echo = TRUE}
+```{r exweight}
 vb2_2005_men <- vb2[vb2$sex == "male" & vb2$period == "2005-2013", ]
 fit1 <- glm(I(hisclass == "elite") ~ urban * civst, data = vb2_2005_men, family = binomial)
 fit2 <- glm(I(hisclass == "middle") ~ urban * civst, data = vb2_2005_men, family = binomial)
@@ -533,16 +533,16 @@ gg <- vb2_2005_men$hisclass == "elite"
 wght[gg] <- 1 / predict(fit1, type = "response")[gg]
 ##
 gg <- vb2_2005_men$hisclass == "middle"
-wght[gg] <- 1 / predict(fit1, type = "response")[gg]
+wght[gg] <- 1 / predict(fit2, type = "response")[gg]
 ##
 gg <- vb2_2005_men$hisclass == "worker"
-wght[gg] <- 1 / predict(fit1, type = "response")[gg]
+wght[gg] <- 1 / predict(fit3, type = "response")[gg]
 ##
 gg <- vb2_2005_men$hisclass == "farmer"
-wght[gg] <- 1 / predict(fit1, type = "response")[gg]
+wght[gg] <- 1 / predict(fit4, type = "response")[gg]
 ##
 gg <- vb2_2005_men$hisclass == "none"
-wght[gg] <- 1 / predict(fit1, type = "response")[gg]
+wght[gg] <- 1 / predict(fit5, type = "response")[gg]
 ##
 vb2_2005_men$wght <- wght
 ```
@@ -552,20 +552,34 @@ Let us fit with and without weights, see Figure \@ref(fig:testfit).
 
 ```{r testfit, fig.cap = "Survival by hisclass, men 1901-1925, non-weighted analysis.", fig.height = 4}
 fit <- coxph(Surv(enter, exit, event) ~ strata(hisclass), data = vb2_2005_men)
+med <- summary(survfit(fit))$table[, "median"]
 fitw <- coxph(Surv(enter, exit, event) ~ strata(hisclass), weights = wght, data = vb2_2005_men)
+medw <- summary(survfit(fitw))$table[, "median"]
 oldpar <- par(mfrow = c(1, 2))
-plot(survfit(fit), mark.time = FALSE, col = scol, lty = 1:5, xlim = c(65, 100), xlab = "Age", ylab = "Survival", main = "Unweighted")
+plot(survfit(fit), mark.time = FALSE, col = scol, lty = 1:5, xlim = c(65, 100), 
+     xlab = "Age", ylab = "Survival", main = "Unweighted", axes = FALSE)
+tics <- c(65, 70, 75, round(med["none"], 1), round(med["elite"], 1), 90, 95, 100)
+axis(1, at = tics)
+axis(2, at = c(0, 0.5, 1), las = 1)
+box()
 abline(h = 0)
 abline(h = 0.5, lty = 3)
-med <- summary(survfit(fit))$table[, "median"]
+
 lines(c(med["none"], med["none"]), c(0, 0.5), col = "red", lty = 3)
 lines(c(med["elite"], med["elite"]), c(0, 0.5), col = "black", lty = 3)
-plot(survfit(fitw), mark.time = FALSE, col = scol, lty = 1:5, xlim = c(65, 100), xlab = "Age", ylab = "Survival", main = "Weighted")
+legend("bottomleft", legend = levels(vb2$hisclass), col = scol, lty = 1:5)
+plot(survfit(fitw), mark.time = FALSE, col = scol, lty = 1:5, xlim = c(65, 100), 
+     xlab = "Age", ylab = "Survival", main = "Weighted", axes = FALSE)
+tics <- c(65, 70, 75, round(medw["none"], 1), round(medw["elite"], 1), 90, 95, 100)
+axis(1, at = tics)
+axis(2, at = c(0, 0.5, 1), las = 1)
+box()
 abline(h = 0)
 abline(h = 0.5, lty = 3)
-medw <- summary(survfit(fitw))$table[, "median"]
+
 lines(c(medw["none"], medw["none"]), c(0, 0.5), col = "red", lty = 3)
 lines(c(medw["elite"], medw["elite"]), c(0, 0.5), col = "black", lty = 3)
+legend("bottomleft", legend = levels(vb2$hisclass), col = scol, lty = 1:5)
 medi <- cbind(med, medw)
 colnames(medi) <- c("Unweighted", "weighted")
 ##
@@ -577,12 +591,53 @@ The estimated medians are
 knitr::kable(round(medi, 1))
 ```
 
+For the age interval 40--64 we get
+
+```{r forty64}
+source("R/getWeights.R")
+da <- vb1[vb1$sex == "male" & vb1$period == "2005-2013", ]
+da$wght <- getWeights(da)
+##
+fit <- coxph(Surv(enter, exit, event) ~ strata(hisclass), data = da)
+med <- summary(survfit(fit))$table[, "median"]
+fitw <- coxph(Surv(enter, exit, event) ~ strata(hisclass), weights = wght, data = da)
+medw <- summary(survfit(fitw))$table[, "median"]
+oldpar <- par(mfrow = c(1, 2))
+plot(survfit(fit), mark.time = FALSE, col = scol, lty = 1:5, xlim = c(40, 65), 
+     xlab = "Age", ylab = "Survival", main = "Unweighted", axes = FALSE)
+tics <- c(40, 45, 50, 55, 60, 65)
+axis(1, at = tics)
+axis(2, at = c(0, 0.5, 1), las = 1)
+box()
+abline(h = 0)
+abline(h = 0.5, lty = 3)
+legend("bottomleft", legend = levels(vb2$hisclass), col = scol, lty = 1:5)
+##lines(c(med["none"], med["none"]), c(0, 0.5), col = "red", lty = 3)
+##lines(c(med["elite"], med["elite"]), c(0, 0.5), col = "black", lty = 3)
+plot(survfit(fitw), mark.time = FALSE, col = scol, lty = 1:5, xlim = c(40, 65), 
+     xlab = "Age", ylab = "Survival", main = "Weighted", axes = FALSE)
+tics <- c(40, 45, 50, 55, 60, 65)
+axis(1, at = tics)
+axis(2, at = c(0, 0.5, 1), las = 1)
+box()
+abline(h = 0)
+abline(h = 0.5, lty = 3)
+legend("bottomleft", legend = levels(vb2$hisclass), col = scol, lty = 1:5)
+```
+
+We cannot use the "median remaining life" as a summary comparison measure, for obvious reasons. Instead, the *area under the survival curves* will be used. This area can be interpreted as the *expected years of life before 65(100)*. Here we get
+
+```{r explife40}
+round(summary(survfit(fitw), rmean = 65)$table[, "*rmean"], 2)
+```
+
+This is now repeated for each period, and for men and women separately.
 
 # The effect of social class on mortality
 
 ## All ages, survival curves
 
-```{r inipw}
+```{r inipw, eval = FALSE}
 source("R/ipw.R")
 vb1Tab <- aggregate(vb0Tab[c("event", "exposure")], by = vb0Tab[c("sex", "age", "period", "civst", "hisclass", "urban")], FUN = sum, drop = TRUE)
 ##problem <- vb1Tab$exposure <= 0 
@@ -669,47 +724,79 @@ cap22log <- "Probability of dying before age 100 for a 65-year-old by social cla
 scap22log <- "Probability by social class, ages 65--99, last years."
 
 ##
-vb3064 <- vb0Tab[as.numeric(as.character(vb0Tab$age)) < 64.5, ]
-vb3064$age <- factor(vb3064$age)
+##vb3064 <- vb0Tab[as.numeric(as.character(vb0Tab$age)) < 64.5, ]
+##vb3064$age <- factor(vb3064$age)
 ##vb3064$hisclass <- vb3064$hisclass40
 ```
 
 ```{r hazcalw}
-source("R/getPHglm2.R")
-source("R/getPHglm.R")
-##nper <- 4
 nper <- length(labb)
-resw <- getPHglm2(vb3064[vb3064$sex == "female", ],
-            nper, labb)
-resm <- getPHglm2(vb3064[vb3064$sex == "male", ],
-            nper, labb)
+his <- levels(vb1$hisclass)
+nhis <- length(his)
+##
+resm <- matrix(0, nrow = nhis, ncol = nper)
+for (i in 1:nper){
+    dat <- vb1[vb1$sex == "male" & vb1$period == labb[i], ]
+    dat$wght <- getWeights(dat)
+    fit <- coxph(Surv(enter, exit, event) ~ strata(hisclass), weights = wght, data = dat)
+    resm[, i] <- summary(survfit(fit), rmean = 65)$table[, "*rmean"]
+}
+##
+resw <- matrix(0, nrow = nhis, ncol = nper)
+for (i in 1:nper){
+    dat <- vb1[vb1$sex == "female" & vb1$period == labb[i], ]
+    dat$wght <- getWeights(dat)
+    fit <- coxph(Surv(enter, exit, event) ~ strata(hisclass), weights = wght, data = dat)
+    resw[, i] <- summary(survfit(fit), rmean = 65)$table[, "*rmean"]
+}
+
 ```
 
 
 ```{r cumsw, fig.cap = cap0, fig.scap = scap0, fig.height = 8, out.height = "14cm"}
 source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
-woutp <- plotED.glm(resw, col = scol, logScale = TRUE, ylab = "H(65|30)",
-                main = "Women 30-64", ylim = c(0, 1))##, exclude = 5:6)
-moutp <- plotED.glm(resm, col = scol, logScale = TRUE, ylab = "H(65|30)",
-                main = "Men 30-64", ylim = c(0, 1))##, exclude = 5:6)
+midper <- c(1812.5, 1837.5, 1862.5, 1887.5, 1912.5, 1937.5, 1981, 1991, 2000.5, 2009.5)
+plot(midper, resw[1, ], col = scol[1], type = "b", ylim = c(58, 65), xlab = "Period", 
+     ylab = "Age", axes = FALSE, main = "Women, 40-64")
+
+axis(1, at = midper, labels = labb)
+axis(2, las = 1)
+box()
+for (i in 2:5){
+    lines(midper, resw[i, ], col = scol[i], type = "b")
+}
+plot(midper, resm[1, ], col = scol[1], type = "b", ylim = c(58, 65), xlab = "Period", 
+     ylab = "Age", axes = FALSE, main = "Men, 40-64")
+axis(1, at = midper, labels = labb)
+axis(2, las = 1)
+box()
+for (i in 2:5){
+    lines(midper, resm[i, ], col = scol[i], type = "b")
+}
+##woutp <- plotED.glm(resw, col = scol, logScale = TRUE, ylab = "H(65|30)",
+  ##              main = "Women 30-64", ylim = c(0, 1))##, exclude = 5:6)
+##moutp <- plotED.glm(resm, col = scol, logScale = TRUE, ylab = "H(65|30)",
+  ##              main = "Men 30-64", ylim = c(0, 1))##, exclude = 5:6)
 par(oldpar)
 ```
 
 Looking at Table \@ref(tab:cumswtab), it is obvious that the statistical significance is strong.
 
 
-```{r cumswtab,message=FALSE}
-vb3064$social_class <- vb3064$hisclass
-vb3064$marital_status <- vb3064$civst
-vb3064$urban_or_rural <- vb3064$urban
-vb3064$age_group <- vb3064$age
-fitt <- glm(event ~ offset(log(exposure)) + urban_or_rural + marital_status + age_group + sex * social_class * period,
-            data = vb3064, family = poisson)
+```{r cumswtab, message=FALSE, cache = TRUE, eval = FALSE}
+fitt <- coxph(Surv(enter, exit, event) ~ hisclass * period * sex + civst + urban, data = vb1)
+
+# vb3064$social_class <- vb3064$hisclass
+# vb3064$marital_status <- vb3064$civst
+# vb3064$urban_or_rural <- vb3064$urban
+# vb3064$age_group <- vb3064$age
+# fitt <- glm(event ~ offset(log(exposure)) + urban_or_rural + marital_status + age_group + sex * social_class * period,
+#             data = vb3064, family = poisson)
 dr <- drop1(fitt, test = "Chisq")
-##dr
+# ##dr
 knitr::kable(dr, caption = "Single term deletions, ages 30-64.")
-##print(xtable(dr,label = "tab:cumswtab", caption = "Mortality: ANOVA, ages 30--64."), 
+# ##print(xtable(dr,label = "tab:cumswtab", caption = "Mortality: ANOVA, ages 30--64."), 
   ##    type = "latex", comment = FALSE)
 ```
 
@@ -723,15 +810,15 @@ demographic history [@wil99; @suwi07]. We also observe a
 substantial decline in mortality for both sexes, resulting in smaller
 absolute differences between social classes. We must, however, distinguish between differences in absolute risks compared to relative risks [@hoetal16]. The compression that is
 visible for later decades is partly explained by the decreasing general
-mortality and does not necessarily represent a homogenization of relative risks.
+mortality and does not necessarily represent a homogenization of relative risks. 
 
-
+<!--
 By standardizing the levels in each time period for each class, we 
 illustrate the relative risks in Figure \@ref(fig:cumswstand). In the rest of 
 the paper, we only present these
 relative mortality levels for the different classes since they are the main focus in this study.
 
-```{r cumswstand, fig.cap = cap12, fig.scap = scap12, fig.height = 8, out.height = "14cm"}
+```{r cumswstand, fig.cap = cap12, fig.scap = scap12, fig.height = 8, out.height = "14cm", eval = FALSE}
 oldpar <- par(mfrow = c(2, 1))
 woutp <- plotED.glm(resw, col = scol, logScale = TRUE, relative = TRUE,
                     ylab = "H(65|30)", ylim = c(0.0, 0.6), main = "Women 30-64")##, exclude = 5:6)
@@ -740,6 +827,7 @@ moutp <- plotED.glm(resm, col = scol, logScale = TRUE, relative = TRUE,
 par(oldpar)
 ```
 
+-->
 
 The changing economy has some consequences for the analysis, particularly when
 it comes to the agricultural sector. While farming occupations were common
@@ -778,49 +866,81 @@ the difference was much smaller. It was men in high positions who experienced th
 
 ## Ages 65--99
 
-```{r rawolddat,echo=FALSE}
-rawskel <- get.file("rawskel")
-rawskel$urban <- FALSE
-rawskel <- rawskel[, c("id", "sex", "birthdate", "enter", "exit", "event", "period", "urban", "civst", "hisclass", "cohort")]
-##
-rawskume <- get.file("rawskume")
-rawskume <- rawskume[, c("id", "sex", "birthdate", "enter", "exit", "event", "period", "urban", "civst", "hisclass", "cohort")]
-raw <- rbind(rawskel, rawskume)
-raw$id <- paste("pop", raw$id, sep = "_")
-##
-rawfoli <- get.file("rawfoli")
-rawfoli <- rawfoli[, c("id", "sex", "birthdate", "enter", "exit", "event", "period", "urban", "civst", "hisclass", "cohort")]
-raw <- rbind(raw, rawfoli)
-raw <- raw[!(raw$period %in% c("1961-1970", "1971-1975")), ]
-raw$period <- factor(raw$period)
-raw <- age.window(raw, c(65, 100))
-```
-
-
-```{r getske6099}
-vb6599 <- vb0Tab[as.numeric(as.character(vb0Tab$age)) >= 64.5, ]
-vb6599$age <- factor(vb6599$age) # NOTE:: Change to '6599'!
-##vb6599$hisclass <- vb6599$hisclass60
-```
 
 We now turn to the elderly, those who in most cases have left the workforce.
 We use the *median remaining life at 65* (reported as median age at death) as the summary measure. Looking at Table \@ref(tab:cumswtabold), it is obvious that the statistical significance is still strong.
 
 
-```{r cumswtabold,cap="Table"}
-vb6599$marital_status <- vb6599$civst
-vb6599$social_class <- vb6599$hisclass
-vb6599$urban_or_rural <- vb6599$urban
-vb6599$age_group <- vb6599$age
-fittold <- glm(event ~ offset(log(exposure)) + urban_or_rural + marital_status + age_group + sex * social_class * period,
-            data = vb6599, family = poisson)
+```{r cumswtabold, cap="Table", cache = TRUE, eval = FALSE}
+# vb6599$marital_status <- vb6599$civst
+# vb6599$social_class <- vb6599$hisclass
+# vb6599$urban_or_rural <- vb6599$urban
+# vb6599$age_group <- vb6599$age
+# fittold <- glm(event ~ offset(log(exposure)) + urban_or_rural + marital_status + age_group + sex * social_class * period,
+#             data = vb6599, family = poisson)
+
+fittold <- coxph(Surv(enter, exit, event) ~ hisclass * period * sex + civst + urban, data = vb2)
 drold <- drop1(fittold, test = "Chisq")
-knitr::kable(dr, caption = "Single term deletions, ages 65-99.")
+knitr::kable(drold, caption = "Single term deletions, ages 65-99.")
 ##drold
 ##print(xtable(drold,label = "tab:cumswtabold", caption = "Mortality: ANOVA, ages 65--99."), 
   ##    type = "latex", comment = FALSE)
 ```
 
+```{r hazcalw2}
+nper <- length(labb)
+his <- levels(vb1$hisclass)
+nhis <- length(his)
+##
+resm <- matrix(0, nrow = nhis, ncol = nper)
+for (i in 1:nper){
+    dat <- vb2[vb2$sex == "male" & vb2$period == labb[i], ]
+    dat$wght <- getWeights(dat)
+    fit <- coxph(Surv(enter, exit, event) ~ strata(hisclass), weights = wght, data = dat)
+    resm[, i] <- summary(survfit(fit), rmean = 100)$table[, "*rmean"]
+}
+##
+resw <- matrix(0, nrow = nhis, ncol = nper)
+for (i in 1:nper){
+    dat <- vb2[vb2$sex == "female" & vb2$period == labb[i], ]
+    dat$wght <- getWeights(dat)
+    fit <- coxph(Surv(enter, exit, event) ~ strata(hisclass), weights = wght, data = dat)
+    resw[, i] <- summary(survfit(fit), rmean = 100)$table[, "*rmean"]
+}
+
+```
+
+
+```{r cumsw2, fig.cap = cap0, fig.scap = scap0, fig.height = 8, out.height = "14cm"}
+##source("R/plotED.glm.R")
+oldpar <- par(mfrow = c(2, 1))
+midper <- c(1812.5, 1837.5, 1862.5, 1887.5, 1912.5, 1937.5, 1981, 1991, 2000.5, 2009.5)
+mm <- resw[3, ]
+plot(midper, resw[1, ] - mm, col = scol[1], type = "b", ylim = c(-3, 3), xlab = "Period", 
+     ylab = "Excess years", axes = FALSE, main = "Women, 65-99")
+
+axis(1, at = midper, labels = labb)
+axis(2, las = 1)
+box()
+for (i in 2:5){
+    lines(midper, resw[i, ] - mm, col = scol[i], type = "b")
+}
+
+mm <- resm[3, ]
+plot(midper, resm[1, ] - mm, col = scol[1], type = "b", ylim = c(-3, 3), xlab = "Period", 
+     ylab = "Excess years", axes = FALSE, main = "Men, 65-99")
+axis(1, at = midper, labels = labb)
+axis(2, las = 1)
+box()
+for (i in 2:5){
+    lines(midper, resm[i, ] - mm, col = scol[i], type = "b")
+}
+##woutp <- plotED.glm(resw, col = scol, logScale = TRUE, ylab = "H(65|30)",
+  ##              main = "Women 30-64", ylim = c(0, 1))##, exclude = 5:6)
+##moutp <- plotED.glm(resm, col = scol, logScale = TRUE, ylab = "H(65|30)",
+  ##              main = "Men 30-64", ylim = c(0, 1))##, exclude = 5:6)
+par(oldpar)
+```
 
 The general pattern and development of mortality (Figures \@ref(fig:plotrawwom) and \@ref(fig:plotrawm)) do not
 differ much from the younger age group, of course representing a much
@@ -845,62 +965,6 @@ the 20th century. It is not until the second half of the 20th
 century that the survival is better for the highest social class while
 workers of retirement age have slightly higher mortality. The difference between the worker and middle group has been small in most periods.
 
-```{r rawreswomen}
-hc <- levels(raw$hisclass)
-n.hc <- length(hc)
-peri <- levels(raw$period)
-n.peri <- length(peri)
-med <- matrix(0, nrow = n.hc, ncol = n.peri)
-for (i in 1:n.hc){
-    fit <- coxph(Surv(enter, exit, event) ~ civst + urban + strata(period), data = raw[raw$sex == "female" & 
-                                                                              raw$hisclass == hc[i], ])
-    med[i, ] <- summary(survfit(fit, newdata = data.frame(civst = "married", urban = FALSE)))$table[, "median"]
-}
-```
-
-```{r plotrawwom, fig.cap="Median age at death for a 65 year old married woman on the countryside by SES and period.", fig.height = 4, out.height = "10cm"}
-x <- c(1812, 1837, 1862, 1887, 1912, 1937, 1975, 1985, 1995, 2004, 2011)
-plot(x, med[1, -7], col = scol[1], type = "b", lty = 1, pch = 1, xlab = "Period", ylab = "Age", ylim = c(70, 90), main = "Women", axes = FALSE)
-axis(1, at = x, labels = peri[-7], las = 2, cex.axis = 0.5)
-axis(2, las = 1)
-box()
-abline(h = c(75, 80, 85), lty = 3)
-for (i in 2:5){
-    lines(x, med[i, -7], col = scol[i], type = "b", lty = i, pch = i)
-}
-legend("bottomright", legend = hc, lty = 1:5, pch = 1:5, col = scol, cex = 0.6)
-```
-
-```{r rawresmen}
-hc <- levels(raw$hisclass)
-n.hc <- length(hc)
-peri <- levels(raw$period)
-n.peri <- length(peri)
-med <- matrix(0, nrow = n.hc, ncol = n.peri)
-for (i in 1:n.hc){
-    fit <- coxph(Surv(enter, exit, event) ~ civst + urban + strata(period), data = raw[raw$sex == "male" & 
-                                                                              raw$hisclass == hc[i], ])
-    med[i, ] <- summary(survfit(fit, newdata = data.frame(civst = "married", urban = FALSE)))$table[, "median"]
-}
-for (i in 1:n.hc){
-    fit <- coxph(Surv(enter, exit, event) ~ strata(period), data = raw[raw$sex == "male" & 
-                                                                              raw$hisclass == hc[i], ])
-    med[i, ] <- summary(survfit(fit))$table[, "median"]
-}
-```
-
-```{r plotrawm, fig.cap="Median age at death for a 65 year old married man on the countryside by SES and period.", fig.height = 4}
-x <- c(1812, 1837, 1862, 1887, 1912, 1937, 1975, 1985, 1995, 2004, 2011)
-plot(x, med[1, -7], col = scol[1], type = "b", lty = 1, pch = 1, xlab = "Period", ylab = "Age", ylim = c(70, 90), main = "Men", axes = FALSE)
-axis(1, at = x, labels = peri[-7], las = 2, cex.axis = 0.5)
-axis(2, las = 1)
-abline(h = c(75, 80, 85), lty = 3)
-box()
-for (i in 2:5){
-    lines(x, med[i, -7], col = scol[i], type = "b", lty = i, pch = i)
-}
-legend("bottomright", legend = hc, lty = 1:5, pch = 1:5, col = scol, cex = 0.6)
-```
 
 
 
