@@ -585,15 +585,15 @@ colnames(medi) <- c("Unweighted", "weighted")
 ##
 ```
 
-The estimated medians are
+The estimated medians are (see Table \@ref(tab:estmed).
 
 ```{r estmed}
-knitr::kable(round(medi, 1))
+knitr::kable(round(medi, 1), caption = "Estimated medians, men 65-99, 2005-2013.")
 ```
 
 For the age interval 40--64 we get
 
-```{r forty64}
+```{r forty64, fig.cap = "Survival curves, men 40-65, 2005-2013.", fig.height = 4}
 source("R/getWeights.R")
 da <- vb1[vb1$sex == "male" & vb1$period == "2005-2013", ]
 da$wght <- getWeights(da)
@@ -632,8 +632,6 @@ round(summary(survfit(fitw), rmean = 65)$table[, "*rmean"], 2)
 ```
 
 This is now repeated for each period, and for men and women separately.
-
-# The effect of social class on mortality
 
 ## All ages, survival curves
 
@@ -753,27 +751,31 @@ for (i in 1:nper){
 ```
 
 
-```{r cumsw, fig.cap = cap0, fig.scap = scap0, fig.height = 8, out.height = "14cm"}
+```{r cumsw, fig.cap = "Expected years of survival until the age of 65, given survival to age 40, by period and hisclass.", fig.scap = scap0, fig.height = 8, out.height = "14cm"}
 source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
 midper <- c(1812.5, 1837.5, 1862.5, 1887.5, 1912.5, 1937.5, 1981, 1991, 2000.5, 2009.5)
 plot(midper, resw[1, ], col = scol[1], type = "b", ylim = c(58, 65), xlab = "Period", 
-     ylab = "Age", axes = FALSE, main = "Women, 40-64")
+     ylab = "Years", axes = FALSE, main = "Women, 40-64", lty = 1, pch = 1)
 
-axis(1, at = midper, labels = labb)
+axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
 axis(2, las = 1)
+abline(h = 65)
 box()
 for (i in 2:5){
-    lines(midper, resw[i, ], col = scol[i], type = "b")
+    lines(midper, resw[i, ], col = scol[i], type = "b", pch = i, lty = i)
 }
+legend("bottomright", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7)
 plot(midper, resm[1, ], col = scol[1], type = "b", ylim = c(58, 65), xlab = "Period", 
-     ylab = "Age", axes = FALSE, main = "Men, 40-64")
-axis(1, at = midper, labels = labb)
+     ylab = "Years", axes = FALSE, main = "Men, 40-64", lty = 1, pch = 1)
+axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
 axis(2, las = 1)
+abline(h = 65)
 box()
 for (i in 2:5){
-    lines(midper, resm[i, ], col = scol[i], type = "b")
+    lines(midper, resm[i, ], col = scol[i], type = "b", lty = i, pch = i)
 }
+legend("bottomright", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7)
 ##woutp <- plotED.glm(resw, col = scol, logScale = TRUE, ylab = "H(65|30)",
   ##              main = "Women 30-64", ylim = c(0, 1))##, exclude = 5:6)
 ##moutp <- plotED.glm(resm, col = scol, logScale = TRUE, ylab = "H(65|30)",
