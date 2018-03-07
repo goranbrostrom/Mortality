@@ -509,7 +509,7 @@ abline(h = 0)
 for (r in 2:nhis){
     lines(xli, out[r, ], col = scol[r], lty = r, pch = r, type = "b")
 }
-legend("bottomleft", legend = levhis, lty = 1:5, col = scol, pch = 1:5)
+legend("bottomleft", legend = levhis, lty = 1:5, col = scol, pch = 1:5, cex = 0.8)
 ```
 
 ### Inverse probability weighting
@@ -520,7 +520,7 @@ and the confounders are introduced. This is done period by period.
 
 As an illustration, take the period `2005-2013` with males, 65--99 years of age. 
 
-```{r exweight}
+```{r exweight,echo=TRUE}
 vb2_2005_men <- vb2[vb2$sex == "male" & vb2$period == "2005-2013", ]
 fit1 <- glm(I(hisclass == "elite") ~ urban * civst, data = vb2_2005_men, family = binomial)
 fit2 <- glm(I(hisclass == "middle") ~ urban * civst, data = vb2_2005_men, family = binomial)
@@ -550,7 +550,7 @@ vb2_2005_men$wght <- wght
 
 Let us fit with and without weights, see Figure \@ref(fig:testfit).
 
-```{r testfit, fig.cap = "Survival by hisclass, men 1901-1925, non-weighted analysis.", fig.height = 4}
+```{r testfit, fig.cap = "Survival by hisclass, men 2005-2013, unweighted and weighted analysis.", fig.height = 4}
 fit <- coxph(Surv(enter, exit, event) ~ strata(hisclass), data = vb2_2005_men)
 med <- summary(survfit(fit))$table[, "median"]
 fitw <- coxph(Surv(enter, exit, event) ~ strata(hisclass), weights = wght, data = vb2_2005_men)
@@ -558,8 +558,8 @@ medw <- summary(survfit(fitw))$table[, "median"]
 oldpar <- par(mfrow = c(1, 2))
 plot(survfit(fit), mark.time = FALSE, col = scol, lty = 1:5, xlim = c(65, 100), 
      xlab = "Age", ylab = "Survival", main = "Unweighted", axes = FALSE)
-tics <- c(65, 70, 75, round(med["none"], 1), round(med["elite"], 1), 90, 95, 100)
-axis(1, at = tics)
+tics <- c(65, round(med["none"], 1), round(med["elite"], 1), 100)
+axis(1, at = tics, las = 2)
 axis(2, at = c(0, 0.5, 1), las = 1)
 box()
 abline(h = 0)
@@ -567,11 +567,11 @@ abline(h = 0.5, lty = 3)
 
 lines(c(med["none"], med["none"]), c(0, 0.5), col = "red", lty = 3)
 lines(c(med["elite"], med["elite"]), c(0, 0.5), col = "black", lty = 3)
-legend("bottomleft", legend = levels(vb2$hisclass), col = scol, lty = 1:5)
+legend("bottomleft", legend = levels(vb2$hisclass), col = scol, lty = 1:5, cex = 0.8)
 plot(survfit(fitw), mark.time = FALSE, col = scol, lty = 1:5, xlim = c(65, 100), 
      xlab = "Age", ylab = "Survival", main = "Weighted", axes = FALSE)
-tics <- c(65, 70, 75, round(medw["none"], 1), round(medw["elite"], 1), 90, 95, 100)
-axis(1, at = tics)
+tics <- c(65, round(medw["none"], 1), round(medw["elite"], 1), 100)
+axis(1, at = tics, las = 2)
 axis(2, at = c(0, 0.5, 1), las = 1)
 box()
 abline(h = 0)
@@ -579,7 +579,7 @@ abline(h = 0.5, lty = 3)
 
 lines(c(medw["none"], medw["none"]), c(0, 0.5), col = "red", lty = 3)
 lines(c(medw["elite"], medw["elite"]), c(0, 0.5), col = "black", lty = 3)
-legend("bottomleft", legend = levels(vb2$hisclass), col = scol, lty = 1:5)
+legend("bottomleft", legend = levels(vb2$hisclass), col = scol, lty = 1:5, cex = 0.8)
 medi <- cbind(med, medw)
 colnames(medi) <- c("Unweighted", "weighted")
 ##
@@ -611,7 +611,7 @@ axis(2, at = c(0, 0.5, 1), las = 1)
 box()
 abline(h = 0)
 abline(h = 0.5, lty = 3)
-legend("bottomleft", legend = levels(vb2$hisclass), col = scol, lty = 1:5)
+legend("bottomleft", legend = levels(vb2$hisclass), col = scol, lty = 1:5, cex = 0.7)
 ##lines(c(med["none"], med["none"]), c(0, 0.5), col = "red", lty = 3)
 ##lines(c(med["elite"], med["elite"]), c(0, 0.5), col = "black", lty = 3)
 plot(survfit(fitw), mark.time = FALSE, col = scol, lty = 1:5, xlim = c(40, 65), 
@@ -622,7 +622,7 @@ axis(2, at = c(0, 0.5, 1), las = 1)
 box()
 abline(h = 0)
 abline(h = 0.5, lty = 3)
-legend("bottomleft", legend = levels(vb2$hisclass), col = scol, lty = 1:5)
+legend("bottomleft", legend = levels(vb2$hisclass), col = scol, lty = 1:5, cex = 0.7)
 ```
 
 We cannot use the "median remaining life" as a summary comparison measure, for obvious reasons. Instead, the *area under the survival curves* will be used. This area can be interpreted as the *expected years of life before 65(100)*. Here we get
@@ -913,30 +913,32 @@ for (i in 1:nper){
 ```
 
 
-```{r cumsw2, fig.cap = cap0, fig.scap = scap0, fig.height = 8, out.height = "14cm"}
+```{r cumsw2, fig.cap = "Excess years of life (compared to 'worker') before 100 for a 65-year-old, by hisclass and period (experimental!).", fig.scap = scap0, fig.height = 8, out.height = "14cm"}
 ##source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
 midper <- c(1812.5, 1837.5, 1862.5, 1887.5, 1912.5, 1937.5, 1981, 1991, 2000.5, 2009.5)
 mm <- resw[3, ]
-plot(midper, resw[1, ] - mm, col = scol[1], type = "b", ylim = c(-3, 3), xlab = "Period", 
+plot(midper, resw[1, ] - mm, col = scol[1], type = "b", ylim = c(-4, 5), xlab = "Period", 
      ylab = "Excess years", axes = FALSE, main = "Women, 65-99")
 
-axis(1, at = midper, labels = labb)
+axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
 axis(2, las = 1)
 box()
 for (i in 2:5){
-    lines(midper, resw[i, ] - mm, col = scol[i], type = "b")
+    lines(midper, resw[i, ] - mm, col = scol[i], type = "b", lty = i, pch = i)
 }
 
+legend("topleft", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7)
 mm <- resm[3, ]
-plot(midper, resm[1, ] - mm, col = scol[1], type = "b", ylim = c(-3, 3), xlab = "Period", 
+plot(midper, resm[1, ] - mm, col = scol[1], type = "b", ylim = c(-4, 5), xlab = "Period", 
      ylab = "Excess years", axes = FALSE, main = "Men, 65-99")
-axis(1, at = midper, labels = labb)
+axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
 axis(2, las = 1)
 box()
 for (i in 2:5){
-    lines(midper, resm[i, ] - mm, col = scol[i], type = "b")
+    lines(midper, resm[i, ] - mm, col = scol[i], type = "b", lty = i, pch = i)
 }
+legend("topleft", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7)
 ##woutp <- plotED.glm(resw, col = scol, logScale = TRUE, ylab = "H(65|30)",
   ##              main = "Women 30-64", ylim = c(0, 1))##, exclude = 5:6)
 ##moutp <- plotED.glm(resm, col = scol, logScale = TRUE, ylab = "H(65|30)",

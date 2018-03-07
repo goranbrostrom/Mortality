@@ -13,7 +13,7 @@ fontsize: 11pt
 knitr::opts_chunk$set(echo = TRUE, cache = FALSE)
 options(stringsAsFactors = FALSE)
 library(stringr)
-library(tidyr)
+##library(tidyr)
 library(dplyr)
 ```
 
