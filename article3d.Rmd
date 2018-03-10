@@ -3,17 +3,17 @@ title: "Is high social class always beneficial for survival? Northern Sweden 180
 author: Sören Edvinsson\footnote{Corresponding author; Phone number +46907866040, email soren.edvinsson\@umu.se} and Göran Broström
 date: 'Centre for Demographic and Ageing Research \newline Umeå University, SE-90187 Umeå, Sweden'
 output:
+  bookdown::html_document2:
+    number_sections: yes
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
   bookdown::pdf_document2:
     citation_package: natbib
     number_sections: yes
     toc: no
     toc_depth: 2
     keep_tex: true
-  bookdown::html_document2:
-    number_sections: yes
-    toc: yes
-    toc_depth: 2
-    toc_float: yes
   bookdown::word_document2:
     toc: yes
     toc_depth: 2
@@ -27,7 +27,7 @@ biblio-style: "apalike"
 header-includes:
   - \usepackage[utf8]{inputenc}
   - \usepackage{graphicx}
-abstract: "Focusing on two regions in northern Sweden 1801--2013, we challenge common notions of the assumed advantage in survival of belonging to a high social class. The issue is analysed according to gender and age group (adults and elderly) and in relation to the development of economic inequality. The results show that high social class is not always favourable for survival. Men in the elite category had higher mortality compared to others during a large part of the studied period; a male mortality class reversal appears at a surprisingly late date, while the social gradient among women conforms to the expected pattern. We suggest that health-related behaviour is decisive not only in later but earlier phases of the mortality transition as well. The results implicate that the association between social class and health is more complex than is assumed in many of the dominant theories in demography and epidemiology. In this version of article3, we are adopting a marginal approach, in contrast to earlier versions, where the approach was conditional. In addition to article3c, we are going back to individual, raw, data."
+abstract: "Focusing on two regions in northern Sweden 1801--2013, we challenge common notions of the assumed advantage in survival of belonging to a high social class. The issue is analysed according to gender and age group (adults and elderly) and in relation to the development of economic inequality. The results show that high social class is not always favourable for survival. Men in the elite category had higher mortality compared to others during a large part of the studied period; a male mortality class reversal appears at a surprisingly late date, while the social gradient among women conforms to the expected pattern. We suggest that health-related behaviour is decisive not only in later but earlier phases of the mortality transition as well. The results implicate that the association between social class and health is more complex than is assumed in many of the dominant theories in demography and epidemiology. We are adopting a marginal approach to the problem of adjust for confounders by impementing the inverse probability weighting technique."
 ---
 
 ```{r setup, include=FALSE}
@@ -46,7 +46,7 @@ load("data/skume.rda")
 skume <- skume[order(skume$id, skume$enter), ]
 skume$id <- paste("pop", skume$id, sep = "_")
 ##
-skume1 <- age.window(skume, c(40, 65))
+skume1 <- age.window(skume, c(40, 65))  ###### OJOJOJ!!!!!!!!!!!!!!!!!!!!!!!!!!! (40, 65)
 skume1 <- oneSpell(skume1)
 ##
 skume2 <- age.window(skume, c(65, 100))
@@ -350,28 +350,17 @@ last period (2008--2013) coincides with the international financial
 crisis. In the most recent decades income inequality has increased considerably.
 
 
-# Models
+# Model
 
-The proportional hazards model in a survival analysis context is used,
-allowing for adjustment for marital status and rural/urban environment.
-As the central explanatory variable, social class, does not follow the
-proportionality property, the analyses are stratified with respect to the
-variable, and the main results are presented graphically.
+The comparison of mortality in the five social classes, period by period, is done
+by comparing estimated survival curves, adjusted for the distribution of the confounding variables over the social classes.
+The adjustment carried out by inverse probability weighting (**reference**) in the following way: First, for each social class, 
+the probability that an individual in the class belongs to that class is estimated by logistic regression with the 
+confounders as explanatory variables. Second, these probabilities are inverted and used as weights in the estimation of the survival 
+curves for each social class.   
 
-Another practical problem is the size of the data set:
-It contains no less than `r as.integer(round(n.exp + pn.exp))` person years and
- `r n.d + pn.d` deaths. This makes it highly inconvenient to use the currently so popular semi-parametric technique known as \emph{Cox regression} [@cox72]. Instead we use a parametric model
-that allows for a reduction of the data to \emph{sufficient statistics} [@fisher22]. The idea is to keep all relevant covariates as \emph{categorical} and then create a table with all
-possible combinations of levels of the covariates. For each such
-combination, the total amount of exposure and the number of deaths are
-calculated.  We have 2 sexes, 3 marital statuses, 12 periods, 2
-urban/rural groups, 5 social classes,
-14 age groups, and 22 cohorts; in all, 221,760 possible
-combinations. However, in this scheme there are many structural zeroes
-(impossible combinations) and some random zeros, so the actual number of
-combinations we end up with is 17,181. The data set is thus reduced in
-size by 99 per cent.
 
+<!--
 ## The conditional model
 
 The parametric model we use for the baseline hazard function is piecewise
@@ -429,9 +418,9 @@ conditional on survival to age 30,  and  *remaining expected life at 65* are the
 main targets in our analysis. These numbers are used in the process of
 graphically illustrating the development over time.
 
-## The marginal model
+-->
 
-A alternative, and preferable, approach is the marginal model, where the disturbace effect of confounders is 
+The disturbace effect of confounders is 
 balanced out through weighting. In our case , `civil status` and `urban/rural` are confounders, that is, they 
 are correlated to both our outcome, mortality, and our explanatory variable, social class. The latter association 
 manifests itself through the facts that the marriage frequency varies by social class and certain social classes are 
@@ -448,7 +437,7 @@ nper <- length(labb)
 ## End 'common'
 ```
 
-### Association between civil status and social class over time
+## Association between civil status and social class over time
 
 In order to simplify the illustration, we look at `civil status` in two groups, `ever married` and `unmarried`, in Figure \@ref(fig:assesciv).
 
@@ -481,7 +470,7 @@ for (r in 2:nhis){
 legend("bottomright", legend = levhis, lty = 1:5, col = scol, pch = 1:5)
 ```
 
-### Association between urban/rural and social class over time
+## Association between urban/rural and social class over time
 
 ```{r assesurb, fig.cap = "Fraction urban by hisclass and period.", fig.height = 4}
 orr <- aggregate(x = vb$exposure, by = vb[, c("period", "urban", "hisclass")], FUN = sum)
@@ -512,7 +501,7 @@ for (r in 2:nhis){
 legend("bottomleft", legend = levhis, lty = 1:5, col = scol, pch = 1:5, cex = 0.8)
 ```
 
-### Inverse probability weighting
+## Inverse probability weighting
 
 In order to eliminate the disturbing effect on the association between hisclass and mortality by
 the confounders civil status and urban/rural, weights that eliminates the associations between hisclass 
@@ -520,7 +509,7 @@ and the confounders are introduced. This is done period by period.
 
 As an illustration, take the period `2005-2013` with males, 65--99 years of age. 
 
-```{r exweight,echo=TRUE}
+```{r exweight,echo=TRUE,echo = FALSE}
 vb2_2005_men <- vb2[vb2$sex == "male" & vb2$period == "2005-2013", ]
 fit1 <- glm(I(hisclass == "elite") ~ urban * civst, data = vb2_2005_men, family = binomial)
 fit2 <- glm(I(hisclass == "middle") ~ urban * civst, data = vb2_2005_men, family = binomial)
@@ -551,6 +540,7 @@ vb2_2005_men$wght <- wght
 Let us fit with and without weights, see Figure \@ref(fig:testfit).
 
 ```{r testfit, fig.cap = "Survival by hisclass, men 2005-2013, unweighted and weighted analysis.", fig.height = 4}
+par(cex.axis = 0.8)
 fit <- coxph(Surv(enter, exit, event) ~ strata(hisclass), data = vb2_2005_men)
 med <- summary(survfit(fit))$table[, "median"]
 fitw <- coxph(Surv(enter, exit, event) ~ strata(hisclass), weights = wght, data = vb2_2005_men)
@@ -559,7 +549,7 @@ oldpar <- par(mfrow = c(1, 2))
 plot(survfit(fit), mark.time = FALSE, col = scol, lty = 1:5, xlim = c(65, 100), 
      xlab = "Age", ylab = "Survival", main = "Unweighted", axes = FALSE)
 tics <- c(65, round(med["none"], 1), round(med["elite"], 1), 100)
-axis(1, at = tics, las = 2)
+axis(1, at = tics, las = 1, cex.axis = 0.8)
 axis(2, at = c(0, 0.5, 1), las = 1)
 box()
 abline(h = 0)
@@ -571,7 +561,7 @@ legend("bottomleft", legend = levels(vb2$hisclass), col = scol, lty = 1:5, cex =
 plot(survfit(fitw), mark.time = FALSE, col = scol, lty = 1:5, xlim = c(65, 100), 
      xlab = "Age", ylab = "Survival", main = "Weighted", axes = FALSE)
 tics <- c(65, round(medw["none"], 1), round(medw["elite"], 1), 100)
-axis(1, at = tics, las = 2)
+axis(1, at = tics, las = 1, cex.axis = 0.8)
 axis(2, at = c(0, 0.5, 1), las = 1)
 box()
 abline(h = 0)
@@ -585,26 +575,29 @@ colnames(medi) <- c("Unweighted", "weighted")
 ##
 ```
 
-The estimated medians are (see Table \@ref(tab:estmed).
+The social class differences are smaller in the weighted analysis, meaning that some of the raw differences are due to different distributions of the confounders  between the social classes.
+
+For simple comparison over time, we need  simple summary measures, for instance the medians, shown in Figure \@ref(fig:testfit) and Table \@ref(tab:estmed).
+
 
 ```{r estmed}
 knitr::kable(round(medi, 1), caption = "Estimated medians, men 65-99, 2005-2013.")
 ```
 
-For the age interval 40--64 we get
+However, for the age interval 40--64 the median is not a good measure, because the probability to survive age 65, given survival to age 40, is much larger than 0.5, see Figure \@ref(fig:forty64). 
 
-```{r forty64, fig.cap = "Survival curves, men 40-65, 2005-2013.", fig.height = 4}
+```{r forty64, fig.cap = "Adjusted survival curves, men in ages 40-65 and 65-100, years 2005-2013.", fig.height = 4}
 source("R/getWeights.R")
 da <- vb1[vb1$sex == "male" & vb1$period == "2005-2013", ]
 da$wght <- getWeights(da)
 ##
-fit <- coxph(Surv(enter, exit, event) ~ strata(hisclass), data = da)
-med <- summary(survfit(fit))$table[, "median"]
-fitw <- coxph(Surv(enter, exit, event) ~ strata(hisclass), weights = wght, data = da)
-medw <- summary(survfit(fitw))$table[, "median"]
+fit0 <- coxph(Surv(enter, exit, event) ~ strata(hisclass), data = da)
+med0 <- summary(survfit(fit))$table[, "median"]
+fitw0 <- coxph(Surv(enter, exit, event) ~ strata(hisclass), weights = wght, data = da)
+medw0 <- summary(survfit(fitw))$table[, "median"]
 oldpar <- par(mfrow = c(1, 2))
-plot(survfit(fit), mark.time = FALSE, col = scol, lty = 1:5, xlim = c(40, 65), 
-     xlab = "Age", ylab = "Survival", main = "Unweighted", axes = FALSE)
+plot(survfit(fitw0), mark.time = FALSE, col = scol, lty = 1:5, xlim = c(40, 65), 
+     xlab = "Age", ylab = "Survival", main = "40-65", axes = FALSE)
 tics <- c(40, 45, 50, 55, 60, 65)
 axis(1, at = tics)
 axis(2, at = c(0, 0.5, 1), las = 1)
@@ -614,9 +607,9 @@ abline(h = 0.5, lty = 3)
 legend("bottomleft", legend = levels(vb2$hisclass), col = scol, lty = 1:5, cex = 0.7)
 ##lines(c(med["none"], med["none"]), c(0, 0.5), col = "red", lty = 3)
 ##lines(c(med["elite"], med["elite"]), c(0, 0.5), col = "black", lty = 3)
-plot(survfit(fitw), mark.time = FALSE, col = scol, lty = 1:5, xlim = c(40, 65), 
-     xlab = "Age", ylab = "Survival", main = "Weighted", axes = FALSE)
-tics <- c(40, 45, 50, 55, 60, 65)
+plot(survfit(fitw), mark.time = FALSE, col = scol, lty = 1:5, xlim = c(65, 100), 
+     xlab = "Age", ylab = "Survival", main = "65-100", axes = FALSE)
+tics <- c(65, 70, 75, 80, 85, 90, 95, 100)
 axis(1, at = tics)
 axis(2, at = c(0, 0.5, 1), las = 1)
 box()
@@ -625,15 +618,18 @@ abline(h = 0.5, lty = 3)
 legend("bottomleft", legend = levels(vb2$hisclass), col = scol, lty = 1:5, cex = 0.7)
 ```
 
-We cannot use the "median remaining life" as a summary comparison measure, for obvious reasons. Instead, the *area under the survival curves* will be used. This area can be interpreted as the *expected years of life before 65(100)*. Here we get
+We cannot use the "median remaining life" as a summary comparison measure here, for obvious reasons. Instead, the *area under the survival curves* will be used. This area can be interpreted as the *expected years of life before 65(100)* for a person aged 40(65). Here we get
 
 ```{r explife40}
-round(summary(survfit(fitw), rmean = 65)$table[, "*rmean"], 2)
+avew <- round(summary(survfit(fitw), rmean = 100)$table[, "*rmean"], 2)
+avew0 <- round(summary(survfit(fitw0), rmean = 65)$table[, "*rmean"], 2)
+aver <- cbind(avew0, avew)
+colnames(aver) <- c("Men, 40-64", "Men, 65-99")
+knitr::kable(round(aver, 1), caption = "Expected years of life before 65(100) for a 40(65) year old man, by social class." )
 ```
 
 This is now repeated for each period, and for men and women separately.
 
-## All ages, survival curves
 
 ```{r inipw, eval = FALSE}
 source("R/ipw.R")
@@ -692,10 +688,14 @@ lines(c(1812, 1838, 1862, 1888, 1912, 1938, 1978, 1982, 1988, 1995, 2005, 2010),
 ```
 
 
-## Ages 30--64
+# Results
+
+In the graphical presentation of the results, the *worker* social class is used as reference, and all curves show the difference in years to the expected years in the reference.  
+
+## Ages 40--64
 
 
-```{r getske3064}
+```{r getske3064, eval = FALSE}
 cap1w <-  "Cumulative hazards for social class by time period, ages 30--64, women."
 scap1w <-  "Cumulative hazards, ages 30--64, women."
 cap1m <-  "Cumulative hazards for social class by time period, ages 30--64, men."
@@ -751,11 +751,12 @@ for (i in 1:nper){
 ```
 
 
-```{r cumsw, fig.cap = "Expected years of survival until the age of 65, given survival to age 40, by period and hisclass.", fig.scap = scap0, fig.height = 8, out.height = "14cm"}
+```{r cumsw, fig.cap = "Differences in expected years of survival until the age of 65, given survival to age 40, by period and hisclass. Reference is the working class.", fig.scap = "Differences in expected years of life at age 40", fig.height = 8, out.height = "14cm"}
 source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
 midper <- c(1812.5, 1837.5, 1862.5, 1887.5, 1912.5, 1937.5, 1981, 1991, 2000.5, 2009.5)
-plot(midper, resw[1, ], col = scol[1], type = "b", ylim = c(58, 65), xlab = "Period", 
+refclw <- resw[3, ]
+plot(midper, resw[1, ] - refclw, col = scol[1], type = "b", ylim = c(-3, 3), xlab = "Period", xlim = c(1810, 2030), 
      ylab = "Years", axes = FALSE, main = "Women, 40-64", lty = 1, pch = 1)
 
 axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
@@ -763,17 +764,18 @@ axis(2, las = 1)
 abline(h = 65)
 box()
 for (i in 2:5){
-    lines(midper, resw[i, ], col = scol[i], type = "b", pch = i, lty = i)
+    lines(midper, resw[i, ] - refclw, col = scol[i], type = "b", pch = i, lty = i)
 }
 legend("bottomright", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7)
-plot(midper, resm[1, ], col = scol[1], type = "b", ylim = c(58, 65), xlab = "Period", 
-     ylab = "Years", axes = FALSE, main = "Men, 40-64", lty = 1, pch = 1)
+refclm <- resm[3, ]
+plot(midper, resm[1, ] - refclm, col = scol[1], type = "b", ylim = c(-3, 3), xlab = "Period", 
+     ylab = "Years", axes = FALSE, main = "Men, 40-64", lty = 1, pch = 1, xlim = c(1810, 2030))
 axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
 axis(2, las = 1)
 abline(h = 65)
 box()
 for (i in 2:5){
-    lines(midper, resm[i, ], col = scol[i], type = "b", lty = i, pch = i)
+    lines(midper, resm[i, ] - refclm, col = scol[i], type = "b", lty = i, pch = i)
 }
 legend("bottomright", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7)
 ##woutp <- plotED.glm(resw, col = scol, logScale = TRUE, ylab = "H(65|30)",
@@ -783,10 +785,12 @@ legend("bottomright", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7)
 par(oldpar)
 ```
 
-Looking at Table \@ref(tab:cumswtab), it is obvious that the statistical significance is strong.
+Obviously, differences are getting very small as we move forward in time: Almost all forty-year-olds today survive beyond 65, regardless of social class, the exception being those who have no notation of social class.
+
+Hovever, looking at Table \@ref(tab:cumswtab), it is obvious that the *statistical significance* is strong.
 
 
-```{r cumswtab, message=FALSE, cache = TRUE, eval = FALSE}
+```{r cumswtab, message=FALSE, cache = TRUE, eval = TRUE}
 fitt <- coxph(Surv(enter, exit, event) ~ hisclass * period * sex + civst + urban, data = vb1)
 
 # vb3064$social_class <- vb3064$hisclass
@@ -814,22 +818,6 @@ absolute differences between social classes. We must, however, distinguish betwe
 visible for later decades is partly explained by the decreasing general
 mortality and does not necessarily represent a homogenization of relative risks. 
 
-<!--
-By standardizing the levels in each time period for each class, we 
-illustrate the relative risks in Figure \@ref(fig:cumswstand). In the rest of 
-the paper, we only present these
-relative mortality levels for the different classes since they are the main focus in this study.
-
-```{r cumswstand, fig.cap = cap12, fig.scap = scap12, fig.height = 8, out.height = "14cm", eval = FALSE}
-oldpar <- par(mfrow = c(2, 1))
-woutp <- plotED.glm(resw, col = scol, logScale = TRUE, relative = TRUE,
-                    ylab = "H(65|30)", ylim = c(0.0, 0.6), main = "Women 30-64")##, exclude = 5:6)
-moutp <- plotED.glm(resm, col = scol, logScale = TRUE, relative = TRUE,
-                    ylab = "H(65|30)", ylim = c(0.0, 0.6), main = "Men 30-64")##, exclude = 5:6)
-par(oldpar)
-```
-
--->
 
 The changing economy has some consequences for the analysis, particularly when
 it comes to the agricultural sector. While farming occupations were common
@@ -873,7 +861,7 @@ We now turn to the elderly, those who in most cases have left the workforce.
 We use the *median remaining life at 65* (reported as median age at death) as the summary measure. Looking at Table \@ref(tab:cumswtabold), it is obvious that the statistical significance is still strong.
 
 
-```{r cumswtabold, cap="Table", cache = TRUE, eval = FALSE}
+```{r cumswtabold, cap="Table", cache = TRUE, eval = TRUE}
 # vb6599$marital_status <- vb6599$civst
 # vb6599$social_class <- vb6599$hisclass
 # vb6599$urban_or_rural <- vb6599$urban
@@ -913,7 +901,7 @@ for (i in 1:nper){
 ```
 
 
-```{r cumsw2, fig.cap = "Excess years of life (compared to 'worker') before 100 for a 65-year-old, by hisclass and period (experimental!).", fig.scap = scap0, fig.height = 8, out.height = "14cm"}
+```{r cumsw2, fig.cap = "Excess years of life (compared to 'worker') before 100 for a 65-year-old, by hisclass and period (experimental!).", fig.scap = "Differences in expected years of life at 65", fig.height = 8, out.height = "14cm"}
 ##source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
 midper <- c(1812.5, 1837.5, 1862.5, 1887.5, 1912.5, 1937.5, 1981, 1991, 2000.5, 2009.5)
