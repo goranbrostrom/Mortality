@@ -3,17 +3,17 @@ title: "Is high social class always beneficial for survival? Northern Sweden 180
 author: Sören Edvinsson\footnote{Corresponding author; Phone number +46907866040, email soren.edvinsson\@umu.se} and Göran Broström
 date: 'Centre for Demographic and Ageing Research \newline Umeå University, SE-90187 Umeå, Sweden'
 output:
-  bookdown::html_document2:
-    number_sections: yes
-    toc: yes
-    toc_depth: 2
-    toc_float: yes
   bookdown::pdf_document2:
     citation_package: natbib
     number_sections: yes
     toc: no
     toc_depth: 2
     keep_tex: true
+  bookdown::html_document2:
+    number_sections: yes
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
   bookdown::word_document2:
     toc: yes
     toc_depth: 2
@@ -27,12 +27,12 @@ biblio-style: "apalike"
 header-includes:
   - \usepackage[utf8]{inputenc}
   - \usepackage{graphicx}
-abstract: "Focusing on two regions in northern Sweden 1801--2013, we challenge common notions of the assumed advantage in survival of belonging to a high social class. The issue is analysed according to gender and age group (adults and elderly) and in relation to the development of economic inequality. The results show that high social class is not always favourable for survival. Men in the elite category had higher mortality compared to others during a large part of the studied period; a male mortality class reversal appears at a surprisingly late date, while the social gradient among women conforms to the expected pattern. We suggest that health-related behaviour is decisive not only in later but earlier phases of the mortality transition as well. The results implicate that the association between social class and health is more complex than is assumed in many of the dominant theories in demography and epidemiology. We are adopting a marginal approach to the problem of adjust for confounders by impementing the inverse probability weighting technique."
+abstract: "Focusing on two regions in northern Sweden 1801--2013, we challenge common notions of the assumed advantage in survival of belonging to a high social class. The issue is analysed according to gender and age group (adults and elderly) and in relation to the development of economic inequality. The results show that high social class is not always favourable for survival. Men in the elite category had higher mortality compared to others during a large part of the studied period; a male mortality class reversal appears at a surprisingly late date, while the social gradient among women conforms to the expected pattern. We suggest that health-related behaviour is decisive not only in later but earlier phases of the mortality transition as well. The results implicate that the association between social class and health is more complex than is assumed in many of the dominant theories in demography and epidemiology."
 ---
 
 ```{r setup, include=FALSE}
 library(knitr)
-opts_chunk$set(engine='R',fig.path='figs/art3d-',tidy=FALSE,fig.height=8.5,fig.width=8,strip.white=TRUE,cache=FALSE,echo=FALSE,message=FALSE,comment=NA,show.signif.stars = FALSE)##$
+opts_chunk$set(engine='R',fig.path='figs/art3d-',tidy=FALSE,fig.height=8.5,fig.width=8,strip.white=TRUE,cache=FALSE,echo=FALSE,message=FALSE,comment=NA,show.signif.stars = FALSE,warnings = FALSE)##$
 library(knitr)
 library(eha)
 library(xtable)
@@ -42,7 +42,9 @@ options(show.signif.stars = FALSE)
 ```
 
 ```{r readalldata}
-load("data/skume.rda")
+source("R/get.file.R")
+skume <- get.file("skume")
+##load("data/skume.rda")
 skume <- skume[order(skume$id, skume$enter), ]
 skume$id <- paste("pop", skume$id, sep = "_")
 ##
@@ -52,7 +54,8 @@ skume1 <- oneSpell(skume1)
 skume2 <- age.window(skume, c(65, 100))
 skume2 <- oneSpell(skume2)
 ##################################################
-load("data/foli.rda")
+foli <- get.file("foli")
+##load("data/foli.rda")
 foli$civst[is.na(foli$civst)] <- "unmarried"
 foli <- foli[order(foli$id, foli$enter), ]
 foli$AR <- foli$ULORSAK <- NULL
@@ -265,7 +268,7 @@ farm hands and lower professionals, clerical and sales personell.
 \item {\tt worker}, Hisclass 7, 9, 10, 11 and 12. Workers including
 farm workers.
 \item {\tt farmer}, Hisclass 8. Farmers. 
-\item {\tt NA}, Not Available, unknown. 
+\item {\tt none}, not given, unknown. 
 \end{enumerate}
 
 
@@ -310,7 +313,7 @@ the results are fairly complete.
 
 ## Marital status
 
-Marital status (see Figure \@ref(fig:civstskum)) is a time-dependent variable. 
+Marital status (see Figure \@ref(fig:civstskum)) is a time-fixed covariate.
 The statuses used are unmarried, married and dissolved marriage
 (without distinguishing between widowed and divorced). If no explicit
 status is given in the sources and the partner is missing, the status has been
@@ -761,6 +764,7 @@ plot(midper, resw[1, ] - refclw, col = scol[1], type = "b", ylim = c(-3, 3), xla
 
 axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
 axis(2, las = 1)
+axis(4, las = 1)
 abline(h = 65)
 box()
 for (i in 2:5){
@@ -772,6 +776,7 @@ plot(midper, resm[1, ] - refclm, col = scol[1], type = "b", ylim = c(-3, 3), xla
      ylab = "Years", axes = FALSE, main = "Men, 40-64", lty = 1, pch = 1, xlim = c(1810, 2030))
 axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
 axis(2, las = 1)
+axis(4, las = 1,)
 abline(h = 65)
 box()
 for (i in 2:5){
@@ -785,9 +790,9 @@ legend("bottomright", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7)
 par(oldpar)
 ```
 
-Obviously, differences are getting very small as we move forward in time: Almost all forty-year-olds today survive beyond 65, regardless of social class, the exception being those who have no notation of social class.
+Obviously, differences are getting very small as we move forward in time: Almost all forty-year-olds today survive beyond 65, regardless of social class, the exception being those who have no notation of social class. In Sweden of the year 2014, the probability of surviving age 65 for a forty-year-old man is 91 per cent  (a period measure). The corresponding figure for a forty-year-old woman is 94 per cent. More interesting is to look at the late differences in the age group 65--100.
 
-Hovever, looking at Table \@ref(tab:cumswtab), it is obvious that the *statistical significance* is strong.
+Hovever, from Table \@ref(tab:cumswtab) it is obvious that the *statistical significance* is strong.
 
 
 ```{r cumswtab, message=FALSE, cache = TRUE, eval = TRUE}
@@ -906,11 +911,12 @@ for (i in 1:nper){
 oldpar <- par(mfrow = c(2, 1))
 midper <- c(1812.5, 1837.5, 1862.5, 1887.5, 1912.5, 1937.5, 1981, 1991, 2000.5, 2009.5)
 mm <- resw[3, ]
-plot(midper, resw[1, ] - mm, col = scol[1], type = "b", ylim = c(-4, 5), xlab = "Period", 
+plot(midper, resw[1, ] - mm, col = scol[1], type = "b", ylim = c(-3, 5), xlab = "Period", 
      ylab = "Excess years", axes = FALSE, main = "Women, 65-99")
 
 axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
 axis(2, las = 1)
+axis(4, las = 1)
 box()
 for (i in 2:5){
     lines(midper, resw[i, ] - mm, col = scol[i], type = "b", lty = i, pch = i)
@@ -918,10 +924,11 @@ for (i in 2:5){
 
 legend("topleft", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7)
 mm <- resm[3, ]
-plot(midper, resm[1, ] - mm, col = scol[1], type = "b", ylim = c(-4, 5), xlab = "Period", 
+plot(midper, resm[1, ] - mm, col = scol[1], type = "b", ylim = c(-3, 5), xlab = "Period", 
      ylab = "Excess years", axes = FALSE, main = "Men, 65-99")
 axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
 axis(2, las = 1)
+axis(4, las = 1)
 box()
 for (i in 2:5){
     lines(midper, resm[i, ] - mm, col = scol[i], type = "b", lty = i, pch = i)
@@ -1008,7 +1015,7 @@ The same lack of statistical evidence characterizes knowledge about alcohol cons
 
 # Conclusion
 
-In this article we set our task as analysing social differences in mortality from a long-term perspective. Until recently it has not been possible to investigate the truly long-term development of mortality differences among adult and elderly populations. Still, the prevailing idea in many parts of the scholarly society is that strong socio-economic differences in health and mortality have always existed and were possibly even stronger in historical societies due to large class differences. The present study is unique in its time perspective, investigating the development from the early 19th century until the present, utilizing micro-data of high quality on a population of considerable size and social diversification. The results will likely surprise most readers; they partly surprised us as well. The consistent advantage of belonging to the elite has not always existed, and the modern pattern of social divide in health appeared much later than expected in the regions we studied. A male mortality class reversal has taken place. Apparently high social class is not always beneficial for survival. 
+We set our task as analysing social differences in mortality from a long-term perspective. Until recently it has not been possible to investigate the truly long-term development of mortality differences among adult and elderly populations. Still, the prevailing idea in many parts of the scholarly society is that strong socio-economic differences in health and mortality have always existed and were possibly even stronger in historical societies due to large class differences. The present study is unique in its time perspective, investigating the development from the early 19th century until the present, utilizing micro-data of high quality on a population of considerable size and social diversification. The results will likely surprise most readers; they partly surprised us as well. The consistent advantage of belonging to the elite has not always existed, and the modern pattern of social divide in health appeared much later than expected in the regions we studied. A male mortality class reversal has taken place. Apparently high social class is not always beneficial for survival. 
 
 However, there were large differences in the pattern between men and women as well as between different age groups. Class as well as gender must be considered. The social pattern of female mortality is in line with what was expected, but a social gradient in male adult mortality is a recent phenomenon. It is an interesting paradox that both the class and gender aspects in the analysis show that those with more power and resources were in fact less successful when it came to survival. Furthermore, inequality in mortality appears clearer for the working-age population, while the differences are smaller among the elderly.
 
