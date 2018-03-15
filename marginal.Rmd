@@ -32,7 +32,7 @@ abstract: "Focusing on two regions in northern Sweden 1801--2013, we challenge c
 
 ```{r setup, include=FALSE}
 library(knitr)
-opts_chunk$set(engine='R',fig.path='figs/art3d-',tidy=FALSE,fig.height=8.5,fig.width=8,strip.white=TRUE,cache=FALSE,echo=FALSE,message=FALSE,comment=NA,show.signif.stars = FALSE,warnings = FALSE)##$
+opts_chunk$set(engine='R',fig.path='figs/art3d-',tidy=FALSE,fig.height=8.5,fig.width=8,strip.white=TRUE,cache=FALSE,echo=FALSE,message=FALSE,comment=NA,show.signif.stars = FALSE,warning = FALSE)##$
 library(knitr)
 library(eha)
 library(xtable)
