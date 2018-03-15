@@ -33,7 +33,7 @@ they die within five years after the first appearance. So, *fob60* induces
 a time interval *from November 1, 1960 to October 31, 1965*, and so on. 
 Since we do not have birth dates but only birth year and quarter,
 we decide to use as birthdate the *midpoint of the birth quarter*. 
-WE work with all ages 0-110, and only as the final step, `age.window` is called.
+We work with all ages 0-110, and only as the final step, `age.window` is called.
 
 The following FoBs are treated similarly, until we reach the Fob
 in 1985. Since the first *lisa* date is December 31, 1986, this "fob
@@ -63,7 +63,7 @@ Now we put on *death date*, *death cause*, and *KOMMUN of death*, from *socstyr*
 load("../../Data/socstyr.rda")
 indx <- match(per$LINNEID, socstyr$LINNEID)
 per$DODSDAT <- socstyr$DODSDAT[indx]
-fixd <- !is.na(per$DODSDAT) & (per$DODSDAT < 1960010)
+fixd <- !is.na(per$DODSDAT) & (per$DODSDAT < 1960010) # Only month and year
 per$DODSDAT[fixd] <- per$DODSDAT[fixd] * 100 + 15
 per$deathdate <- as.numeric(skum::tillTid(per$DODSDAT))
 per$dodsKOMMUN <- socstyr$KOMMUN[indx]

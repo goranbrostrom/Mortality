@@ -178,15 +178,15 @@ background or previous social class.
 
 
 ```{r lexis2,fig.cap="The sampling frame.", fig.height = 5}
-plot(c(1801, 1801, 1951, 1951, 1801), c(30, 100, 100, 30, 30),
+plot(c(1801, 1801, 1951, 1951, 1801), c(40, 100, 100, 40, 40),
      type = "l", xlim = c(1800, 2014), lwd = 2, col = "red",
      xlab = "Year", ylab = "Age", axes = FALSE, ylim = c(0, 100))
 axis(1, at = c(1801, 1851, 1901, 1951, 1976, 1986, 1996, 2005, 2014), las = 2)
-axis(2, las = 2, at = c(0, 30, 65, 100))
-axis(4, las = 2, at = c(0, 30, 65, 100))
+axis(2, las = 2, at = c(0, 40, 65, 100))
+axis(4, las = 2, at = c(0, 40, 65, 100))
 box()
 abline(h = 0)
-lines(c(1976, 1976, 2014, 2014, 1976), c(30, 100, 100, 30, 30),
+lines(c(1976, 1976, 2014, 2014, 1976), c(40, 100, 100, 40, 40),
       col = "blue", lwd = 2)
 #
 pn.exp <- round(sum(skume1$exit - skume1$enter) + sum(skume2$exit - skume2$enter))
