@@ -3,4 +3,5 @@ Paper        popLink                 Linnaeus               Lexis
 article2    1577582 (37597)         3027125 (52566)        40-90, 1976-2013
 article3    1.6 m (37.6 t)          3.0 m (52.6 t)         (same)
 article3b   2.3 m (42.9 t)          5.1 m (74.3 t)         30-100, 1976-2013
-article3d   1.6 m (39.1 t)          3.1 m (60.7 t)         30-100, 1976-2014
+article3d   1.6 m (39.1 t)          3.1 m (60.7 t)         30-100, 1976-2013
+marginal    1.6 m (39.1 t)          3.1 m (60.7 t)         30-100, 1976-2013
