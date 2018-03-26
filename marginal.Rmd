@@ -30,6 +30,11 @@ header-includes:
 abstract: "Focusing on two regions in northern Sweden 1801--2013, we challenge common notions of the assumed advantage in survival of belonging to a high social class. The issue is analysed according to gender and age group (adults and elderly) and in relation to the development of economic inequality. The results show that high social class is not always favourable for survival. Men in the elite category, particularly in working age, had higher mortality compared to others during a large part of the studied period; a male mortality class reversal appears at a surprisingly late date, while the social gradient among women conforms to the expected pattern. We suggest that health-related behaviour is decisive not only in later but earlier phases of the mortality transition as well. The results implicate that the association between social class and health is more complex than is assumed in many of the dominant theories in demography and epidemiology."
 ---
 
+```{r time1, echo = FALSE}
+time1 <- Sys.time() # Time the document rendering
+```
+
+
 ```{r setup, include=FALSE}
 library(knitr)
 opts_chunk$set(engine='R',fig.path='figs/art3d-',tidy=FALSE,fig.height=8.5,fig.width=8,strip.white=TRUE,cache=FALSE,echo=FALSE,message=FALSE,comment=NA,show.signif.stars = FALSE,warning = FALSE)##$
@@ -1023,6 +1028,10 @@ An important question is whether our results can be generalized to other histori
 
 It is difficult to explain the observed differences, and we can only offer tentative hypotheses. We have discussed the possible role of behavioural influences on mortality in different historical contexts, suggesting that such aspects are not only important in the modern epidemiological regime but might have been decisive in earlier phases of the epidemiologic transition as well. The results indicate that we should consider the role of gender and class expectations of behaviour. Studies of these aspects and their role in health and mortality in different times and places require further development. A possible way to proceed is to analyse the development of causes of death, and how they are distributed in different social classes. In particular, we should focus on causes that indicate risk behaviours. 
 
+```{r time2, echo = FALSE}
+time2 <- Sys.time()
+time2 - time1
+```
 
 
 # Acknowledgements
