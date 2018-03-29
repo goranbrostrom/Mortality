@@ -1,7 +1,7 @@
 ---
 title: "Is high social class always beneficial for survival? Northern Sweden 1801--2013"
-author: Sören Edvinsson\footnote{Corresponding author; Phone number +46907866040, email soren.edvinsson\@umu.se} and Göran Broström
-date: 'Centre for Demographic and Ageing Research \newline Umeå University, SE-90187 Umeå, Sweden'
+author: Sören Edvinsson\footnote{Corresponding author; Phone number +46907866040, email soren.edvinsson@umu.se} and Göran Broström
+date: 'Centre for Demographic and Ageing Research \newline Umeå University, SE-90187 Umeå, Sweden `r Sys.time()`'
 output:
   bookdown::pdf_document2:
     citation_package: natbib
@@ -228,12 +228,12 @@ comes to the identification of presence periods. The Poplink data provide us wit
 to have full and continuous control over the \emph{de jure} population. This is
 not the case with the Linnaeus database, however. For the period 1976--2001
 we use presence in the censuses 1975--1990 and information on deaths from the National
-Board of Health and Welfare. The populations in the Skellefteå and Umeå regions are those residing there according to the censuses. Each census constitute the baseline for which persons are followed up during the five years until the next census (e.g. the 1975 census has a follow-up from 1 January 1976 until the end of 1980). The exception of this is the 1990 census for which the follow-up is until 2001. Thus, the deaths do not necessarily take place in our region for the Linnaeus analyses, although this is usually the case. 
+Board of Health and Welfare. The populations in the Skellefteå and Umeå regions are those residing there according to the censuses. Each census constitute the baseline for which persons are followed up during the five years until the next census (e.g. the 1975 census has a follow-up from 1 November 1975 until 31 October 1980). The exception of this is the 1990 census for which the follow-up is until 31 December 2001. Thus, the deaths do not necessarily take place in our region for the Linnaeus analyses, although this is usually the case. 
 
-For the last period, 2002--2013, we use the yearly population registers
+For the last period, from 1 January 2002 until 31 December 2013, we use the yearly population registers
 (LISA data) together with information on deaths from the National Board of
-Health and Welfare. This allows for full control over the presence periods
-in the studied regions.
+Health and Welfare. The LISA data depict the situation at the end of the given year, so the follow-up period is from 1 January to 31 December the next year. Deaths may still occur outside the region, but less frequently than in the Fob case.
+
 
 
 
