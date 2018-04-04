@@ -362,10 +362,16 @@ crisis. In the most recent decades income inequality has increased considerably.
 
 The comparison of mortality in the five social classes, period by period, is done
 by comparing estimated survival curves, adjusted for the distribution of the confounding variables over the social classes.
-The adjustment carried out by inverse probability weighting (**reference**) in the following way: First, for each social class, 
+The adjustment carried out by inverse probability weighting [@hoth52;@hero06] in the following way: First, for each social class, 
 the probability that an individual in the class belongs to that class is estimated by logistic regression with the 
 confounders as explanatory variables. Second, these probabilities are inverted and used as weights in the estimation of the survival 
-curves for each social class.   
+curves for each social class.
+
+The social classes are compared by the \emph{expected years of life
+before 65(100)} for a person aged 40(65). This measure is calculated
+as the area under the survival curve for each class.
+
+
 
 
 <!--
@@ -427,7 +433,7 @@ main targets in our analysis. These numbers are used in the process of
 graphically illustrating the development over time.
 
 -->
-
+<!--
 The disturbance effect of confounders is 
 balanced out through weighting. In our case , `civil status` and `urban/rural` are confounders, that is, they 
 are correlated to both our outcome, mortality, and our explanatory variable, social class. The latter association 
@@ -694,7 +700,7 @@ lines(c(1812, 1838, 1862, 1888, 1912, 1938, 1978, 1982, 1988, 1995, 2005, 2010),
 lines(c(1812, 1838, 1862, 1888, 1912, 1938, 1978, 1982, 1988, 1995, 2005, 2010), farmer / kk, type = "b", col = "darkgreen", lty = 4, pch = 4)
 lines(c(1812, 1838, 1862, 1888, 1912, 1938, 1978, 1982, 1988, 1995, 2005, 2010), no / kk, type = "b", col = "red", lty = 5, pch = 5)
 ```
-
+-->
 
 # Results
 
