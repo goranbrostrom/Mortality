@@ -439,6 +439,7 @@ balanced out through weighting. In our case , `civil status` and `urban/rural` a
 are correlated to both our outcome, mortality, and our explanatory variable, social class. The latter association 
 manifests itself through the facts that the marriage frequency varies by social class and certain social classes are 
 more common in the rural area than others (we find farmers on the countryside).
+-->
 
 ```{r colorc}
 ## Colors for plotting strata:
@@ -451,6 +452,7 @@ nper <- length(labb)
 ## End 'common'
 ```
 
+<!--
 ## Association between civil status and social class over time
 
 In order to simplify the illustration, we look at `civil status` in two groups, `ever married` and `unmarried`, in Figure \@ref(fig:assesciv).
@@ -749,19 +751,25 @@ his <- levels(vb1$hisclass)
 nhis <- length(his)
 ##
 resm <- matrix(0, nrow = nhis, ncol = nper)
+pdm <-  matrix(0, nrow = nhis, ncol = nper)
 for (i in 1:nper){
     dat <- vb1[vb1$sex == "male" & vb1$period == labb[i], ]
     dat$wght <- getWeights(dat)
     fit <- coxph(Surv(enter, exit, event) ~ strata(hisclass), weights = wght, data = dat)
-    resm[, i] <- summary(survfit(fit), rmean = 65)$table[, "*rmean"]
+    x <- survfit(fit)
+    resm[, i] <- summary(x, rmean = 65)$table[, "*rmean"]
+    pdm[, i] <- 1 - x$surv[cumsum(x$strata)]
 }
 ##
 resw <- matrix(0, nrow = nhis, ncol = nper)
+pdw <-  matrix(0, nrow = nhis, ncol = nper)
 for (i in 1:nper){
     dat <- vb1[vb1$sex == "female" & vb1$period == labb[i], ]
     dat$wght <- getWeights(dat)
     fit <- coxph(Surv(enter, exit, event) ~ strata(hisclass), weights = wght, data = dat)
-    resw[, i] <- summary(survfit(fit), rmean = 65)$table[, "*rmean"]
+    x <- survfit(fit)
+    resw[, i] <- summary(x, rmean = 65)$table[, "*rmean"]
+    pdw[, i] <- 1 - x$surv[cumsum(x$strata)]
 }
 
 ```
@@ -772,7 +780,7 @@ source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
 midper <- c(1812.5, 1837.5, 1862.5, 1887.5, 1912.5, 1937.5, 1981, 1991, 2000.5, 2009.5)
 refclw <- resw[3, ]
-plot(midper, resw[1, ] - refclw, col = scol[1], type = "b", ylim = c(-3, 3), xlab = "Period", xlim = c(1810, 2030), 
+plot(midper, resw[1, ] - refclw, col = scol[1], type = "b", ylim = c(-3, 3), xlab = "Period", xlim = c(1810, 2015), 
      ylab = "Years", axes = FALSE, main = "Women, 40-64", lty = 1, pch = 1)
 
 axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
@@ -783,19 +791,19 @@ box()
 for (i in 2:5){
     lines(midper, resw[i, ] - refclw, col = scol[i], type = "b", pch = i, lty = i)
 }
-legend("bottomright", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7)
+legend("topright", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7, bty = "n")
 refclm <- resm[3, ]
 plot(midper, resm[1, ] - refclm, col = scol[1], type = "b", ylim = c(-3, 3), xlab = "Period", 
-     ylab = "Years", axes = FALSE, main = "Men, 40-64", lty = 1, pch = 1, xlim = c(1810, 2030))
+     ylab = "Years", axes = FALSE, main = "Men, 40-64", lty = 1, pch = 1, xlim = c(1810, 2015))
 axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
 axis(2, las = 1)
-axis(4, las = 1,)
+axis(4, las = 1)
 abline(h = 65)
 box()
 for (i in 2:5){
     lines(midper, resm[i, ] - refclm, col = scol[i], type = "b", lty = i, pch = i)
 }
-legend("bottomright", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7)
+legend("topright", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7, bty = "n")
 ##woutp <- plotED.glm(resw, col = scol, logScale = TRUE, ylab = "H(65|30)",
   ##              main = "Women 30-64", ylim = c(0, 1))##, exclude = 5:6)
 ##moutp <- plotED.glm(resm, col = scol, logScale = TRUE, ylab = "H(65|30)",
@@ -803,7 +811,49 @@ legend("bottomright", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7)
 par(oldpar)
 ```
 
-Obviously, differences are getting very small as we move forward in time: Almost all forty-year-olds today survive beyond 65, regardless of social class, the exception being those who have no notation of social class. In Sweden of the year 2014, the probability of surviving age 65 for a forty-year-old man is 91 per cent  (a period measure). The corresponding figure for a forty-year-old woman is 94 per cent. More interesting is to look at the late differences in the age group 65--100.
+Obviously, differences are getting very small as we move forward in time: Almost all forty-year-olds today survive beyond 65, regardless of social class, the exception being those who have no notation of social class. In Sweden of the year 2014, the probability of surviving age 65 for a forty-year-old man is 91 per cent  (a period measure). The corresponding figure for a forty-year-old woman is 94 per cent. More interesting is to look at the late differences in the age group 65--100. 
+
+A more relevant measure of comparison is perhaps the probability to die before age 65 for a forty-year-old, see Figure \@ref(fig:probsw).
+
+```{r probsw, fig.cap = "Relative probability of dying before the age of 65, given survival to age 40, by period and hisclass. Reference is worker.", fig.scap = "Relative probability of dying before 65.", fig.height = 8, out.height = "14cm"}
+source("R/plotED.glm.R")
+oldpar <- par(mfrow = c(2, 1))
+midper <- c(1812.5, 1837.5, 1862.5, 1887.5, 1912.5, 1937.5, 1981, 1991, 2000.5, 2009.5)
+refclw <- pdw[3, ]
+plot(midper, pdw[1, ] / refclw, col = scol[1], type = "b", ylim = c(1/3, 3), 
+     xlab = "Period", xlim = c(1800, 2015), log = "y",
+     ylab = "Relative probability", axes = FALSE, main = "Women, 40-64", lty = 1, pch = 1)
+
+axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
+axis(2, las = 1)
+axis(4, las = 1)
+abline(h = 0)
+box()
+for (i in 2:5){
+    lines(midper, pdw[i, ] / refclw, col = scol[i], type = "b", pch = i, lty = i)
+}
+legend("topleft", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7, bty = "n")
+refclm <- pdm[3, ]
+plot(midper, pdm[1, ] / refclm, col = scol[1], type = "b", ylim = c(1/3, 3), xlab = "Period", 
+     ylab = "Relative probability", axes = FALSE, main = "Men, 40-64", lty = 1, pch = 1,
+     xlim = c(1800, 2015), log = "y")
+axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
+axis(2, las = 1)
+axis(4, las = 1)
+abline(h = 0)
+box()
+for (i in 2:5){
+    lines(midper, pdm[i, ] / refclm, col = scol[i], type = "b", lty = i, pch = i)
+}
+legend("topleft", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7, bty = "n")
+##woutp <- plotED.glm(resw, col = scol, logScale = TRUE, ylab = "H(65|30)",
+  ##              main = "Women 30-64", ylim = c(0, 1))##, exclude = 5:6)
+##moutp <- plotED.glm(resm, col = scol, logScale = TRUE, ylab = "H(65|30)",
+  ##              main = "Men 30-64", ylim = c(0, 1))##, exclude = 5:6)
+par(oldpar)
+```
+
+
 
 Hovever, from Table \@ref(tab:cumswtab) it is obvious that the *statistical significance* is strong.
 
@@ -826,15 +876,15 @@ knitr::kable(dr, caption = "Single term deletions, ages 30-64.")
 
 The most interesting feature is the three-way interaction with **sex**, **period**, and **social class**. This indicates that fundamental changes have taken place in the relationship between the variables during our study period.
 
-Figure \@ref(fig:cumsw) shows the summed hazards of dying in the age interval
+Figure \@ref(fig:cumsw) shows the differences in expected years of survival in the age interval
 40--64 during the different periods. Obviously, but not surprisingly, mortality
 decreases over time for both sexes. Women have consistently better survival
 than men. This is a well-known phenomenon in Swedish
 demographic history [@wil99; @suwi07]. We also observe a
 substantial decline in mortality for both sexes, resulting in smaller
-absolute differences between social classes. We must, however, distinguish between differences in absolute risks compared to relative risks [@hoetal16]. The compression that is
+absolute differences between social classes. We must, however, distinguish between differences in absolute risks and relative risks. The compression that is
 visible for later decades is partly explained by the decreasing general
-mortality and does not necessarily represent a homogenization of relative risks. 
+mortality and does not imply decreasing relative risks, see Figure \@ref(fig:probsw). 
 
 
 The changing economy has some consequences for the analysis, particularly when
@@ -935,7 +985,7 @@ for (i in 2:5){
     lines(midper, resw[i, ] - mm, col = scol[i], type = "b", lty = i, pch = i)
 }
 
-legend("topleft", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7)
+legend("topleft", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7, bty = "n")
 mm <- resm[3, ]
 plot(midper, resm[1, ] - mm, col = scol[1], type = "b", ylim = c(-3, 5), xlab = "Period", 
      ylab = "Excess years", axes = FALSE, main = "Men, 65-99")
@@ -946,7 +996,7 @@ box()
 for (i in 2:5){
     lines(midper, resm[i, ] - mm, col = scol[i], type = "b", lty = i, pch = i)
 }
-legend("topleft", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7)
+legend("topleft", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7, bty = "n")
 ##woutp <- plotED.glm(resw, col = scol, logScale = TRUE, ylab = "H(65|30)",
   ##              main = "Women 30-64", ylim = c(0, 1))##, exclude = 5:6)
 ##moutp <- plotED.glm(resm, col = scol, logScale = TRUE, ylab = "H(65|30)",
