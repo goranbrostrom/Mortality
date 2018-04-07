@@ -742,6 +742,8 @@ scap22log <- "Probability by social class, ages 65--99, last years."
 ```
 
 ```{r hazcalw}
+source("R/getWeights.R")
+labb <- levels(vb$period)
 nper <- length(labb)
 his <- levels(vb1$hisclass)
 nhis <- length(his)
