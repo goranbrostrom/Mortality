@@ -807,7 +807,50 @@ par(oldpar)
 -->
 Differences in mortality in the age group 40--64 are getting very small as we move forward in time: Almost all forty-year-olds today survive beyond 65, regardless of social class. In Sweden of the year 2014, the probability of surviving age 65 for a forty-year-old man is 91 per cent  (a period measure). The corresponding figure for a forty-year-old woman is 94 per cent. 
 
-A more relevant measure of comparison is the probability (risk) of dying before age 65 for a forty-year-old, remembering that the absolute risks are very small in the later time periods. Figure \@ref(fig:probsw) shows the development of the relative risks over time, with worker as the reference category.
+A more relevant measure of comparison is the probability (risk) of dying before age 65 for a forty-year-old, remembering that the absolute risks are very small in the later time periods. 
+
+Figure \@ref(fig:probswabs) shows the development of the relative risks over time.
+
+```{r probswabs, fig.cap = "Absolute risk of dying before the age of 65, given survival to age 40, by period and hisclass.", fig.scap = "Absolute risk of dying before 65.", fig.height = 8, out.height = "14cm"}
+source("R/plotED.glm.R")
+oldpar <- par(mfrow = c(2, 1))
+midper <- c(1812.5, 1837.5, 1862.5, 1887.5, 1912.5, 1937.5, 1981, 1991, 2000.5, 2009.5)
+refclw <- 1 ## pdw[3, ]
+plot(midper, pdw[1, ] / refclw, col = scol[1], type = "b", ylim = c(0.0, 0.55), 
+     xlab = "Period", xlim = c(1800, 2015), ##log = "y",
+     ylab = "P(die before 65 | alive at 40", axes = FALSE, main = "Women, 40-64", lty = 1, pch = 1)
+
+axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
+axis(2, las = 1)
+axis(4, las = 1)
+abline(h = 0)
+box()
+for (i in 2:5){
+    lines(midper, pdw[i, ] / refclw, col = scol[i], type = "b", pch = i, lty = i)
+}
+legend("bottomleft", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7, bty = "n")
+refclm <- 1 ##pdm[3, ]
+plot(midper, pdm[1, ] / refclm, col = scol[1], type = "b", ylim = c(0.0, 0.55), xlab = "Period", 
+     ylab = "P(die before 65 | alive at 40)", axes = FALSE, main = "Men, 40-64", lty = 1, pch = 1,
+     xlim = c(1800, 2015))#, log = "y")
+axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
+axis(2, las = 1)
+axis(4, las = 1)
+abline(h = 0)
+box()
+for (i in 2:5){
+    lines(midper, pdm[i, ] / refclm, col = scol[i], type = "b", lty = i, pch = i)
+}
+legend("bottomleft", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7, bty = "n")
+##woutp <- plotED.glm(resw, col = scol, logScale = TRUE, ylab = "H(65|30)",
+  ##              main = "Women 30-64", ylim = c(0, 1))##, exclude = 5:6)
+##moutp <- plotED.glm(resm, col = scol, logScale = TRUE, ylab = "H(65|30)",
+  ##              main = "Men 30-64", ylim = c(0, 1))##, exclude = 5:6)
+par(oldpar)
+```
+
+
+Figure \@ref(fig:probsw) shows the development of the *relative* risks over time, with worker as the reference category.
 
 ```{r probsw, fig.cap = "Relative risk of dying before the age of 65, given survival to age 40, by period and hisclass. Reference is worker.", fig.scap = "Relative risk of dying before 65.", fig.height = 8, out.height = "14cm"}
 source("R/plotED.glm.R")
@@ -956,6 +999,44 @@ for (i in 1:nper){
 
 ```
 
+The absolute years remaining are shown in Figure \@ref(fig:cumsw2abs).
+
+```{r cumsw2abs, fig.cap = "Remaining years of life before 100 for a 65-year-old, by hisclass and period.", fig.scap = "Differences in expected years of life at 65", fig.height = 8, out.height = "14cm"}
+##source("R/plotED.glm.R")
+oldpar <- par(mfrow = c(2, 1))
+midper <- c(1812.5, 1837.5, 1862.5, 1887.5, 1912.5, 1937.5, 1981, 1991, 2000.5, 2009.5)
+mm <- 0 ##resw[3, ]
+plot(midper, resw[1, ] - mm, col = scol[1], type = "b", ylim = c(75, 88), xlab = "Period", 
+     ylab = "Average death age", axes = FALSE, main = "Women, 65-99")
+
+axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
+axis(2, las = 1)
+axis(4, las = 1)
+box()
+for (i in 2:5){
+    lines(midper, resw[i, ] - mm, col = scol[i], type = "b", lty = i, pch = i)
+}
+
+legend("topleft", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7, bty = "n")
+mm <- 0 ##resm[3, ]
+plot(midper, resm[1, ] - mm, col = scol[1], type = "b", ylim = c(73, 85), xlab = "Period", 
+     ylab = "Average death age", axes = FALSE, main = "Men, 65-99")
+axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
+axis(2, las = 1)
+axis(4, las = 1)
+box()
+for (i in 2:5){
+    lines(midper, resm[i, ] - mm, col = scol[i], type = "b", lty = i, pch = i)
+}
+legend("topleft", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7, bty = "n")
+##woutp <- plotED.glm(resw, col = scol, logScale = TRUE, ylab = "H(65|30)",
+  ##              main = "Women 30-64", ylim = c(0, 1))##, exclude = 5:6)
+##moutp <- plotED.glm(resm, col = scol, logScale = TRUE, ylab = "H(65|30)",
+  ##              main = "Men 30-64", ylim = c(0, 1))##, exclude = 5:6)
+par(oldpar)
+```
+
+The excess years of remaining life compared to worker is shown in Figure \@ref(fig:cumsw2).
 
 ```{r cumsw2, fig.cap = "Excess years of life (compared to worker) before 100 for a 65-year-old, by hisclass and period.", fig.scap = "Differences in expected years of life at 65", fig.height = 8, out.height = "14cm"}
 ##source("R/plotED.glm.R")
