@@ -92,15 +92,15 @@ vb$exposure <- vb$exit - vb$enter # For statistics and figures purposes
 
 A major theme in demographic and epidemiological studies is the seemingly persistent effect of social class on mortality. In the present study, we challenge common notions of this by taking a long-term perspective on the development of social class inequalities in mortality in the adult and elderly population with a special focus on the relative differences. The arguments for our statements are based on an investigation of the Skellefteå and Umeå regions in northern Sweden for the periods 1801--2013 for Skellefteå and 1901--2013 for Umeå. The main issue is analysed according to gender and age group (working age vs retired), testing whether the same patterns prevail in old age---the retired population---as in working age.  Furthermore we place this in the context of how the inequality in mortality is associated with the development of economic inequality in society. The results are discussed in relation to the mortality transition and the social determinants of health and mortality, as well as their implications on some of the most influential hypotheses and concepts in health research.
 
-Based on the results, we argue that high social class is not necessarily favourable for survival. Social conditions and social position certainly have impact, but not always in the expected direction. In our case this is apparent for men, during a large part of the studied period, particularly for men in working age; only at a surprisingly late date appears a male mortality class reversal, changing the relation to a substantial advantage of being in a higher social position. Mortality risks in different contexts must be understood in the intersection between class and gender. We suggest that health-related behaviour is not only important in present-day societies, but was also decisive in earlier phases of the mortality transition. The results implicate that the association between social class and health is more complex than is assumed in many of the dominant theories in demography and epidemiology.
+Based on the results, we argue that high social class is not necessarily favourable for survival. Social conditions and social position certainly have impact, but not always in the expected direction. In our case this is apparent for men during a large part of the studied period, particularly for men in working age; only at a surprisingly late date appears a male mortality class reversal, changing the relation to a substantial advantage of being in a higher social position. Mortality risks in different contexts must be understood in the intersection between class and gender. We suggest that health-related behaviour is not only important in present-day societies, but was also decisive in earlier phases of the mortality transition. The results implicate that the association between social class and health is more complex than is assumed in many of the dominant theories in demography and epidemiology.
 
 
 ## Social class and mortality
 
 One of the central aspects of survival is social class and access to economic
 and other resources. In present-day welfare societies, social position, either according to social class, education or income, is a
-strong determinant when it comes to health and mortality and its impact even
-are increasing [@kuetal04; @macketal16; @frlu07; @broba12; @strand10]. @liph02 suggest that
+strong determinant when it comes to health and mortality and its impact are even
+increasing [@kuetal04; @macketal16; @frlu07; @broba12; @strand10]. @liph02 suggest that
 "... social conditions have been, are and will continue to be irreducible
 determinants of health outcomes and therefore deserve their appellation of
 'fundamental causes' of disease and death". The persistence of social inequality in mortality to the disadvantage of the lower classes is one of the main assumptions in their theory [@liph95; @liph98]. The reigning view is that socio-economic health and mortality inequalities were large in historical societies, probably larger than in modern societies. This is a
@@ -232,7 +232,7 @@ Board of Health and Welfare. The populations in the Skellefteå and Umeå region
 
 For the last period, from 1 January 2002 until 31 December 2013, we use the yearly population registers
 (LISA data) together with information on deaths from the National Board of
-Health and Welfare. The LISA data depict the situation at the end of the given year, so the follow-up period is from 1 January to 31 December the next year. Deaths may still occur outside the region, but less frequently than in the Fob case.
+Health and Welfare. The LISA data depict the situation at the end of the given year, so the follow-up period is from 1 January to 31 December the next year. Deaths may still occur outside the region, but less frequently than when exposure is restricted to presence in the censuses.
 
 
 
@@ -255,7 +255,7 @@ position. We consider this as a reasonable approach for this period.
 
 Female labour is much better covered in the Linnaeus database, and it is difficult to define households in the same way as in Poplink. Extramarital cohabitation became common and female
 labour force participation developed as the norm, in Sweden during this
-period. The husband's occupation, as signifier of social class became,
+period. The husband's occupation as signifier of social class became,
 if not obsolete, at least less relevant. All included persons are signified
 by their individual occupation for this period. Although the results for the different periods are not completely comparable, the difference in approach reflects an actual change in how social class is structured.
 
@@ -353,9 +353,7 @@ and with only basic welfare provisions. During the years 1901--1950,
 industrialization started and the urban environments increased in
 population size. The modern Swedish welfare state began to develop. For the 
 period 1976 onwards, there are separate analyses of ten-year periods. Sweden had developed into a wealthy welfare society with low income inequality. Then in the early 1990s, a financial crisis struck Sweden, which among other things increased unemployment and changed parts of
-the welfare system towards being less generous. The start of the
-last period (2008--2013) coincides with the international financial
-crisis. In the most recent decades income inequality has increased considerably.
+the welfare system towards being less generous. In the most recent decades income inequality has increased considerably.
 
 
 # Models and methods
@@ -377,7 +375,7 @@ The models are fitted separately for sex and time period, from  1801 to
 2013.
 
 The social classes are compared by the *expected years of life
-before 100* for a person aged 65, and the *relative risk of dying before age 65* for a person aged 40, respectively. The reason for using different comparative measures for the two age groups is the fact that mortality is very low in the younger age group compared to the older.
+before 100* for a person aged 65, and the *relative risk of dying before age 65* for a person aged 40, respectively. The reason for using different comparative measures for the two age groups is the fact that mortality is very low in the younger age group compared to the older, at least recent periods.
 
 The analyses are performed in the **R** environment for statistical computing
 and graphics [@cran], especially using the package **eha**
