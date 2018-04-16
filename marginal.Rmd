@@ -697,8 +697,6 @@ lines(c(1812, 1838, 1862, 1888, 1912, 1938, 1978, 1982, 1988, 1995, 2005, 2010),
 
 # Results
 
-In the graphical presentation of the results, the *worker* social class is used as reference, and all curves show the difference in years to the expected years in the reference.  
-
 ## Ages 40--64
 
 
@@ -803,11 +801,10 @@ par(oldpar)
 ```
 
 -->
-Differences in mortality in the age group 40--64 are getting very small as we move forward in time: Almost all forty-year-olds today survive beyond 65, regardless of social class. In Sweden of the year 2014, the probability of surviving age 65 for a forty-year-old man is 91 per cent  (a period measure). The corresponding figure for a forty-year-old woman is 94 per cent. 
+Differences in mortality in the age group 40--64 are getting very small as we move forward in time: Almost all forty-year-olds today survive beyond 65, regardless of social class. In Sweden of the year 2014, the probability of surviving age 65 for a forty-year-old man is 91 per cent  (a period measure). The corresponding figure for a forty-year-old woman is 94 per cent. A more relevant measure of comparison is the probability (risk) of dying before age 65 for a forty-year-old, remembering that the absolute risks are very small in the later time periods. 
 
-A more relevant measure of comparison is the probability (risk) of dying before age 65 for a forty-year-old, remembering that the absolute risks are very small in the later time periods. 
+From Table \@ref(tab:cumswtab) it is obvious that the *statistical significance* is strong in our statistical model of the probability of dying. The most interesting feature is the three-way interaction with **sex**, **period**, and **social class**. This indicates that fundamental changes have taken place in the relationship between the variables during our study period.
 
-Figure \@ref(fig:probswabs) shows the development of the relative risks over time.
 
 ```{r probswabs, fig.cap = "Absolute risk of dying before the age of 65, given survival to age 40, by period and hisclass.", fig.scap = "Absolute risk of dying before 65.", fig.height = 8, out.height = "14cm"}
 source("R/plotED.glm.R")
@@ -848,7 +845,7 @@ par(oldpar)
 ```
 
 
-Figure \@ref(fig:probsw) shows the development of the *relative* risks over time, with worker as the reference category.
+
 
 ```{r probsw, fig.cap = "Relative risk of dying before the age of 65, given survival to age 40, by period and hisclass. Reference is worker.", fig.scap = "Relative risk of dying before 65.", fig.height = 8, out.height = "14cm"}
 source("R/plotED.glm.R")
@@ -890,7 +887,7 @@ par(oldpar)
 
 
 
-From Table \@ref(tab:cumswtab) it is obvious that the *statistical significance* is strong. The most interesting feature is the three-way interaction with **sex**, **period**, and **social class**. This indicates that fundamental changes have taken place in the relationship between the variables during our study period.
+
 
 
 ```{r cumswtab, message=FALSE, cache = TRUE, eval = TRUE}
@@ -911,25 +908,29 @@ knitr::kable(dr, caption = "Single term deletions, ages 30-64.")
 
 
 
-Figure \@ref(fig:probsw) does not show that mortality
-decreases over time for both sexes, and that women have consistently better survival
+Figure \@ref(fig:probswabs) shows the absolute risks of dying for in the age interval 40--64 during the different periods. Obviously, but not surprisingly, mortality
+decreases over time for both sexes. Women have consistently better survival
 than men. This is a well-known phenomenon in Swedish
 demographic history [@wil99; @suwi07] as well as in the rest of the world. The
 substantial decline in mortality for both sexes results in smaller
-absolute differences between social classes in the later time periods. 
+absolute differences between social classes in the later time periods. We must, however, distinguish between differences in absolute risks compared to relative risks [@hoetal16]. The compression that is visible for later decades is partly explained by the decreasing general mortality and does not necessarily represent a homogenisation of relative risks.
+
+By standardizing the levels in each time period for each class, we illustrate the relative risks in Figure \@ref(fig:probsw).
 
 
-The most striking result of the analysis is the different patterns for men
+The most striking and surprising result of the analysis is the different patterns for men
 and women, especially regarding the elite class. The social pattern of mortality among women is a great deal in
 accordance with previous analyses on other regions in northern Sweden and for other periods [@edli11; @edbr12]. The highest social class usually has a comparatively low mortality, while
-working-class women have high mortality, but almost constantly about the same level as the middle category. However, there is no substantial change in the relative risks between classes except for the periods after 1976. A consistent social gradient has developed; the group with unknown social class is distinguished by much higher mortality from 1976 and onwards. This might have to do with how we have defined social position for women before and after 1950. After it is based on their own occupation; lacking an occupation likely includes women who are more frail when it comes to health or are vulnerable due to social characteristics.
+working-class women have high mortality, but during most periods at about the same level as the farmer and only a little higher than the middle category. However, there is no substantial change in the relative risks between classes except for the periods after 1976 (considering the very few female farmers during the latest decades). The group with unknown social class is distinguished by much higher mortality from 1976 and onwards. This might have to do with how we have defined social position for women before and after 1950. After it is based on their own occupation; lacking an occupation likely includes women who are more frail when it comes to health or are vulnerable due to social characteristics.
 
 A completely different pattern appears among men. The groups we expect to have the lowest mortality, if
 assuming that access to vital resources and belonging to a high social class
 determines survival, instead have by far the highest risks of dying before 65
 during the 19th century and much of the 20th. Workers, on the
 other hand, have comparatively low mortality until 1950, at the same
-level as the middle category.
+level as the farmers and somewhat below the middle category. Consequently, the gender
+difference was extremely large for the elite group. Men had much higher mortality risks compared to women, basically living in the same households. In the other classes, 
+the difference was much smaller. It was men in high positions who were the most vulnerable.
 
 The relative positions change radically towards the end of the 20th century. From the 1980s, there is a clear advantage when it comes to survival for the elite. A reversal of the class pattern in mortality has taken place, and the expected social gradient in mortality has developed. This is also what we usually find in analyses of social health inequalities in present-day
 Sweden as well as in most other countries, results that have formed the basis for many of the contemporary epidemiologic and demographic theories. In the regions we are studying,
@@ -946,9 +947,7 @@ difference in death hazards is extremely large for the elite group from
 same class (basically living in the same households). In the other classes, 
 the difference was much smaller. It was men in high positions who experienced the largest risks.
 -->
-The changing economy has some consequences for the analysis, particularly when
-it comes to the agricultural sector. While farming occupations were common
-up until the first half of the 20th century, they have constantly decreased both in numbers as proportionally since then. This means that the middle category has a different character in the last periods.
+
 
 
 ## Ages 65--99
