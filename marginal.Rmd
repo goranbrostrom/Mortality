@@ -806,7 +806,7 @@ Differences in mortality in the age group 40--64 are getting very small as we mo
 From Table \@ref(tab:cumswtab) it is obvious that the *statistical significance* is strong in our statistical model of the probability of dying. The most interesting feature is the three-way interaction with **sex**, **period**, and **social class**. This indicates that fundamental changes have taken place in the relationship between the variables during our study period.
 
 
-```{r probswabs, fig.cap = "Absolute risk of dying before the age of 65, given survival to age 40, by period and hisclass.", fig.scap = "Absolute risk of dying before 65.", fig.height = 8, out.height = "14cm"}
+```{r probswabs, fig.cap = "Absolute risk of dying before the age of 65, given survival to age 40, by period and social class.", fig.scap = "Absolute risk of dying before 65.", fig.height = 8, out.height = "14cm"}
 source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
 midper <- c(1812.5, 1837.5, 1862.5, 1887.5, 1912.5, 1937.5, 1981, 1991, 2000.5, 2009.5)
@@ -847,7 +847,7 @@ par(oldpar)
 
 
 
-```{r probsw, fig.cap = "Relative risk of dying before the age of 65, given survival to age 40, by period and hisclass. Reference is worker.", fig.scap = "Relative risk of dying before 65.", fig.height = 8, out.height = "14cm"}
+```{r probsw, fig.cap = "Relative risk of dying before the age of 65, given survival to age 40, by period and social class. Reference is worker.", fig.scap = "Relative risk of dying before 65.", fig.height = 8, out.height = "14cm"}
 source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
 midper <- c(1812.5, 1837.5, 1862.5, 1887.5, 1912.5, 1937.5, 1981, 1991, 2000.5, 2009.5)
@@ -998,7 +998,7 @@ for (i in 1:nper){
 
 The absolute years remaining are shown in Figure \@ref(fig:cumsw2abs).
 
-```{r cumsw2abs, fig.cap = "Remaining years of life before 100 for a 65-year-old, by hisclass and period.", fig.scap = "Differences in expected years of life at 65", fig.height = 8, out.height = "14cm"}
+```{r cumsw2abs, fig.cap = "Remaining years of life before 100 for a 65-year-old, by social class and period.", fig.scap = "Differences in expected years of life at 65", fig.height = 8, out.height = "14cm"}
 ##source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
 midper <- c(1812.5, 1837.5, 1862.5, 1887.5, 1912.5, 1937.5, 1981, 1991, 2000.5, 2009.5)
@@ -1035,7 +1035,7 @@ par(oldpar)
 
 The excess years of remaining life compared to worker is shown in Figure \@ref(fig:cumsw2).
 
-```{r cumsw2, fig.cap = "Excess years of life (compared to worker) before 100 for a 65-year-old, by hisclass and period.", fig.scap = "Differences in expected years of life at 65", fig.height = 8, out.height = "14cm"}
+```{r cumsw2, fig.cap = "Excess years of life (compared to worker) before 100 for a 65-year-old, by social class and period.", fig.scap = "Differences in expected years of life at 65", fig.height = 8, out.height = "14cm"}
 ##source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
 midper <- c(1812.5, 1837.5, 1862.5, 1887.5, 1912.5, 1937.5, 1981, 1991, 2000.5, 2009.5)
