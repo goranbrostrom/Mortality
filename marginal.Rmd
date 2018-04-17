@@ -1078,8 +1078,8 @@ find a turning point at this time with better survival among elderly, first for 
 The excess years of remaining life in different social classes compared to workers are shown in Figure \@ref(fig:cumsw2). Concerning the differences in the social pattern, it is less consisten compared to what
 we find for the younger age group in the earlier time periods. For women the results are mixed. We do not find the same clear advantage for elite women during the period before 1950, but neither
 do we find any large disadvantage for working-class elderly women at that
-time. In most periods the social differences were small between working class women and those in the farming and middle catetories. The social differences continued to be small until the last decades of the 20th century. It is only during the four last periods (after the year 1975) that it is
-possible to establish the expected social gradient in mortality.
+time. In most periods the social differences were small between working class women and those in the farming and middle categories (only differences of a couple of months in median age at death). The social differences continued to be small until the last decades of the 20th century. It is only during the four last periods (after the year 1975) that it is
+possible to establish the expected and consistent social gradient in mortality.
 
 For men we find indications of the same intriguing change among elderly as
 for the adult male population aged 40--64 years. Mortality was somewhat higher among elite men during the 19th century, a pattern that prevailed until the middle of the
