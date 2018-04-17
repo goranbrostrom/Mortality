@@ -954,7 +954,7 @@ the difference was much smaller. It was men in high positions who experienced th
 
 
 We now turn to the elderly, those who in most cases have left the workforce.
-We use the *expected remaining years of life at 65 up to age 100*  as the summary measure, since the relative risk is a not so good measure when risks are high. First, looking at Table \@ref(tab:cumswtabold), it is obvious that the statistical significance regarding differences between groups over time is still strong.
+We use the *expected remaining years of life at 65 up to age 100* (reported as medan age at death) as the summary measure, since the relative risk is a not so good measure when risks are high. First, looking at Table \@ref(tab:cumswtabold), it is obvious that the statistical significance regarding differences between groups over time is still strong.
 
 
 ```{r cumswtabold, cap="Table", cache = TRUE, eval = TRUE}
@@ -996,9 +996,9 @@ for (i in 1:nper){
 
 ```
 
-The absolute years remaining are shown in Figure \@ref(fig:cumsw2abs).
 
-```{r cumsw2abs, fig.cap = "Remaining years of life before 100 for a 65-year-old, by social class and period.", fig.scap = "Differences in expected years of life at 65", fig.height = 8, out.height = "14cm"}
+
+```{r cumsw2abs, fig.cap = "Median age at death for a 65-year-old, by social class and period.", fig.scap = "Differences in expected years of life at 65", fig.height = 8, out.height = "14cm"}
 ##source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
 midper <- c(1812.5, 1837.5, 1862.5, 1887.5, 1912.5, 1937.5, 1981, 1991, 2000.5, 2009.5)
@@ -1033,7 +1033,6 @@ legend("topleft", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7, bty
 par(oldpar)
 ```
 
-The excess years of remaining life compared to worker is shown in Figure \@ref(fig:cumsw2).
 
 ```{r cumsw2, fig.cap = "Excess years of life (compared to worker) before 100 for a 65-year-old, by social class and period.", fig.scap = "Differences in expected years of life at 65", fig.height = 8, out.height = "14cm"}
 ##source("R/plotED.glm.R")
@@ -1070,21 +1069,16 @@ legend("topleft", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7, bty
 par(oldpar)
 ```
 
-The general pattern and development of mortality do not
-differ much from the younger age group, but on a much
-higher mortality level earlier in history. Mortality among women, as
-expected, was lower than among men. We find a clear decline in mortality, but
+The general pattern and development of mortality resembles that from the younger age group, according to the median age at death for a 65-year-old shown in Figure \@ref(fig:cumsw2abs). Median death age among women, as expected, was higher than among men. We find a clear increase in life expectancy, but
 the fastest decline did not set in definitely until sometime after the
 Second World War; that is, later than for the age
 group 40--64 years. This corresponds to the Swedish development whereby we
 find a turning point at this time with better survival among elderly, first for women and a couple of decades later for men.
 
-Concerning the differences in the social pattern (Figure \@ref(fig:cumsw2)), it is less clear compared to what
-we find for the younger age group in the earlier time periods. For women the results are mixed. We do not find the
-same clear advantage for elite women during the period before 1950, but neither
+The excess years of remaining life in different social classes compared to workers are shown in Figure \@ref(fig:cumsw2). Concerning the differences in the social pattern, it is less consisten compared to what
+we find for the younger age group in the earlier time periods. For women the results are mixed. We do not find the same clear advantage for elite women during the period before 1950, but neither
 do we find any large disadvantage for working-class elderly women at that
-time. In most periods the social differences were small, particularly between the workers and the middle group, and the elite women even had somewhat higher mortality during some periods until the 1901--1925 period. The social differences continued to be small until the last decades of the
-20th century. It is only during the four last periods (after the year 1975) that it is
+time. In most periods the social differences were small between working class women and those in the farming and middle catetories. The social differences continued to be small until the last decades of the 20th century. It is only during the four last periods (after the year 1975) that it is
 possible to establish the expected social gradient in mortality.
 
 For men we find indications of the same intriguing change among elderly as
