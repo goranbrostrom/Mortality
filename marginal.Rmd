@@ -1158,8 +1158,6 @@ Jonas Helgertz at the Department of Economic History, Lund University, for
 providing us with scripts for creating Hisclass from Swedish census
 data.
 
-Earlier versions have been presented at 11th European Social Science History Conference, Valencia 2016, 2nd Conference of the European Society of Historical Demography, Leuven 2016, 41st Annual Meeting of the Social Science History Association, Chicago 2016, The Ninth International Congress of Arctic Social Sciences ICASS IX, Umeå 2017, 20th Nordic Demographic Symposium, Åbo 2017 and XXVII International Population Conference, Cape Town 2017. We are grateful for comments and suggestions at these conferences as well as comments from our colleagues at CEDAR, Umeå University.
-
 
 # References
 
