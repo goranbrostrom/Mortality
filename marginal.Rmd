@@ -117,7 +117,7 @@ better understand the role of class and socio-economic conditions in health and 
 
 Social position affects health and mortality differently during the life course. There are different hypotheses about the impact in adulthood and old age respectively. The differences either decrease in old age (status levelling), are constant (status maintenance), or increase (cumulative advantage) [@hof08]. Diminishing differences may be a consequence of the circumstance that biological factors become increasingly important during the ageing process and in old age, leaving less impact for social factors. The status maintenance hypothesis basically assumes 
 continuity in the determinants of social health inequalities from adulthood to old age.
-The cumulative (dis)advantage hypothesis [@dan03], implies that advantages and disadvantages persist and accumulate during life in a negative spiral rewarding some while disfavouring others. This leads to larger differences in old age. 
+The cumulative (dis)advantage hypothesis [@dan03], implies that advantages and disadvantages persist and accumulate during life in a negative spiral, rewarding some while disfavouring others. This leads to larger differences in old age. 
 
 
 Another aspect of the development of social inequality in mortality concerns its relation to economic inequality. @wipi09 argue that income inequality has an independent effect on mortality, separate from the direct effect of actual access to economic resources. They find
@@ -141,7 +141,7 @@ knitr::include_graphics("myfigs/sweden.png")
 During the studied period, Sweden developed from a poor agricultural society with low urbanization to a rich welfare state. The regions studied here were for a long time remote from the central parts of the country. The Skellefteå and Umeå regions (Figure \@ref(fig:mapp)) are part of the county of Västerbotten in northern of Sweden along the coast of the Gulf
 of Bothnia, where communication with
 the rest of Sweden was difficult until the late 19th century. The economy
-was dominated by agriculture, making it vulnerable to harvest failures; several severe famines occurred in the regions during the 1800s, for example after the harvest failure of 1867 [@segb14]. During the long winters, sea communication was hindered due to the Gulf of Bothnia being frozen. The first ships of the year came to this area in May or even as late as June in some cases [@fah56]. Towards the end of the 19th century, the Swedish railway system reached this part of Sweden, facilitating contact with the rest of Sweden and, improving the economy and making it possible to mitigate the effects of harvest failures. During the 19th century, our regions became increasingly integrated in the same epidemiological pattern as the rest of Sweden.
+was dominated by agriculture, making it vulnerable to harvest failures; several severe famines occurred in the regions during the 1800s, for example after the harvest failure of 1867 [@segb14]. During the long winters, sea communication was hindered due to the Gulf of Bothnia being frozen. The first ships of the year came to this area in May or even as late as June in some cases [@fah56]. Towards the end of the 19th century, the Swedish railway system reached this part of Sweden, facilitating contact with the rest of Sweden, improving the economy and making it possible to mitigate the effects of harvest failures. During the 19th century, our regions became increasingly integrated in the same epidemiological pattern as the rest of Sweden.
 
 In our dataset, before 1950 the Skellefteå region consists of a selection of parishes surrounding the town of Skellefteå, founded in 1845 but with a very small population during the 19th century. The data from the period after 1975 cover the Skellefteå, Norsjö and Malå municipalities, the same area as
 for the earlier period but with the addition of two more parishes. The
@@ -170,7 +170,7 @@ between, the regions.
 The other large data set is extracted from the Linnaeus database
 [@malm10], which is based on different linked national population
 registers from 1960 to 2013 (censuses, LISA from Statistics Sweden and cause of death registers) and is used within the ageing programme at CEDAR, Umeå
-University. Due to data issues (a great deal of missing data in some variables, for example social class, and additional work required to define the exact geographical areas of analysis) we choose to use Linnaeus data from 1976 onwards. The study period from 1976 to 2000 is constructed from
+University. Due to data issues (a great deal of missing data in some variables, for example social class, and additional work required to define the exact geographical areas of analysis) we choose to use Linnaeus data only from 1976 onwards. The study period from 1976 to 2000 is constructed from
 censuses every fifth year during the period 1975--1990, with additional information on deaths
 from the National Board of Health and Welfare. For the period 2002--2013 we use
 the information from the yearly population registers from Statistics Sweden
@@ -297,7 +297,7 @@ yy <- round(prop.table(xx, 1) * 100, 1)
 barplot(t(yy)[5:1, ], col = c("red", "darkgreen", "blue", "green", "black"), las = 2, ylab = "Per cent")
 ```
 
-```{r hiscskumw, fig.cap = "Exposure by social class (from the top: elite, middle, workers, missing) and time period, women.", out.height = "14cm", fig.scap="Exposure by social class and time period, women.",fig.height=4}
+```{r hiscskumw, fig.cap = "Exposure by social class (from the top: elite, middle, workers, farmers, none) and time period, women.", out.height = "14cm", fig.scap="Exposure by social class and time period, women.",fig.height=4}
 xx <- with(vb[vb$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 ##xy <- with(skume[skume$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 ##xz <- with(foli[foli$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
@@ -911,7 +911,7 @@ knitr::kable(dr, caption = "Single term deletions, ages 30-64.")
 Figure \@ref(fig:probswabs) shows the absolute risks of dying for in the age interval 40--64 during the different periods. Obviously, but not surprisingly, mortality
 decreases over time for both sexes. Women have consistently better survival
 than men. This is a well-known phenomenon in Swedish
-demographic history [@wil99; @suwi07] as well as in the rest of the world. The
+demographic history [@wil99; @suwi07] as well as in other parts of the world. The
 substantial decline in mortality for both sexes results in smaller
 absolute differences between social classes in the later time periods. We must, however, distinguish between differences in absolute risks and in relative risks. The compression that is visible for later decades is partly explained by the decreasing general mortality and does not necessarily represent a homogenisation of relative risks [@hoetal16]. The relative risks are shown in Figure \@ref(fig:probsw).
 
@@ -1157,6 +1157,8 @@ Demographic Data Base, Umeå University, for giving us access to data and
 Jonas Helgertz at the Department of Economic History, Lund University, for
 providing us with scripts for creating Hisclass from Swedish census
 data.
+
+Earlier versions have been presented at 11th European Social Science History Conference, Valencia 2016, 2nd Conference of the European Society of Historical Demography, Leuven 2016, 41st Annual Meeting of the Social Science History Association, Chicago 2016, The Ninth International Congress of Arctic Social Sciences ICASS IX, Umeå 2017, 20th Nordic Demographic Symposium, Åbo 2017 and XXVII International Population Conference, Cape Town 2017. We are grateful for comments and suggestions at these conferences as well as comments from our colleagues ag CEDAR, Umeå University.
 
 
 # References
