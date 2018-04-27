@@ -1,7 +1,7 @@
 ---
 title: "Is high social class always beneficial for survival? Northern Sweden 1801--2013"
-author: Sören Edvinsson\footnote{Corresponding author; Phone number +46907866040, email soren.edvinsson@umu.se} and Göran Broström
-date: 'Centre for Demographic and Ageing Research \newline Umeå University, SE-90187 Umeå, Sweden'
+author: X \footnote{Corresponding author; Phone number +0000000000, email X@xcom.com} and Y
+date: "`r Sys.Date()"
 output:
   bookdown::pdf_document2:
     citation_package: natbib
@@ -18,7 +18,7 @@ output:
     toc: yes
     toc_depth: 2
 titlepage: yes
-bibliography: "mybib.bib"
+bibliography: "mybib"
 documentclass: article
 classoption: titlepage
 fontsize: 12pt
@@ -27,6 +27,7 @@ biblio-style: "apalike"
 header-includes:
   - \usepackage[utf8]{inputenc}
   - \usepackage{graphicx}
+  - \usepackage{endfloat}
 abstract: "Focusing on two regions in northern Sweden 1801--2013, we challenge common notions of the assumed advantage in survival of belonging to a high social class. The issue is analysed according to gender and age group (adults and elderly) and in relation to the development of economic inequality. The results show that high social class is not always favourable for survival. Men in the elite category, particularly in working age, had higher mortality compared to others during a large part of the studied period; a male mortality class reversal appears at a surprisingly late date, while the social gradient among women conforms to the expected pattern. We suggest that health-related behaviour is decisive not only in later but earlier phases of the mortality transition as well. The results implicate that the association between social class and health is more complex than is assumed in many of the dominant theories in demography and epidemiology.\\par
 
 \\textbf{Keywords:} Class reversal in mortality; Cox regression; Gender differences; Inverse probability weighting; Mortality transition; Northern Sweden; Social inequality; 19th to 21 century
