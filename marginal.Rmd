@@ -1,7 +1,7 @@
 ---
 title: "Is high social class always beneficial for survival? Northern Sweden 1801--2013"
 author: X \footnote{Corresponding author; Phone number +0000000000, email X@xcom.com} and Y
-date: "`r Sys.Date()"
+date: "`r Sys.Date()`"
 output:
   bookdown::pdf_document2:
     citation_package: natbib
@@ -325,13 +325,15 @@ the results are fairly complete.
 
 ## Marital status
 
-Marital status (see Figure \@ref(fig:civstskum)) is a time-fixed covariate.
+Marital status <!-- (see Figure \@ref(fig:civstskum)) --> is a time-fixed covariate.
 The statuses used are unmarried, married and dissolved marriage
 (without distinguishing between widowed and divorced). If no explicit
 status is given in the sources and the partner is missing, the status has been
 set to unmarried. Note that it has not been possible to identify cohabitation.
 
+The proportion married varies between 60 and 70 percent over time, never married between 15 and 25 percent, and previously married between 10 and 15 per cent.
 
+<!--
 
 ```{r civstskum, fig.cap = "Exposure by marital status (from the top: never married, married and previously married) and time period", fig.scap='Exposure by marital status and time period.',out.height = "14cm",fig.height=4}
 xx <- with(vb, tapply(exposure, list(period = period, civst = civst), sum))
@@ -341,7 +343,7 @@ xx <- with(vb, tapply(exposure, list(period = period, civst = civst), sum))
 yy <- round(prop.table(xx, 1) * 100, 1)
 barplot(t(yy)[3:1, ], col = c("red", "blue", "green"), las = 2, ylab = "Per cent")
 ```
-
+-->
 
 ## Urban vs rural residence
 
@@ -1152,7 +1154,7 @@ time2 <- Sys.time()
 ##time2 - time1
 ```
 
-
+<!--
 # Acknowledgements
 
 This work was undertaken within the research programme *Ageing and
@@ -1164,7 +1166,7 @@ Demographic Data Base, Umeå University, for giving us access to data and
 Jonas Helgertz at the Department of Economic History, Lund University, for
 providing us with scripts for creating Hisclass from Swedish census
 data.
-
+-->
 
 # References
 
