@@ -1,0 +1,44 @@
+---
+title: "Compare foli and new"
+author: "Göran Broström"
+date: "September 6, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(eha)
+```
+
+## Intro
+
+I compare the old data file **foli.rmd** with the new version **per_60.rds**. The latter is slightly more strict with right censoring ("last seen").
+
+## The foli file
+
+```{r getfoli}
+load("data/foli.rda")
+summary(foli[, c("enter", "exit", "event", "sex", "birthdate")])
+```
+
+## The per_60 file
+
+```{r getper}
+per60 <- readRDS("../Long_Life/mydata/per_60.rds")
+per60$sex <- factor(per60$KON, labels = c("male", "female"))
+summary(per60[, c("enter", "exit", "event", "sex", "birthdate")])
+```
+
+## Comparison
+
+We see that **foli** is age-cut 30-100, while **p60** only has a lower cut, at age 60. In order to make them comparable, we cut them into the largest common age interval, 6--100:
+
+```{r cutcomp}
+ageint <- c(60, 100)
+per60 <- age.window(per60, ageint)[, c("LINNEID", "enter", "exit", "event", "sex", "birthdate")]
+foli <- age.window(foli, ageint)[, c("id", "enter", "exit", "event", "sex", "birthdate")]
+summary(foli)
+summary(per60)
+```
+
+
