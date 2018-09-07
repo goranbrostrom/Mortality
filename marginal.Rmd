@@ -158,22 +158,13 @@ The Umeå region in the dataset consists of Umeå urban and rural parishes 1901-
 
 # Data and variables
 
-The recent extension in time of data at the Demographic Data Base (DDB),
-Umeå University (http://www.cedar.umu.se) by including the period 1900 to
-1950 makes it possible to investigate the long-term development of social
-inequality in mortality in this part of Sweden. The data for the present study come from two large
-population databases at the DDB, which provide us with micro-data for the Skellefteå and Umeå regions in northern Sweden. Our data set constitutes a large population with substantial social diversity that can be followed for a uniquely long time. The period 1801--1950 is covered by the database Poplink [@wee16]. Poplink is based on linked parish records, allowing us to reconstruct life biographies on people as long as they remained in the region. The records are linked within, but not
+The data for the present study come from two large population databases at the Demographic Data Base (DDB),Umeå University (http://www.cedar.umu.se), which provide us with micro-data for the Skellefteå and Umeå regions in northern Sweden. Our data set constitutes a large population with substantial social diversity that can be followed for a uniquely long time. The period 1801--1950 is covered by the database Poplink [@wee16]. Poplink is based on linked parish records, allowing us to reconstruct life biographies on people as long as they remained in the region. The records are linked within, but not
 between, the regions.
 
 The other large data set is extracted from the Linnaeus database
 [@malm10], which is based on different linked national population
 registers from 1960 to 2013 (censuses, LISA from Statistics Sweden and cause of death registers) and is used within the ageing programme at CEDAR, Umeå
-University. Due to data issues (a great deal of missing data in some variables, for example social class, and additional work required to define the exact geographical areas of analysis) we choose to use Linnaeus data only from 1976 onwards. The study period from 1976 to 2000 is constructed from
-censuses every fifth year during the period 1975--1990, with additional information on deaths
-from the National Board of Health and Welfare. For the period 2002--2013 we use
-the information from the yearly population registers from Statistics Sweden
-(LISA) together with information on mortality from the National Board of Health and
-Welfare.
+University. Due to data issues we choose to use Linnaeus data only from 1976 onwards.
 
 Individuals are anonymized and as the two databases are not
 linked they are treated as separate units. This prevents us from following individuals between the two databases throughout their lives. It also makes it impossible to add information on individuals in the Linnaeus database from what we could potentially extract from Poplink, for example family
@@ -239,9 +230,7 @@ Health and Welfare. The LISA data depict the situation at the end of the given y
 
 
 Mortality differences are analysed according to social class, based on a modified form
-of the classification scheme Hisclass [@lema11]. The only, and obvious, alternative for conducting a longitudinal study of socio-economic mortality differences with consistent classification
-schemes in the two databases is occupations. Thus, analysing according to social class, apart from
-being a scientific choice, is also a practical one. Social position during working age is defined at around age 40 but defined from the last occupation in working age for the elderly and retired population; i.e. from age 65 until death or last observation.
+of the classification scheme Hisclass [@lema11]. Social position during working age is defined at around age 40 but defined from the last occupation in working age for the elderly and retired population; i.e. from age 65 until death or last observation.
 
 The availability of information on occupations varies over time and between
 sources. In Poplink, occupations are coded according to the original DDB coding system that has then been adapted to Hisclass. For the Linnaeus data, the occupations are available in the coding scheme HISCO [@lema02] who then are recoded into Hisclass. We consider the observed social class in a census to be valid for the full period until the next census, corresponding to our definition of presence periods. For the period 1991--2000 the social class in the 1990 census is considered to be maintained until 2001.
@@ -375,7 +364,7 @@ The models are fitted separately for sex and time period, from  1801 to
 2013.
 
 The social classes are compared by the *expected years of life
-before 100* for a person aged 65, and the *relative risk of dying before age 65* for a person aged 40, respectively. The reason for using different comparative measures for the two age groups is the fact that mortality is very low in the younger age group compared to the older, at least recent periods.
+before 100* for a person aged 65, and the *relative risk of dying before age 65* for a person aged 40, respectively. The reason for using different comparative measures for the two age groups is the fact that mortality is very low in the younger age group compared to the older, at least during recent periods.
 
 The analyses are performed in the **R** environment for statistical computing
 and graphics [@cran], especially using the package **eha**
