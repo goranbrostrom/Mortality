@@ -705,10 +705,8 @@ It is difficult to explain the observed differences, and we can only offer tenta
 
 This work was undertaken within the research programme *Ageing and
 Living Conditions* at the Centre for Demographic and Ageing Research
-(CEDAR) at Umeå University, financed by the Swedish Research Council (grant
-No 349-2008-6592) and the project *Old age, health and inequality:
-Mortality from a life course perspective in Sweden 1986--2009*, financed by
-the Swedish Research Council (grant No 421-2012-892). We thank the
+(CEDAR) at Umeå University, financed by the Swedish Research Council under grant
+No 349-2008-6592 and grant No 421-2012-892. We thank the
 Demographic Data Base, Umeå University, for giving us access to data and
 Jonas Helgertz at the Department of Economic History, Lund University, for
 providing us with scripts for creating Hisclass from Swedish census
