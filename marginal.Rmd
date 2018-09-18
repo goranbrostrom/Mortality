@@ -4,17 +4,17 @@ author: X \footnote{Corresponding author; Phone number +0000000000, email X@xcom
   and Y
 date: '`r Sys.Date()`'
 output:
-  bookdown::html_document2:
-    number_sections: yes
-    toc: yes
-    toc_depth: 2
-    toc_float: yes
   bookdown::pdf_document2:
     citation_package: natbib
     keep_tex: yes
     number_sections: yes
     toc: no
     toc_depth: 2
+  bookdown::html_document2:
+    number_sections: yes
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
   bookdown::word_document2:
     toc: yes
     toc_depth: 2
@@ -27,6 +27,7 @@ header-includes:
 - \usepackage[utf8]{inputenc}
 - \usepackage{graphicx}
 - \usepackage{endfloat}
+- \usepackage{setspace}
 bibliography: mybib
 abstract: "Focusing on two regions in northern Sweden 1801--2013, we challenge common
   notions of the assumed advantage in survival of belonging to a high social class.
@@ -39,13 +40,14 @@ abstract: "Focusing on two regions in northern Sweden 1801--2013, we challenge c
   that health-related behaviour is decisive not only in later but earlier phases of
   the mortality transition as well. The results implicate that the association between
   social class and health is more complex than is assumed in many of the dominant
+    theories in demography and epidemiology.\\par\n\\textbf{Keywords:} Class reversal
   in mortality; Cox regression; Gender differences; Inverse probability weighting;
-  Mortality transition; Northern Sweden; Social inequality; 19th to 21 century "
-  theories in demography and epidemiology.\\par\n\\textbf{Keywords:} Class reversal
+  Mortality transition; Northern Sweden; Social inequality; 19th to 21 century."
+
 titlepage: yes
 ---
 
-
+\doublespacing
 
 ```{r time1, echo = FALSE}
 time1 <- Sys.time() # Time the document rendering
