@@ -149,7 +149,7 @@ that unequal societies perform less well when it comes to health (as well as oth
 
 # The Skellefteå and Umeå regions
 
-(ref:cities) The Skellefteå and Umeå regions in Sweden.
+(ref:cities) The Skellefte\aa\ and Ume\aa\ regions in Sweden.
 
 ```{r mapp,fig.cap = "(ref:cities)", fig.height=6,fig.align='center', out.height="5in"}
 knitr::include_graphics("myfigs/sweden.png")
