@@ -27,7 +27,7 @@ header-includes:
 - \usepackage[utf8]{inputenc}
 - \usepackage{graphicx}
 - \usepackage{endfloat}
-- \usepackage{setspace}
+- \usepackage[doublespacing]{setspace}
 bibliography: mybib
 abstract: "Focusing on two regions in northern Sweden 1801--2013, we challenge common
   notions of the assumed advantage in survival of belonging to a high social class.
