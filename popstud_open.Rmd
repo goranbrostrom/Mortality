@@ -289,24 +289,40 @@ For men the proportion is somewhat higher in the age group 65 and above, those w
 but still low enough to be used in our analyses (results not shown). If we disregard the very first period,
 however, there were very few with occupation missing until 1950.
 
-```{r hiscskumm, fig.cap = "Exposure by social class (from the top: elite, middle, workers, farmers, none) and time period, men.", fig.scap="Exposure by social class and time period, men.", out.height = "14cm", fig.height=4}
+<!--
+```{r hiscskumm, fig.cap = "Exposure by social class (from the top: elite, middle, workers, farmers, none) and time period, men.", fig.scap="Exposure by social class and time period, men.", out.height = "14cm", fig.height=4,cache=FALSE}
+cls <- rainbow(5, s = 1.0)
+cls <- cls[c(2, 3, 1, 5, 4)]
+cls[1] <- "black"
+oldcols <- c("red", "darkgreen", "blue", "green", "black")
 xx <- with(vb[vb$sex == "male", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 ##xy <- with(skume[skume$sex == "male", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 ##xz <- with(foli[foli$sex == "male", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 ##xxx <- rbind(xx, xy, xz)
 yy <- round(prop.table(xx, 1) * 100, 1)
-barplot(t(yy)[5:1, ], col = c("red", "darkgreen", "blue", "green", "black"), las = 2, ylab = "Per cent")
+barplot(t(yy)[5:1, ], col = cls, las = 2, ylab = "Per cent")
 ```
 
-```{r hiscskumw, fig.cap = "Exposure by social class (from the top: elite, middle, workers, farmers, none) and time period, women.", out.height = "14cm", fig.scap="Exposure by social class and time period, women.",fig.height=4}
-xx <- with(vb[vb$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
+```{r hiscskumw, fig.cap = "Exposure by social class (from the top: elite, middle, workers, farmers, none) and time period, women.", out.height = "14cm", fig.scap="Exposure by social class and time period, women.",fig.height=4,cache=FALSE}
+xx2 <- with(vb[vb$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 ##xy <- with(skume[skume$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 ##xz <- with(foli[foli$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 ##xxx <- rbind(xx, xy, xz)
-yy <- round(prop.table(xx, 1) * 100, 1)
-barplot(t(yy)[5:1, ], col = c("red", "darkgreen", "blue", "green", "black"), las = 2, ylab = "Per cent")
+yy2 <- round(prop.table(xx2, 1) * 100, 1)
+barplot(t(yy2)[5:1, ], col = cls, las = 2, ylab = "Per cent")
 ```
+-->
 
+```{r plottaalla,fig.height = 8, out.height = "18cm", fig.cap="Exposure by social class (from the top: elite, middle, workers, farmers, none), time period, and sex.", fig.scap="Exposure by social class, time period, and sex"}
+cls <- rainbow(5, s = 1.0)
+cls <- cls[c(2, 3, 1, 5, 4)]
+cls[1] <- "black"
+
+oldpar <- par(mfrow = c(2, 1))
+barplot(t(yy)[5:1, ], col = cls, las = 2, ylab = "Per cent", main = "Men")
+barplot(t(yy2)[5:1, ], col = cls, las = 2, ylab = "Per cent", main = "Women")
+par(oldpar)
+```
 
 
 The proportion with missing values among women is a larger problem, however;
@@ -435,9 +451,10 @@ manifests itself through the facts that the marriage frequency varies by social 
 more common in the rural area than others (we find farmers on the countryside).
 -->
 
-```{r colorc}
+```{r colorc,cache=FALSE}
 ## Colors for plotting strata:
-scol <- c("black", "green", "blue", "darkgreen", "red")
+##scol <- c("black", "green", "blue", "darkgreen", "red")
+scol <- cls[5:1]
 ## Common for all groups:
 
 labb <- levels(vb$period)
@@ -703,7 +720,7 @@ lines(c(1812, 1838, 1862, 1888, 1912, 1938, 1978, 1982, 1988, 1995, 2005, 2010),
 ## Ages 40--64
 
 
-```{r getske3064, eval = FALSE}
+```{r getske3064, eval = FALSE, cache = FALSE}
 cap1w <-  "Cumulative hazards for social class by time period, ages 30--64, women."
 scap1w <-  "Cumulative hazards, ages 30--64, women."
 cap1m <-  "Cumulative hazards for social class by time period, ages 30--64, men."
@@ -809,16 +826,16 @@ Differences in mortality in the age group 40--64 are getting very small as we mo
 From Table \@ref(tab:cumswtab) it is obvious that the *statistical significance* is strong in our statistical model of the probability of dying. The most interesting feature is the three-way interaction with **sex**, **period**, and **social class**. This indicates that fundamental changes have taken place in the relationship between the variables during our study period.
 
 
-```{r probswabs, fig.cap = "Absolute risk of dying before the age of 65, given survival to age 40, by period and social class.", fig.scap = "Absolute risk of dying before 65.", fig.height = 8, out.height = "14cm"}
+```{r probswabs, fig.cap = "Probability of dying before the age of 65, given survival to age 40, by period and social class.", fig.scap = "Probability of dying before 65.", fig.height = 10, out.height = "18cm", cache = FALSE}
 source("R/plotED.glm.R")
-oldpar <- par(mfrow = c(2, 1))
+oldpar <- par(mfrow = c(2, 1), lwd = 1.5)
 midper <- c(1812.5, 1837.5, 1862.5, 1887.5, 1912.5, 1937.5, 1981, 1991, 2000.5, 2009.5)
 refclw <- 1 ## pdw[3, ]
 plot(midper, pdw[1, ] / refclw, col = scol[1], type = "b", ylim = c(0.0, 0.55),
-     xlab = "Period", xlim = c(1800, 2015), ##log = "y",
+     xlab = "", xlim = c(1800, 2015), ##log = "y",
      ylab = "P(die before 65 | alive at 40", axes = FALSE, main = "Women, 40-64", lty = 1, pch = 1)
 
-axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
+axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.8)
 axis(2, las = 1)
 axis(4, las = 1)
 abline(h = 0)
@@ -826,12 +843,12 @@ box()
 for (i in 2:5){
     lines(midper, pdw[i, ] / refclw, col = scol[i], type = "b", pch = i, lty = i)
 }
-legend("bottomleft", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7, bty = "n")
+legend("topright", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 1, bty = "n")
 refclm <- 1 ##pdm[3, ]
-plot(midper, pdm[1, ] / refclm, col = scol[1], type = "b", ylim = c(0.0, 0.55), xlab = "Period",
+plot(midper, pdm[1, ] / refclm, col = scol[1], type = "b", ylim = c(0.0, 0.55), xlab = "",
      ylab = "P(die before 65 | alive at 40)", axes = FALSE, main = "Men, 40-64", lty = 1, pch = 1,
      xlim = c(1800, 2015))#, log = "y")
-axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
+axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.8)
 axis(2, las = 1)
 axis(4, las = 1)
 abline(h = 0)
@@ -839,7 +856,7 @@ box()
 for (i in 2:5){
     lines(midper, pdm[i, ] / refclm, col = scol[i], type = "b", lty = i, pch = i)
 }
-legend("bottomleft", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7, bty = "n")
+legend("topright", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 1, bty = "n")
 ##woutp <- plotED.glm(resw, col = scol, logScale = TRUE, ylab = "H(65|30)",
   ##              main = "Women 30-64", ylim = c(0, 1))##, exclude = 5:6)
 ##moutp <- plotED.glm(resm, col = scol, logScale = TRUE, ylab = "H(65|30)",
@@ -850,16 +867,16 @@ par(oldpar)
 
 
 
-```{r probsw, fig.cap = "Relative risk of dying before the age of 65, given survival to age 40, by period and social class. Reference is worker.", fig.scap = "Relative risk of dying before 65.", fig.height = 8, out.height = "14cm"}
+```{r probsw, fig.cap = "Relative risk of dying before the age of 65, given survival to age 40, by period and social class. Reference is worker.", fig.scap = "Relative risk of dying before 65.", fig.height = 10, out.height = "18cm", cache = FALSE}
 source("R/plotED.glm.R")
-oldpar <- par(mfrow = c(2, 1))
+oldpar <- par(mfrow = c(2, 1), lwd = 1.5)
 midper <- c(1812.5, 1837.5, 1862.5, 1887.5, 1912.5, 1937.5, 1981, 1991, 2000.5, 2009.5)
 refclw <- pdw[3, ]
-plot(midper, pdw[1, ] / refclw, col = scol[1], type = "b", ylim = c(1/3, 3),
-     xlab = "Period", xlim = c(1800, 2015), log = "y",
+plot(midper, pdw[1, ] / refclw, col = scol[1], type = "b", ylim = c(1/10, 5),
+     xlab = "", xlim = c(1800, 2015), log = "y",
      ylab = "Relative risk", axes = FALSE, main = "Women, 40-64", lty = 1, pch = 1)
 
-axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
+axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.8)
 axis(2, las = 1)
 axis(4, las = 1)
 abline(h = 0)
@@ -867,12 +884,12 @@ box()
 for (i in 2:5){
     lines(midper, pdw[i, ] / refclw, col = scol[i], type = "b", pch = i, lty = i)
 }
-legend("topleft", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7, bty = "n")
+legend("bottom", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 1.0, bty = "n")
 refclm <- pdm[3, ]
-plot(midper, pdm[1, ] / refclm, col = scol[1], type = "b", ylim = c(1/3, 3), xlab = "Period",
+plot(midper, pdm[1, ] / refclm, col = scol[1], type = "b", ylim = c(1/10, 5), xlab = "",
      ylab = "Relative risk", axes = FALSE, main = "Men, 40-64", lty = 1, pch = 1,
      xlim = c(1800, 2015), log = "y")
-axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
+axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.8)
 axis(2, las = 1)
 axis(4, las = 1)
 abline(h = 0)
@@ -880,7 +897,7 @@ box()
 for (i in 2:5){
     lines(midper, pdm[i, ] / refclm, col = scol[i], type = "b", lty = i, pch = i)
 }
-legend("topleft", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7, bty = "n")
+legend("bottom", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 1.0, bty = "n")
 ##woutp <- plotED.glm(resw, col = scol, logScale = TRUE, ylab = "H(65|30)",
   ##              main = "Women 30-64", ylim = c(0, 1))##, exclude = 5:6)
 ##moutp <- plotED.glm(resm, col = scol, logScale = TRUE, ylab = "H(65|30)",
@@ -893,7 +910,7 @@ par(oldpar)
 
 
 
-```{r cumswtab, message=FALSE, cache = TRUE, eval = TRUE}
+```{r cumswtab, message=FALSE, eval = TRUE}
 fitt <- coxph(Surv(enter, exit, event) ~ hisclass * period * sex + civst + urban, data = vb1)
 
 # vb3064$social_class <- vb3064$hisclass
@@ -904,9 +921,12 @@ fitt <- coxph(Surv(enter, exit, event) ~ hisclass * period * sex + civst + urban
 #             data = vb3064, family = poisson)
 dr <- drop1(fitt, test = "Chisq")
 # ##dr
-knitr::kable(dr, caption = "Single term deletions, ages 30-64.", digits = c(0, 1, 2, 4))
-# ##print(xtable(dr,label = "tab:cumswtab", caption = "Mortality: ANOVA, ages 30--64."),
-  ##    type = "latex", comment = FALSE)
+```
+
+```{r cumswtabout, message = FALSE, cache = FALSE, results='asis'}
+##knitr::kable(dr, caption = "Significance tests, ages 40-64.", digits = c(0, 1, 2, 4))
+print(xtable(dr,label = "tab:cumswtab", caption = "ANOVA, ages 40--64."),
+      type = "latex", comment = FALSE)
 ```
 
 
@@ -955,10 +975,10 @@ the difference was much smaller. It was men in high positions who experienced th
 
 
 We now turn to the elderly, those who in most cases have left the workforce.
-We use the *expected remaining years of life at 65 up to age 100* (reported as mean age at death) as the summary measure, since the relative risk is a not so good measure when risks are high. First, looking at Table \@ref(tab:cumswtabold), it is obvious that the statistical significance regarding differences between groups over time is strong.
+We use the *expected remaining years of life at 65 up to age 100* (reported as mean age at death) as the summary measure, since the relative risk is a not so good measure when risks are high. First, looking at Table \@ref(tab:cumswtaboldout), it is obvious that the statistical significance regarding differences between groups over time is strong.
 
 
-```{r cumswtabold, cap="Table", cache = TRUE, eval = TRUE}
+```{r cumswtabold}
 # vb6599$marital_status <- vb6599$civst
 # vb6599$social_class <- vb6599$hisclass
 # vb6599$urban_or_rural <- vb6599$urban
@@ -968,10 +988,13 @@ We use the *expected remaining years of life at 65 up to age 100* (reported as m
 
 fittold <- coxph(Surv(enter, exit, event) ~ hisclass * period * sex + civst + urban, data = vb2)
 drold <- drop1(fittold, test = "Chisq")
-knitr::kable(drold, caption = "Single term deletions, ages 65-99.", digits = c(0, 1, 2, 4))
+```
+
+```{r cumswtaboldout, cap = "Table", cache = FALSE, results='asis'}
+##knitr::kable(drold, caption = "Single term deletions, ages 65-99.", digits = c(0, 1, 2, 4))
 ##drold
-##print(xtable(drold,label = "tab:cumswtabold", caption = "Mortality: ANOVA, ages 65--99."),
-  ##    type = "latex", comment = FALSE)
+print(xtable(drold,label = "tab:cumswtabold", caption = "ANOVA, ages 65--99."),
+      type = "latex", comment = FALSE)
 ```
 
 ```{r hazcalw2}
@@ -999,15 +1022,15 @@ for (i in 1:nper){
 
 
 
-```{r cumsw2abs, fig.cap = "Mean age at death for a 65-year-old, by social class and period.", fig.scap = "Differences in expected years of life at 65", fig.height = 8, out.height = "14cm"}
+```{r cumsw2abs, fig.cap = "Mean age at death for a 65-year-old, by social class and period.", fig.scap = "Remaining life at 65", fig.height = 10, out.height = "18cm",cache=FALSE}
 ##source("R/plotED.glm.R")
-oldpar <- par(mfrow = c(2, 1))
+oldpar <- par(mfrow = c(2, 1), lwd = 1.5)
 midper <- c(1812.5, 1837.5, 1862.5, 1887.5, 1912.5, 1937.5, 1981, 1991, 2000.5, 2009.5)
 mm <- 0 ##resw[3, ]
-plot(midper, resw[1, ] - mm, col = scol[1], type = "b", ylim = c(75, 88), xlab = "Period",
+plot(midper, resw[1, ] - mm, col = scol[1], type = "b", ylim = c(73, 88), xlab = "",
      ylab = "Average death age", axes = FALSE, main = "Women, 65-99")
 
-axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
+axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.8)
 axis(2, las = 1)
 axis(4, las = 1)
 box()
@@ -1015,18 +1038,18 @@ for (i in 2:5){
     lines(midper, resw[i, ] - mm, col = scol[i], type = "b", lty = i, pch = i)
 }
 
-legend("topleft", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7, bty = "n")
+legend("topleft", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 1.0, bty = "n")
 mm <- 0 ##resm[3, ]
-plot(midper, resm[1, ] - mm, col = scol[1], type = "b", ylim = c(73, 85), xlab = "Period",
+plot(midper, resm[1, ] - mm, col = scol[1], type = "b", ylim = c(73, 88), xlab = "",
      ylab = "Average death age", axes = FALSE, main = "Men, 65-99")
-axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
+axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.8)
 axis(2, las = 1)
 axis(4, las = 1)
 box()
 for (i in 2:5){
     lines(midper, resm[i, ] - mm, col = scol[i], type = "b", lty = i, pch = i)
 }
-legend("topleft", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7, bty = "n")
+legend("topleft", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 1.0, bty = "n")
 ##woutp <- plotED.glm(resw, col = scol, logScale = TRUE, ylab = "H(65|30)",
   ##              main = "Women 30-64", ylim = c(0, 1))##, exclude = 5:6)
 ##moutp <- plotED.glm(resm, col = scol, logScale = TRUE, ylab = "H(65|30)",
@@ -1035,15 +1058,15 @@ par(oldpar)
 ```
 
 
-```{r cumsw2, fig.cap = "Excess years of life (compared to worker) before 100 for a 65-year-old, by social class and period.", fig.scap = "Differences in expected years of life at 65", fig.height = 8, out.height = "14cm"}
+```{r cumsw2, fig.cap = "Excess years of life (compared to worker) before 100 for a 65-year-old, by social class and period.", fig.scap = "Excess years of life at 65 relative to worker", fig.height = 10, out.height = "18cm",cache=FALSE}
 ##source("R/plotED.glm.R")
-oldpar <- par(mfrow = c(2, 1))
+oldpar <- par(mfrow = c(2, 1), lwd = 1.5)
 midper <- c(1812.5, 1837.5, 1862.5, 1887.5, 1912.5, 1937.5, 1981, 1991, 2000.5, 2009.5)
 mm <- resw[3, ]
-plot(midper, resw[1, ] - mm, col = scol[1], type = "b", ylim = c(-3, 5), xlab = "Period",
+plot(midper, resw[1, ] - mm, col = scol[1], type = "b", ylim = c(-3, 5), xlab = "",
      ylab = "Excess years", axes = FALSE, main = "Women, 65-99")
 
-axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
+axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.8)
 axis(2, las = 1)
 axis(4, las = 1)
 box()
@@ -1051,18 +1074,18 @@ for (i in 2:5){
     lines(midper, resw[i, ] - mm, col = scol[i], type = "b", lty = i, pch = i)
 }
 
-legend("topleft", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7, bty = "n")
+legend("topleft", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 1.0, bty = "n")
 mm <- resm[3, ]
-plot(midper, resm[1, ] - mm, col = scol[1], type = "b", ylim = c(-3, 5), xlab = "Period",
+plot(midper, resm[1, ] - mm, col = scol[1], type = "b", ylim = c(-3, 5), xlab = "",
      ylab = "Excess years", axes = FALSE, main = "Men, 65-99")
-axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
+axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.8)
 axis(2, las = 1)
 axis(4, las = 1)
 box()
 for (i in 2:5){
     lines(midper, resm[i, ] - mm, col = scol[i], type = "b", lty = i, pch = i)
 }
-legend("topleft", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7, bty = "n")
+legend("topleft", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 1.0, bty = "n")
 ##woutp <- plotED.glm(resw, col = scol, logScale = TRUE, ylab = "H(65|30)",
   ##              main = "Women 30-64", ylim = c(0, 1))##, exclude = 5:6)
 ##moutp <- plotED.glm(resm, col = scol, logScale = TRUE, ylab = "H(65|30)",
