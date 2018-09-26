@@ -1,7 +1,7 @@
 ---
-title: Is high social class always beneficial for survival? A study of northern Sweden 1801--2013 \footnote{Short; "Is high social class beneficial for survival?"}
-author: Sören Edvinsson \footnote{email soren.edvinsson@umu.se (corresponding author)}
-  and Göran Broström \footnote{email goran.brostrom@umu.se}
+title: Is high social class always beneficial for survival? A study of northern Sweden 1801--2013 \footnote{Short; "Is high social class beneficial for survival?"} \footnote{Funding:}
+author: Sören Edvinsson \footnote{email soren.edvinsson@umu.se, orcid 0000-0001-7439-002X (corresponding author)}
+  and Göran Broström \footnote{email goran.brostrom@umu.se, orcid 0000-0002-2865-7894}
 date: Centre for Demographic and Ageing Research, Umeå University, Umeå, Sweden
 output:
   bookdown::pdf_document2:
