@@ -313,14 +313,14 @@ barplot(t(yy2)[5:1, ], col = cls, las = 2, ylab = "Per cent")
 ```
 -->
 
-```{r plottaalla,fig.height = 8, out.height = "18cm", fig.cap="Exposure by social class (from the top: elite, middle, workers, farmers, none), time period, and sex.", fig.scap="Exposure by social class, time period, and sex"}
+```{r plottaalla,fig.height = 8, out.height = "18cm", fig.cap="Relative exposure by social class (from the top: elite, middle, workers, farmers, none), time period, and sex.", fig.scap="Exposure by social class, time period, and sex"}
 cls <- rainbow(5, s = 1.0)
 cls <- cls[c(2, 3, 1, 5, 4)]
 cls[1] <- "black"
 
 oldpar <- par(mfrow = c(2, 1))
-barplot(t(yy)[5:1, ], col = cls, las = 2, ylab = "Per cent", main = "Men")
 barplot(t(yy2)[5:1, ], col = cls, las = 2, ylab = "Per cent", main = "Women")
+barplot(t(yy)[5:1, ], col = cls, las = 2, ylab = "Per cent", main = "Men")
 par(oldpar)
 ```
 
@@ -1183,6 +1183,37 @@ Jonas Helgertz at the Department of Economic History, Lund University, for
 providing us with scripts for creating Hisclass from Swedish census
 data.
 -->
+
+# Appendix {-}
+
+Figure 3 is shown as absolute numbers, exposures for women in Table \@ref(tab:womenexp), and exposures for men in Table \@ref(tab:menexp).
+
+```{r exposuretab, message = FALSE, cache = FALSE, results = 'asis'}
+##expo <- aggregate(vb[, c("exposure")], by = vb[, c("hisclass", "period", "sex")], FUN = sum)
+ex <- with(vb, tapply(exposure, list(period, hisclass, sex), sum))
+print(xtable(ex[,,2], label = "tab:womenexp", caption = "Exposure in years by hisclass and period, women.", digits = 0), 
+      type = "latex", comment = FALSE)
+```
+
+```{r exposuretab2, message = FALSE, cache = FALSE, results = 'asis'}
+print(xtable(ex[,,1], label = "tab:menexp", caption = "Exposure in years by hisclass and period, men.", digits = 0), 
+      type = "latex", comment = FALSE)
+```
+
+Then number of deaths for women are shown in Table \@ref(tab:womendeaths), and for men in Table \@ref(tab:mendeaths).
+
+```{r deathtab, message = FALSE, cache = FALSE, results = 'asis'}
+##expo <- aggregate(vb[, c("exposure")], by = vb[, c("hisclass", "period", "sex")], FUN = sum)
+deaths <- with(vb, tapply(event, list(period, hisclass, sex), sum))
+print(xtable(deaths[,,2], label = "tab:womendeaths", caption = "Number of deaths by hisclass and period, women.", digits = 0), 
+      type = "latex", comment = FALSE)
+```
+
+```{r deathtab2, message = FALSE, cache = FALSE, results = 'asis'}
+print(xtable(deaths[,,1], label = "tab:mendeaths", caption = "Number of deaths by hisclass and period, men.", digits = 0), 
+      type = "latex", comment = FALSE)
+```
+
 
 # References
 
