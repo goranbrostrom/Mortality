@@ -892,17 +892,22 @@ par(oldpar)
 
 
 ```{r cumswtab, message=FALSE, cache = TRUE, eval = TRUE}
-fitt <- coxph(Surv(enter, exit, event) ~ hisclass * period * sex + civst + urban, data = vb1)
-
+##fitt <- coxph(Surv(enter, exit, event) ~ hisclass * period * sex + civst + urban, data = vb1)
+source("R/makeTab.R")
+vb1Tab <- makeTab(vb1)
+source("~/R/Testing/pch.R")
+Tfit <- pch(event ~ offset(log(exposure)) + age + hisclass * period * sex + civst + urban, seq(40, 65, by = 5), vb1Tab)
+Tdr <- drop1(Tfit, test = "Chisq")
+knitr::kable(Tdr, caption = "ANOVA, ages 40-65.")
 # vb3064$social_class <- vb3064$hisclass
 # vb3064$marital_status <- vb3064$civst
 # vb3064$urban_or_rural <- vb3064$urban
 # vb3064$age_group <- vb3064$age
 # fitt <- glm(event ~ offset(log(exposure)) + urban_or_rural + marital_status + age_group + sex * social_class * period,
 #             data = vb3064, family = poisson)
-dr <- drop1(fitt, test = "Chisq")
+##dr <- drop1(fitt, test = "Chisq")
 # ##dr
-knitr::kable(dr, caption = "Single term deletions, ages 30-64.")
+##knitr::kable(dr, caption = "Single term deletions, ages 30-64.")
 # ##print(xtable(dr,label = "tab:cumswtab", caption = "Mortality: ANOVA, ages 30--64."),
   ##    type = "latex", comment = FALSE)
 ```
