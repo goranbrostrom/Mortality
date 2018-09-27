@@ -279,7 +279,7 @@ farm workers.
 
 
 
-Figures \@ref(fig:hiscskumm) and \@ref(fig:hiscskumw) show the distribution
+Figure \@ref(fig:plottaalla) shows the distribution
 (per cent) of exposure time according to class for men and women,
 respectively. The farmer category was dominant until the middle of the 20th centuries but have become marginal in the latest periods, particularly among women. The category of workers is fairly stable over time. The highest class has increased substantially, albeit from a very low level
 in the 19th century. The increase in academics in connection to the
@@ -326,7 +326,7 @@ par(oldpar)
 
 
 The proportion with missing values among women is a larger problem, however;
-see Figure \@ref(fig:hiscskumw). Corresponding to what we found for men, the
+see Figure \@ref(fig:plottaalla). Corresponding to what we found for men, the
 proportion without social position is very low until the middle of the 20th
 century, reflecting the way women's social position is defined. However, the frequency of missing social class is quite high during particularly the first two periods of data from the Linnaeus database---from 1976. Since female social class for this period is defined
 according to own occupation, the consequence of many women being outside
