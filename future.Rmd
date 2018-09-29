@@ -48,7 +48,7 @@ time1 <- Sys.time() # Time the document rendering
 
 ```{r setup, include=FALSE}
 library(knitr)
-opts_chunk$set(engine='R',fig.path='figs_popstud/',tidy=FALSE,fig.height=8.5,fig.width=8,strip.white=TRUE,cache=TRUE,echo=FALSE,message=FALSE,comment=NA,show.signif.stars = FALSE,warning = FALSE)##$
+opts_chunk$set(engine='R',fig.path='figs_popstud/',tidy=FALSE,fig.height=8.5,fig.width=8,strip.white=TRUE,cache=FALSE,echo=FALSE,message=FALSE,comment=NA,show.signif.stars = FALSE,warning = FALSE)##$
 library(knitr)
 library(eha)
 library(xtable)
@@ -57,10 +57,10 @@ source("R/oneSpell.R")
 options(show.signif.stars = FALSE)
 ```
 
-```{r readalldata}
+```{r readalldata, eval = FALSE}
 source("R/get.file.R")
-skume <- get.file("skume")
-##load("data/skume.rda")
+##skume <- get.file("skume")
+load("data/skume.rda")
 skume <- skume[order(skume$id, skume$enter), ]
 skume$id <- paste("pop", skume$id, sep = "_")
 ##
@@ -70,8 +70,8 @@ skume1 <- oneSpell(skume1)
 skume2 <- age.window(skume, c(65, 100))
 skume2 <- oneSpell(skume2)
 ##################################################
-foli <- get.file("foli")
-##load("data/foli.rda")
+##foli <- get.file("foli")
+load("data/foli.rda")
 foli$civst[is.na(foli$civst)] <- "unmarried"
 foli <- foli[order(foli$id, foli$enter), ]
 foli$AR <- foli$ULORSAK <- NULL
@@ -101,6 +101,11 @@ vb$exposure <- vb$exit - vb$enter # For statistics and figures purposes
 vbTab <- rbind(vb1Tab, vb2Tab) # NEW
 ```
 
+```{r nydata}
+vbTab <- readRDS("data/vbTab.rds")
+vb1Tab <- readRDS("data/vb1Tab.rds")
+vb2Tab <- readRDS("data/vb2Tab.rds")
+```
 
 # Introduction
 
@@ -191,16 +196,20 @@ abline(h = 0)
 lines(c(1976, 1976, 2014, 2014, 1976), c(40, 100, 100, 40, 40),
       col = "blue", lwd = 2)
 #
-pn.exp <- round(sum(skume1$exit - skume1$enter) + sum(skume2$exit - skume2$enter))
-pn.d <-  as.integer(sum(skume1$event) + sum(skume2$event))
+popl <- vbTab[vbTab$period %in% levels(vbTab$period)[1:6],]
+pn.exp <- sum(popl$exposure)
+##round(sum(skume1$exit - skume1$enter) + sum(skume2$exit - skume2$enter))
+pn.d <-  as.integer(sum(popl$event)) ##as.integer(sum(skume1$event) + sum(skume2$event))
 #
 text(1875, 70, "PopLink", cex = 2, col = "red")
 ##text(1899, 60, paste(pn.rec, "records"))
 text(1875, 55, paste(round(pn.exp / 1000000, 1), "million p-years"))
 text(1874.5, 50, paste(round(pn.d / 1000, 1), "thousand deaths"))
 #
-n.exp <- round(sum(foli1$exit - foli1$enter) + sum(foli2$exit -foli2$enter))
-n.d <-  as.integer(sum(foli1$event) + sum(foli2$event))
+foli <- vbTab[vbTab$period %in% levels(vbTab$period)[7:10], ]
+##n.exp <- round(sum(foli1$exit - foli1$enter) + sum(foli2$exit ##-foli2$enter))
+n.exp <- sum(foli$exposure)
+n.d <-  as.integer(sum(foli$event))
 
 text(1995, 70, "Linnaeus", cex = 1.5, col = "blue")
 ##text(1984, 60, paste(n.rec, "records"))
@@ -282,29 +291,29 @@ For men the proportion is somewhat higher in the age group 65 and above, those w
 but still low enough to be used in our analyses (results not shown). If we disregard the very first period,
 however, there were very few with occupation missing until 1950.
 
-<!--
+
 ```{r hiscskumm, fig.cap = "Exposure by social class (from the top: elite, middle, workers, farmers, none) and time period, men.", fig.scap="Exposure by social class and time period, men.", out.height = "14cm", fig.height=4,cache=FALSE}
 cls <- rainbow(5, s = 1.0)
 cls <- cls[c(2, 3, 1, 5, 4)]
 cls[1] <- "black"
 oldcols <- c("red", "darkgreen", "blue", "green", "black")
-xx <- with(vb[vb$sex == "male", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
-##xy <- with(skume[skume$sex == "male", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
+xx <- with(vbTab[vbTab$sex == "male", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
+##xy <- with(skume[skume$sex == "male", ], tapply(exposure, ##list(period = period, hisclass = hisclass), sum))
 ##xz <- with(foli[foli$sex == "male", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 ##xxx <- rbind(xx, xy, xz)
 yy <- round(prop.table(xx, 1) * 100, 1)
-barplot(t(yy)[5:1, ], col = cls, las = 2, ylab = "Per cent")
+##barplot(t(yy)[5:1, ], col = cls, las = 2, ylab = "Per cent")
 ```
 
 ```{r hiscskumw, fig.cap = "Exposure by social class (from the top: elite, middle, workers, farmers, none) and time period, women.", out.height = "14cm", fig.scap="Exposure by social class and time period, women.",fig.height=4,cache=FALSE}
-xx2 <- with(vb[vb$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
+xx2 <- with(vbTab[vbTab$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 ##xy <- with(skume[skume$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 ##xz <- with(foli[foli$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 ##xxx <- rbind(xx, xy, xz)
 yy2 <- round(prop.table(xx2, 1) * 100, 1)
-barplot(t(yy2)[5:1, ], col = cls, las = 2, ylab = "Per cent")
+##barplot(t(yy2)[5:1, ], col = cls, las = 2, ylab = "Per cent")
 ```
--->
+
 
 ```{r plottaalla,fig.height = 8, out.height = "18cm", fig.cap="Exposure by social class (from the top: elite, middle, workers, farmers, none), time period, and sex.", fig.scap="Exposure by social class, time period, and sex"}
 cls <- rainbow(5, s = 1.0)
@@ -336,17 +345,16 @@ set to unmarried. Note that it has not been possible to identify cohabitation.
 
 The proportion married varies between 60 and 70 percent over time, never married between 15 and 25 percent, and previously married between 10 and 15 per cent.
 
-<!--
+
 
 ```{r civstskum, fig.cap = "Exposure by marital status (from the top: never married, married and previously married) and time period", fig.scap='Exposure by marital status and time period.',out.height = "14cm",fig.height=4}
-xx <- with(vb, tapply(exposure, list(period = period, civst = civst), sum))
+xx <- with(vbTab, tapply(exposure, list(period = period, civst = civst), sum))
 ##xy <- with(skume, tapply(exposure, list(period = period, civst = civst), sum))
 ##xz <- with(foli, tapply(exposure, list(period = period, civst = civst), sum))
 ##xxx <- rbind(xx, xy, xz)
 yy <- round(prop.table(xx, 1) * 100, 1)
 barplot(t(yy)[3:1, ], col = c("red", "blue", "green"), las = 2, ylab = "Per cent")
 ```
--->
 
 ## Urban vs rural residence
 
@@ -450,7 +458,7 @@ more common in the rural area than others (we find farmers on the countryside).
 scol <- cls[5:1]
 ## Common for all groups:
 
-labb <- levels(vb$period)
+labb <- levels(vbTab$period)
 nper <- length(labb)
 #source("R/getPHglm.R")
 ## End 'common'
@@ -462,7 +470,7 @@ nper <- length(labb)
 In order to simplify the illustration, we look at `civil status` in two groups, `ever married` and `unmarried`, in Figure \@ref(fig:assesciv).
 
 ```{r assesciv, fig.cap = "Fraction ever married by hisclass and period.", fig.height = 4}
-orr <- aggregate(x = vb$exposure, by = vb[, c("period", "civst", "hisclass")], FUN = sum)
+orr <- aggregate(x = vbTab$exposure, by = vbTab[, c("period", "civst", "hisclass")], FUN = sum)
 
 levper <- levels(orr$period)
 nper <- length(levper)
@@ -493,7 +501,7 @@ legend("bottomright", legend = levhis, lty = 1:5, col = scol, pch = 1:5)
 ## Association between urban/rural and social class over time
 
 ```{r assesurb, fig.cap = "Fraction urban by hisclass and period.", fig.height = 4}
-orr <- aggregate(x = vb$exposure, by = vb[, c("period", "urban", "hisclass")], FUN = sum)
+orr <- aggregate(x = vbTab$exposure, by = vbTab[, c("period", "urban", "hisclass")], FUN = sum)
 
 levper <- levels(orr$period)
 nper <- length(levper)
@@ -530,7 +538,7 @@ and the confounders are introduced. This is done period by period.
 As an illustration, take the period `2005-2013` with males, 65--99 years of age.
 
 ```{r exweight,echo=TRUE,echo = FALSE}
-vb2_2005_men <- vb2[vb2$sex == "male" & vb2$period == "2005-2013", ]
+vb2_2005_men <- vb2Tab[vb2Tab$sex == "male" & vb2Tab$period == "2005-2013", ]
 fit1 <- glm(I(hisclass == "elite") ~ urban * civst, data = vb2_2005_men, family = binomial)
 fit2 <- glm(I(hisclass == "middle") ~ urban * civst, data = vb2_2005_men, family = binomial)
 fit3 <- glm(I(hisclass == "worker") ~ urban * civst, data = vb2_2005_men, family = binomial)
@@ -559,7 +567,7 @@ vb2_2005_men$wght <- wght
 
 Let us fit with and without weights, see Figure \@ref(fig:testfit).
 
-```{r testfit, fig.cap = "Survival by hisclass, men 2005-2013, unweighted and weighted analysis.", fig.height = 4}
+```{r testfit, fig.cap = "Survival by hisclass, men 2005-2013, unweighted and weighted analysis.", fig.height = 4,eval = FALSE}
 par(cex.axis = 0.8)
 fit <- coxph(Surv(enter, exit, event) ~ strata(hisclass), data = vb2_2005_men)
 med <- summary(survfit(fit))$table[, "median"]
@@ -600,13 +608,13 @@ The social class differences are smaller in the weighted analysis, meaning that 
 For simple comparison over time, we need  simple summary measures, for instance the medians, shown in Figure \@ref(fig:testfit) and Table \@ref(tab:estmed).
 
 
-```{r estmed}
+```{r estmed, eval = FALSE}
 knitr::kable(round(medi, 1), caption = "Estimated medians, men 65-99, 2005-2013.")
 ```
 
 However, for the age interval 40--64 the median is not a good measure, because the probability to survive age 65, given survival to age 40, is much larger than 0.5, see Figure \@ref(fig:forty64).
 
-```{r forty64, fig.cap = "Adjusted survival curves, men in ages 40-65 and 65-100, years 2005-2013.", fig.height = 4}
+```{r forty64, fig.cap = "Adjusted survival curves, men in ages 40-65 and 65-100, years 2005-2013.", fig.height = 4, eval = FALSE}
 source("R/getWeights.R")
 da <- vb1[vb1$sex == "male" & vb1$period == "2005-2013", ]
 da$wght <- getWeights(da)
@@ -640,7 +648,7 @@ legend("bottomleft", legend = levels(vb2$hisclass), col = scol, lty = 1:5, cex =
 
 We cannot use the "median remaining life" as a summary comparison measure here, for obvious reasons. Instead, the *area under the survival curves* will be used. This area can be interpreted as the *expected years of life before 65(100)* for a person aged 40(65). Here we get
 
-```{r explife40}
+```{r explife40,eval=FALSE}
 avew <- round(summary(survfit(fitw), rmean = 100)$table[, "*rmean"], 2)
 avew0 <- round(summary(survfit(fitw0), rmean = 65)$table[, "*rmean"], 2)
 aver <- cbind(avew0, avew)
@@ -747,9 +755,9 @@ scap22log <- "Probability by social class, ages 65--99, last years."
 
 ```{r hazcalw}
 source("R/getWeights.R")
-labb <- levels(vb$period)
+labb <- levels(vbTab$period)
 nper <- length(labb)
-his <- levels(vb1$hisclass)
+his <- levels(vb1Tab$hisclass)
 nhis <- length(his)
 ##
 resm <- matrix(0, nrow = nhis, ncol = nper)
@@ -916,14 +924,14 @@ par(oldpar)
 
 
 ```{r cumswtab, message=FALSE, eval = TRUE}
-fitt <- coxph(Surv(enter, exit, event) ~ hisclass * period * sex + civst + urban, data = vb1)
+##fitt <- coxph(Surv(enter, exit, event) ~ hisclass * period * sex + civst + urban, data = vb1)
 
 # vb3064$social_class <- vb3064$hisclass
 # vb3064$marital_status <- vb3064$civst
 # vb3064$urban_or_rural <- vb3064$urban
 # vb3064$age_group <- vb3064$age
-# fitt <- glm(event ~ offset(log(exposure)) + urban_or_rural + marital_status + age_group + sex * social_class * period,
-#             data = vb3064, family = poisson)
+fitt <- tpchreg(event ~ offset(log(exposure)) + age + urban + civst + sex * hisclass * period, cuts = 40:65,
+             data = vb1Tab)
 dr <- drop1(fitt, test = "Chisq")
 # ##dr
 ```
