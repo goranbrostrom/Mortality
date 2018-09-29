@@ -999,7 +999,8 @@ We use the *expected remaining years of life at 65 up to age 100* (reported as m
 # fittold <- glm(event ~ offset(log(exposure)) + urban_or_rural + marital_status + age_group + sex * social_class * period,
 #             data = vb6599, family = poisson)
 
-fittold <- coxph(Surv(enter, exit, event) ~ hisclass * period * sex + civst + urban, data = vb2)
+##fittold <- coxph(Surv(enter, exit, event) ~ hisclass * period * sex ##+ civst + urban, data = vb2)
+fittold <- tpchreg(event ~ offset(log(exposure)) + age + hisclass * period * sex + civst + urban, cuts = 65:100, data = vb2Tab)
 drold <- drop1(fittold, test = "Chisq")
 ```
 
@@ -1012,23 +1013,38 @@ print(xtable(drold,label = "tab:cumswtabold", caption = "ANOVA, ages 65--99."),
 
 ```{r hazcalw2}
 nper <- length(labb)
-his <- levels(vb1$hisclass)
+his <- levels(vb2Tab$hisclass)
 nhis <- length(his)
 ##
 resm <- matrix(0, nrow = nhis, ncol = nper)
 for (i in 1:nper){
-    dat <- vb2[vb2$sex == "male" & vb2$period == labb[i], ]
+    dat <- vb2Tab[vb2Tab$sex == "male" & vb2Tab$period == labb[i], ]
     dat$wght <- getWeights(dat)
-    fit <- coxph(Surv(enter, exit, event) ~ strata(hisclass), weights = wght, data = dat)
-    resm[, i] <- summary(survfit(fit), rmean = 100)$table[, "*rmean"]
+    for (j in seq_along(his)){
+        fit <- tpchreg(event ~ offset(log(exposure)) + age, 
+                       cuts = 65:100, 
+                       data = dat[dat$hisclass == his[i], ])
+        haz <- c(0, fit$hazards, fit$hazards[length(fit$hazards)])
+        resm[j, i] <- mpch(levels = haz, cuts = 65:100)
+    }
+    ##fit <- coxph(Surv(enter, exit, event) ~ strata(hisclass), weights = wght, data = dat)
+    ##resm[, i] <- summary(survfit(fit), rmean = 100)$table[, "*rmean"]
 }
 ##
 resw <- matrix(0, nrow = nhis, ncol = nper)
 for (i in 1:nper){
-    dat <- vb2[vb2$sex == "female" & vb2$period == labb[i], ]
+    dat <- vb2Tab[vb2Tab$sex == "female" & vb2Tab$period == labb[i], ]
     dat$wght <- getWeights(dat)
-    fit <- coxph(Surv(enter, exit, event) ~ strata(hisclass), weights = wght, data = dat)
-    resw[, i] <- summary(survfit(fit), rmean = 100)$table[, "*rmean"]
+        for (j in seq_along(his)){
+        fit <- tpchreg(event ~ offset(log(exposure)) + age, 
+                       cuts = 65:100, 
+                       data = dat[dat$hisclass == his[i], ])
+        haz <- c(0, fit$hazards, fit$hazards[length(fit$hazards)])
+        resw[j, i] <- mpch(levels = haz, cuts = 65:100)
+    }
+
+    ##fit <- coxph(Surv(enter, exit, event) ~ strata(hisclass), weights = wght, data = dat)
+    ##resw[, i] <- summary(survfit(fit), rmean = 100)$table[, "*rmean"]
 }
 
 ```
