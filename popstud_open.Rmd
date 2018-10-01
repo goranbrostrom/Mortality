@@ -1195,12 +1195,12 @@ The exposure in years for men and women respectively are shown in Table \@ref(ta
 ```{r exposuretab, message = FALSE, cache = FALSE, results = 'asis'}
 ##expo <- aggregate(vb[, c("exposure")], by = vb[, c("hisclass", "period", "sex")], FUN = sum)
 ex <- with(vb, tapply(exposure, list(period, hisclass, sex), sum))
-print(xtable(ex[,,2], label = "tab:womenexp", caption = "Exposure in years by hisclass and period, women.", digits = 0), 
+print(xtable(ex[,,2], label = "tab:womenexp", caption = "Exposure in years by social class and period, women.", digits = 0), 
       type = "latex", comment = FALSE)
 ```
 
 ```{r exposuretab2, message = FALSE, cache = FALSE, results = 'asis'}
-print(xtable(ex[,,1], label = "tab:menexp", caption = "Exposure in years by hisclass and period, men.", digits = 0), 
+print(xtable(ex[,,1], label = "tab:menexp", caption = "Exposure in years by social class and period, men.", digits = 0), 
       type = "latex", comment = FALSE)
 ```
 
@@ -1209,11 +1209,11 @@ The number of deaths for women are shown in Table \@ref(tab:womendeaths), and fo
 ```{r deathtab, message = FALSE, cache = FALSE, results = 'asis'}
 ##expo <- aggregate(vb[, c("exposure")], by = vb[, c("hisclass", "period", "sex")], FUN = sum)
 deaths <- with(vb, tapply(event, list(period, hisclass, sex), sum))
-print(xtable(deaths[,,2], label = "tab:womendeaths", caption = "Number of deaths by hisclass and period, women.", digits = 0), 
+print(xtable(deaths[,,2], label = "tab:womendeaths", caption = "Number of deaths by social class and period, women.", digits = 0), 
       type = "latex", comment = FALSE)
 ```
 
 ```{r deathtab2, message = FALSE, cache = FALSE, results = 'asis'}
-print(xtable(deaths[,,1], label = "tab:mendeaths", caption = "Number of deaths by hisclass and period, men.", digits = 0), 
+print(xtable(deaths[,,1], label = "tab:mendeaths", caption = "Number of deaths by social class and period, men.", digits = 0), 
       type = "latex", comment = FALSE)
 ```
