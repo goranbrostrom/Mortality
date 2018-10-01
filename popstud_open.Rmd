@@ -1,5 +1,5 @@
 ---
-title: Is high social class always beneficial for survival? A study of northern Sweden 1801--2013 \footnote{Short; "Is high social class beneficial for survival?"} \footnote{Funding:}
+title: Is high social class always beneficial for survival? A study of northern Sweden 1801--2013 \footnote{Short; "Is high social class beneficial for survival?"} \footnote{Funding:This work was founded by the Swedish Research Council under grants No 349-2008-6592 No 421-2012-892}
 author: Sören Edvinsson \footnote{email soren.edvinsson@umu.se, orcid 0000-0001-7439-002X (corresponding author)}
   and Göran Broström \footnote{email goran.brostrom@umu.se, orcid 0000-0002-2865-7894}
 date: Centre for Demographic and Ageing Research, Umeå University, Umeå, Sweden
@@ -281,7 +281,7 @@ farm workers.
 
 Figure \@ref(fig:plottaalla) shows the distribution
 (per cent) of exposure time according to class for men and women,
-respectively. The farmer category was dominant until the middle of the 20th centuries but have become marginal in the latest periods, particularly among women. The category of workers is fairly stable over time. The highest class has increased substantially, albeit from a very low level
+respectively (see also Appendix). The farmer category was dominant until the middle of the 20th centuries but have become marginal in the latest periods, particularly among women. The category of workers is fairly stable over time. The highest class has increased substantially, albeit from a very low level
 in the 19th century. The increase in academics in connection to the
 establishment of Umeå University explains much of this increase in later time. Furthermore,
 we observe a rather high percentage of missing social class in the early 19th century.
@@ -325,8 +325,7 @@ par(oldpar)
 ```
 
 
-The proportion with missing values among women is a larger problem, however;
-see Figure \@ref(fig:plottaalla). Corresponding to what we found for men, the
+The proportion with missing values among women is a larger problem, however. Corresponding to what we found for men, the
 proportion without social position is very low until the middle of the 20th
 century, reflecting the way women's social position is defined. However, the frequency of missing social class is quite high during particularly the first two periods of data from the Linnaeus database---from 1976. Since female social class for this period is defined
 according to own occupation, the consequence of many women being outside
@@ -1184,9 +1183,14 @@ providing us with scripts for creating Hisclass from Swedish census
 data.
 -->
 
+
+
+# References
+
+
 # Appendix {-}
 
-Figure 3 is shown as absolute numbers, exposures for women in Table \@ref(tab:womenexp), and exposures for men in Table \@ref(tab:menexp).
+The exposure in years for men and women respectively are shown in Table \@ref(tab:womenexp), and Table \@ref(tab:menexp).
 
 ```{r exposuretab, message = FALSE, cache = FALSE, results = 'asis'}
 ##expo <- aggregate(vb[, c("exposure")], by = vb[, c("hisclass", "period", "sex")], FUN = sum)
@@ -1200,7 +1204,7 @@ print(xtable(ex[,,1], label = "tab:menexp", caption = "Exposure in years by hisc
       type = "latex", comment = FALSE)
 ```
 
-Then number of deaths for women are shown in Table \@ref(tab:womendeaths), and for men in Table \@ref(tab:mendeaths).
+The number of deaths for women are shown in Table \@ref(tab:womendeaths), and for men in Table \@ref(tab:mendeaths).
 
 ```{r deathtab, message = FALSE, cache = FALSE, results = 'asis'}
 ##expo <- aggregate(vb[, c("exposure")], by = vb[, c("hisclass", "period", "sex")], FUN = sum)
@@ -1213,8 +1217,3 @@ print(xtable(deaths[,,2], label = "tab:womendeaths", caption = "Number of deaths
 print(xtable(deaths[,,1], label = "tab:mendeaths", caption = "Number of deaths by hisclass and period, men.", digits = 0), 
       type = "latex", comment = FALSE)
 ```
-
-
-# References
-
-
