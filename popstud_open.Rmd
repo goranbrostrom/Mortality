@@ -94,7 +94,7 @@ vb$exposure <- vb$exit - vb$enter # For statistics and figures purposes
 ```
 
 \section*{Acknowledgement}
-
+\thispagestyle{empty}
 We thank the Demographic Data Base, Umeå University, for giving us access to data and
 Jonas Helgertz at the Department of Economic History, Lund University, for
 providing us with scripts for creating Hisclass from Swedish census
@@ -311,7 +311,7 @@ xx <- with(vb[vb$sex == "male", ], tapply(exposure, list(period = period, hiscla
 ##xz <- with(foli[foli$sex == "male", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 ##xxx <- rbind(xx, xy, xz)
 yy <- round(prop.table(xx, 1) * 100, 1)
-barplot(t(yy)[5:1, ], col = cls, las = 2, ylab = "Per cent")
+##barplot(t(yy)[5:1, ], col = cls, las = 2, ylab = "Per cent")
 ```
 
 ```{r hiscskumw, fig.cap = "Exposure by social class (from the top: elite, middle, workers, farmers, none) and time period, women.", out.height = "14cm", fig.scap="Exposure by social class and time period, women.",fig.height=4,cache=FALSE}
@@ -320,7 +320,7 @@ xx2 <- with(vb[vb$sex == "female", ], tapply(exposure, list(period = period, his
 ##xz <- with(foli[foli$sex == "female", ], tapply(exposure, list(period = period, hisclass = hisclass), sum))
 ##xxx <- rbind(xx, xy, xz)
 yy2 <- round(prop.table(xx2, 1) * 100, 1)
-barplot(t(yy2)[5:1, ], col = cls, las = 2, ylab = "Per cent")
+##barplot(t(yy2)[5:1, ], col = cls, las = 2, ylab = "Per cent")
 ```
 -->
 
@@ -355,7 +355,7 @@ The proportion married varies between 60 and 70 percent over time, never married
 
 <!--
 
-```{r civstskum, fig.cap = "Exposure by marital status (from the top: never married, married and previously married) and time period", fig.scap='Exposure by marital status and time period.',out.height = "14cm",fig.height=4}
+```{r civstskum, fig.cap = "Exposure by marital status (from the top: never married, married and previously married) and time period", fig.scap='Exposure by marital status and time period.',out.height = "14cm",fig.height=4,eval = FALSE}
 xx <- with(vb, tapply(exposure, list(period = period, civst = civst), sum))
 ##xy <- with(skume, tapply(exposure, list(period = period, civst = civst), sum))
 ##xz <- with(foli, tapply(exposure, list(period = period, civst = civst), sum))
@@ -477,7 +477,7 @@ nper <- length(labb)
 
 In order to simplify the illustration, we look at `civil status` in two groups, `ever married` and `unmarried`, in Figure \@ref(fig:assesciv).
 
-```{r assesciv, fig.cap = "Fraction ever married by hisclass and period.", fig.height = 4}
+```{r assesciv, fig.cap = "Fraction ever married by hisclass and period.", fig.height = 4,eval=FALSE}
 orr <- aggregate(x = vb$exposure, by = vb[, c("period", "civst", "hisclass")], FUN = sum)
 
 levper <- levels(orr$period)
@@ -508,7 +508,7 @@ legend("bottomright", legend = levhis, lty = 1:5, col = scol, pch = 1:5)
 
 ## Association between urban/rural and social class over time
 
-```{r assesurb, fig.cap = "Fraction urban by hisclass and period.", fig.height = 4}
+```{r assesurb, fig.cap = "Fraction urban by hisclass and period.", fig.height = 4,eval=FALSE}
 orr <- aggregate(x = vb$exposure, by = vb[, c("period", "urban", "hisclass")], FUN = sum)
 
 levper <- levels(orr$period)
@@ -545,7 +545,7 @@ and the confounders are introduced. This is done period by period.
 
 As an illustration, take the period `2005-2013` with males, 65--99 years of age.
 
-```{r exweight,echo=TRUE,echo = FALSE}
+```{r exweight,echo=TRUE,echo = FALSE,eval=FALSE}
 vb2_2005_men <- vb2[vb2$sex == "male" & vb2$period == "2005-2013", ]
 fit1 <- glm(I(hisclass == "elite") ~ urban * civst, data = vb2_2005_men, family = binomial)
 fit2 <- glm(I(hisclass == "middle") ~ urban * civst, data = vb2_2005_men, family = binomial)
@@ -575,7 +575,7 @@ vb2_2005_men$wght <- wght
 
 Let us fit with and without weights, see Figure \@ref(fig:testfit).
 
-```{r testfit, fig.cap = "Survival by hisclass, men 2005-2013, unweighted and weighted analysis.", fig.height = 4}
+```{r testfit, fig.cap = "Survival by hisclass, men 2005-2013, unweighted and weighted analysis.", fig.height = 4,eval=FALSE}
 par(cex.axis = 0.8)
 fit <- coxph(Surv(enter, exit, event) ~ strata(hisclass), data = vb2_2005_men)
 med <- summary(survfit(fit))$table[, "median"]
@@ -616,13 +616,13 @@ The social class differences are smaller in the weighted analysis, meaning that 
 For simple comparison over time, we need  simple summary measures, for instance the medians, shown in Figure \@ref(fig:testfit) and Table \@ref(tab:estmed).
 
 
-```{r estmed}
+```{r estmed,eval=FALSE}
 knitr::kable(round(medi, 1), caption = "Estimated medians, men 65-99, 2005-2013.")
 ```
 
 However, for the age interval 40--64 the median is not a good measure, because the probability to survive age 65, given survival to age 40, is much larger than 0.5, see Figure \@ref(fig:forty64).
 
-```{r forty64, fig.cap = "Adjusted survival curves, men in ages 40-65 and 65-100, years 2005-2013.", fig.height = 4}
+```{r forty64, fig.cap = "Adjusted survival curves, men in ages 40-65 and 65-100, years 2005-2013.", fig.height = 4,eval=FALSE}
 source("R/getWeights.R")
 da <- vb1[vb1$sex == "male" & vb1$period == "2005-2013", ]
 da$wght <- getWeights(da)
@@ -656,7 +656,7 @@ legend("bottomleft", legend = levels(vb2$hisclass), col = scol, lty = 1:5, cex =
 
 We cannot use the "median remaining life" as a summary comparison measure here, for obvious reasons. Instead, the *area under the survival curves* will be used. This area can be interpreted as the *expected years of life before 65(100)* for a person aged 40(65). Here we get
 
-```{r explife40}
+```{r explife40,eval=FALSE}
 avew <- round(summary(survfit(fitw), rmean = 100)$table[, "*rmean"], 2)
 avew0 <- round(summary(survfit(fitw0), rmean = 65)$table[, "*rmean"], 2)
 aver <- cbind(avew0, avew)
@@ -793,7 +793,7 @@ for (i in 1:nper){
 ```
 
 <!--
-```{r cumsw, fig.cap = "Differences in expected years of survival until the age of 65, given survival to age 40, by period and hisclass. Reference is the working class.", fig.scap = "Differences in expected years of life at age 40", fig.height = 8, out.height = "14cm"}
+```{r cumsw, fig.cap = "Differences in expected years of survival until the age of 65, given survival to age 40, by period and hisclass. Reference is the working class.", fig.scap = "Differences in expected years of life at age 40", fig.height = 8, out.height = "14cm",eval=FALSE}
 source("R/plotED.glm.R")
 oldpar <- par(mfrow = c(2, 1))
 midper <- c(1812.5, 1837.5, 1862.5, 1887.5, 1912.5, 1937.5, 1981, 1991, 2000.5, 2009.5)
