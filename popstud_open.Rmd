@@ -173,7 +173,7 @@ The Umeå region in the dataset consists of Umeå urban and rural parishes 1901-
 
 # Data and variables
 
-The data for the present study come from two large population databases at the Demographic Data Base (DDB),Umeå University (http://www.cedar.umu.se), which provide us with micro-data for the Skellefteå and Umeå regions in northern Sweden. The period 1801--1950 is covered by the database Poplink [@wee16]. Poplink is based on linked parish records, allowing us to reconstruct life biographies on people as long as they remained in the region. The records are linked within, but not
+The data for the present study come from two large population databases at the Demographic Data Base (DDB),Umeå University (http://www.cedar.umu.se), which provide us with micro-data for the Skellefteå and Umeå regions in northern Sweden (Demografiska databasen, CEDAR, Umeå universitet (2015). U15014. http://dx.doi.org/10.17197/U15014). The period 1801--1950 is covered by the database Poplink [@wee16]. Poplink is based on linked parish records, allowing us to reconstruct life biographies on people as long as they remained in the region. The records are linked within, but not
 between, the regions.
 
 The other large data set is extracted from the Linnaeus database
@@ -1170,12 +1170,7 @@ time2 <- Sys.time()
 <!--
 # Acknowledgements
 
-This work was undertaken within the research programme *Ageing and
-Living Conditions* at the Centre for Demographic and Ageing Research
-(CEDAR) at Umeå University, financed by the Swedish Research Council (grant
-No 349-2008-6592) and Edvinsson was economically supported by the Swedish Research Council via the project *Old age, health and inequality:
-Mortality from a life course perspective in Sweden 1986--2009* (grant No 421-2012-892). We thank the
-Demographic Data Base, Umeå University, for giving us access to data and
+We thank the Demographic Data Base, Umeå University, for giving us access to data and
 Jonas Helgertz at the Department of Economic History, Lund University, for
 providing us with scripts for creating Hisclass from Swedish census
 data.
