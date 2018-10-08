@@ -31,21 +31,6 @@ header-includes:
 - \usepackage{sectsty}
 - \subsectionfont{\normalfont\itshape}
 bibliography: mybib
-abstract: "Focusing on two regions in northern Sweden 1801--2013, we challenge common
-  notions of the assumed advantage in survival of belonging to a high social class.
-  The issue is analysed according to gender and age group (adults and elderly) and
-  in relation to the development of economic inequality. The results show that high
-  social class is not always favourable for survival. Men in the elite category, particularly
-  in working age, had higher mortality compared to others during a large part of the
-  studied period; a male mortality class reversal appears at a surprisingly late date,
-  while the social gradient among women conforms to the expected pattern. We suggest
-  that health-related behaviour is decisive not only in later but earlier phases of
-  the mortality transition as well. The results implicate that the association between
-  social class and health is more complex than is assumed in many of the dominant
-    theories in demography and epidemiology.\\par\n\\textbf{Keywords:} Class reversal
-  in mortality; Cox regression; Gender differences; Inverse probability weighting;
-  Mortality transition; Northern Sweden; Social inequality; 19th to 21 century."
-
 titlepage: yes
 ---
 
@@ -108,6 +93,33 @@ vb <- rbind(vb1, vb2)
 vb$exposure <- vb$exit - vb$enter # For statistics and figures purposes
 ```
 
+\section*{Acknowledgement}
+
+We thank the Demographic Data Base, Umeå University, for giving us access to data and
+Jonas Helgertz at the Department of Economic History, Lund University, for
+providing us with scripts for creating Hisclass from Swedish census
+data.
+
+
+\begin{abstract} 
+Focusing on two regions in northern Sweden 1801--2013, we challenge common
+  notions of the assumed advantage in survival of belonging to a high social class.
+  The issue is analysed according to gender and age group (adults and elderly) and
+  in relation to the development of economic inequality. The results show that high
+  social class is not always favourable for survival. Men in the elite category, particularly
+  in working age, had higher mortality compared to others during a large part of the
+  studied period; a male mortality class reversal appears at a surprisingly late date,
+  while the social gradient among women conforms to the expected pattern. We suggest
+  that health-related behaviour is decisive not only in later but earlier phases of
+  the mortality transition as well. The results implicate that the association between
+  social class and health is more complex than is assumed in many of the dominant
+    theories in demography and epidemiology.
+    
+    \textbf{Keywords:} Class reversal
+  in mortality; Cox regression; Gender differences; Inverse probability weighting;
+  Mortality transition; Northern Sweden; Social inequality; 19th to 21th century.
+
+\end{abstract}
 
 # Introduction
 
@@ -820,7 +832,7 @@ par(oldpar)
 -->
 Differences in mortality in the age group 40--64 are getting very small as we move forward in time: Almost all forty-year-olds today survive beyond 65, regardless of social class. In Sweden of the year 2014, the probability of surviving age 65 for a forty-year-old man is 91 per cent  (a period measure). The corresponding figure for a forty-year-old woman is 94 per cent. A relevant measure of comparison is the probability (risk) of dying before age 65 for a forty-year-old, remembering that the absolute risks are very small in the later time periods.
 
-From Table \@ref(tab:cumswtab) it is obvious that the *statistical significance* is strong in our statistical model of the probability of dying. The most interesting feature is the three-way interaction with **sex**, **period**, and **social class**. This indicates that fundamental changes have taken place in the relationship between the variables during our study period.
+From Table \@ref(tab:cumswtabout) it is obvious that the *statistical significance* is strong in our statistical model of the probability of dying. The most interesting feature is the three-way interaction with **sex**, **period**, and **social class**. This indicates that fundamental changes have taken place in the relationship between the variables during our study period.
 
 
 ```{r probswabs, fig.cap = "Probability of dying before the age of 65, given survival to age 40, by period and social class.", fig.scap = "Probability of dying before 65.", fig.height = 10, out.height = "18cm", cache = FALSE}
