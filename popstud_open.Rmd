@@ -185,7 +185,7 @@ The Umeå region in the dataset consists of Umeå urban and rural parishes 1901-
 
 # Data and variables
 
-The data for the present study come from two large population databases at the Demographic Data Base (DDB),Umeå University (http://www.cedar.umu.se), which provide us with micro-data for the Skellefteå and Umeå regions in northern Sweden (Demografiska databasen, CEDAR, Umeå universitet (2015). U15014. http://dx.doi.org/10.17197/U15014). The period 1801--1950 is covered by the database Poplink [@wee16]. Poplink is based on linked parish records, allowing us to reconstruct life biographies on people as long as they remained in the region. The records are linked within, but not
+The data for the present study come from two large population databases at the Demographic Data Base (DDB),Umeå University (http://www.cedar.umu.se), which provide us with micro-data for the Skellefteå and Umeå regions in northern Sweden [@ddb15]. The period 1801--1950 is covered by the database Poplink [@wee16]. Poplink is based on linked parish records, allowing us to reconstruct life biographies on people as long as they remained in the region. The records are linked within, but not
 between, the regions.
 
 The other large data set is extracted from the Linnaeus database
@@ -292,7 +292,7 @@ farm workers.
 
 
 Figure \@ref(fig:plottaalla) shows the distribution
-(per cent) of exposure times according to class for women and men (see also Tables \@ref(tab:womenexp) and \@ref(tab:menexp), respectively, in the Appendix). The farmer category was dominant until the middle of the 20th centuries but have become marginal in the latest periods, particularly among women. The category of workers is fairly stable over time. The highest class has increased substantially, albeit from a very low level
+(per cent) of exposure times according to class for women and men (see also Tables \@ref(tab:womenexp) and \@ref(tab:menexp), respectively, as well as Table \@ref(tab:womendeaths), and \@ref(tab:mendeaths) for number of deaths during the different periods in the Appendix). The farmer category was dominant until the middle of the 20th centuries but have become marginal in the latest periods, particularly among women. The category of workers is fairly stable over time. The highest class has increased substantially, albeit from a very low level
 in the 19th century. The increase in academics in connection to the
 establishment of Umeå University explains much of this increase in later time. Furthermore,
 we observe a rather high percentage of missing social class in the early 19th century.
