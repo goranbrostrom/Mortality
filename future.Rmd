@@ -91,11 +91,11 @@ foli2 <- addPer(foli2, cuts = c(1976, 1986, 1996, 2005, 2014))
 ##################################################
 vb1 <- rbind(skume1, foli1)
 vb1$period <- factor(vb1$period)
-vb1Tab <- toTpch(vb1[, !(colnames(vb1) %in% c("id", "birthdate"))], cuts = seq(40, 65, by = 1))
+vb1Tab <- toTpch(vb1[, !(colnames(vb1) %in% c("id", "birthdate"))], cuts = seq(40, 65, by = 5))
 ##
 vb2 <- rbind(skume2, foli2)
 vb2$period <- factor(vb2$period)
-vb2Tab <- toTpch(vb2[, !(colnames(vb2) %in% c("id", "birthdate"))], cuts = seq(65, 100, by = 1))
+vb2Tab <- toTpch(vb2[, !(colnames(vb2) %in% c("id", "birthdate"))], cuts = seq(65, 100, by = 5))
 vb <- rbind(vb1, vb2)
 vb$exposure <- vb$exit - vb$enter # For statistics and figures purposes
 vbTab <- rbind(vb1Tab, vb2Tab) # NEW
@@ -769,7 +769,7 @@ for (i in 1:nper){
     ##fit <- coxph(Surv(enter, exit, event) ~ strata(hisclass), weights = wght, data = dat)
     ##x <- survfit(fit)
     for (j in seq_along(his)){
-        fit <- tpchreg(event ~ offset(log(exposure)) + age, data = dat[dat$hisclass == his[j], ], cuts = seq(40, 65, by = 1))
+        fit <- tpchreg(event ~ offset(log(exposure)) + age, data = dat[dat$hisclass == his[j], ], cuts = seq(40, 65, by = 5))
         haz <- c(0, fit$hazards, fit$hazards[length(fit$hazards)])
         pdm[j, i] <- ppch(65, cuts = fit$cuts, levels = haz)
     }
@@ -786,7 +786,7 @@ for (i in 1:nper){
     ##fit <- coxph(Surv(enter, exit, event) ~ strata(hisclass), weights = wght, data = dat)
     ##x <- survfit(fit)
     for (j in seq_along(his)){
-        fit <- tpchreg(event ~ offset(log(exposure)) + age, data = dat[dat$hisclass == his[j], ], cuts = seq(40, 65, by = 1))
+        fit <- tpchreg(event ~ offset(log(exposure)) + age, data = dat[dat$hisclass == his[j], ], cuts = seq(40, 65, by = 5))
         haz <- c(0, fit$hazards, fit$hazards[length(fit$hazards)])
         pdw[j, i] <- ppch(65, cuts = fit$cuts, levels = haz)
     }
@@ -930,7 +930,7 @@ par(oldpar)
 # vb3064$marital_status <- vb3064$civst
 # vb3064$urban_or_rural <- vb3064$urban
 # vb3064$age_group <- vb3064$age
-fitt <- tpchreg(event ~ offset(log(exposure)) + age + urban + civst + sex * hisclass * period, cuts = 40:65,
+fitt <- tpchreg(event ~ offset(log(exposure)) + age + urban + civst + sex * hisclass * period, cuts = seq(40, 65, by = 5),
              data = vb1Tab)
 dr <- drop1(fitt, test = "Chisq")
 # ##dr
@@ -1000,7 +1000,7 @@ We use the *expected remaining years of life at 65 up to age 100* (reported as m
 #             data = vb6599, family = poisson)
 
 ##fittold <- coxph(Surv(enter, exit, event) ~ hisclass * period * sex ##+ civst + urban, data = vb2)
-fittold <- tpchreg(event ~ offset(log(exposure)) + age + hisclass * period * sex + civst + urban, cuts = 65:100, data = vb2Tab)
+fittold <- tpchreg(event ~ offset(log(exposure)) + age + hisclass * period * sex + civst + urban, cuts = seq(65, 100, by = 5), data = vb2Tab)
 drold <- drop1(fittold, test = "Chisq")
 ```
 
@@ -1022,7 +1022,7 @@ for (i in 1:nper){
     dat$wght <- getWeights(dat)
     for (j in seq_along(his)){
         fit <- tpchreg(event ~ offset(log(exposure)) + age, 
-                       cuts = 65:100, 
+                       cuts = seq(65, 100, by = 5), 
                        data = dat[dat$hisclass == his[i], ])
         haz <- c(0, fit$hazards, fit$hazards[length(fit$hazards)])
         resm[j, i] <- mpch(levels = haz, cuts = 65:100)
@@ -1037,7 +1037,7 @@ for (i in 1:nper){
     dat$wght <- getWeights(dat)
         for (j in seq_along(his)){
         fit <- tpchreg(event ~ offset(log(exposure)) + age, 
-                       cuts = 65:100, 
+                       cuts = seq(65, 100, by = 5), 
                        data = dat[dat$hisclass == his[i], ])
         haz <- c(0, fit$hazards, fit$hazards[length(fit$hazards)])
         resw[j, i] <- mpch(levels = haz, cuts = 65:100)
