@@ -91,20 +91,27 @@ foli2 <- addPer(foli2, cuts = c(1976, 1986, 1996, 2005, 2014))
 ##################################################
 vb1 <- rbind(skume1, foli1)
 vb1$period <- factor(vb1$period)
-vb1Tab <- toTpch(vb1[, !(colnames(vb1) %in% c("id", "birthdate"))], cuts = seq(40, 65, by = 5))
+cuts1 <- seq(40, 65, by = 5) ############################## NOTE!!
+vb1Tab <- toTpch(vb1[, !(colnames(vb1) %in% c("id", "birthdate"))], cuts = cuts1)
 ##
 vb2 <- rbind(skume2, foli2)
 vb2$period <- factor(vb2$period)
-vb2Tab <- toTpch(vb2[, !(colnames(vb2) %in% c("id", "birthdate"))], cuts = seq(65, 100, by = 5))
+cuts2 <- c(seq(65, 90, by = 5), 100) ###################### NOTE!!
+vb2Tab <- toTpch(vb2[, !(colnames(vb2) %in% c("id", "birthdate"))], cuts = cuts2)
 vb <- rbind(vb1, vb2)
 vb$exposure <- vb$exit - vb$enter # For statistics and figures purposes
 vbTab <- rbind(vb1Tab, vb2Tab) # NEW
+saveRDS(vbTab, file = "data/vbTab.rds")
+saveRDS(vb1Tab, file = "data/vb1Tab.rds")
+saveRDS(vb2Tab, file = "data/vb2Tab.rds")
 ```
 
 ```{r nydata}
 vbTab <- readRDS("data/vbTab.rds")
 vb1Tab <- readRDS("data/vb1Tab.rds")
 vb2Tab <- readRDS("data/vb2Tab.rds")
+cuts1 <- seq(40, 65, by = 5) ############################## NOTE: fragile!!
+cuts2 <- c(seq(65, 90, by = 5), 100) ###################### NOTE: fragile!!
 ```
 
 # Introduction
@@ -786,7 +793,7 @@ for (i in 1:nper){
     ##fit <- coxph(Surv(enter, exit, event) ~ strata(hisclass), weights = wght, data = dat)
     ##x <- survfit(fit)
     for (j in seq_along(his)){
-        fit <- tpchreg(event ~ offset(log(exposure)) + age, data = dat[dat$hisclass == his[j], ], cuts = seq(40, 65, by = 5))
+        fit <- tpchreg(event ~ offset(log(exposure)) + age, data = dat[dat$hisclass == his[j], ], cuts = cuts1)
         haz <- c(0, fit$hazards, fit$hazards[length(fit$hazards)])
         pdw[j, i] <- ppch(65, cuts = fit$cuts, levels = haz)
     }
@@ -796,44 +803,7 @@ for (i in 1:nper){
 
 ```
 
-<!--
-```{r cumsw, fig.cap = "Differences in expected years of survival until the age of 65, given survival to age 40, by period and hisclass. Reference is the working class.", fig.scap = "Differences in expected years of life at age 40", fig.height = 8, out.height = "14cm"}
-source("R/plotED.glm.R")
-oldpar <- par(mfrow = c(2, 1))
-midper <- c(1812.5, 1837.5, 1862.5, 1887.5, 1912.5, 1937.5, 1981, 1991, 2000.5, 2009.5)
-refclw <- resw[3, ]
-plot(midper, resw[1, ] - refclw, col = scol[1], type = "b", ylim = c(-3, 3), xlab = "Period", xlim = c(1810, 2015),
-     ylab = "Years", axes = FALSE, main = "Women, 40-64", lty = 1, pch = 1)
 
-axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
-axis(2, las = 1)
-axis(4, las = 1)
-abline(h = 65)
-box()
-for (i in 2:5){
-    lines(midper, resw[i, ] - refclw, col = scol[i], type = "b", pch = i, lty = i)
-}
-legend("topright", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7, bty = "n")
-refclm <- resm[3, ]
-plot(midper, resm[1, ] - refclm, col = scol[1], type = "b", ylim = c(-3, 3), xlab = "Period",
-     ylab = "Years", axes = FALSE, main = "Men, 40-64", lty = 1, pch = 1, xlim = c(1810, 2015))
-axis(1, at = midper, labels = labb, las = 2, cex.axis = 0.5)
-axis(2, las = 1)
-axis(4, las = 1)
-abline(h = 65)
-box()
-for (i in 2:5){
-    lines(midper, resm[i, ] - refclm, col = scol[i], type = "b", lty = i, pch = i)
-}
-legend("topright", legend = his, col = scol, lty = 1:5, pch = 1:5, cex = 0.7, bty = "n")
-##woutp <- plotED.glm(resw, col = scol, logScale = TRUE, ylab = "H(65|30)",
-  ##              main = "Women 30-64", ylim = c(0, 1))##, exclude = 5:6)
-##moutp <- plotED.glm(resm, col = scol, logScale = TRUE, ylab = "H(65|30)",
-  ##              main = "Men 30-64", ylim = c(0, 1))##, exclude = 5:6)
-par(oldpar)
-```
-
--->
 Differences in mortality in the age group 40--64 are getting very small as we move forward in time: Almost all forty-year-olds today survive beyond 65, regardless of social class. In Sweden of the year 2014, the probability of surviving age 65 for a forty-year-old man is 91 per cent  (a period measure). The corresponding figure for a forty-year-old woman is 94 per cent. A relevant measure of comparison is the probability (risk) of dying before age 65 for a forty-year-old, remembering that the absolute risks are very small in the later time periods.
 
 From Table \@ref(tab:cumswtab) it is obvious that the *statistical significance* is strong in our statistical model of the probability of dying. The most interesting feature is the three-way interaction with **sex**, **period**, and **social class**. This indicates that fundamental changes have taken place in the relationship between the variables during our study period.
@@ -930,7 +900,7 @@ par(oldpar)
 # vb3064$marital_status <- vb3064$civst
 # vb3064$urban_or_rural <- vb3064$urban
 # vb3064$age_group <- vb3064$age
-fitt <- tpchreg(event ~ offset(log(exposure)) + age + urban + civst + sex * hisclass * period, cuts = seq(40, 65, by = 5),
+fitt <- tpchreg(event ~ offset(log(exposure)) + age + urban + civst + sex * hisclass * period, cuts = cuts1,
              data = vb1Tab)
 dr <- drop1(fitt, test = "Chisq")
 # ##dr
@@ -1000,7 +970,7 @@ We use the *expected remaining years of life at 65 up to age 100* (reported as m
 #             data = vb6599, family = poisson)
 
 ##fittold <- coxph(Surv(enter, exit, event) ~ hisclass * period * sex ##+ civst + urban, data = vb2)
-fittold <- tpchreg(event ~ offset(log(exposure)) + age + hisclass * period * sex + civst + urban, cuts = seq(65, 100, by = 5), data = vb2Tab)
+fittold <- tpchreg(event ~ offset(log(exposure)) + age + hisclass * period * sex + civst + urban, cuts = cuts2, data = vb2Tab)
 drold <- drop1(fittold, test = "Chisq")
 ```
 
@@ -1022,10 +992,11 @@ for (i in 1:nper){
     dat$wght <- getWeights(dat)
     for (j in seq_along(his)){
         fit <- tpchreg(event ~ offset(log(exposure)) + age, 
-                       cuts = seq(65, 100, by = 5), 
+                       cuts = cuts2, 
                        data = dat[dat$hisclass == his[i], ])
         haz <- c(0, fit$hazards, fit$hazards[length(fit$hazards)])
-        resm[j, i] <- mpch(levels = haz, cuts = 65:100)
+        cat("lenght(haz) = ", length(haz), "\n")
+        resm[j, i] <- mpch(levels = haz, cuts = fit$cuts)
     }
     ##fit <- coxph(Surv(enter, exit, event) ~ strata(hisclass), weights = wght, data = dat)
     ##resm[, i] <- summary(survfit(fit), rmean = 100)$table[, "*rmean"]
@@ -1037,10 +1008,10 @@ for (i in 1:nper){
     dat$wght <- getWeights(dat)
         for (j in seq_along(his)){
         fit <- tpchreg(event ~ offset(log(exposure)) + age, 
-                       cuts = seq(65, 100, by = 5), 
+                       cuts = cuts2, 
                        data = dat[dat$hisclass == his[i], ])
         haz <- c(0, fit$hazards, fit$hazards[length(fit$hazards)])
-        resw[j, i] <- mpch(levels = haz, cuts = 65:100)
+        resw[j, i] <- mpch(levels = haz, cuts = fit$cuts)
     }
 
     ##fit <- coxph(Surv(enter, exit, event) ~ strata(hisclass), weights = wght, data = dat)
